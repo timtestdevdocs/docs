@@ -1,0 +1,53 @@
+---
+title: "Exchange Rates"
+api: "GET https://api.jigsawstack.com/api/v1/currency/rates"
+description: "This endpoint is used get exchange based on a base currency "
+---
+
+### Query
+
+<ParamField query="base" default="USD" type="string" required>
+  The base currency. Default is USD
+</ParamField>
+
+<ParamField query="symbols" type="string" required>
+  The symbols to convert to. E.g USD,EUR,CZK
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<ResponseField name="rates" type="JSON">
+  Object containing the data returned by the API.
+</ResponseField>
+
+<RequestExample>
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/currency/rates?base=USD&symbols=NGA,EUR,CZK' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "message": "Exchange rate retrieved successfully",
+  "base": "NGN",
+  "rates": {
+    "USD": 0.002173,
+    "EUR": 0.001972,
+    "CZK": 0.046115
+  }
+}
+```
+
+</ResponseExample>

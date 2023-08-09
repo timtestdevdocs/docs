@@ -1,0 +1,69 @@
+---
+title: "Currency Conversion"
+api: "GET https://api.jigsawstack.com/api/v1/currency/convert"
+description: "This endpoint is used to convert a currency to another currency."
+---
+
+### Query
+
+<ParamField query="from" default="USD" type="string" required>
+  The currency to convert from.
+</ParamField>
+
+<ParamField query="to" type="string" required>
+  The currency to convert to.
+</ParamField>
+
+<ParamField query="amount" type="string" required>
+  The amount to convert.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<ResponseField name="data" type="object">
+Object containing the data returned by the API.
+<Expandable title="Toggle object">
+
+<ResponseField name="exchange_rate" type="number">
+  The exchange rate used for the conversion.
+</ResponseField>
+
+<ResponseField name="amount" type="number">
+  The amount converted.
+</ResponseField>
+
+</Expandable>
+
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/currency/convert?from=USD&to=NGA&amount=100' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Currency converted successfully",
+  "data": {
+    "exchange_rate": 460.225451,
+    "amount": 4602.254506
+  }
+}
+```
+
+</ResponseExample>

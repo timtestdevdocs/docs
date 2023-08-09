@@ -1,0 +1,85 @@
+---
+title: "Formatter"
+api: "GET https://api.jigsawstack.com/api/v1/currency/rates"
+description: "This endpoint is used get exchange based on a base currency "
+---
+
+### Query
+
+<ParamField query="currency_code" default="USD" type="string" required>
+  The base currency. Default is USD
+</ParamField>
+
+<ParamField query="amount" type="string" required>
+  The amount for format e.g 1000
+</ParamField>
+
+<ParamField query="symbols" type="string" required>
+  The symbols to convert to. E.g USD,EUR,CZK
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<ResponseField name="data" type="object">
+The data returned by the API.
+
+<Expandable title="Toggle data">
+
+<ResponseField name="currency" type="string">
+  The currency code.
+</ResponseField>
+
+<ResponseField name="formatted" type="string">
+  The formatted amount.
+</ResponseField>
+
+<ResponseField name="symbol" type="string">
+  The currency symbol.
+</ResponseField>
+
+</Expandable>
+
+</ResponseField>
+
+<RequestExample>
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/currency/formatter?currency_code=USD&amount=1000&symbols=NGA,EUR,CZK' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": [
+    {
+      "currency": "USD",
+      "formatted": "$1,000.00",
+      "symbol": "$"
+    },
+    {
+      "currency": "SGD",
+      "formatted": "$1,000.00",
+      "symbol": "$"
+    },
+    {
+      "currency": "NGN",
+      "formatted": "₦1,000.00",
+      "symbol": "₦"
+    }
+  ]
+}
+```
+
+</ResponseExample>
