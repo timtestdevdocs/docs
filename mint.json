@@ -72,6 +72,12 @@
         "api-reference/endpoint/update",
         "api-reference/endpoint/delete"
       ]
+    },
+    {
+      "group": "AI",
+      "pages": [
+        "api-reference/ai/sentiment"
+      ]
     }
   ],
   "footerSocials": {
