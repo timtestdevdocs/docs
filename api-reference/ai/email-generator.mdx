@@ -1,0 +1,66 @@
+---
+title: "Email Generator"
+api: "POST https://api.jigsawstack.com/api/v1/ai/email"
+description: "This endpoint is used to generate an email based on a given topic."
+---
+
+### Body
+
+<ParamField body="purpose" type="string" required>
+  The purpose of the email. This will be used to generate the email.
+</ParamField>
+
+<ParamField body="tone" type="string" required>
+  The tone of the email.
+</ParamField>
+
+<ParamField body="goal" type="string" required>
+  The goal of the email.
+</ParamField>
+
+<ParamField body="sign_of_name" type="string" required>
+  Designation of the recipient of the email. Example Mr, Mrs., Dr. Ms. e.t.c
+</ParamField>
+
+<ParamField body="to_name" type="string" required>
+  The name of the recipient of the email.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="email" type="string">
+  The generated email.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request POST 'https://api.jigsawstack.com/api/v1/ai/email' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data-raw '{
+    "purpose": "interview",
+    "tone": "formal",
+    "goal": "interview",
+    "sign_of_name": "Mr.",
+    "to_name": "John Doe"
+
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "email": ""
+}
+```
+
+</ResponseExample>

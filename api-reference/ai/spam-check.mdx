@@ -1,0 +1,66 @@
+---
+title: "Spam Check"
+api: "POST https://api.jigsawstack.com/api/v1/ai/spamcheck"
+description: "This endpoint is used to perform spam check analysis"
+---
+
+### Body
+
+<ParamField body="text" type="string" required>
+  The text to check for spam.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="sentiment" type="string">
+  The sentiment of the text.
+</ResponseField>
+
+<ResponseField name="check" type="object">
+
+<Expandable title="Toggle object">
+
+<ResponseField name="is_spam" type="boolean">
+  Indicates whether the text is spam. If the text is not spam, this will be
+  false. Default is true.
+</ResponseField>
+
+<ResponseField name="score" type="number">
+  The spam score of the text. Default is 0. The lower the score, the less likely
+  it will be spam
+</ResponseField>
+
+</Expandable>
+
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request POST 'https://api.jigsawstack.com/api/v1/ai/spamcheck' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data-raw '{
+    "text": "I am happy!"
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "check": {
+    "is_spam": false,
+    "score": 0.2
+  }
+}
+```
+
+</ResponseExample>

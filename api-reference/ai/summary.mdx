@@ -1,0 +1,45 @@
+---
+title: "Summary"
+api: "POST https://api.jigsawstack.com/api/v1/ai/summary"
+description: "This endpoint is used summarize text."
+---
+
+### Body
+
+<ParamField body="text" type="string" required>
+  The text to summarize.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="sentiment" type="string">
+  The sentiment of the text.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request POST 'https://api.jigsawstack.com/api/v1/ai/summary' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data-raw '{
+    "text": "Lorem Ipsum!"
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "summary": ""
+}
+```
+
+</ResponseExample>
