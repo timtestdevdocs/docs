@@ -1,0 +1,45 @@
+---
+title: "Sentiment"
+api: "POST https://api.jigsawstack.com/api/v1/ai/sentiment"
+description: "This endpoint performs a sentiment analysis"
+---
+
+### Body
+
+<ParamField body="text" type="string">
+  The text to be analyzed
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="sentiment" type="string">
+  The sentiment of the text.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request POST 'https://api.jigsawstack.com/api/v1/ai/sentiment' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data-raw '{
+    "text": "I am happy!"
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "sentiment": "positive"
+}
+```
+
+</ResponseExample>
