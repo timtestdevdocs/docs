@@ -82,6 +82,14 @@
       ]
     },
     {
+      "group": "Conversion",
+      "pages": [
+        "api-reference/conversion/qrcode",
+         "api-reference/conversion/degree",
+         "api-reference/conversion/unit"
+      ]
+    },
+    {
       "group": "Endpoint Examples",
       "pages": [
         "api-reference/endpoint/get",
