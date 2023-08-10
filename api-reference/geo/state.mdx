@@ -1,0 +1,66 @@
+---
+title: "State"
+api: "GET https://api.jigsawstack.com/api/v1/geo/state"
+description: "Get geo information for a state"
+---
+
+### Query
+
+<ParamField query="country_code" type="string">
+  The country code of the country. This filters the states to the country.
+</ParamField>
+
+<ParamField query="state_code" type="string">
+  The state code of the state.
+</ParamField>
+
+<ParamField query="search_value" type="string">
+  The search value of the state.
+</ParamField>
+
+<ParamField query="lat" type="string">
+  The latitude of the country.
+</ParamField>
+
+<ParamField query="lng" type="string">
+  The longitude of the country.
+</ParamField>
+
+<ParamField query="limit" type="string" default="10">
+  The limit on the items to return
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<ResponseField name="data" type="JSON">
+  Array containing the data returned by the API.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/geo/state' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Request was successful",
+  "data": []
+}
+```
+
+</ResponseExample>

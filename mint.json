@@ -90,6 +90,29 @@
       ]
     },
     {
+      "group": "Data",
+      "pages": [
+        "api-reference/data/gender",
+         "api-reference/data/industry",
+         "api-reference/data/language",
+         "api-reference/data/occupation",
+         "api-reference/data/programming",
+         "api-reference/data/skill"
+      ]
+    },
+    {
+      "group": "Geo",
+      "pages": [
+        "api-reference/geo/city",
+         "api-reference/geo/country",
+         "api-reference/geo/state",
+         "api-reference/geo/distance",
+         "api-reference/geo/timezone",
+         "api-reference/geo/geohash",
+         "api-reference/geo/geohash-decode"
+      ]
+    },
+    {
       "group": "Endpoint Examples",
       "pages": [
         "api-reference/endpoint/get",
@@ -98,11 +121,10 @@
         "api-reference/endpoint/delete"
       ]
     }
- 
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "twitter": "https://twitter.com/jigsawstack",
+    "github": "https://github.com/jigsawstack",
+    "linkedin": "https://www.linkedin.com/company/jigsawstack"
   }
 }

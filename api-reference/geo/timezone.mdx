@@ -1,0 +1,65 @@
+---
+title: "Timezone"
+api: "GET https://api.jigsawstack.com/api/v1/geo/timezone"
+description: "Returns the timezone information for a given country, city or coordinate."
+---
+
+### Query
+
+<ParamField query="country_code" type="string">
+  The country code of the country to get the timezone information for.
+</ParamField>
+
+<ParamField query="city_code" type="string">
+  The city code of the city to get the timezone information for.
+</ParamField>
+
+<ParamField query="lat" type="string">
+  The the latitude to get the timezone
+</ParamField>
+
+<ParamField query="lng" type="string">
+  The longitude to get the timezone
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<ResponseField name="timezone" type="object">
+  Object containing the data returned by the API.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/geo/timezone' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Timezone retrieved successfully",
+  "timezone": {
+    "abbr": "WAT",
+    "name": "West Africa Time",
+    "offset": 1,
+    "zone_name": "Africa/Lagos",
+    "gmt_offset": 3600,
+    "gmt_offset_name": "UTC+01:00"
+  }
+}
+```
+
+</ResponseExample>

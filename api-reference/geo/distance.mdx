@@ -1,0 +1,65 @@
+---
+title: "Distance"
+api: "GET https://api.jigsawstack.com/api/v1/geo/distance"
+description: "This endpoint is used to get the distance between two points on the earth."
+---
+
+### Query
+
+<ParamField query="lat1" type="string">
+  The latitude of the first point.
+</ParamField>
+
+<ParamField query="lat2" type="string">
+  The latitude of the second point.
+</ParamField>
+
+<ParamField query="lng1" type="string">
+  The longitude of the first point.
+</ParamField>
+
+<ParamField query="lng2" type="string">
+  The longitude of the second point.
+</ParamField>
+
+<ParamField query="lng" type="string">
+  The longitude of the country.
+</ParamField>
+
+<ParamField query="unit" type="string" default="K">
+  The unit of measurement to use. Possible values are:
+  <ul>
+    <li>K - Kilometers</li>
+    <li>N - Nautical Miles</li>
+  </ul>
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/geo/distance' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Request was successful"
+}
+```
+
+</ResponseExample>
