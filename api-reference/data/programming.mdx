@@ -1,0 +1,40 @@
+---
+title: "Programming"
+api: "GET https://api.jigsawstack.com/api/v1/data/programming"
+description: "Returns a list of programming languages."
+---
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<ResponseField name="data" type="JSON">
+  Array containing the data returned by the API.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/data/programming' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Programming langauges  retrieved successfully",
+  "data": []
+}
+```
+
+</ResponseExample>
