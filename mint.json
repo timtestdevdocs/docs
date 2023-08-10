@@ -113,6 +113,12 @@
       ]
     },
     {
+      "group": "Screenshot",
+      "pages": [
+        "api-reference/screenshot/generate"
+      ]
+    },
+    {
       "group": "Endpoint Examples",
       "pages": [
         "api-reference/endpoint/get",
