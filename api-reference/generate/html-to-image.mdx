@@ -1,0 +1,68 @@
+---
+title: "HTML To Image"
+api: "POST https://api.jigsawstack.com/api/v1/generate/html2image"
+description: "This endpoint is used to convert HTML to image"
+---
+
+### Body
+
+<ParamField body="html" type="string" required>
+  HTML string to convert to image.
+</ParamField>
+
+<ParamField body="option" type="JSON">
+  The options for the output image.
+  <Expandable title="properties">
+    <ResponseField name="quality" type="number">
+      The quality of the output image. 0-100.
+    </ResponseField>
+    <ResponseField name="fullPage" type="boolean">
+      Whether to take a full page.
+    </ResponseField>
+    <ResponseField name="omitBackground" type="boolean">
+      Whether to omit the background.
+    </ResponseField>
+    <ResponseField name="type" type="string">
+      The type of the output image. Can be either jpeg or png.
+      <ul>
+        <li>jpeg</li>
+        <li>png</li>
+      </ul>
+    </ResponseField>
+  </Expandable>
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request POST 'https://api.jigsawstack.com/api/v1/generate/html2image' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "html": "<div>hello</div>",
+    "options:{
+      "quality": 100,
+      "fullPage": true,
+      "omitBackground": false,
+      "type": "jpeg"
+    }
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true
+}
+```
+
+</ResponseExample>

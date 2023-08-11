@@ -1,0 +1,45 @@
+---
+title: "Faker"
+api: "POST https://api.jigsawstack.com/api/v1/generate/faker"
+description: "This endpoint is used to generate fake data."
+---
+
+### Body
+
+<ParamField body="seed" type="number">
+  The seed to use for generating the data.
+</ParamField>
+
+<ParamField body="schema" type="JSON">
+  The schema to use for generating the data.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request POST 'https://api.jigsawstack.com/api/v1/generate/faker' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "seed":1,
+    "schema": {}
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true
+}
+```
+
+</ResponseExample>

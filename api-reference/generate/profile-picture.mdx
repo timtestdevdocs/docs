@@ -1,0 +1,63 @@
+---
+title: "Profile Picture"
+api: "GET https://api.jigsawstack.com/api/v1/generate/profile_picture"
+description: "This endpoint is used to generate profile pictures."
+---
+
+### Query
+
+<ParamField query="variant" type="string" default="marble">
+  The variant of the profile picture.
+  <ul>
+    <li>marble</li>
+    <li>pixel</li>
+    <li>gradient</li>
+    <li>random</li>
+  </ul>
+</ParamField>
+
+<ParamField query="size" type="string" default="120">
+  The size of the image.
+</ParamField>
+
+<ParamField query="seed" type="string">
+  The seed of the image.
+</ParamField>
+
+<ParamField query="colors" type="string">
+  The colors of the image.
+</ParamField>
+
+<ParamField query="shape" type="string" default="square">
+  The colors of the image. The default is square.
+    <ul>
+    <li>circle</li>
+    <li>square</li>
+  </ul>
+
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/generate/profile_picture' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true
+}
+```
+
+</ResponseExample>

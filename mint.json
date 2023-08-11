@@ -113,6 +113,16 @@
       ]
     },
     {
+      "group": "Generate",
+      "pages": [
+        "api-reference/generate/html-to-image",
+         "api-reference/generate/password",
+         "api-reference/generate/profile-picture",
+         "api-reference/generate/unsplash",
+         "api-reference/generate/faker"
+      ]
+    },
+    {
       "group": "Screenshot",
       "pages": [
         "api-reference/screenshot/generate"
