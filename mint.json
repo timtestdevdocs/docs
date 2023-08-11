@@ -123,6 +123,13 @@
       ]
     },
     {
+      "group": "Hooks",
+      "pages": [
+        "api-reference/hooks/email",
+        "api-reference/hooks/form"
+      ]
+    },
+    {
       "group": "Screenshot",
       "pages": [
         "api-reference/screenshot/generate"
