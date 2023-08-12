@@ -36,25 +36,20 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
       "name": "Community",
       "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "url": "https://jigsawstack.com/community"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://jigsawstack.com/blog"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quickstart", "development"]
+      "pages": ["introduction", "authentication","error"]
     },
     {
       "group": "Essentials",
@@ -130,18 +125,18 @@
       ]
     },
     {
+      "group": "Url Shortener",
+      "pages": [
+        "api-reference/url-shortener/create", 
+        "api-reference/url-shortener/get-links",  
+        "api-reference/url-shortener/delete", 
+        "api-reference/url-shortener/update"
+    ]
+    },
+    {
       "group": "Screenshot",
       "pages": [
         "api-reference/screenshot/generate"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/update",
-        "api-reference/endpoint/delete"
       ]
     }
   ],

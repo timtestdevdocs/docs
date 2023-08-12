@@ -1,0 +1,46 @@
+---
+title: "Get URLs"
+api: "GET https://api.jigsawstack.com/api/v1/link"
+description: "List all URLs in your project."
+---
+
+### Query
+
+<ParamField query="limit" default="30" type="string">
+  The number of URLs to return.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<ResponseField name="links" type="JSON">
+  Array containing the data returned by the API.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/link' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Gender retrieved successfully",
+  "links": []
+}
+```
+
+</ResponseExample>

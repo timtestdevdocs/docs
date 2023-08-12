@@ -1,0 +1,75 @@
+---
+title: "Update URL"
+api: "POST https://api.jigsawstack.com/api/v1/link/:id"
+description: "This endpoint is used to update a URL"
+---
+
+### Body
+
+<ParamField body="description" type="string">
+  A description of the URL.
+</ParamField>
+
+<ParamField body="title" type="string">
+  A title for the URL.
+</ParamField>
+
+<ParamField body="password" type="string">
+  A password to protect the URL. If provided, the URL will only be accessible
+  using the password
+</ParamField>
+
+<ParamField body="expiresAt" type="string">
+  A date string in the format YYYY-MM-DD.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="data" type="object">
+
+<Expandable title="Toggle data">
+
+<ResponseField name="url" type="string">
+  The URL that was shortened.
+</ResponseField>
+
+<ResponseField name="slug" type="string">
+  The slug of the URL.
+</ResponseField>
+
+<ResponseField name="short_url" type="string">
+  The shortened URL.
+</ResponseField>
+
+</Expandable>
+
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request POST 'https://api.jigsawstack.com/api/v1/link/:id' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "description": "Hello world"
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Link generated successfully",
+  "data": {}
+}
+```
+
+</ResponseExample>

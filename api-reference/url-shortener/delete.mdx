@@ -1,0 +1,41 @@
+---
+title: "Delete URL"
+api: "DELETE https://api.jigsawstack.com/api/v1/link/:id"
+description: "This endpoint deletes an existing URL."
+---
+
+### Path Params
+
+<ParamField path="id" type="string">
+  The id of the URL you want to delete
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<RequestExample>
+```bash Example Request
+curl --location --request DELETE 'https://api.jigsawstack.com/api/v1/link/:slug' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Link deleted successfully"
+}
+```
+
+</ResponseExample>
