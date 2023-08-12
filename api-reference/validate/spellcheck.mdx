@@ -1,0 +1,45 @@
+---
+title: "Spell Check"
+api: "GET https://api.jigsawstack.com/api/v1/validate/spell_check"
+description: "Checks the spelling of a text."
+---
+
+### Query
+
+<ParamField query="text" type="string" required>
+  The text to check.
+</ParamField>
+
+<ParamField query="language_code" type="string" default="en" required>
+  The language code of the text. Default is "en".
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/spell_check' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Validated successfully"
+}
+```
+
+</ResponseExample>

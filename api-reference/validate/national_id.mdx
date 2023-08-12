@@ -1,0 +1,45 @@
+---
+title: "National ID"
+api: "GET https://api.jigsawstack.com/api/v1/validate/national_ids"
+description: "Validates a national ID number"
+---
+
+### Query
+
+<ParamField query="country_code" type="string" required>
+  The country code of the national ID number.
+</ParamField>
+
+<ParamField query="id_number" type="string" required>
+  The national ID number.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/national_ids' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Validated successfully"
+}
+```
+
+</ResponseExample>

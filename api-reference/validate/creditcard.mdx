@@ -1,0 +1,45 @@
+---
+title: "Credit Card"
+api: "GET https://api.jigsawstack.com/api/v1/validate/creditcard"
+description: "This endpoint is used to validate a credit card"
+---
+
+### Query
+
+<ParamField query="credit_card_number" type="string" required>
+  The credit card number to validate
+</ParamField>
+
+<ParamField query="get_image" type="boolean">
+  Whether to return an image to display the credit card type
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/creditcard?credit_card_number=""&get_image=false' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Validated successfully"
+}
+```
+
+</ResponseExample>

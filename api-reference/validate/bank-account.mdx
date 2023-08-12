@@ -1,0 +1,50 @@
+---
+title: "Bank Account"
+api: "GET https://api.jigsawstack.com/api/v1/validate/bank"
+description: "This endpoint is used to validate a bank account number"
+---
+
+### Query
+
+<ParamField query="account_number" type="string" required>
+  The account number to validate.
+</ParamField>
+
+<ParamField query="type" type="string" default="ALL" required>
+  The type of account to validate. Possible values are `BIC`, `IBAN`, `ALL`.
+  <ul>
+    <li>ALL: Validates all account types</li>
+    <li>BIC </li>
+    <li>IBAN</li>
+  </ul>
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/bank?account_number=0033002200' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Validated successfully"
+}
+```
+
+</ResponseExample>

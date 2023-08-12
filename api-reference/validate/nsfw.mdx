@@ -1,0 +1,41 @@
+---
+title: "NSFW"
+api: "GET https://api.jigsawstack.com/api/v1/validate/nsfw"
+description: "Validates whether a URL is safe for work."
+---
+
+### Query
+
+<ParamField query="url" type="string" required>
+  The image URL to validate.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/nsfw' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Validated successfully"
+}
+```
+
+</ResponseExample>

@@ -134,6 +134,21 @@
     ]
     },
     {
+      "group": "Validate",
+      "pages": [
+        "api-reference/validate/bank-account", 
+        "api-reference/validate/creditcard",
+        "api-reference/validate/crypto",
+        "api-reference/validate/email",
+        "api-reference/validate/national_id",
+        "api-reference/validate/nsfw",
+        "api-reference/validate/passport",
+        "api-reference/validate/phone_number",
+        "api-reference/validate/profanity",
+        "api-reference/validate/spellcheck"
+      ]
+    },
+    {
       "group": "Screenshot",
       "pages": [
         "api-reference/screenshot/generate"

@@ -1,0 +1,41 @@
+---
+title: "Phone Number"
+api: "GET https://api.jigsawstack.com/api/v1/validate/phone_number"
+description: "Validates a phone number."
+---
+
+### Query
+
+<ParamField query="phone_number" type="string" required>
+  The phone number to validate.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/phone_number' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Validated successfully"
+}
+```
+
+</ResponseExample>

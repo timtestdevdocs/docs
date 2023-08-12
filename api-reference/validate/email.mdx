@@ -1,0 +1,41 @@
+---
+title: "Email"
+api: "GET https://api.jigsawstack.com/api/v1/validate/email"
+description: "This endpoint is used to validate an email address."
+---
+
+### Query
+
+<ParamField query="email" type="string" required>
+  The email address to validate
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/email?email=""' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "message": "Validated successfully"
+}
+```
+
+</ResponseExample>
