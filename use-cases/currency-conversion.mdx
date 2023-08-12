@@ -1,0 +1,120 @@
+---
+title: "Currency Conversion"
+description: "Converts a currency to another currency using the [Exchange Rates API](https://docs.jigsawstack.com/api-reference/currency/convert)."
+icon: "code"
+---
+
+## Initial Steps
+
+- Setup an account (if you don't have an account already)
+- Get your API key from [here](https://docs.jigsawstack.com/api-reference/currency/convert).
+
+## Usage
+
+<CodeGroup>
+
+```javascript convert.js
+const apiUrl = "http://api.jigsawstack.com/v1";
+const onConvert = async () => {
+  try {
+    const headers = {
+      "Content-Type": "application/json",
+      "x-api-key": "<your-api-key-here>",
+    };
+
+    const result = await fetch(
+      `${apiUrl}/currency/convert?from=USD&to=NGN&amount=1000`,
+      {
+        headers,
+      }
+    );
+    console.log(result);
+  } catch (e) {
+    handleError(e);
+  }
+};
+```
+
+```python convert.py
+import requests
+
+def convert(api_url, api_key, from_currency, to_currency, amount):
+  headers = {
+    "Content-Type": "application/json",
+    "x-api-key": api_key,
+  }
+
+  response = requests.post(
+    f"{api_url}/currency/convert",
+    headers=headers,
+    data={
+      "from": from_currency,
+      "to": to_currency,
+      "amount": amount,
+    },
+  )
+
+  return response
+
+if __name__ == "__main__":
+  api_url = "https://api.exchangeratesapi.io/latest"
+  api_key = "<your-api-key-here>"
+  from_currency = "USD"
+  to_currency = "NGN"
+  amount = 1000
+
+  response = convert(api_url, api_key, from_currency, to_currency, amount)
+  print(response)
+
+```
+
+```go convert.go
+package main
+
+import (
+  "fmt"
+  "net/http"
+)
+
+func convert(apiUrl, apiKey, fromCurrency, toCurrency, amount string) (*http.Response, error) {
+  headers := make(map[string]string)
+  headers["Content-Type"] = "application/json"
+  headers["x-api-key"] = apiKey
+
+  url := fmt.Sprintf("%s/currency/convert?from=%s&to=%s&amount=%s", apiUrl, fromCurrency, toCurrency, amount)
+  req, err := http.NewRequest("POST", url, nil)
+  if err != nil {
+    return nil, err
+  }
+
+  for key, value := range headers {
+    req.Header.Add(key, value)
+  }
+
+  resp, err := http.DefaultClient.Do(req)
+  if err != nil {
+    return nil, err
+  }
+
+  return resp, nil
+}
+
+func main() {
+  apiUrl := "https://api.exchangeratesapi.io/latest"
+  apiKey := "<your-api-key-here>"
+  fromCurrency := "USD"
+  toCurrency := "NGN"
+  amount := 1000
+
+  resp, err := convert(apiUrl, apiKey, fromCurrency, toCurrency, amount)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+
+  fmt.Println(resp)
+}
+
+```
+
+</CodeGroup>
