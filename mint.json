@@ -26,7 +26,7 @@
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://dash.jigsawstack.com"
   },
   "tabs": [
     {
@@ -38,12 +38,12 @@
     {
       "name": "Community",
       "icon": "slack",
-      "url": "https://jigsawstack.com/community"
+      "url": "https://jigsawstack.com"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://jigsawstack.com/blog"
+      "url": "https://jigsawstack.com"
     }
   ],
   "navigation": [
