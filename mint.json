@@ -141,7 +141,7 @@
       ]
     },
     {
-      "group": "Url Shortener",
+      "group": "Link",
       "pages": [
         "api-reference/url-shortener/create", 
         "api-reference/url-shortener/get-links",  
