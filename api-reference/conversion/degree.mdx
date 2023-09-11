@@ -1,8 +1,12 @@
 ---
 title: "Degree"
-api: "GET https://api.jigsawstack.com/api/v1/conversion/degree"
+api: "GET https://api.jigsawstack.com/api/v1/convert/degree"
 description: "This endpoint converts a degree to another degree."
 ---
+
+### Supported Degree
+
+<Info>celcius | farenheit | kelvin</Info>
 
 ### Query
 
@@ -18,9 +22,7 @@ description: "This endpoint converts a degree to another degree."
   The value to convert.
 </ParamField>
 
-### Supported Degree
-
-<Info>celcius | farenheit | kelvin</Info>
+<Snippet file="header.mdx" />
 
 ### Response
 
@@ -28,10 +30,14 @@ description: "This endpoint converts a degree to another degree."
   Indicates whether the call was successful.
 </ResponseField>
 
+<ResponseField name="degree" type="number">
+  The converted degree.
+</ResponseField>
+
 <RequestExample>
 
 ```bash Example Request
-curl --location --request GET 'https://api.jigsawstack.com/api/v1/conversion/degree' \
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/convert/degree' \
 --header 'x-api-key: <your-api-key>'
 ```
 
@@ -41,7 +47,8 @@ curl --location --request GET 'https://api.jigsawstack.com/api/v1/conversion/deg
 
 ```json Response
 {
-  "success": true
+  "success": true,
+  "degree": 10
 }
 ```
 

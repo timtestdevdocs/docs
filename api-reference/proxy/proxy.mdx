@@ -1,0 +1,91 @@
+---
+title: "Proxy"
+api: "POST https://api.jigsawstack.com/api/v1/proxy"
+description: "Proxies a request through our server."
+---
+
+### Body
+
+<ParamField body="url" type="string" required>
+  The endpoint to proxy.
+</ParamField>
+
+<ParamField body="method" type="string" required>
+  The method to use.
+  <ul>
+    <li>POST</li>
+    <li>GET</li>
+    <li>PATCH</li>
+    <li>PUT</li>
+    <li>DELETE</li>
+    <li>HEAD</li>
+  </ul>
+</ParamField>
+
+<ParamField body="body" type="JSON">
+  The body to send. If the method is GET, this will be converted to query
+  parameters.
+</ParamField>
+
+<ParamField body="headers" type="JSON">
+  The headers to send.
+</ParamField>
+
+### Header
+
+<ParamField header="x-api-key" type="string" required>
+  Your jigsawstack API key
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="response" type="any">
+  The response from the proxied request.
+</ResponseField>
+
+<ResponseField name="status" type="number">
+  The status code of the response.
+</ResponseField>
+
+<ResponseField name="time_taken_ms" type="number">
+  The time taken to proxy the request.
+</ResponseField>
+
+<ResponseField name="headers" type="object">
+  The headers of the response.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request POST 'https://api.jigsawstack.com/api/v1/proxy' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "status": 200,
+  "headers": {
+    "content-type": "application/json",
+    "content-length": "123",
+    "date": "Mon, 01 Jan 2020 00:00:00 GMT",
+    "connection": "keep-alive"
+  },
+  "ok": true,
+  "time_taken_ms": 98,
+  "response": {}
+}
+```
+
+</ResponseExample>

@@ -1,8 +1,12 @@
 ---
 title: "Unit"
-api: "GET https://api.jigsawstack.com/api/v1/conversion/unit"
+api: "GET https://api.jigsawstack.com/api/v1/convert/unit"
 description: "This endpoint converts a unit to another unit."
 ---
+
+### Supported Units
+
+<Info>cm|ft|inch|km|m|meter|mi|mm</Info>
 
 ### Query
 
@@ -18,9 +22,7 @@ description: "This endpoint converts a unit to another unit."
   The value to convert.
 </ParamField>
 
-### Supported Units
-
-<Info>cm|ft|inch|km|m|meter|mi|mm</Info>
+<Snippet file="header.mdx" />
 
 ### Response
 
@@ -28,10 +30,14 @@ description: "This endpoint converts a unit to another unit."
   Indicates whether the call was successful.
 </ResponseField>
 
+<ResponseField name="unit" type="number">
+  The converted unit.
+</ResponseField>
+
 <RequestExample>
 
 ```bash Example Request
-curl --location --request GET 'https://api.jigsawstack.com/api/v1/conversion/unit' \
+curl --location --request GET 'https://api.jigsawstack.com/api/v1/convert/unit' \
 --header 'x-api-key: <your-api-key>'
 ```
 
@@ -41,7 +47,8 @@ curl --location --request GET 'https://api.jigsawstack.com/api/v1/conversion/uni
 
 ```json Response
 {
-  "success": true
+  "success": true,
+  "unit": 10
 }
 ```
 

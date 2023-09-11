@@ -77,7 +77,7 @@
       ]
     },
     {
-      "group": "Conversion",
+      "group": "Convert",
       "pages": [
         "api-reference/conversion/qrcode",
          "api-reference/conversion/degree",
@@ -122,6 +122,22 @@
       "pages": [
         "api-reference/hooks/email",
         "api-reference/hooks/form"
+      ]
+    },
+
+    {
+      "group": "Proxy",
+      "pages": [
+        "api-reference/proxy/proxy"
+      ]
+    },
+    {
+      "group": "Store",
+      "pages": [
+        "api-reference/store/add",
+        "api-reference/store/get",
+        "api-reference/store/delete"
+
       ]
     },
     {
