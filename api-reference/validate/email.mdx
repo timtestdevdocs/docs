@@ -26,6 +26,10 @@ description: "This endpoint is used to validate an email address."
   The message returned by the API.
 </ResponseField>
 
+<ResponseField name="valid" type="boolean">
+  Indicates whether the email address is valid.
+</ResponseField>
+
 <RequestExample>
 
 ```bash Example Request
@@ -41,6 +45,7 @@ curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/email
 {
   "success": true,
   "message": "Validated successfully"
+  "valid": true
 }
 ```
 

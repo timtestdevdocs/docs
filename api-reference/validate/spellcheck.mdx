@@ -30,6 +30,17 @@ description: "Checks the spelling of a text."
   The message returned by the API.
 </ResponseField>
 
+<ResponseField name="misspellings_found" type="number">
+  The number of misspellings found in the text.
+</ResponseField>
+
+<ResponseField name="auto_correct_text" type="string">
+  The auto corrected text.
+
+If no misspellings were found, the original text is returned.
+
+</ResponseField>
+
 <RequestExample>
 
 ```bash Example Request
@@ -44,7 +55,9 @@ curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/spell
 ```json Response
 {
   "success": true,
-  "message": "Validated successfully"
+  "message": "Validated successfully",
+  "misspellings_found": 0,
+  "auto_correct_text": ""
 }
 ```
 

@@ -30,6 +30,18 @@ description: "Validates a string for profanity."
   The message returned by the API.
 </ResponseField>
 
+<ResponseField name="clean_text" type="string">
+  The text with profanity replaced by the censor_replacement character.
+</ResponseField>
+
+<ResponseField name="profanities" type="array">
+  An array of profanities found in the text.
+</ResponseField>
+
+<ResponseField name="profanities_found" type="integer">
+  The number of profanities found in the text.
+</ResponseField>
+
 <RequestExample>
 
 ```bash Example Request
@@ -44,7 +56,10 @@ curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/profa
 ```json Response
 {
   "success": true,
-  "message": "Validated successfully"
+  "message": "Validated successfully",
+  "clean_text": "",
+  "profanities": [],
+  "profanities_found": 0
 }
 ```
 

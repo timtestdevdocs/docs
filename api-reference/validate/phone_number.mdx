@@ -26,6 +26,10 @@ description: "Validates a phone number."
   The message returned by the API.
 </ResponseField>
 
+<ResponseField name="valid" type="boolean">
+  Indicates whether the phone number is valid.
+</ResponseField>
+
 <RequestExample>
 
 ```bash Example Request
@@ -40,7 +44,8 @@ curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/phone
 ```json Response
 {
   "success": true,
-  "message": "Validated successfully"
+  "message": "Validated successfully",
+  "valid": true
 }
 ```
 

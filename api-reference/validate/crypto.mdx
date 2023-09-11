@@ -34,6 +34,10 @@ description: "This endpoint is used to validate a crypto address."
   The message returned by the API.
 </ResponseField>
 
+<ResponseField name="valid" type="boolean">
+  Indicates whether the address is valid.
+</ResponseField>
+
 <RequestExample>
 
 ```bash Example Request
@@ -48,7 +52,8 @@ curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/crypt
 ```json Response
 {
   "success": true,
-  "message": "Validated successfully"
+  "message": "Validated successfully",
+  "valid": true
 }
 ```
 

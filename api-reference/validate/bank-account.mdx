@@ -35,6 +35,14 @@ description: "This endpoint is used to validate a bank account number"
   The message returned by the API.
 </ResponseField>
 
+<ResponseField name="BICvalid" type="boolean">
+  Indicates whether the BIC is valid.
+</ResponseField>
+
+<ResponseField name="IBANvalid" type="boolean">
+  Indicates whether the IBAN is valid.
+</ResponseField>
+
 <RequestExample>
 
 ```bash Example Request
@@ -49,7 +57,9 @@ curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/bank?
 ```json Response
 {
   "success": true,
-  "message": "Validated successfully"
+  "message": "Validated successfully",
+  "BICvalid": false,
+  "IBANvalid": false
 }
 ```
 

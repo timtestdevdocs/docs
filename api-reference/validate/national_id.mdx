@@ -30,6 +30,14 @@ description: "Validates a national ID number"
   The message returned by the API.
 </ResponseField>
 
+<ResponseField name="valid" type="boolean">
+  Indicates whether the national ID number is valid.
+</ResponseField>
+
+<ResponseField name="country_name" type="string">
+  The name of the country the national ID number belongs to.
+</ResponseField>
+
 <RequestExample>
 
 ```bash Example Request
@@ -44,7 +52,9 @@ curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/natio
 ```json Response
 {
   "success": true,
-  "message": "Validated successfully"
+  "message": "Validated successfully",
+  "valid": true,
+  "country_name": "United States"
 }
 ```
 

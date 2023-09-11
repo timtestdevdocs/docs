@@ -30,6 +30,14 @@ description: "This endpoint is used to validate a credit card"
   The message returned by the API.
 </ResponseField>
 
+<ResponseField name="valid" type="boolean">
+  Indicates whether the credit card number is valid.
+</ResponseField>
+
+<ResponseField name="image_data_uri" type="string">
+  The image data URI of the credit card type.
+</ResponseField>
+
 <RequestExample>
 
 ```bash Example Request
@@ -44,7 +52,10 @@ curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/credi
 ```json Response
 {
   "success": true,
-  "message": "Validated successfully"
+  "message": "Validated successfully",
+  "valid": true,
+  "image_data_uri": ""
+  "provider": "none"
 }
 ```
 
