@@ -1,6 +1,6 @@
 ---
 title: "Format"
-api: "GET https://api.jigsawstack.com/api/v1/currency/formatter"
+api: "GET https://api.jigsawstack.com/v1/currency/formatter"
 description: "This endpoint is used get exchange based on a base currency "
 ---
 
@@ -53,7 +53,7 @@ The data returned by the API.
 
 <RequestExample>
 ```bash Example Request
-curl --location --request GET 'https://api.jigsawstack.com/api/v1/currency/formatter?currency_code=USD&amount=1000&symbols=NGA,EUR,CZK' \
+curl --location --request GET 'https://api.jigsawstack.com/v1/currency/formatter?currency_code=USD&amount=1000&symbols=NGA,EUR,CZK' \
 --header 'x-api-key: <your-api-key>'
 ```
 

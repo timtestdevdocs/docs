@@ -1,6 +1,6 @@
 ---
 title: "Screenshot"
-api: "POST https://api.jigsawstack.com/api/v1/screenshot"
+api: "POST https://api.jigsawstack.com/v1/screenshot"
 description: "Takes a screenshot of a website."
 ---
 
@@ -32,6 +32,8 @@ description: "Takes a screenshot of a website."
   </Expandable>
 </ParamField>
 
+<Snippet file="header.mdx" />
+
 ### Response
 
 <ResponseField name="success" type="boolean">
@@ -41,7 +43,7 @@ description: "Takes a screenshot of a website."
 <RequestExample>
 
 ```bash Example Request
-curl --location --request POST 'https://api.jigsawstack.com/api/v1/screenshot' \
+curl --location --request POST 'https://api.jigsawstack.com/v1/screenshot' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{

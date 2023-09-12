@@ -1,12 +1,12 @@
 ---
 title: "Decode Geohash"
-api: "GET https://api.jigsawstack.com/api/v1/geo/geohash/decode/:geohash"
+api: "GET https://api.jigsawstack.com/v1/geo/geohash/decode/:geohash"
 description: "This endpoint is used to decode a geohash into a latitude and longitude."
 ---
 
 ### Query
 
-<ParamField query="geohash" type="string">
+<ParamField path="geohash" type="string">
   The geohash to decode
 </ParamField>
 
@@ -25,7 +25,7 @@ description: "This endpoint is used to decode a geohash into a latitude and long
 <RequestExample>
 
 ```bash Example Request
-curl --location --request GET 'https://api.jigsawstack.com/api/v1/geo/geohash/:decode' \
+curl --location --request GET 'https://api.jigsawstack.com/v1/geo/geohash/:decode' \
 --header 'x-api-key: <your-api-key>'
 ```
 

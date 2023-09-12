@@ -57,7 +57,7 @@ def convert(api_url, api_key, from_currency, to_currency, amount):
   return response
 
 if __name__ == "__main__":
-  api_url = "https://api.exchangeratesapi.io/latest"
+  api_url = "http://api.jigsawstack.com/v1"
   api_key = "<your-api-key-here>"
   from_currency = "USD"
   to_currency = "NGN"
@@ -100,7 +100,8 @@ func convert(apiUrl, apiKey, fromCurrency, toCurrency, amount string) (*http.Res
 }
 
 func main() {
-  apiUrl := "https://api.exchangeratesapi.io/latest"
+  apiUrl := "http://api.jigsawstack.com/v1"
+
   apiKey := "<your-api-key-here>"
   fromCurrency := "USD"
   toCurrency := "NGN"

@@ -1,12 +1,18 @@
 ---
 title: "Gender"
-api: "GET https://api.jigsawstack.com/api/v1/data/gender"
+api: "GET https://api.jigsawstack.com/v1/data/gender"
 description: "This endpoint is used to get the list of genders"
 ---
 
 ### Query
 
-<ParamField query="category" default="basic" type="string" required>
+<ParamField
+  query="category"
+  initialValue="basic"
+  default="basic"
+  type="string"
+  required
+>
   The category of the data to retrieve.
 </ParamField>
 
@@ -29,7 +35,7 @@ description: "This endpoint is used to get the list of genders"
 <RequestExample>
 
 ```bash Example Request
-curl --location --request GET 'https://api.jigsawstack.com/api/v1/data/gender' \
+curl --location --request GET 'https://api.jigsawstack.com/v1/data/gender' \
 --header 'x-api-key: <your-api-key>'
 ```
 

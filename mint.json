@@ -21,7 +21,7 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@jigsawstack.com"
+      "url": "https://dash.jigsawstack.com/help"
     }
   ],
   "topbarCtaButton": {
@@ -32,18 +32,6 @@
     {
       "name": "API Reference",
       "url": "api-reference"
-    }
-  ],
-  "anchors": [
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://jigsawstack.com"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://jigsawstack.com"
     }
   ],
   "navigation": [

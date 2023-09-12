@@ -1,6 +1,6 @@
 ---
 title: "Email"
-api: "POST https://api.jigsawstack.com/api/v1/hooks/email"
+api: "POST https://api.jigsawstack.com/v1/hooks/email"
 description: "This endpoint is used to generate an email url to track email events."
 ---
 
@@ -37,10 +37,10 @@ description: "This endpoint is used to generate an email url to track email even
 <RequestExample>
 
 ```bash Example Request
-curl --location --request POST 'https://api.jigsawstack.com/api/v1/hooks/email' \
+curl --location --request POST 'https://api.jigsawstack.com/v1/hooks/email' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
---data '{"subject":"Test Email","webhook":"https://api.jigsawstack.com/api/v1/hooks/webhook","to":[]}'
+--data '{"subject":"Test Email","webhook":"https://api.jigsawstack.com/v1/hooks/webhook","to":[]}'
 ```
 
 </RequestExample>
