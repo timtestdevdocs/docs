@@ -39,6 +39,13 @@
       "group": "Get Started",
       "pages": ["introduction", "authentication","error"]
     },
+
+    {
+      "group": "Platform",
+      "pages": ["jigsawstack-badge"]
+    },
+
+
     {
       "group": "Use Cases",
       "pages": ["use-cases/currency-conversion"]
