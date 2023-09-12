@@ -6,15 +6,15 @@ description: "Returns the geohash of a given latitude and longitude."
 
 ### Query
 
-<ParamField query="lat" type="string">
+<ParamField query="lat" type="string" required>
   The latitude to encode
 </ParamField>
 
-<ParamField query="lng" type="string">
+<ParamField query="lng" type="string" required>
   The longitude to encode
 </ParamField>
 
-<ParamField query="precision" type="string" default="9">
+<ParamField query="precision" type="string" default="9" initialValue="9">
   The precision of the geohash
 </ParamField>
 
