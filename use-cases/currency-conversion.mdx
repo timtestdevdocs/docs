@@ -39,82 +39,65 @@ const onConvert = async () => {
 import requests
 
 def convert(api_url, api_key, from_currency, to_currency, amount):
+
+  api_url = "http://api.jigsawstack.com/v1"
+
   headers = {
     "Content-Type": "application/json",
-    "x-api-key": api_key,
+    "x-api-key": "<your-api-key-here>"
   }
 
-  response = requests.post(
-    f"{api_url}/currency/convert",
-    headers=headers,
-    data={
-      "from": from_currency,
-      "to": to_currency,
-      "amount": amount,
-    },
+  response = requests.get(
+    f"{api_url}/currency/convert?from=USD&to=NGN&amount=1000",
+    headers=headers
   )
 
   return response
-
-if __name__ == "__main__":
-  api_url = "http://api.jigsawstack.com/v1"
-  api_key = "<your-api-key-here>"
-  from_currency = "USD"
-  to_currency = "NGN"
-  amount = 1000
-
-  response = convert(api_url, api_key, from_currency, to_currency, amount)
-  print(response)
 
 ```
 
 ```go convert.go
 package main
-
 import (
-  "fmt"
-  "net/http"
+    "fmt"
+    "net/http"
+    "io/ioutil"
 )
-
-func convert(apiUrl, apiKey, fromCurrency, toCurrency, amount string) (*http.Response, error) {
-  headers := make(map[string]string)
-  headers["Content-Type"] = "application/json"
-  headers["x-api-key"] = apiKey
-
-  url := fmt.Sprintf("%s/currency/convert?from=%s&to=%s&amount=%s", apiUrl, fromCurrency, toCurrency, amount)
-  req, err := http.NewRequest("POST", url, nil)
-  if err != nil {
-    return nil, err
-  }
-
-  for key, value := range headers {
-    req.Header.Add(key, value)
-  }
-
-  resp, err := http.DefaultClient.Do(req)
-  if err != nil {
-    return nil, err
-  }
-
-  return resp, nil
-}
-
 func main() {
-  apiUrl := "http://api.jigsawstack.com/v1"
 
-  apiKey := "<your-api-key-here>"
-  fromCurrency := "USD"
-  toCurrency := "NGN"
-  amount := 1000
 
-  resp, err := convert(apiUrl, apiKey, fromCurrency, toCurrency, amount)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
+    headers := make(map[string]string)
+    headers["Content-Type"] = "application/json"
+    headers["x-api-key"] = "<your-api-key-here>"
 
-  fmt.Println(resp)
+    url := fmt.Sprintf("http://api.jigsawstack.com/v1/currency/convert?from=USD&to=NGN&amount=100")
+    req, err := http.NewRequest("GET", url, nil)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    for key, value := range headers {
+        req.Header.Add(key, value)
+    }
+
+    resp, err := http.DefaultClient.Do(req)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    defer resp.Body.Close()
+
+    body, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    fmt.Println(string(body))
 }
+
 
 ```
 
