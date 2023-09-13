@@ -114,6 +114,15 @@
       ]
     },
     {
+      "group": "Logs",
+      "pages": [
+        "api-reference/logs/create",
+          "api-reference/logs/get",
+          "api-reference/logs/delete",
+          "api-reference/logs/update"
+      ]
+    },
+    {
       "group": "Proxy",
       "pages": [
         "api-reference/proxy/proxy"

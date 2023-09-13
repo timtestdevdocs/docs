@@ -1,0 +1,66 @@
+---
+title: "Create Channel"
+api: "POST https://api.jigsawstack.com/v1/logs/channel"
+description: "Create a new log channel."
+---
+
+### Body
+
+<ParamField body="name" type="string" required>
+  The name of the channel.
+</ParamField>
+
+<ParamField body="description" type="string">
+  A description of the channel.
+</ParamField>
+
+<ParamField body="tags" type="array<string>">
+  A list of tags to associate with the channel.
+</ParamField>
+
+<ParamField body="emails" type="array<string>">
+  A list of email addresses to notify when a new log is added to the channel.
+</ParamField>
+
+<ParamField body="webhook" type="string">
+  A webhook URL to notify when a new log is added to the channel.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="channel_name" type="string">
+  The name of the channel.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request POST 'https://api.jigsawstack.com/v1/logs/channel' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data-raw '{
+    "name": "My Channel",
+    "description": "My Channel Description",
+    "tags": ["tag1", "tag2"],
+    "emails": []
+    }
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "channel_name": "My Channel"
+}
+```
+
+</ResponseExample>

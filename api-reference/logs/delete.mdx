@@ -1,13 +1,13 @@
 ---
-title: "Decode Geohash"
-api: "GET https://api.jigsawstack.com/v1/geo/geohash/decode/{geohash}"
-description: "This endpoint is used to decode a geohash into a latitude and longitude."
+title: "Delete Channel"
+api: "DELETE https://api.jigsawstack.com/v1/logs/channel/{name}"
+description: "Delete a channel"
 ---
 
-### Query
+### Path
 
-<ParamField path="geohash" type="string" required>
-  The geohash to decode
+<ParamField path="name" type="string" required>
+  The name of the channel to delete.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -23,9 +23,9 @@ description: "This endpoint is used to decode a geohash into a latitude and long
 </ResponseField>
 
 <RequestExample>
-
 ```bash Example Request
-curl --location --request GET 'https://api.jigsawstack.com/v1/geo/geohash/:decode' \
+curl --location --request DELETE 'https://api.jigsawstack.com/v1/logs/channel/:name' \
+--header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>'
 ```
 
@@ -36,7 +36,7 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/geo/geohash/:decod
 ```json Response
 {
   "success": true,
-  "message": "Request was successful"
+  "message": "Record deleted successfully"
 }
 ```
 
