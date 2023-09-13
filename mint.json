@@ -75,9 +75,9 @@
     {
       "group": "Convert",
       "pages": [
-        "api-reference/conversion/qrcode",
-         "api-reference/conversion/degree",
-         "api-reference/conversion/unit"
+        "api-reference/convert/qrcode",
+         "api-reference/convert/degree",
+         "api-reference/convert/unit"
       ]
     },
     {
@@ -114,14 +114,6 @@
       ]
     },
     {
-      "group": "Hooks",
-      "pages": [
-        "api-reference/hooks/email",
-        "api-reference/hooks/form"
-      ]
-    },
-
-    {
       "group": "Proxy",
       "pages": [
         "api-reference/proxy/proxy"
@@ -139,10 +131,10 @@
     {
       "group": "Link",
       "pages": [
-        "api-reference/url-shortener/create", 
-        "api-reference/url-shortener/get-links",  
-        "api-reference/url-shortener/delete", 
-        "api-reference/url-shortener/update"
+        "api-reference/link/create", 
+        "api-reference/link/get-links",  
+        "api-reference/link/delete", 
+        "api-reference/link/update"
     ]
     },
     {
