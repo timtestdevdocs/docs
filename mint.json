@@ -67,6 +67,7 @@
     {
       "group": "Currency",
       "pages": [
+        "api-reference/currency/list",
         "api-reference/currency/convert",
         "api-reference/currency/rates",
         "api-reference/currency/formatter"

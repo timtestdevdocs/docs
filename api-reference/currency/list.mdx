@@ -1,0 +1,48 @@
+---
+title: "Get list of Currencies"
+api: "GET https://api.jigsawstack.com/v1/currency"
+description: "Get a list of currencies supported by the API."
+---
+
+### Query
+
+<ParamField query="search_value" type="string">
+  The search value to filter the list of currencies. For example the name of the
+  currency
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<ResponseField name="currencies" type="JSON">
+  The list of currencies.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/v1/currency' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "currencies": []
+}
+```
+
+</ResponseExample>
