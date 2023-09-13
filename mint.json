@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Documentation",
   "logo": {
-    "dark": "/logo/logo.png",
-    "light": "/logo/logo.png"
+    "dark": "/logo/logo.svg",
+    "light": "/logo/logo.svg"
   },
   "favicon": "/favicon.png",
   "colors": {
@@ -37,14 +37,13 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "authentication","error"]
+      "pages": ["introduction", "authentication", "error"]
     },
 
     {
       "group": "Platform",
       "pages": ["jigsawstack-badge"]
     },
-
 
     {
       "group": "Use Cases",
@@ -77,67 +76,65 @@
       "group": "Convert",
       "pages": [
         "api-reference/convert/qrcode",
-         "api-reference/convert/degree",
-         "api-reference/convert/unit"
+        "api-reference/convert/degree",
+        "api-reference/convert/unit"
       ]
     },
     {
       "group": "Data",
       "pages": [
         "api-reference/data/gender",
-         "api-reference/data/holiday",
-         "api-reference/data/industry",
-         "api-reference/data/language",
-         "api-reference/data/occupation",
-         "api-reference/data/programming",
-         "api-reference/data/skill"
+        "api-reference/data/holiday",
+        "api-reference/data/industry",
+        "api-reference/data/language",
+        "api-reference/data/occupation",
+        "api-reference/data/programming",
+        "api-reference/data/skill"
       ]
     },
     {
       "group": "Geo",
       "pages": [
         "api-reference/geo/city",
-         "api-reference/geo/country",
-         "api-reference/geo/state",
-         "api-reference/geo/distance",
-         "api-reference/geo/timezone",
-         "api-reference/geo/geohash",
-         "api-reference/geo/geohash-decode"
+        "api-reference/geo/country",
+        "api-reference/geo/state",
+        "api-reference/geo/distance",
+        "api-reference/geo/timezone",
+        "api-reference/geo/geohash",
+        "api-reference/geo/geohash-decode"
       ]
     },
     {
       "group": "Generate",
       "pages": [
         "api-reference/generate/html-to-image",
-         "api-reference/generate/password",
-         "api-reference/generate/profile-picture",
-         "api-reference/generate/unsplash",
-         "api-reference/generate/faker"
+        "api-reference/generate/password",
+        "api-reference/generate/profile-picture",
+        "api-reference/generate/unsplash",
+        "api-reference/generate/faker"
       ]
     },
     {
       "group": "Link",
       "pages": [
-        "api-reference/link/create", 
-        "api-reference/link/get-links",  
-        "api-reference/link/delete", 
+        "api-reference/link/create",
+        "api-reference/link/get-links",
+        "api-reference/link/delete",
         "api-reference/link/update"
-    ]
+      ]
     },
     {
       "group": "Logs",
       "pages": [
         "api-reference/logs/create",
-          "api-reference/logs/get",
-          "api-reference/logs/delete",
-          "api-reference/logs/update"
+        "api-reference/logs/get",
+        "api-reference/logs/delete",
+        "api-reference/logs/update"
       ]
     },
     {
       "group": "Proxy",
-      "pages": [
-        "api-reference/proxy/proxy"
-      ]
+      "pages": ["api-reference/proxy/proxy"]
     },
     {
       "group": "Store",
@@ -145,13 +142,12 @@
         "api-reference/store/add",
         "api-reference/store/get",
         "api-reference/store/delete"
-
       ]
     },
     {
       "group": "Validate",
       "pages": [
-        "api-reference/validate/bank-account", 
+        "api-reference/validate/bank-account",
         "api-reference/validate/creditcard",
         "api-reference/validate/crypto",
         "api-reference/validate/email",
@@ -165,9 +161,7 @@
     },
     {
       "group": "Screenshot",
-      "pages": [
-        "api-reference/screenshot/generate"
-      ]
+      "pages": ["api-reference/screenshot/generate"]
     }
   ],
   "footerSocials": {
