@@ -1,0 +1,58 @@
+---
+title: "Prediction"
+api: "POST https://api.jigsawstack.com/v1/ai/prediction"
+description: "This endpoint allows you to make predictions on a schema."
+---
+
+### Body
+
+<ParamField body="dataset" type="Array<object>" required>
+  The dataset to make predictions on.
+</ParamField>
+
+<ParamField body="count" type="number" default="5" initialValue="5">
+  The number of predictions to make.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="prediction" type="array">
+  Result of predictions made
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/prediction' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "dataset": [{
+        date : "2023-10-10,
+        value : 10
+    },
+    {
+        date : "2023-09-10,
+        value : 5
+    }]
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "sentiment": "positive"
+}
+```
+
+</ResponseExample>
