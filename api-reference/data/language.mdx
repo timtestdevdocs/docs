@@ -1,13 +1,13 @@
 ---
-title: "Langauge"
-api: "GET https://api.jigsawstack.com/v1/data/langauge"
-description: "Returns a list of list of langauges."
+title: "Language"
+api: "GET https://api.jigsawstack.com/v1/data/language"
+description: "Returns a list of list of languages."
 ---
 
 ### Query
 
 <ParamField query="name" type="string">
-  Search by name of the langauge.
+  Search by name of the language.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -29,7 +29,7 @@ description: "Returns a list of list of langauges."
 <RequestExample>
 
 ```bash Example Request
-curl --location --request GET 'https://api.jigsawstack.com/v1/data/langauge' \
+curl --location --request GET 'https://api.jigsawstack.com/v1/data/language' \
 --header 'x-api-key: <your-api-key>'
 ```
 
@@ -40,7 +40,7 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/data/langauge' \
 ```json Response
 {
   "success": true,
-  "message": "Langauge list retrieved successfully",
+  "message": "language list retrieved successfully",
   "language": []
 }
 ```
