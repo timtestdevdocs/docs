@@ -1,0 +1,56 @@
+---
+title: "Holiday"
+api: "GET https://api.jigsawstack.com/v1/data/holiday"
+description: "Get a list of holidays"
+---
+
+### Query
+
+<ParamField query="country_code" type="string" required>
+  The country code for which to get the holidays.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  The message returned by the API.
+</ResponseField>
+
+<ResponseField name="data" type="JSON">
+  Array containing the data returned by the API.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/v1/data/holiday' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "country_code": "SGP",
+  "holidays": [
+    {
+      "start": "2023-10-06T00:00:00+00:00",
+      "end": "2023-10-07T00:00:00+00:00",
+      "name": "Children's Day",
+      "year": 2023
+    },
+    ...
+  ]
+}
+```
+
+</ResponseExample>

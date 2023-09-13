@@ -84,6 +84,7 @@
       "group": "Data",
       "pages": [
         "api-reference/data/gender",
+         "api-reference/data/holiday",
          "api-reference/data/industry",
          "api-reference/data/language",
          "api-reference/data/occupation",
@@ -114,6 +115,15 @@
       ]
     },
     {
+      "group": "Link",
+      "pages": [
+        "api-reference/link/create", 
+        "api-reference/link/get-links",  
+        "api-reference/link/delete", 
+        "api-reference/link/update"
+    ]
+    },
+    {
       "group": "Logs",
       "pages": [
         "api-reference/logs/create",
@@ -136,15 +146,6 @@
         "api-reference/store/delete"
 
       ]
-    },
-    {
-      "group": "Link",
-      "pages": [
-        "api-reference/link/create", 
-        "api-reference/link/get-links",  
-        "api-reference/link/delete", 
-        "api-reference/link/update"
-    ]
     },
     {
       "group": "Validate",
