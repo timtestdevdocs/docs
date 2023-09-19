@@ -7,30 +7,61 @@ description: "This endpoint is used to convert HTML to image"
 ### Body
 
 <ParamField body="html" type="string" required>
-  HTML string to convert to image.
+  The HTML to convert to image.
 </ParamField>
 
-<ParamField body="option" type="JSON">
-  The options for the output image.
-  <Expandable title="properties">
-    <ResponseField name="quality" type="number">
-      The quality of the output image. 0-100.
-    </ResponseField>
-    <ResponseField name="fullPage" type="boolean">
-      Whether to take a full page.
-    </ResponseField>
-    <ResponseField name="omitBackground" type="boolean">
-      Whether to omit the background.
-    </ResponseField>
-    <ResponseField name="type" type="string">
-      The type of the output image. Can be either jpeg or png.
-      <ul>
-        <li>jpeg</li>
-        <li>png</li>
-      </ul>
-    </ResponseField>
-  </Expandable>
+<ParamField body="full_page" type="boolean">
+  Whether to take a full page screenshot.
 </ParamField>
+
+<ParamField body="omit_background" type="boolean">
+  Whether to omit the background.
+</ParamField>
+
+<ParamField body="quality" type="number" default="75">
+  The quality of the image. 0-100.
+</ParamField>
+
+<ParamField body="type" type="string" default="png">
+  The type of the image. Can be one of the following:
+  <ul>
+    <li>jpeg</li>
+    <li>png</li>
+    <li>webp</li>
+  </ul>
+</ParamField>
+
+<ParamField body="width" type="number" default="1920">
+  The width of the screenshot.
+</ParamField>
+
+<ParamField body="height" type="number" default="1080">
+  The height of the screenshot.
+</ParamField>
+
+<ParamField body="screen_size_preset" type="string">
+  The screen size preset to use.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Screen size presets
+
+<ul>
+  <li>`QVGA`</li>
+  <li>`VGA`</li>
+  <li>`SVGA`</li>
+  <li>`HD`</li>
+  <li>`HD+`</li>
+  <li>`SXGA`</li>
+  <li>`FHD`</li>
+  <li>`2K`</li>
+  <li>`2K QHD`</li>
+  <li>`5K`</li>
+  <li>`4K UHD`</li>
+</ul>
+
+See the full list of screen size presets [here](https://gist.github.com/iamNarcisse/c48d72301de1c12f722cf2eb175fc4bc).
 
 <Snippet file="header.mdx" />
 
@@ -48,12 +79,10 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/generate/html2ima
 --header 'x-api-key: <your-api-key>' \
 --data '{
     "html": "<div>hello</div>",
-    "options:{
       "quality": 100,
-      "fullPage": true,
-      "omitBackground": false,
+      "full_page": true,
+      "omit_background": false,
       "type": "jpeg"
-    }
 }'
 ```
 
