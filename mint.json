@@ -57,6 +57,7 @@
       "group": "AI",
       "pages": [
         "api-reference/ai/sentiment",
+        "api-reference/ai/translate",
         "api-reference/ai/spam-check",
         "api-reference/ai/email-generator",
         "api-reference/ai/summary",

@@ -1,0 +1,59 @@
+---
+title: "Translate"
+api: "POST https://api.jigsawstack.com/v1/ai/translate"
+description: "Translate text from one language to another."
+---
+
+### Body
+
+<ParamField body="current_language" type="string" required>
+  The language code of the text to translate.
+</ParamField>
+
+<ParamField body="target_language" type="string" required>
+  The language code of the text to translate to.
+</ParamField>
+
+<ParamField body="text" type="string" required>
+  The text to translate.
+</ParamField>
+
+<Tip>Max text character is 5000.</Tip>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="translated_text" type="text">
+  The translated text.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/translate' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "current_language": "en",
+    "target_language": "es",
+    "text": "Hello, world!"
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "translated_text": "¡Hola Mundo!"
+}
+```
+
+</ResponseExample>
