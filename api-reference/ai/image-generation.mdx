@@ -1,0 +1,67 @@
+---
+title: "Image generation"
+api: "POST https://api.jigsawstack.com/v1/ai/image-generation"
+description: "Generate an image based on the given text."
+---
+
+### Body
+
+<ParamField body="text" type="string" required>
+  The text to generate the image from.
+</ParamField>
+
+<ParamField body="model" type="string" initialValue="dall-e">
+  The model to use for the generation. Default is `dall-e.`
+  <ul>
+    <li>dall-e</li>
+    <li>stable-diffusion</li>
+  </ul>
+</ParamField>
+
+<ParamField body="size" type="string">
+  The size of the image. Default is `small`.
+  <ul>
+    <li>small</li>
+    <li>medium</li>
+    <li>large</li>
+  </ul>
+</ParamField>
+
+### Size guide
+
+<Tip>
+  The size of the image is determined by the `size` parameter.
+  <ul>
+    <li>small: `256x256`</li>
+    <li>medium: `512x512`</li>
+    <li>large: `1024x1024`</li>
+  </ul>
+</Tip>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/image-generation' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "text": "cute siamese cat",
+    "size": "small",
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true
+}
+```
+
+</ResponseExample>
