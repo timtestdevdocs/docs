@@ -4,22 +4,45 @@ api: "POST https://api.jigsawstack.com/v1/ai/image-generation"
 description: "Generate an image based on the given text."
 ---
 
+<Info>`advance_config` is not supported for `dalle` model</Info>
+
+<Info>
+  Custom `height` and `width` are not supported for `dalle` model. Use the
+  `size` parameter.
+</Info>
+
+<Tip>
+  Supported values for the `size` parameter.
+  <ul>
+    <li>`small` = 256x256</li>
+    <li>`medium` = 512x512</li>
+    <li>`large` = 1024x1024</li>
+  </ul>
+</Tip>
+
 ### Body
 
-<ParamField body="text" type="string" required>
-  The text to generate the image from.
+<ParamField body="prompt" type="string" required>
+  The prompt to generate the image from.
 </ParamField>
 
-<ParamField body="model" type="string" initialValue="dall-e">
-  The model to use for the generation. Default is `dall-e.`
+<ParamField body="model" type="string" initialValue="dalle">
+  The model to use for the generation. Default is `dalle`
   <ul>
-    <li>dall-e</li>
-    <li>stable-diffusion</li>
+    <li>`dalle` - Dall-e</li>
+    <li>`sd1.5` - Stable Diffusion v1.5</li>
+    <li>`sdxl` - Stable Diffusion XL</li>
+    <li>`ead1.0` - Anime Diffusion </li>
+    <li>`rv1.3` - Realistic Vision v1.3</li>
+    <li>`rv3` - "Realistic Vision v3</li>
+    <li>`rv5.1` - Realistic Vision v5.1</li>
+    <li>`ar1.8` - AbsoluteReality v1.8.1</li>
   </ul>
+
 </ParamField>
 
-<ParamField body="size" type="string">
-  The size of the image. Default is `small`.
+<ParamField body="size" type="string" initialValue="medium">
+  The size of the image. Default is `medium`.
   <ul>
     <li>small</li>
     <li>medium</li>
@@ -27,16 +50,42 @@ description: "Generate an image based on the given text."
   </ul>
 </ParamField>
 
-### Size guide
+<ParamField body="width" type="number">
+  The width of the image.
+</ParamField>
 
-<Tip>
-  The size of the image is determined by the `size` parameter.
-  <ul>
-    <li>small: `256x256`</li>
-    <li>medium: `512x512`</li>
-    <li>large: `1024x1024`</li>
-  </ul>
-</Tip>
+<ParamField body="height" type="number">
+  The height of the image.
+</ParamField>
+
+<ParamField body="advance_config" type="object">
+  <Expandable title="advance_config" defaultOpen="true">
+    <ParamField body="negative_prompt" type="string">
+      The negative prompt to generate the image from.
+    </ParamField>
+    <ParamField body="steps" type="number">
+      The number of steps to generate the image.
+    </ParamField>
+    <ParamField body="guidance" type="number">
+      The guidance to generate the image.
+    </ParamField>
+    <ParamField body="seed" type="number">
+      The seed to generate the image.
+    </ParamField>
+    <ParamField body="scheduler" type="string">
+      The scheduler to generate the image. The default value is `dpmsolver++`.
+       <ul>
+        <li>`dpmsolver++`</li>
+        <li>`lms`</li>
+        <li>`ddim`</li>
+        <li>`euler`</li>
+        <li>`euler_a`</li>
+        <li>`pndm`</li>
+     </ul>
+    </ParamField>
+
+  </Expandable>
+</ParamField>
 
 <Snippet file="header.mdx" />
 
