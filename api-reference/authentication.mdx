@@ -3,15 +3,26 @@ title: "Authentication"
 description: "Authentication for JigsawStack API"
 ---
 
+<Info>Base URL `https://api.jigsawstack.com`</Info>
+
 The JigsawStack API uses API keys to authenticate requests. You can view and manage your API keys in the JigsawStack Dashboard.
+
+## Authenticated request
+
 Attach the header parameter `x-api-key` with the API key obtained from your dashboard.
 
-```bash
-"x-api-key": "<your-api-key>"
-"Content-Type": "application/json"
+```js
+const headers = {
+  "x-api-key": "<your-api-key-here>",
+};
+const baseUrl = "https://api.jigsawstack.com";
+
+const result = await fetch(`${baseUrl}/v1/currency`, {
+  headers,
+});
 ```
 
-## To retrieve your api key
+## To retrieve your API key
 
 - Log in to your JigsawStack [dashboard](https://dash.jigsawstack.com)
 - Navigate to Keys tab.
