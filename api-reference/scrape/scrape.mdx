@@ -5,7 +5,7 @@ description: "This api allows you to retrieve contents from a web page"
 ---
 
 <Info>
-  If the elements property is not set, we default to `"elements":[{"selector": "html"}]`
+  If the elements parameter is not set, we default to `"elements":[{"selector": "html"}]`
 </Info>
 
 ### Body
@@ -38,7 +38,7 @@ description: "This api allows you to retrieve contents from a web page"
 </ParamField>
 
 <ParamField body="http_headers" type="object">
-  Set headers
+  This parameter allows you set header properties. e.g Authentication header
 </ParamField>
 
 <ParamField body="reject_request_pattern" type="array<string>">
@@ -49,10 +49,25 @@ description: "This api allows you to retrieve contents from a web page"
   </ul>
 </ParamField>
 
-<ParamField body="goto_options" type="json"></ParamField>
+<ParamField body="goto_options" type="object">
+  This parameter allows you to specify custom page-load behavior.
+  <Expandable title="property">
+    <ResponseField name="timeout" type="string">
+      Custom timeout in milliseconds.
+    </ResponseField>
+    <ResponseField name="waitUntil" type="string">
+      <ul>
+        <li>load</li>
+        <li>domcontentloaded</li>
+        <li>networkidle0</li>
+        <li>networkidle2</li>
+      </ul>
+    </ResponseField>
+  </Expandable>
+</ParamField>
 
 <ParamField body="wait_for" type="any">
-  This params can accept one of three options:
+  This parameter can accept one of three options:
   <ul>
     <li>
       A function to be ran within the page's context, inside of the browser. e.g
