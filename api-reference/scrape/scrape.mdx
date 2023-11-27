@@ -14,7 +14,7 @@ description: "This api allows you to retrieve contents from a web page"
   The URL of the page to retrieve the contents from.
 </ParamField>
 
-<ParamField body="elements" type="array<selector>">
+<ParamField body="elements" type="array<object>">
   The list of selectors you are interested in.
   <Expandable title="property">
     <ResponseField name="selector" type="string">
@@ -41,7 +41,7 @@ description: "This api allows you to retrieve contents from a web page"
   Set headers
 </ParamField>
 
-<ParamField body="reject_request_pattern" type="array">
+<ParamField body="reject_request_pattern" type="array<string>">
   Intercepting requests
   <ul>
     <li>jpg</li>
