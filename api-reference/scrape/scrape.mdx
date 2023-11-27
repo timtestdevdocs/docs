@@ -4,6 +4,10 @@ api: "POST https://api.jigsawstack.com/v1/scrape"
 description: "This api allows you to retrieve contents from a web page"
 ---
 
+<Info>
+  If the elements property is not set, we default to `"elements":[{"selector": "html"}]`
+</Info>
+
 ### Body
 
 <ParamField body="url" type="string" required>
