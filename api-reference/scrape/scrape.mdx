@@ -1,0 +1,96 @@
+---
+title: "Scrape"
+api: "POST https://api.jigsawstack.com/v1/scrape"
+description: "This api allows you to retrieve contents from a web page"
+---
+
+### Body
+
+<ParamField body="url" type="string" required>
+  The URL of the page to retrieve the contents from.
+</ParamField>
+
+<ParamField body="elements" type="array<selector>">
+  The list of selectors you are interested in.
+  <Expandable title="property">
+    <ResponseField name="selector" type="string">
+      HTML selector you are interested in. e.g `h1`, `p`, `span`, e.t.c
+    </ResponseField>
+    <ResponseField name="timeout" type="number">
+      Custom timeout in milliseconds.
+    </ResponseField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="advance_config" type="object">
+  Advance configurations
+  <Expandable title="property">
+    <ResponseField name="screenshot" type="boolean"></ResponseField>
+    <ResponseField name="console" type="boolean"></ResponseField>
+    <ResponseField name="network" type="boolean"></ResponseField>
+    <ResponseField name="cookies" type="boolean"></ResponseField>
+    <ResponseField name="html" type="boolean"></ResponseField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="http_headers" type="json">
+  Set headers
+</ParamField>
+
+<ParamField body="reject_request_pattern" type="array">
+  Intercepting requests
+  <ul>
+    <li>jpg</li>
+    <li>png</li>
+  </ul>
+</ParamField>
+
+<ParamField body="goto_options" type="json"></ParamField>
+
+<ParamField body="wait_for" type="any">
+  This params can accept one of three options:
+  <ul>
+    <li>
+      A function to be ran within the page's context, inside of the browser. e.g
+      `() => document.querySelector('h2')`
+    </li>
+    <li>A number indicating the time in milliseconds to wait. e.g `20000`</li>
+    <li>A valid selector to wait for. e.g `h2`</li>
+  </ul>
+</ParamField>
+
+<ParamField body="cookies" type="array<object>">
+  Set cookie(s)
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request POST 'https://api.jigsawstack.com/v1/scrape' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "url": "https://jigsawstack.com"
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": {}
+}
+```
+
+</ResponseExample>

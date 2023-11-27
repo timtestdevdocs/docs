@@ -164,6 +164,10 @@
     {
       "group": "Screenshot",
       "pages": ["api-reference/screenshot/generate"]
+    },
+    {
+      "group": "Scrape",
+      "pages": ["api-reference/scrape/scrape"]
     }
   ],
   "footerSocials": {
