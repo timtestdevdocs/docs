@@ -52,9 +52,16 @@ The data returned by the API.
 </ResponseField>
 
 <RequestExample>
-```bash Example Request
+```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/currency/formatter?currency_code=USD&amount=1000&symbols=NGA,EUR,CZK' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint =
+  "https://api.jigsawstack.com/v1/currency/formatter?currency_code=USD&amount=1000&symbols=NGA,EUR,CZK";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>

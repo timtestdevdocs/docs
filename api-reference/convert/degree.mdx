@@ -49,9 +49,15 @@ description: "This endpoint converts a degree to another degree."
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/convert/degree' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/convert/degree";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>

@@ -48,9 +48,16 @@ Object containing the data returned by the API.
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/currency/convert?from=USD&to=NGA&amount=100' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint =
+  "https://api.jigsawstack.com/v1/currency/convert?from=USD&to=NGA&amount=100";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>
