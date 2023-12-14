@@ -22,9 +22,15 @@ description: "Returns a list of list of industries."
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/data/industry' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/data/industry";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>

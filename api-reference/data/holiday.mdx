@@ -28,9 +28,15 @@ description: "Get a list of holidays"
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/data/holiday' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/data/holiday";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>
