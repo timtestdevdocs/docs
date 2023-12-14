@@ -93,7 +93,7 @@ description: "Generate an image based on the given text."
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/ai/image-generation' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
@@ -101,6 +101,24 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/image-generati
     "text": "cute siamese cat",
     "size": "small",
 }'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/ai/image-generation";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    text: "cute siamese cat",
+    size: "small",
+    model: "dalle",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = result.json();
 ```
 
 </RequestExample>

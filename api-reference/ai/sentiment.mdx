@@ -24,13 +24,29 @@ description: "This endpoint performs a sentiment analysis"
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/ai/sentiment' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
     "text": "I am happy!"
 }'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/ai/sentiment";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    text: "I am happy!",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = result.json();
 ```
 
 </RequestExample>
