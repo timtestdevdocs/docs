@@ -29,12 +29,12 @@ description: "Get a list of holidays"
 <RequestExample>
 
 ```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/data/holiday' \
+curl --location --request GET 'https://api.jigsawstack.com/v1/data/holiday&country_code=SGP' \
 --header 'x-api-key: <your-api-key>'
 ```
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/data/holiday";
+const endpoint = "https://api.jigsawstack.com/v1/data/holiday&country_code=SGP";
 const result = await fetch(endpoint);
 const data = result.json();
 ```
