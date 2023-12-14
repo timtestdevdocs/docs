@@ -24,9 +24,15 @@ description: "This endpoint is used to decode a geohash into a latitude and long
 
 <RequestExample>
 
-```bash Example Request
-curl --location --request GET 'https://api.jigsawstack.com/v1/geo/geohash/:decode' \
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/geo/geohash/{geohash}' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/geo/geohash/{geohash}";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>

@@ -48,9 +48,15 @@ description: "Get geo information for a state"
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/geo/state' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/geo/state?country_code=USA";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>

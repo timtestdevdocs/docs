@@ -6,19 +6,19 @@ description: "This endpoint is used to get the distance between two points on th
 
 ### Query
 
-<ParamField query="lat1" type="string">
+<ParamField query="lat1" type="string" required>
   The latitude of the first point.
 </ParamField>
 
-<ParamField query="lat2" type="string">
+<ParamField query="lat2" type="string" required>
   The latitude of the second point.
 </ParamField>
 
-<ParamField query="lng1" type="string">
+<ParamField query="lng1" type="string" required>
   The longitude of the first point.
 </ParamField>
 
-<ParamField query="lng2" type="string">
+<ParamField query="lng2" type="string" required>
   The longitude of the second point.
 </ParamField>
 
@@ -44,9 +44,16 @@ description: "This endpoint is used to get the distance between two points on th
 
 <RequestExample>
 
-```bash Example Request
-curl --location --request GET 'https://api.jigsawstack.com/v1/geo/distance' \
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/geo/distance?lat1=9.338&lat2=8.9383&lng1=4.39494&lng2=6.847847' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint =
+  "https://api.jigsawstack.com/v1/geo/distance?lat1=9.338&lat2=8.9383&lng1=4.39494&lng2=6.847847";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>
