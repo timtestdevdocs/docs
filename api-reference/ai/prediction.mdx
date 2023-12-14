@@ -28,7 +28,7 @@ description: "This endpoint allows you to make predictions on a schema."
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/ai/prediction' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
@@ -42,6 +42,31 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/prediction' \
         value : 5
     }]
 }'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/ai/prediction";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    dataset: [
+      {
+        date: "2023-10-10",
+        value: 10,
+      },
+      {
+        date: "2023-09-10",
+        value: 5,
+      },
+    ],
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = result.json();
 ```
 
 </RequestExample>
