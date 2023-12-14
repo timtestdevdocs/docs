@@ -24,13 +24,29 @@ description: "This endpoint is used summarize text."
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/ai/summary' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
     "text": "Lorem Ipsum!"
 }'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/ai/summary";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    text: "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral.",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = result.json();
 ```
 
 </RequestExample>
