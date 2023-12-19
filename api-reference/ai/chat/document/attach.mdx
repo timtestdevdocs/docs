@@ -22,8 +22,8 @@ description: "This endpoint is used to attach a document to a chat session."
   Indicates whether the call was successful.
 </ResponseField>
 
-<ResponseField name="chat_session_id" type="string">
-  Chat session ID for subsequent chat interactions.
+<ResponseField name="attached_document_ids" type="string">
+  Attached document IDs
 </ResponseField>
 
 <RequestExample>
@@ -36,7 +36,7 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/chat/documents
 ```
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/ai/chat/documents/attach";
+const endpoint = "https://api.jigsawstack.com/v1/ai/chat/document/attach";
 const options = {
   method: "POST",
   headers: {
