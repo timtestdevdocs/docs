@@ -1,0 +1,66 @@
+---
+title: "Detach Document"
+api: "POST https://api.jigsawstack.com/v1/ai/chat/documents/detach"
+description: "This endpoint is used to detach documents in a chat session."
+---
+
+### Body
+
+<ParamField body="document_ids" type="array<string>">
+  Document IDs to detach to a chat session
+</ParamField>
+
+<ParamField body="chat_session_id" type="string">
+  Chat session ID to detach to a chat session
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="chat_session_id" type="string">
+  Chat session ID for subsequent chat interactions.
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/chat/documents/detach' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{}'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/ai/chat/documents/detach";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    document_ids: [],
+    chat_session_id: "",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = result.json();
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "chat_session_id": ""
+}
+```
+
+</ResponseExample>

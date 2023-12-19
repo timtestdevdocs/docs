@@ -1,0 +1,66 @@
+---
+title: "Add Document"
+api: "POST https://api.jigsawstack.com/v1/ai/chat/documents"
+description: "This endpoint is used to add document."
+---
+
+### Body
+
+<ParamField body="text" type="string">
+  Text to be added.
+</ParamField>
+
+<ParamField body="title" type="string">
+  Title of the document.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="document_id" type="string">
+  Document ID
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/chat/documents' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{}'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/ai/chat/documents";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    text: ",
+    title: "",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = result.json();
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "chat_session_id": ""
+}
+```
+
+</ResponseExample>

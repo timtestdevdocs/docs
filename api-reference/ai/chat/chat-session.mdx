@@ -1,0 +1,63 @@
+---
+title: "Chat Session"
+api: "POST https://api.jigsawstack.com/v1/ai/chat"
+description: "This endpoint is used to start a chat session"
+---
+
+### Body
+
+<ParamField body="system_message" type="string">
+  System message to start the chat session
+</ParamField>
+
+<ParamField body="document_ids" type="array<string">
+  Document ids to give context to the chat session
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="chat_session_id" type="string">
+  Chat session ID for subsequent chat interactions.
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/chat' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{}'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/ai/chat";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({}),
+};
+const result = await fetch(endpoint, options);
+const data = result.json();
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "chat_session_id": ""
+}
+```
+
+</ResponseExample>

@@ -1,13 +1,13 @@
 ---
-title: "Delete URL"
-api: "DELETE https://api.jigsawstack.com/v1/link/{slug}"
-description: "This endpoint deletes an existing URL."
+title: "Delete Chat Message"
+api: "DELETE https://api.jigsawstack.com/v1/ai/chat/{id}"
+description: "This endpoint deletes a chat message."
 ---
 
 ### Path Params
 
-<ParamField path="slug" type="string">
-  The slug of the URL you want to delete
+<ParamField path="id" type="string" required>
+  The chat session ID
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -24,7 +24,7 @@ description: "This endpoint deletes an existing URL."
 
 <RequestExample>
 ```bash Example Request
-curl --location --request DELETE 'https://api.jigsawstack.com/v1/link/:slug' \
+curl --location --request DELETE 'https://api.jigsawstack.com/v1/ai/chat/{id}' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>'
 ```
@@ -36,7 +36,8 @@ curl --location --request DELETE 'https://api.jigsawstack.com/v1/link/:slug' \
 ```json Response
 {
   "success": true,
-  "message": "Link deleted successfully"
+  "message": "Chat session deleted successfully",
+  "chat_session_id": ""
 }
 ```
 

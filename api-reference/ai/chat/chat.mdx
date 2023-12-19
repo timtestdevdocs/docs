@@ -1,0 +1,79 @@
+---
+title: "Chat"
+api: "POST https://api.jigsawstack.com/v1/ai/chat/{chat_session_id}"
+description: "This endpoint is used to send a chat message"
+---
+
+### Body
+
+<ParamField body="message" type="string" required>
+  Chat message
+</ParamField>
+
+<ParamField body="additional_context" type="string">
+  Additional context for the message
+</ParamField>
+
+<ParamField body="include_history" type="boolean">
+  Include the history of the previous messages
+</ParamField>
+
+<ParamField body="include_context" type="boolean">
+  Include the context
+</ParamField>
+
+<ParamField body="strict_context" type="boolean">
+  Only rely on the context for the response
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="response" type="string">
+  Response
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/chat/{id}' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+  message:"Como estas!"
+}'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/ai/chat/{id}";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    message: "Como estas!",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = result.json();
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "response": ""
+}
+```
+
+</ResponseExample>

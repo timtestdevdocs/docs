@@ -62,7 +62,20 @@
         "api-reference/ai/spam-check",
         "api-reference/ai/email-generator",
         "api-reference/ai/summary",
-        "api-reference/ai/prediction"
+        "api-reference/ai/prediction",
+        {
+          "group": "Chat",
+          "pages": [
+            "api-reference/ai/chat/chat", 
+            "api-reference/ai/chat/chat-session",
+            "api-reference/ai/chat/get-chat-sessions",
+            "api-reference/ai/chat/delete-chat-session", 
+          {
+          "group": "Document",
+          "pages": ["api-reference/ai/chat/document/attach", "api-reference/ai/chat/document/detach", "api-reference/ai/chat/document/get", "api-reference/ai/chat/document/delete", "api-reference/ai/chat/document/get-documents", "api-reference/ai/chat/document/add-document"]
+          }
+        ]
+        }
       ]
     },
     {
