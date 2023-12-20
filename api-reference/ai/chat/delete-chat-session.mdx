@@ -23,7 +23,7 @@ description: "This endpoint deletes a chat message."
 </ResponseField>
 
 <RequestExample>
-```bash Example Request
+```bash cURL
 curl --location --request DELETE 'https://api.jigsawstack.com/v1/ai/chat/{id}' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>'
@@ -36,8 +36,7 @@ curl --location --request DELETE 'https://api.jigsawstack.com/v1/ai/chat/{id}' \
 ```json Response
 {
   "success": true,
-  "message": "Chat session deleted successfully",
-  "chat_session_id": ""
+  "message": "Chat session deleted successfully"
 }
 ```
 
