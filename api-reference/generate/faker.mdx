@@ -14,6 +14,47 @@ description: "This endpoint is used to generate fake data."
   The schema to use for generating the data.
 </ParamField>
 
+## Sample `schema`
+
+```json
+{
+  "profiles": [
+    {
+      "username": "person.fullName",
+      "email": {
+        "__gen_key": "internet.email",
+        "__options": {
+          "provider": "gmail.com"
+        }
+      },
+      "profile_image": "image.urlLoremFlickr"
+    },
+    12
+  ],
+  "another_name": {
+    "__gen_key": "person.fullName",
+    "__options": {
+      "sex": "male"
+    }
+  },
+  "email": "internet.email",
+  "emails": ["internet.email", 12],
+  "dates": [
+    {
+      "date": {
+        "__gen_key": "date.anytime"
+      }
+    },
+    12
+  ]
+}
+```
+
+<Tip>
+  For more information kindly refer to [Faker
+  docs](https://fakerjs.dev/api/faker.html)
+</Tip>
+
 <Snippet file="header.mdx" />
 
 ### Response
