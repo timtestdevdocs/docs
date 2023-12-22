@@ -63,7 +63,6 @@
         "api-reference/ai/email-generator",
         "api-reference/ai/summary",
         "api-reference/ai/prediction",
-        "api-reference/ai/scrape/index",
         {
           "group": "Chat",
           "pages": [
