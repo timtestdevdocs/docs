@@ -80,6 +80,14 @@
       ]
     },
     {
+      "group": "Screenshot",
+      "pages": ["api-reference/screenshot/generate"]
+    },
+    {
+      "group": "Scrape",
+      "pages": ["api-reference/scrape/scrape"]
+    },
+    {
       "group": "Currency",
       "pages": [
         "api-reference/currency/list",
@@ -174,14 +182,6 @@
         "api-reference/validate/profanity",
         "api-reference/validate/spellcheck"
       ]
-    },
-    {
-      "group": "Screenshot",
-      "pages": ["api-reference/screenshot/generate"]
-    },
-    {
-      "group": "Scrape",
-      "pages": ["api-reference/scrape/scrape"]
     }
   ],
   "footerSocials": {
