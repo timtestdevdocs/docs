@@ -9,7 +9,7 @@ The JigsawStack API uses API keys to authenticate requests. You can view and man
 
 ## Authenticated request
 
-Attach the header parameter `x-api-key` with the API key obtained from your dashboard.
+- Attach the header parameter `x-api-key` with the API key obtained from your dashboard.
 
 ```js
 const headers = {
@@ -21,6 +21,15 @@ const result = await fetch(`${baseUrl}/v1/currency`, {
   headers,
 });
 ```
+
+- You can also add `x-api-key` as query parameter.
+
+```js
+const baseUrl = "https://api.jigsawstack.com";
+await fetch(`${baseUrl}/v1/currency?x-api-key=<your-api-key-here>`);
+```
+
+<Info> `x-api-key` as query parameter only works for public API keys. </Info>
 
 ## To retrieve your API key
 

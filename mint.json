@@ -63,29 +63,22 @@
         "api-reference/ai/email-generator",
         "api-reference/ai/summary",
         "api-reference/ai/prediction",
-        "api-reference/ai/scrape/index",
-        {
-          "group": "Chat",
-          "pages": [
-            "api-reference/ai/chat/chat", 
-            "api-reference/ai/chat/chat-session",
-            "api-reference/ai/chat/get-chat-sessions",
-            "api-reference/ai/chat/delete-chat-session", 
-          {
-          "group": "Document",
-          "pages": ["api-reference/ai/chat/document/attach", "api-reference/ai/chat/document/detach", "api-reference/ai/chat/document/get", "api-reference/ai/chat/document/delete", "api-reference/ai/chat/document/get-documents", "api-reference/ai/chat/document/add-document"]
-          }
-        ]
-        }
+        "api-reference/ai/scrape/index"
       ]
     },
     {
-      "group": "Screenshot",
-      "pages": ["api-reference/screenshot/generate"]
+      "group": "AI Chat",
+      "pages": [
+        "api-reference/ai/chat/chat", 
+        "api-reference/ai/chat/chat-session",
+        "api-reference/ai/chat/get-chat-sessions",
+        "api-reference/ai/chat/delete-chat-session", 
+        "api-reference/ai/chat/document/attach", "api-reference/ai/chat/document/detach", "api-reference/ai/chat/document/get", "api-reference/ai/chat/document/delete", "api-reference/ai/chat/document/get-documents", "api-reference/ai/chat/document/add-document"
+    ]
     },
     {
-      "group": "Scrape",
-      "pages": ["api-reference/scrape/scrape"]
+      "group": "Webpage",
+      "pages": ["api-reference/screenshot/generate", "api-reference/scrape/scrape"]
     },
     {
       "group": "Currency",
@@ -94,26 +87,6 @@
         "api-reference/currency/convert",
         "api-reference/currency/rates",
         "api-reference/currency/formatter"
-      ]
-    },
-    {
-      "group": "Convert",
-      "pages": [
-        "api-reference/convert/qrcode",
-        "api-reference/convert/degree",
-        "api-reference/convert/unit"
-      ]
-    },
-    {
-      "group": "Data",
-      "pages": [
-        "api-reference/data/gender",
-        "api-reference/data/holiday",
-        "api-reference/data/industry",
-        "api-reference/data/language",
-        "api-reference/data/occupation",
-        "api-reference/data/programming",
-        "api-reference/data/skill"
       ]
     },
     {
@@ -131,6 +104,7 @@
     {
       "group": "Generate",
       "pages": [
+        "api-reference/convert/qrcode",
         "api-reference/generate/html-to-image",
         "api-reference/generate/password",
         "api-reference/generate/profile-picture",
@@ -138,36 +112,7 @@
         "api-reference/generate/faker"
       ]
     },
-    {
-      "group": "Link",
-      "pages": [
-        "api-reference/link/create",
-        "api-reference/link/get-links",
-        "api-reference/link/delete",
-        "api-reference/link/update"
-      ]
-    },
-    {
-      "group": "Logs",
-      "pages": [
-        "api-reference/logs/create",
-        "api-reference/logs/get",
-        "api-reference/logs/delete",
-        "api-reference/logs/update"
-      ]
-    },
-    {
-      "group": "Proxy",
-      "pages": ["api-reference/proxy/proxy"]
-    },
-    {
-      "group": "Store",
-      "pages": [
-        "api-reference/store/add",
-        "api-reference/store/get",
-        "api-reference/store/delete"
-      ]
-    },
+
     {
       "group": "Validate",
       "pages": [
@@ -182,6 +127,48 @@
         "api-reference/validate/profanity",
         "api-reference/validate/spellcheck"
       ]
+    },
+    {
+      "group": "Link",
+      "pages": [
+        "api-reference/link/create",
+        "api-reference/link/get-links",
+        "api-reference/link/delete",
+        "api-reference/link/update"
+      ]
+    },
+    {
+      "group": "Store",
+      "pages": [
+        "api-reference/store/add",
+        "api-reference/store/get",
+        "api-reference/store/delete"
+      ]
+    },
+    {
+      "group": "Data",
+      "pages": [
+        "api-reference/data/gender",
+        "api-reference/data/holiday",
+        "api-reference/data/industry",
+        "api-reference/data/language",
+        "api-reference/data/occupation",
+        "api-reference/data/programming",
+        "api-reference/data/skill"
+      ]
+    },
+    {
+      "group": "Logs",
+      "pages": [
+        "api-reference/logs/create",
+        "api-reference/logs/get",
+        "api-reference/logs/delete",
+        "api-reference/logs/update"
+      ]
+    },
+    {
+      "group": "Proxy",
+      "pages": ["api-reference/proxy/proxy"]
     }
   ],
   "footerSocials": {
