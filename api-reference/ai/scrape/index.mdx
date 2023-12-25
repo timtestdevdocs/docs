@@ -10,7 +10,7 @@ description: "This endpoint allows you smartly scrape a web page using prompts."
   URL of the page to scrape
 </ParamField>
 
-<ParamField body="element_prompt" type="array<string>" required>
+<ParamField body="element_prompts" type="array<string>" required>
   Items on the page to scrape. E.g. Plan price, Plan title
 </ParamField>
 
@@ -34,7 +34,7 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/scrape' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
     url:"https://supabase.com/pricing",
-    element_prompt: ["Plan header", "Plan price"]
+    element_prompts: ["Plan header", "Plan price"]
 }'
 ```
 
@@ -48,7 +48,7 @@ const options = {
   },
   body: JSON.stringify({
     url: "https://supabase.com/pricing",
-    element_prompt: ["Plan title", "Plan price"],
+    element_prompts: ["Plan title", "Plan price"],
   }),
 };
 const result = await fetch(endpoint, options);
