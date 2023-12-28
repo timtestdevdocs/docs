@@ -40,9 +40,15 @@ description: "Validates a string for profanity."
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/validate/profanity' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/validate/profanity";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>

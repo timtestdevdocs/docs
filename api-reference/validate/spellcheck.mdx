@@ -39,9 +39,15 @@ If no misspellings were found, the original text is returned.
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/validate/spell_check' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/validate/spell_check";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>

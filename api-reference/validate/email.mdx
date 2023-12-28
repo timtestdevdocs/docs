@@ -1,36 +1,51 @@
 ---
 title: "Email"
 api: "GET https://api.jigsawstack.com/api/v1/validate/email"
-description: "This endpoint is used to validate an email address."
+description: "This endpoint is used to validate an email address and check its deliverability."
 ---
 
 ### Query
 
 <ParamField query="email" type="string" required>
-  The email address to validate
+  The email address to validate.
 </ParamField>
 
 <Snippet file="header.mdx" />
 
 ### Response
 
-<ResponseField name="success" type="boolean">
-  Indicates whether the call was successful.
-</ResponseField>
-
-<ResponseField name="message" type="string">
-  The message returned by the API.
-</ResponseField>
-
 <ResponseField name="valid" type="boolean">
-  Indicates whether the email address is valid.
+  Indicates whether the email address has a valid syntax.
+</ResponseField>
+
+<ResponseField name="disposable" type="boolean">
+  Indicates whether the email address is disposable.
+</ResponseField>
+
+<ResponseField name="role_account" type="boolean">
+  Indicates whether the email address is a role_account.
+</ResponseField>
+
+<ResponseField name="free" type="boolean">
+  Indicates whether the email address is a free email.
+</ResponseField>
+
+<ResponseField name="has_mx_records" type="boolean">
+  Indicates whether the email address has MX records.
 </ResponseField>
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/email?email=""' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint =
+  "https://api.jigsawstack.com/v1/validate/email?email='samurai@jigsawstack.com'";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>
@@ -39,8 +54,13 @@ curl --location --request GET 'https://api.jigsawstack.com/api/v1/validate/email
 
 ```json Response
 {
-  "success": true,
-  "message": "Validated successfully"
+  "email": "samurai@jigsawstack.com",
+  "disposable": false,
+  "role_account": false,
+  "free": false,
+  "has_mx_records": true,
+  "username": "samurai",
+  "domain": "jigsawstack.com",
   "valid": true
 }
 ```

@@ -24,9 +24,15 @@ description: "Validates whether a URL is safe for work."
 
 <RequestExample>
 
-```bash Example Request
-curl --location --request GET 'https://api.jigsawstack.com/v1/validate/nsfw' \
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/validate/nsfw?url=""' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/validate/nsfw?url=''";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>

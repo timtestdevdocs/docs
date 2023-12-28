@@ -36,9 +36,15 @@ description: "Validates a national ID number"
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/validate/national_ids' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/validate/national_ids";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>

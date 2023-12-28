@@ -41,9 +41,16 @@ description: "This endpoint is used to validate a bank account number"
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/validate/bank?account_number=0033002200' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint =
+  "https://api.jigsawstack.com/v1/validate/bank?=account_number='0033002200'";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>

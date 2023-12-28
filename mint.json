@@ -116,10 +116,11 @@
     {
       "group": "Validate",
       "pages": [
+        "api-reference/validate/email",
+        "api-reference/validate/mx_record",
         "api-reference/validate/bank-account",
         "api-reference/validate/creditcard",
         "api-reference/validate/crypto",
-        "api-reference/validate/email",
         "api-reference/validate/national_id",
         "api-reference/validate/nsfw",
         "api-reference/validate/passport",

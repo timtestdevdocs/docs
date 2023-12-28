@@ -33,6 +33,12 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/validate/phone_num
 --header 'x-api-key: <your-api-key>'
 ```
 
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/validate/phone_number";
+const result = await fetch(endpoint);
+const data = result.json();
+```
+
 </RequestExample>
 
 <ResponseExample>
