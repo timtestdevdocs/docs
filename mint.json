@@ -73,7 +73,10 @@
         "api-reference/ai/chat/chat-session",
         "api-reference/ai/chat/get-chat-sessions",
         "api-reference/ai/chat/delete-chat-session", 
-        "api-reference/ai/chat/document/attach", "api-reference/ai/chat/document/detach", "api-reference/ai/chat/document/get", "api-reference/ai/chat/document/delete", "api-reference/ai/chat/document/get-documents", "api-reference/ai/chat/document/add-document"
+        {
+          "group": "Document",
+          "pages": ["api-reference/ai/chat/document/add-document", "api-reference/ai/chat/document/attach", "api-reference/ai/chat/document/detach", "api-reference/ai/chat/document/delete", "api-reference/ai/chat/document/get","api-reference/ai/chat/document/get-documents"]
+        }
     ]
     },
     {
