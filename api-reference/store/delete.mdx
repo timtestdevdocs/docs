@@ -23,10 +23,22 @@ description: "Delete a key-value pair from the store"
 </ResponseField>
 
 <RequestExample>
-```bash Example Request
+```bash cURL
 curl --location --request DELETE 'https://api.jigsawstack.com/v1/store/simplekv/:key' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/store/simplekv/:key";
+const options = {
+  method: "DELETE",
+  headers: {
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+};
+const result = await fetch(endpoint, options);
+const data = result.json();
 ```
 
 </RequestExample>

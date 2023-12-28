@@ -53,13 +53,29 @@ description: "This endpoint is used to update a URL"
 
 <RequestExample>
 
-```bash Example Request
-curl --location --request POST 'https://api.jigsawstack.com/v1/link/:id' \
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/link/:slug' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
     "description": "Hello world"
 }'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/link/:slug";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    description: "Hello world",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = result.json();
 ```
 
 </RequestExample>

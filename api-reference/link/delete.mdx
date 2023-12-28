@@ -29,6 +29,18 @@ curl --location --request DELETE 'https://api.jigsawstack.com/v1/link/:slug' \
 --header 'x-api-key: <your-api-key>'
 ```
 
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/link/:slug";
+const options = {
+  method: "DELETE",
+  headers: {
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+};
+const result = await fetch(endpoint, options);
+const data = result.json();
+```
+
 </RequestExample>
 
 <ResponseExample>
