@@ -11,7 +11,7 @@ description: "This endpoint is used to convert HTML to image"
 </ParamField>
 
 <ParamField body="full_page" type="boolean">
-  Whether to take a full page screenshot.
+  Whether to capture the full page.
 </ParamField>
 
 <ParamField body="omit_background" type="boolean">
@@ -32,11 +32,11 @@ description: "This endpoint is used to convert HTML to image"
 </ParamField>
 
 <ParamField body="width" type="number" default="1920">
-  The width of the screenshot.
+  The width of the image.
 </ParamField>
 
 <ParamField body="height" type="number" default="1080">
-  The height of the screenshot.
+  The height of the image.
 </ParamField>
 
 <ParamField body="screen_size_preset" type="string">
@@ -71,7 +71,7 @@ See the full list of screen size presets [here](https://gist.github.com/iamNarci
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/generate/html2image' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
@@ -82,6 +82,26 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/generate/html2ima
       "omit_background": false,
       "type": "jpeg"
 }'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/generate/html2image";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    html: "<div>hello</div>",
+    quality: 100,
+    full_page: true,
+    omit_background: false,
+    type: "jpeg",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = result.json();
 ```
 
 </RequestExample>

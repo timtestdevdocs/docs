@@ -71,13 +71,29 @@ See the full list of screen size presets [here](https://gist.github.com/iamNarci
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/screenshot' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
     "url": "https://jigsawstack.com"
 }'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/screenshot";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    url: "https://jigsawstack.com",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = result.json();
 ```
 
 </RequestExample>

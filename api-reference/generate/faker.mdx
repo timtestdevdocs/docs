@@ -65,7 +65,7 @@ description: "This endpoint is used to generate fake data."
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/generate/faker' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
@@ -73,6 +73,25 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/generate/faker' \
     "seed":1,
     "schema": {}
 }'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/generate/faker";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    seed: 1,
+    schema: {
+      email: "internet.email",
+    },
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = result.json();
 ```
 
 </RequestExample>

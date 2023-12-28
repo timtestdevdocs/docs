@@ -47,9 +47,15 @@ description: "This endpoint is used to generate profile pictures."
 
 <RequestExample>
 
-```bash Example Request
+```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/generate/profile_picture' \
 --header 'x-api-key: <your-api-key>'
+```
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/generate/profile_picture";
+const result = await fetch(endpoint);
+const data = result.json();
 ```
 
 </RequestExample>
