@@ -40,7 +40,7 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/currency/rates?bas
 const endpoint =
   "https://api.jigsawstack.com/v1/currency/rates?base=USD&symbols=NGA,EUR,CZK";
 const result = await fetch(endpoint);
-const data = result.json();
+const data = await result.json();
 ```
 
 </RequestExample>

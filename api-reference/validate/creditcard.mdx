@@ -45,7 +45,7 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/validate/creditcar
 const endpoint =
   "https://api.jigsawstack.com/v1/validate/creditcard?=credit_card_number=''";
 const result = await fetch(endpoint);
-const data = result.json();
+const data = await result.json();
 ```
 
 </RequestExample>

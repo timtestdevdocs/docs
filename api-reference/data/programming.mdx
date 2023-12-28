@@ -30,7 +30,7 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/data/programming' 
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/data/programming";
 const result = await fetch(endpoint);
-const data = result.json();
+const data = await result.json();
 ```
 
 </RequestExample>

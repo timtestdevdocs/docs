@@ -48,7 +48,7 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/geo/timezone' \
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/geo/timezone";
 const result = await fetch(endpoint);
-const data = result.json();
+const data = await result.json();
 ```
 
 </RequestExample>

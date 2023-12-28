@@ -60,7 +60,7 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/geo/city' \
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/geo/city";
 const result = await fetch(endpoint);
-const city = result.json();
+const city = await result.json();
 ```
 
 </RequestExample>

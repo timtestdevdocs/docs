@@ -32,7 +32,7 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/geo/geohash/{geoha
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/geo/geohash/{geohash}";
 const result = await fetch(endpoint);
-const data = result.json();
+const data = await result.json();
 ```
 
 </RequestExample>

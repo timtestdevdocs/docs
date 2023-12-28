@@ -39,7 +39,7 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/validate/mx_record
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/validate/mx_record?domain=''";
 const result = await fetch(endpoint);
-const data = result.json();
+const data = await result.json();
 ```
 
 </RequestExample>

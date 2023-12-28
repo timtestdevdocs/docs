@@ -47,7 +47,7 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/validate/spell_che
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/validate/spell_check";
 const result = await fetch(endpoint);
-const data = result.json();
+const data = await result.json();
 ```
 
 </RequestExample>

@@ -55,7 +55,7 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/generate/profile_p
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/generate/profile_picture";
 const result = await fetch(endpoint);
-const data = result.json();
+const data = await result.json();
 ```
 
 </RequestExample>

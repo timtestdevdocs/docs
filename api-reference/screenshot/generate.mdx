@@ -93,7 +93,7 @@ const options = {
   }),
 };
 const result = await fetch(endpoint, options);
-const data = result.json();
+const data = await result.json();
 ```
 
 </RequestExample>

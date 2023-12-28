@@ -45,7 +45,7 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/validate/email?ema
 const endpoint =
   "https://api.jigsawstack.com/v1/validate/email?email='samurai@jigsawstack.com'";
 const result = await fetch(endpoint);
-const data = result.json();
+const data = await result.json();
 ```
 
 </RequestExample>
