@@ -1,6 +1,6 @@
 ---
 title: "Image generation"
-api: "POST https://api.jigsawstack.com/v1/ai/image-generation"
+api: "POST https://api.jigsawstack.com/v1/ai/image_generation"
 description: "Generate an image based on the given text."
 ---
 
@@ -94,7 +94,7 @@ description: "Generate an image based on the given text."
 <RequestExample>
 
 ```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/image-generation' \
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/image_generation' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
@@ -104,7 +104,7 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/image-generati
 ```
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/ai/image-generation";
+const endpoint = "https://api.jigsawstack.com/v1/ai/image_generation";
 const options = {
   method: "POST",
   headers: {
