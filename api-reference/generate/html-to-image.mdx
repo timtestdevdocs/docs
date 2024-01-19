@@ -71,19 +71,6 @@ See the full list of screen size presets [here](https://gist.github.com/iamNarci
 
 <RequestExample>
 
-```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/generate/html2image' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    "html": "<div>hello</div>",
-      "quality": 100,
-      "full_page": true,
-      "omit_background": false,
-      "type": "jpeg"
-}'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/generate/html2image";
 const options = {
@@ -101,17 +88,24 @@ const options = {
   }),
 };
 const result = await fetch(endpoint, options);
-const data = await result.json();
+const data = await result.blob();
+```
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/generate/html2image' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "html": "<div>hello</div>",
+      "quality": 100,
+      "full_page": true,
+      "omit_background": false,
+      "type": "jpeg"
+}'
 ```
 
 </RequestExample>
 
 <ResponseExample>
-
-```json Response
-{
-  "success": true
-}
-```
 
 </ResponseExample>

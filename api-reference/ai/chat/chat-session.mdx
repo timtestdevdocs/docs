@@ -28,13 +28,6 @@ description: "This endpoint is used to start a chat session"
 
 <RequestExample>
 
-```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/chat' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{}'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/ai/chat";
 const options = {
@@ -47,6 +40,13 @@ const options = {
 };
 const result = await fetch(endpoint, options);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/chat' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{}'
 ```
 
 </RequestExample>

@@ -39,18 +39,6 @@ description: "This endpoint is used to generate an email based on a given topic.
 </ResponseField>
 
 <RequestExample>
-```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/email' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    "purpose": "interview",
-    "tone": "formal",
-    "goal": "interview",
-    "sign_of_name": "Mr.",
-    "to_name": "John Doe"
-}'
-```
 
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/ai/email";
@@ -70,6 +58,19 @@ const options = {
 };
 const result = await fetch(endpoint, options);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/email' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "purpose": "interview",
+    "tone": "formal",
+    "goal": "interview",
+    "sign_of_name": "Mr.",
+    "to_name": "John Doe"
+}'
 ```
 
 </RequestExample>

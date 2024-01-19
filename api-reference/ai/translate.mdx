@@ -34,17 +34,6 @@ description: "Translate text from one language to another."
 
 <RequestExample>
 
-```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/translate' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    "current_language": "en",
-    "target_language": "es",
-    "text": "Hello, world!"
-}'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/ai/translate";
 const options = {
@@ -61,6 +50,17 @@ const options = {
 };
 const result = await fetch(endpoint, options);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/translate' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "current_language": "en",
+    "target_language": "es",
+    "text": "Hello, world!"
+}'
 ```
 
 </RequestExample>

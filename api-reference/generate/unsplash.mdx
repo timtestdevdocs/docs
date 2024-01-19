@@ -57,25 +57,19 @@ description: "This endpoint is used to generate images from unsplash."
 
 <RequestExample>
 
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/generate/unsplash";
+const result = await fetch(endpoint);
+const data = result.blob();
+```
+
 ```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/generate/unsplash' \
 --header 'x-api-key: <your-api-key>'
 ```
 
-```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/generate/unsplash";
-const result = await fetch(endpoint);
-const data = result.json();
-```
-
 </RequestExample>
 
 <ResponseExample>
-
-```json Response
-{
-  "success": true
-}
-```
 
 </ResponseExample>

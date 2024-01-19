@@ -65,16 +65,6 @@ description: "This endpoint is used to generate fake data."
 
 <RequestExample>
 
-```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/generate/faker' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    "seed":1,
-    "schema": {}
-}'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/generate/faker";
 const options = {
@@ -92,6 +82,16 @@ const options = {
 };
 const result = await fetch(endpoint, options);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/generate/faker' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "seed":1,
+    "schema": {}
+}'
 ```
 
 </RequestExample>

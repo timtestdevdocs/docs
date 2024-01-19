@@ -71,15 +71,6 @@ See the full list of screen size presets [here](https://gist.github.com/iamNarci
 
 <RequestExample>
 
-```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/screenshot' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    "url": "https://jigsawstack.com"
-}'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/screenshot";
 const options = {
@@ -93,17 +84,20 @@ const options = {
   }),
 };
 const result = await fetch(endpoint, options);
-const data = await result.json();
+const data = await result.blob();
+```
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/screenshot' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "url": "https://jigsawstack.com"
+}'
 ```
 
 </RequestExample>
 
 <ResponseExample>
-
-```json Response
-{
-  "success": true
-}
-```
 
 </ResponseExample>

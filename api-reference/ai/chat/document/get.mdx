@@ -22,15 +22,15 @@ description: "This endpoint is used to retrieve a document"
 
 <RequestExample>
 
-```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/ai/chat/documents/{id}' \
---header 'x-api-key: <your-api-key>'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/ai/chat/documents/{id}";
 const result = await fetch(endpoint);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/ai/chat/documents/{id}' \
+--header 'x-api-key: <your-api-key>'
 ```
 
 </RequestExample>

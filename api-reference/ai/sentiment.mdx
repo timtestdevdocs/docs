@@ -24,15 +24,6 @@ description: "This endpoint performs a sentiment analysis"
 
 <RequestExample>
 
-```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/sentiment' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    "text": "I am happy!"
-}'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/ai/sentiment";
 const options = {
@@ -49,6 +40,15 @@ const result = await fetch(endpoint, options);
 const data = await result.json();
 ```
 
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/sentiment' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "text": "I am happy!"
+}'
+```
+
 </RequestExample>
 
 <ResponseExample>
@@ -56,7 +56,11 @@ const data = await result.json();
 ```json Response
 {
   "success": true,
-  "sentiment": "positive"
+  "sentiment": {
+    "emotion": "happiness",
+    "sentiment": "positive",
+    "score": 0.9
+  }
 }
 ```
 

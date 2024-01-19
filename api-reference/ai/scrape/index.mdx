@@ -28,16 +28,6 @@ description: "This endpoint allows you smartly scrape a web page using prompts."
 
 <RequestExample>
 
-```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/scrape' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    url:"https://supabase.com/pricing",
-    element_prompts: ["Plan header", "Plan price"]
-}'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/ai/scrape";
 const options = {
@@ -53,6 +43,16 @@ const options = {
 };
 const result = await fetch(endpoint, options);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/scrape' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    url:"https://supabase.com/pricing",
+    element_prompts: ["Plan header", "Plan price"]
+}'
 ```
 
 </RequestExample>
