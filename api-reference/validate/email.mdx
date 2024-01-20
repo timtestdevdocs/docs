@@ -36,16 +36,16 @@ description: "This endpoint is used to validate an email address and check its d
 
 <RequestExample>
 
-```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/validate/email?email=""' \
---header 'x-api-key: <your-api-key>'
-```
-
 ```javascript Node.js
 const endpoint =
   "https://api.jigsawstack.com/v1/validate/email?email='samurai@jigsawstack.com'";
 const result = await fetch(endpoint);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/validate/email?email=""' \
+--header 'x-api-key: <your-api-key>'
 ```
 
 </RequestExample>

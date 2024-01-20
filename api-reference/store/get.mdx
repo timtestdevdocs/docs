@@ -34,15 +34,15 @@ description: "Get data from the KV store."
 
 <RequestExample>
 
-```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/store/simplekv/:key' \
---header 'x-api-key: <your-api-key>'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/store/simplekv/:key'";
 const result = await fetch(endpoint);
 const data = result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/store/simplekv/:key' \
+--header 'x-api-key: <your-api-key>'
 ```
 
 </RequestExample>

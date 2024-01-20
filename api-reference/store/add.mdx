@@ -30,12 +30,6 @@ description: "Add data to KV store."
 
 <RequestExample>
 
-```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/store/simplekv' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/store/simplekv";
 const options = {
@@ -51,6 +45,12 @@ const options = {
 };
 const result = await fetch(endpoint, options);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/store/simplekv' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
 ```
 
 </RequestExample>

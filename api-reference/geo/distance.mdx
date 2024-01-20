@@ -44,16 +44,16 @@ description: "This endpoint is used to get the distance between two points on th
 
 <RequestExample>
 
-```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/geo/distance?lat1=9.338&lat2=8.9383&lng1=4.39494&lng2=6.847847' \
---header 'x-api-key: <your-api-key>'
-```
-
 ```javascript Node.js
 const endpoint =
   "https://api.jigsawstack.com/v1/geo/distance?lat1=9.338&lat2=8.9383&lng1=4.39494&lng2=6.847847";
 const result = await fetch(endpoint);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/geo/distance?lat1=9.338&lat2=8.9383&lng1=4.39494&lng2=6.847847' \
+--header 'x-api-key: <your-api-key>'
 ```
 
 </RequestExample>

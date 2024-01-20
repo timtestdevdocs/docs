@@ -28,15 +28,15 @@ description: "Validates a phone number."
 
 <RequestExample>
 
-```bash Example Request
-curl --location --request GET 'https://api.jigsawstack.com/v1/validate/phone_number' \
---header 'x-api-key: <your-api-key>'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/validate/phone_number";
 const result = await fetch(endpoint);
 const data = await result.json();
+```
+
+```bash Example Request
+curl --location --request GET 'https://api.jigsawstack.com/v1/validate/phone_number' \
+--header 'x-api-key: <your-api-key>'
 ```
 
 </RequestExample>

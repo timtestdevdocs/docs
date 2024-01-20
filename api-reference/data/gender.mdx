@@ -34,15 +34,15 @@ description: "This endpoint is used to get the list of genders"
 
 <RequestExample>
 
-```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/data/gender' \
---header 'x-api-key: <your-api-key>'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/data/gender";
 const result = await fetch(endpoint);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/data/gender' \
+--header 'x-api-key: <your-api-key>'
 ```
 
 </RequestExample>

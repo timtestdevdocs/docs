@@ -23,11 +23,6 @@ description: "This endpoint deletes an existing URL."
 </ResponseField>
 
 <RequestExample>
-```bash cURL
-curl --location --request DELETE 'https://api.jigsawstack.com/v1/link/:slug' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>'
-```
 
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/link/:slug";
@@ -39,6 +34,12 @@ const options = {
 };
 const result = await fetch(endpoint, options);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request DELETE 'https://api.jigsawstack.com/v1/link/:slug' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>'
 ```
 
 </RequestExample>

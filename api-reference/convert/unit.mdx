@@ -58,15 +58,15 @@ description: "This endpoint converts a unit to another unit."
 
 <RequestExample>
 
-```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/convert/unit' \
---header 'x-api-key: <your-api-key>'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/convert/unit";
 const result = await fetch(endpoint);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/convert/unit' \
+--header 'x-api-key: <your-api-key>'
 ```
 
 </RequestExample>

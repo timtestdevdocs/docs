@@ -52,15 +52,15 @@ description: "Get geo information for a country"
 
 <RequestExample>
 
-```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/geo/country' \
---header 'x-api-key: <your-api-key>'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/geo/country";
 const result = await fetch(endpoint);
 const country = await result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/geo/country' \
+--header 'x-api-key: <your-api-key>'
 ```
 
 </RequestExample>

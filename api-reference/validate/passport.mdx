@@ -32,15 +32,15 @@ description: "Validates a passport number."
 
 <RequestExample>
 
-```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/validate/passport' \
---header 'x-api-key: <your-api-key>'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/validate/passport";
 const result = await fetch(endpoint);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/validate/passport' \
+--header 'x-api-key: <your-api-key>'
 ```
 
 </RequestExample>

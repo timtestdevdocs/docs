@@ -22,15 +22,15 @@ description: "Returns a list of list of skills"
 
 <RequestExample>
 
-```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/data/skill' \
---header 'x-api-key: <your-api-key>'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/data/skill";
 const result = await fetch(endpoint);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/data/skill' \
+--header 'x-api-key: <your-api-key>'
 ```
 
 </RequestExample>

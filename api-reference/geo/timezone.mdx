@@ -40,15 +40,15 @@ description: "Returns the timezone information for a given country, city or coor
 
 <RequestExample>
 
-```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/geo/timezone' \
---header 'x-api-key: <your-api-key>'
-```
-
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/geo/timezone";
 const result = await fetch(endpoint);
 const data = await result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/geo/timezone' \
+--header 'x-api-key: <your-api-key>'
 ```
 
 </RequestExample>
