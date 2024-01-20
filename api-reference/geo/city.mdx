@@ -71,7 +71,30 @@ const city = await result.json();
 {
   "success": true,
   "message": "Request was successful",
-  "city": []
+  "city": [
+    {
+      "state_code": "SGP_SINGAPORE",
+      "name": "Singapore",
+      "city_code": "SGP_SINGAPORE_SINGAPORE",
+      "created_at": "2023-05-19T08:28:48.340558+00:00",
+      "updated_at": "2024-01-04T07:38:57.18892+00:00",
+      "state": {
+        "name": "Singapore",
+        "country": {
+          "timezones": [
+            {
+              "abbr": "SGT",
+              "name": "Singapore Time",
+              "offset": 8,
+              "zone_name": "Asia/Singapore",
+              "gmt_offset": 28800,
+              "gmt_offset_name": "UTC+08:00"
+            }
+          ]
+        }
+      }
+    }
+  ]
 }
 ```
 
