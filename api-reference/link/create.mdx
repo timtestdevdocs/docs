@@ -27,8 +27,9 @@ description: "This endpoint is used to shorten a URL"
   A date string in the format YYYY-MM-DD.
 </ParamField>
 
-<ParamField body="slug" type="string">
-  A custom slug for the URL.
+<ParamField body="key" type="string">
+  A custom key for the URL. The key must be a string and must contain only
+  letters, numbers and dashes.
 </ParamField>
 
 <ParamField body="geo_targeting" type="object">
@@ -64,8 +65,8 @@ Define custom domain for redirect. Defaults to `jigs.sh`
   The URL that was shortened.
 </ResponseField>
 
-<ResponseField name="slug" type="string">
-  The slug of the URL.
+<ResponseField name="key" type="string">
+  The key.
 </ResponseField>
 
 <ResponseField name="short_url" type="string">
