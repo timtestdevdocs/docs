@@ -1,19 +1,13 @@
 ---
-title: "Get"
-api: "GET https://api.jigsawstack.com/v1/store/simplekv/{key}"
-description: "Get data from the KV store."
+title: "Get Log information"
+api: "GET https://api.jigsawstack.com/v1/logs/{id}"
+description: "Get Log information."
 ---
 
 ### Path
 
-<ParamField path="key" type="string" required>
-  The key to get the value of.
-</ParamField>
-
-### Query
-
-<ParamField query="decrypt" type="boolean">
-  Whether to decrypt the value.
+<ParamField path="id" type="string" required>
+  The id of the log you want to retrieve its information.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -28,20 +22,16 @@ description: "Get data from the KV store."
   The message returned by the API.
 </ResponseField>
 
-<ResponseField name="value" type="string">
-  The value of the key.
-</ResponseField>
-
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/store/simplekv/{key}'";
+const endpoint = "https://api.jigsawstack.com/v1/logs/{id}'";
 const result = await fetch(endpoint);
 const data = result.json();
 ```
 
 ```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/store/simplekv/{key}' \
+curl --location --request GET 'https://api.jigsawstack.com/v1/logs/{id}' \
 --header 'x-api-key: <your-api-key>'
 ```
 
@@ -53,7 +43,9 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/store/simplekv/{ke
 {
   "success": true,
   "message": "Retrieved successfully",
-  "value": ""
+  "event": "",
+  "channel_name": "",
+  "description": ""
 }
 ```
 

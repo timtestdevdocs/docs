@@ -163,11 +163,12 @@
     },
     {
       "group": "Logs",
-      "pages": [
-        "api-reference/logs/create",
-        "api-reference/logs/get",
-        "api-reference/logs/delete",
-        "api-reference/logs/update"
+      "pages": ["api-reference/logs/create-log","api-reference/logs/get-logs","api-reference/logs/delete-log", "api-reference/logs/get-log",
+        {
+          "group": "Channel",
+          "pages": ["api-reference/logs/channels/create", "api-reference/logs/channels/get", "api-reference/logs/channels/delete", "api-reference/logs/channels/update"]
+        }
+
       ]
     },
     {

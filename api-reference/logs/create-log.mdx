@@ -1,0 +1,114 @@
+---
+title: "Add Log"
+api: "POST https://api.jigsawstack.com/v1/logs"
+description: "Add a log to a channel."
+---
+
+### Body
+
+<ParamField body="channel_name" type="string" required>
+  The name of the channel.
+</ParamField>
+
+<ParamField body="event" type="string" required>
+  The event to be fired(logged in).
+</ParamField>
+
+<ParamField body="description" type="string">
+  The description of the event.
+</ParamField>
+
+<ParamField body="meta" type="Record<string, string>">
+  More information about the event.
+</ParamField>
+
+<ParamField body="icon" type="string">
+  Emoji string value.
+</ParamField>
+
+<ParamField body="platform_key" type="string">
+  The platform key. Default is `default`
+</ParamField>
+
+<ParamField body="description_parser" type="string">
+  Description parser. Default is `text`. Supported values are:
+  <ul>
+    <li>text</li>
+    <li>markdown</li>
+  </ul>
+</ParamField>
+
+<ParamField body="value" type="number">
+  The value.
+</ParamField>
+
+<ParamField body="value_type" type="string">
+  The value type. Default value is `default`. Supported values are:
+
+  <ul>
+   <li>default</li>
+   <li>currency</li>
+  </ul>
+</ParamField>
+
+<ParamField body="timestamp" type="string">
+  The timestamp of the logged event.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="log_id" type="string">
+  The ID of the log.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/logs";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    event_name: "My Channel",
+    event: "User Created",
+    meta: {
+      language_code: "en",
+      city: "Singapore",
+    },
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/logs' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data-raw '{
+    "event_name": "My Channel",
+    "event": "User Created",
+    }
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "log_id": "efae9cf0-0908-475a-97f0-c56dcbd66ab4"
+}
+```
+
+</ResponseExample>
