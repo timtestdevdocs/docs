@@ -8,12 +8,16 @@ description: "This endpoint is used to get the list of genders"
 
 <ParamField
   query="category"
-  initialValue="basic"
-  default="basic"
+  initialValue="extended"
+  default="extended"
   type="string"
   required
 >
-  The category of the data to retrieve.
+  Supported categories:
+  <ul>
+    <li>`basic`</li>
+    <li>`extended`</li>
+  </ul>
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -28,7 +32,7 @@ description: "This endpoint is used to get the list of genders"
   The message returned by the API.
 </ResponseField>
 
-<ResponseField name="data" type="JSON">
+<ResponseField name="gender" type="array">
   Array containing the data returned by the API.
 </ResponseField>
 
@@ -53,7 +57,6 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/data/gender' \
 {
   "success": true,
   "message": "Gender retrieved successfully",
-  "category": "basic",
   "gender": ["Male", "Female", "Other"]
 }
 ```
