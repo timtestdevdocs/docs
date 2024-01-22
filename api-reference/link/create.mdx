@@ -23,7 +23,7 @@ description: "This endpoint is used to shorten a URL"
   using the password
 </ParamField>
 
-<ParamField body="expiresAt" type="string">
+<ParamField body="expires_at" type="string">
   A date string in the format YYYY-MM-DD.
 </ParamField>
 
@@ -31,6 +31,19 @@ description: "This endpoint is used to shorten a URL"
   A custom slug for the URL.
 </ParamField>
 
+<ParamField body="geo_targeting" type="object">
+Enables the targeting of URLs based on specific countries. For instance:
+
+`{
+"US": "https://www.google.us",
+"CA": "https://www.google.ca",
+}`
+
+<Tip>Use valid `ISO2 country codes` as object key.</Tip>
+</ParamField>
+<ParamField body="redirect_domain" type="string">
+Define custom domain for redirect. Defaults to `jigs.sh`
+</ParamField>
 ### Header
 
 <ParamField header="x-api-key" type="string" required>
