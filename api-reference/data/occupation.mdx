@@ -6,8 +6,8 @@ description: "Returns a list of list of occupation"
 
 ### Query
 
-<ParamField query="name" type="string">
-  Search by name of the occupation.
+<ParamField query="search_value" type="string">
+  Search for a specific occupation.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -22,7 +22,7 @@ description: "Returns a list of list of occupation"
   The message returned by the API.
 </ResponseField>
 
-<ResponseField name="data" type="JSON">
+<ResponseField name="data" type="array<string>">
   Array containing the data returned by the API.
 </ResponseField>
 

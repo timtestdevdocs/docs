@@ -6,6 +6,12 @@ description: "Returns a list of list of industries."
 
 <Snippet file="header.mdx" />
 
+### Query
+
+<ParamField query="search_value" type="string">
+  Search for a specific industry.
+</ParamField>
+
 ### Response
 
 <ResponseField name="success" type="boolean">
@@ -16,7 +22,7 @@ description: "Returns a list of list of industries."
   The message returned by the API.
 </ResponseField>
 
-<ResponseField name="data" type="JSON">
+<ResponseField name="data" type="array<string>">
   Array containing the data returned by the API.
 </ResponseField>
 

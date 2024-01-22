@@ -6,8 +6,8 @@ description: "Returns a list of list of languages."
 
 ### Query
 
-<ParamField query="name" type="string">
-  Search by name of the language.
+<ParamField query="search_value" type="string">
+  Search for a specific language.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -22,7 +22,7 @@ description: "Returns a list of list of languages."
   The message returned by the API.
 </ResponseField>
 
-<ResponseField name="data" type="JSON">
+<ResponseField name="data" type="array<string>">
   Array containing the data returned by the API.
 </ResponseField>
 
