@@ -44,6 +44,22 @@ description: "Update Log Channel."
 
 <RequestExample>
 
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/logs/channel/:name";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    name: "Channel II",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
 ```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/logs/channel/:name' \
 --header 'Content-Type: application/json' \

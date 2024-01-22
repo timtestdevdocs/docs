@@ -57,7 +57,23 @@ description: "Proxies a request through our server."
 
 <RequestExample>
 
-```bash Example Request
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/proxy";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    name: "Jigsawstack",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/proxy' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \

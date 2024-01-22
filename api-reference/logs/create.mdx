@@ -40,6 +40,25 @@ description: "Create a new log channel."
 
 <RequestExample>
 
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/logs/channel";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    name: "My Channel",
+    description: "My Channel Description",
+    tags: ["tag1", "tag2"],
+    emails: [],
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
 ```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/logs/channel' \
 --header 'Content-Type: application/json' \

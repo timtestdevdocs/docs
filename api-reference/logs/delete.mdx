@@ -23,6 +23,19 @@ description: "Delete a channel"
 </ResponseField>
 
 <RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/logs/channel/:name";
+const options = {
+  method: "DELETE",
+  headers: {
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
 ```bash cURL
 curl --location --request DELETE 'https://api.jigsawstack.com/v1/logs/channel/:name' \
 --header 'Content-Type: application/json' \

@@ -20,6 +20,12 @@ description: "Get a channel"
 
 <RequestExample>
 
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/logs/channel/{name}";
+const result = await fetch(endpoint);
+const data = await result.json();
+```
+
 ```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/logs/channel/{name}' \
 --header 'x-api-key: <your-api-key>'
