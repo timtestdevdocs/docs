@@ -60,7 +60,7 @@ description: "This endpoint is used to generate images from unsplash."
 ```javascript Node.js
 const endpoint = "https://api.jigsawstack.com/v1/generate/unsplash";
 const result = await fetch(endpoint);
-const data = result.blob();
+const data = await result.blob();
 ```
 
 ```bash cURL
