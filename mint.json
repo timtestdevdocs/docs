@@ -81,8 +81,9 @@
     },
     {
       "group": "Webpage",
-      "pages": ["api-reference/screenshot/generate", "api-reference/scrape/scrape"]
+      "pages": ["api-reference/scrape/scrape", "api-reference/generate/html-to-any"]
     },
+
     {
       "group": "Currency",
       "pages": [
@@ -108,7 +109,6 @@
       "group": "Generate",
       "pages": [
         "api-reference/convert/qrcode",
-        "api-reference/generate/html-to-image",
         "api-reference/generate/password",
         "api-reference/generate/profile-picture",
         "api-reference/generate/unsplash",

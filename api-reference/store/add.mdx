@@ -1,6 +1,6 @@
 ---
 title: "Add"
-api: "POST https://api.jigsawstack.com/v1/store/simplekv"
+api: "POST https://api.jigsawstack.com/v1/store/kv"
 description: "Add data to KV store."
 ---
 
@@ -31,7 +31,7 @@ description: "Add data to KV store."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/store/simplekv";
+const endpoint = "https://api.jigsawstack.com/v1/store/kv";
 const options = {
   method: "POST",
   headers: {
@@ -48,7 +48,7 @@ const data = await result.json();
 ```
 
 ```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/store/simplekv' \
+curl --location --request POST 'https://api.jigsawstack.com/v1/store/kv' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 ```

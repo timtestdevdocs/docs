@@ -1,17 +1,17 @@
 ---
-title: "HTML To Image"
-api: "POST https://api.jigsawstack.com/v1/generate/html2image"
-description: "This endpoint is used to convert HTML to image"
+title: "HTML to Any"
+api: "POST https://api.jigsawstack.com/v1/html_to_any"
+description: "Takes a screenshot of a website."
 ---
 
 ### Body
 
-<ParamField body="html" type="string" required>
-  The HTML to convert to image.
+<ParamField body="url" type="string" required>
+  The URL of the website to take a screenshot of.
 </ParamField>
 
 <ParamField body="full_page" type="boolean">
-  Whether to capture the full page.
+  Whether to take a full page screenshot.
 </ParamField>
 
 <ParamField body="omit_background" type="boolean">
@@ -19,11 +19,11 @@ description: "This endpoint is used to convert HTML to image"
 </ParamField>
 
 <ParamField body="quality" type="number" default="75">
-  The quality of the image. 0-100.
+  The quality of the screenshot. 0-100.
 </ParamField>
 
 <ParamField body="type" type="string" default="png">
-  The type of the image. Can be one of the following:
+  The type of the screenshot. Can be either webp, jpeg or png.
   <ul>
     <li>jpeg</li>
     <li>png</li>
@@ -32,11 +32,11 @@ description: "This endpoint is used to convert HTML to image"
 </ParamField>
 
 <ParamField body="width" type="number" default="1920">
-  The width of the image.
+  The width of the screenshot.
 </ParamField>
 
 <ParamField body="height" type="number" default="1080">
-  The height of the image.
+  The height of the screenshot.
 </ParamField>
 
 <ParamField body="screen_size_preset" type="string">
@@ -72,7 +72,7 @@ See the full list of screen size presets [here](https://gist.github.com/iamNarci
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/generate/html2image";
+const endpoint = "https://api.jigsawstack.com/v1/screenshot";
 const options = {
   method: "POST",
   headers: {
@@ -80,11 +80,7 @@ const options = {
     "x-api-key": "<your-api-key>", // Replace with your actual API key.
   },
   body: JSON.stringify({
-    html: "<div>hello</div>",
-    quality: 100,
-    full_page: true,
-    omit_background: false,
-    type: "jpeg",
+    url: "https://jigsawstack.com",
   }),
 };
 const result = await fetch(endpoint, options);
@@ -92,15 +88,11 @@ const data = await result.blob();
 ```
 
 ```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/generate/html2image' \
+curl --location --request POST 'https://api.jigsawstack.com/v1/screenshot' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
-    "html": "<div>hello</div>",
-      "quality": 100,
-      "full_page": true,
-      "omit_background": false,
-      "type": "jpeg"
+    "url": "https://jigsawstack.com"
 }'
 ```
 
