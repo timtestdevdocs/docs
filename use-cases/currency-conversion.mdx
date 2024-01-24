@@ -13,7 +13,7 @@ icon: "code"
 
 <CodeGroup>
 
-```javascript convert.js
+```javascript Node.js
 const apiUrl = "http://api.jigsawstack.com/v1";
 const onConvert = async () => {
   try {
@@ -35,68 +35,10 @@ const onConvert = async () => {
 };
 ```
 
-```python convert.py
-import requests
-def convert(api_url, api_key, from_currency, to_currency, amount):
-
-  api_url = "http://api.jigsawstack.com/v1"
-
-  headers = {
-    "Content-Type": "application/json",
-    "x-api-key": "<your-api-key-here>"
-  }
-
-  response = requests.get(
-    f"{api_url}/currency/convert?from=USD&to=NGN&amount=1000",
-    headers=headers
-  )
-
-  return response
-
-```
-
-```go convert.go
-package main
-import (
-    "fmt"
-    "net/http"
-    "io/ioutil"
-)
-func main() {
-
-
-    headers := make(map[string]string)
-    headers["Content-Type"] = "application/json"
-    headers["x-api-key"] = "<your-api-key-here>"
-
-    url := fmt.Sprintf("http://api.jigsawstack.com/v1/currency/convert?from=USD&to=NGN&amount=100")
-    req, err := http.NewRequest("GET", url, nil)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-
-    for key, value := range headers {
-        req.Header.Add(key, value)
-    }
-
-    resp, err := http.DefaultClient.Do(req)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-
-    defer resp.Body.Close()
-
-    body, err := ioutil.ReadAll(resp.Body)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-
-    fmt.Println(string(body))
-}
-
+```bash cURL
+curl -X GET "http://api.jigsawstack.com/v1/currency/convert?from=USD&to=NGN&amount=1000" \
+     -H "Content-Type: application/json" \
+     -H "x-api-key: <your-api-key-here>"
 ```
 
 </CodeGroup>
