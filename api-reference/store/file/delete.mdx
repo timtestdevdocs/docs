@@ -1,13 +1,13 @@
 ---
 title: "Delete"
-api: "DELETE https://api.jigsawstack.com/v1/store/kv/{key}"
-description: "Delete a key-value pair from the store"
+api: "DELETE https://api.jigsawstack.com/v1/store/file/{key}"
+description: "Delete a file."
 ---
 
 ### Path
 
 <ParamField path="key" type="string" required>
-  The key of the key-value pair to delete.
+  The key of the file to be deleted.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -17,15 +17,10 @@ description: "Delete a key-value pair from the store"
 <ResponseField name="success" type="boolean">
   Indicates whether the call was successful.
 </ResponseField>
-
-<ResponseField name="message" type="string">
-  The message returned by the API.
-</ResponseField>
-
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/store/kv/{key}";
+const endpoint = "https://api.jigsawstack.com/v1/store/file/{key}";
 const options = {
   method: "DELETE",
   headers: {
@@ -37,7 +32,7 @@ const data = await result.json();
 ```
 
 ```bash cURL
-curl --location --request DELETE 'https://api.jigsawstack.com/v1/store/kv/{key}' \
+curl --location --request DELETE 'https://api.jigsawstack.com/v1/store/file/{key}' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>'
 ```
@@ -48,8 +43,7 @@ curl --location --request DELETE 'https://api.jigsawstack.com/v1/store/kv/{key}'
 
 ```json Response
 {
-  "success": true,
-  "message": "Record deleted successfully"
+  "success": true
 }
 ```
 

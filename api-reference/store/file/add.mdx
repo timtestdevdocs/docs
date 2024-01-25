@@ -1,0 +1,79 @@
+---
+title: "Upload"
+api: "POST https://api.jigsawstack.com/v1/store/file"
+description: "Upload images, videos and documents effortlessly."
+---
+
+### Body
+
+<ParamField body="formData" type="formData" required>
+  The file to upload.
+</ParamField>
+
+### Query
+
+<ParamField query="key" type="string" required>
+  The key to store the file.
+</ParamField>
+
+<ParamField query="overwrite" type="string" default="false">
+  Overwrite the file if key already exists.
+</ParamField>
+
+<Info>Maximum file size is 100MB.</Info>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="key" type="string">
+  Key used in storing the file.
+</ResponseField>
+
+<ResponseField name="url" type="string">
+  Url used in accessing the file.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const formData = new FormData();
+formData.append("key", fileToSend);
+
+const endpoint = "https://api.jigsawstack.com/v1/store/file";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "multipart/form-data",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: formData,
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+```bash cURL
+curl -X POST 'https://api.jigsawstack.com/v1/store/file' \
+  -H "Content-Type: multipart/form-data" \
+  -H "x-api-key: <your-api-key>" \
+  -F "key=@fileToSend"
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "url": "",
+  "key": ""
+}
+```
+
+</ResponseExample>

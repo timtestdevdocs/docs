@@ -1,19 +1,13 @@
 ---
-title: "Get"
-api: "GET https://api.jigsawstack.com/v1/store/kv/{key}"
-description: "Get data from the KV store."
+title: "Retrieve"
+api: "GET https://api.jigsawstack.com/v1/store/file/{key}"
+description: "Retrieve a file."
 ---
 
 ### Path
 
 <ParamField path="key" type="string" required>
-  The key to get the value of.
-</ParamField>
-
-### Query
-
-<ParamField query="decrypt" type="boolean">
-  Whether to decrypt the value.
+  The key of the file to be retrieved.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -28,20 +22,24 @@ description: "Get data from the KV store."
   The message returned by the API.
 </ResponseField>
 
-<ResponseField name="value" type="string">
-  The value of the key.
+<ResponseField name="url" type="string">
+  The accessible URL of the file.
+</ResponseField>
+
+<ResponseField name="key" type="string">
+  The key of the file.
 </ResponseField>
 
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/store/kv/{key}'";
+const endpoint = "https://api.jigsawstack.com/v1/store/file/{key}'";
 const result = await fetch(endpoint);
 const data = result.json();
 ```
 
 ```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/store/kv/{key}' \
+curl --location --request GET 'https://api.jigsawstack.com/v1/store/file/{key}' \
 --header 'x-api-key: <your-api-key>'
 ```
 
@@ -52,8 +50,8 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/store/kv/{key}' \
 ```json Response
 {
   "success": true,
-  "message": "Retrieved successfully",
-  "value": ""
+  "key": "",
+  "url": ""
 }
 ```
 
