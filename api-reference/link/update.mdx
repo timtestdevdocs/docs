@@ -1,6 +1,6 @@
 ---
 title: "Update URL"
-api: "POST https://api.jigsawstack.com/v1/link/:slug"
+api: "POST https://api.jigsawstack.com/v1/link/{key}"
 description: "This endpoint is used to update a URL"
 ---
 
@@ -54,7 +54,7 @@ description: "This endpoint is used to update a URL"
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/link/:slug";
+const endpoint = "https://api.jigsawstack.com/v1/link/{key}";
 const options = {
   method: "POST",
   headers: {
@@ -70,7 +70,7 @@ const data = await result.json();
 ```
 
 ```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/link/:slug' \
+curl --location --request POST 'https://api.jigsawstack.com/v1/link/{key}' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
