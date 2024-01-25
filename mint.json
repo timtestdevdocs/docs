@@ -41,10 +41,13 @@
     },
 
     {
+      "group": "Integration",
+      "pages": ["jigsawstack-badge", "integration/zapier"]
+    },
+    {
       "group": "Platform",
       "pages": ["jigsawstack-badge"]
     },
-
     {
       "group": "Use Cases",
       "pages": ["use-cases/currency-conversion"]
