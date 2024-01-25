@@ -21,12 +21,12 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "https://dash.jigsawstack.com/help"
+      "url": "https://jigsawstack.com/help"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dash.jigsawstack.com"
+    "url": "https://jigsawstack.com"
   },
   "tabs": [
     {
