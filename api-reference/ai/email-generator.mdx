@@ -61,16 +61,16 @@ const data = await result.json();
 ```
 
 ```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/email' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
+   curl --location --request POST 'https://api.jigsawstack.com/v1/ai/email' \
+    --header 'Content-Type: application/json' \
+    --header "x-api-key: <your-api-key>" \
+    --data '{
     "purpose": "marketing",
     "tone": "anger",
     "goal": "interview",
     "sign_of_name": "Mr.",
     "to_name": "John Doe"
-}'
+    }'
 ```
 
 </RequestExample>
