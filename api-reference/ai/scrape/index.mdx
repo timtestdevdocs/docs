@@ -46,13 +46,11 @@ const data = await result.json();
 ```
 
 ```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/scrape' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    url:"https://supabase.com/pricing",
-    element_prompts: ["Plan header", "Plan price"]
-}'
+    curl -X POST \
+    -H "x-api-key: <your-api-key>" \
+    -H "Content-Type: application/json" \
+    -d '{"url": "https://supabase.com/pricing", "element_prompts": ["Plan header", "Plan price"]}' \
+    'https://api.jigsawstack.com/v1/ai/scrape'
 ```
 
 </RequestExample>
