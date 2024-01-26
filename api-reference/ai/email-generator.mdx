@@ -49,8 +49,8 @@ const options = {
     "x-api-key": "<your-api-key>", // Replace with your actual API key.
   },
   body: JSON.stringify({
-    purpose: "interview",
-    tone: "formal",
+    purpose: "marketing",
+    tone: "anger",
     goal: "interview",
     sign_of_name: "Mr.",
     to_name: "John Doe",
@@ -65,8 +65,8 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/email' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
-    "purpose": "interview",
-    "tone": "formal",
+    "purpose": "marketing",
+    "tone": "anger",
     "goal": "interview",
     "sign_of_name": "Mr.",
     "to_name": "John Doe"
