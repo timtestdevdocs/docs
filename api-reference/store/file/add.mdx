@@ -44,7 +44,7 @@ description: "Upload images, videos and documents effortlessly."
 const formData = new FormData();
 formData.append("jigsaw-logo", fileToSend);
 
-const endpoint = "https://api.jigsawstack.com/v1/store/file?key="jigsaw-logo";
+const endpoint = "https://api.jigsawstack.com/v1/store/file?key=jigsaw-logo";
 const options = {
   method: "POST",
   headers: {
@@ -58,7 +58,7 @@ const data = await result.json();
 ```
 
 ```bash cURL
-curl -X POST 'https://api.jigsawstack.com/v1/store/file' \
+curl -X POST 'https://api.jigsawstack.com/v1/store/file?key=jigsaw-logo' \
   -H "Content-Type: multipart/form-data" \
   -H "x-api-key: <your-api-key>" \
   -F "key=@fileToSend"
