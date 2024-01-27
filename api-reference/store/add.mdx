@@ -48,9 +48,13 @@ const data = await result.json();
 ```
 
 ```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/store/kv' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
+    curl --location --request POST 'https://api.jigsawstack.com/v1/store/kv' \
+    --header 'Content-Type: application/json' \
+    --header "x-api-key: <your-api-here>" \
+    --data '{
+    "key": "pisa.1",
+    "value": "John"
+    }'
 ```
 
 </RequestExample>
