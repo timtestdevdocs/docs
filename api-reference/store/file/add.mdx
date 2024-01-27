@@ -42,9 +42,9 @@ description: "Upload images, videos and documents effortlessly."
 
 ```javascript Node.js
 const formData = new FormData();
-formData.append("key", fileToSend);
+formData.append("jigsaw-logo", fileToSend);
 
-const endpoint = "https://api.jigsawstack.com/v1/store/file";
+const endpoint = "https://api.jigsawstack.com/v1/store/file?key="jigsaw-logo";
 const options = {
   method: "POST",
   headers: {
