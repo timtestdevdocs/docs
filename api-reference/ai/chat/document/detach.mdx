@@ -49,7 +49,10 @@ const data = await result.json();
 curl --location --request POST 'https://api.jigsawstack.com/v1/ai/chat/documents/detach' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
---data '{}'
+--data '{
+  "document_ids": [],
+  "chat_session_id": "",
+}'
 ```
 
 </RequestExample>

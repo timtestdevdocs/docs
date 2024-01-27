@@ -23,6 +23,20 @@ description: "This endpoint deletes a document."
 </ResponseField>
 
 <RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/ai/chat/documents/{id}";
+const options = {
+  method: "DELETE",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
 ```bash cURL
 curl --location --request DELETE 'https://api.jigsawstack.com/v1/ai/chat/documents/{id}' \
 --header 'Content-Type: application/json' \
