@@ -4,10 +4,16 @@ api: "POST https://api.jigsawstack.com/v1/store/file"
 description: "Upload images, videos and documents effortlessly."
 ---
 
+<Snippet file="header.mdx" />
+
+<ParamField header="Content-Type" type="string">
+  File content type e.g image/png, image/jpeg, video/mov, video/mp4
+</ParamField>
+
 ### Body
 
-<ParamField body="formData" type="formData" required>
-  The file to upload.
+<ParamField body="blob" type="Blob" required>
+  The blob file to upload.
 </ParamField>
 
 ### Query
@@ -21,8 +27,6 @@ description: "Upload images, videos and documents effortlessly."
 </ParamField>
 
 <Info>Maximum file size is 100MB.</Info>
-
-<Snippet file="header.mdx" />
 
 ### Response
 
