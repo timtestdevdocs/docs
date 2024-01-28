@@ -41,20 +41,21 @@ description: "Upload images, videos and documents effortlessly."
 <RequestExample>
 
 ```javascript Node.js
-const formData = new FormData();
-formData.append("jigsaw-logo", fileToSend);
-
-const endpoint = "https://api.jigsawstack.com/v1/store/file?key=jigsaw-logo";
+const imageFile = fs.readFileSync("./src/seed/up.png");
+const key = "up.png";
+const endpoint = `https://api.jigsawstack.com/v1/store/file?key=${key}&overwrite=true`;
 const options = {
   method: "POST",
   headers: {
-    "Content-Type": "multipart/form-data",
+    "Content-Type": "image/png",
     "x-api-key": "<your-api-key>", // Replace with your actual API key.
   },
-  body: formData,
+  body: imageFile,
 };
 const result = await fetch(endpoint, options);
 const data = await result.json();
+
+console.log("public url:", `${data.url}?x-api-key=${publicKey}`);
 ```
 
 ```bash cURL
