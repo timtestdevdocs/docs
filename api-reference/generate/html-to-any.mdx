@@ -14,6 +14,26 @@ description: "Capture screenshots of a website, convert HTML to both image and P
   The HTML to convert to image.
 </ParamField>
 
+<ParamField body="goto_options" type="object">
+  This parameter allows you to specify custom page-load behavior.
+  <Expandable title="property">
+    <ResponseField name="timeout" type="string">
+      Custom timeout in milliseconds.
+    </ResponseField>
+    <ResponseField name="wait_until" type="string">
+      <ul>
+        <li>load</li>
+        <li>domcontentloaded</li>
+        <li>networkidle0</li>
+        <li>networkidle2</li>
+      </ul>
+    </ResponseField>
+  </Expandable>
+</ParamField>
+<ParamField body="scale" type="number" initialValue="1">
+  Scale of the output image, pdf, e.t.c
+</ParamField>
+
 <ParamField body="full_page" type="boolean">
   Whether to capture the full page.
 </ParamField>
@@ -44,7 +64,7 @@ description: "Capture screenshots of a website, convert HTML to both image and P
   The height of the image.
 </ParamField>
 
-<ParamField body="screen_size_preset" type="string">
+<ParamField body="size_preset" type="string">
   The screen size preset to use.
 </ParamField>
 
@@ -52,6 +72,10 @@ description: "Capture screenshots of a website, convert HTML to both image and P
 
 <ParamField body="pdf_print_background" type="boolean"></ParamField>
 <ParamField body="pdf_page_range" type="string"></ParamField>
+
+<ParamField body="is_mobile" type="boolean"></ParamField>
+<ParamField body="dark_mode" type="boolean"></ParamField>
+<ParamField body="use_graphic_renderer" type="boolean"></ParamField>
 
 <Snippet file="header.mdx" />
 
