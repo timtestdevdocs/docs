@@ -26,11 +26,9 @@ description: "The scrape API allows for retrieving contents from a web page. You
 <ParamField body="advance_config" type="object">
   Advance configurations
   <Expandable title="property">
-    <ResponseField name="screenshot" type="boolean"></ResponseField>
     <ResponseField name="console" type="boolean"></ResponseField>
     <ResponseField name="network" type="boolean"></ResponseField>
     <ResponseField name="cookies" type="boolean"></ResponseField>
-    <ResponseField name="html" type="boolean"></ResponseField>
   </Expandable>
 </ParamField>
 
@@ -49,8 +47,8 @@ description: "The scrape API allows for retrieving contents from a web page. You
 <ParamField body="goto_options" type="object">
   This parameter allows you to specify custom page-load behavior.
   <Expandable title="property">
-    <ResponseField name="timeout" type="string">
-      Custom timeout in milliseconds.
+    <ResponseField name="timeout" type="number">
+      Custom timeout in milliseconds. Maximum value is 15000(15seconds)
     </ResponseField>
     <ResponseField name="wait_until" type="string">
       <ul>
@@ -63,16 +61,30 @@ description: "The scrape API allows for retrieving contents from a web page. You
   </Expandable>
 </ParamField>
 
-<ParamField body="wait_for" type="string | number">
-  This parameter can accept one of three options:
-  <ul>
-    <li>
-      A function to be ran within the page's context, inside of the browser. e.g
-      `() => document.querySelector('h2')`
-    </li>
-    <li>A number indicating the time in milliseconds to wait. e.g `20000`</li>
-    <li>A valid selector to wait for. e.g `h2`</li>
-  </ul>
+<ParamField body="wait_for" type="object">
+Wait for.
+<Expandable title="property">
+  <ParamField body="mode" type="string">
+     Supported values:
+    <ul>
+      <li>`timeout`</li>
+      <li>`selector`</li>
+      <li>`function`</li>
+    </ul>
+  </ParamField>
+  <ParamField body="value" type="string|number">
+    This parameter can accept one of three options:
+    <ul>
+      <li>A number indicating the time in milliseconds to wait. Maximum timeout  `15000`</li>
+      <li>A valid selector to wait for. e.g `h2`</li>
+       <li>
+        A function to be ran within the page's context, inside of the browser.
+        e.g `() => document.querySelector('h2')`
+      </li>
+    </ul>
+  </ParamField>
+</Expandable>
+
 </ParamField>
 
 <ParamField body="cookies" type="array<object>">
