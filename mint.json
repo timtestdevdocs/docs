@@ -173,10 +173,6 @@
         }
 
       ]
-    },
-    {
-      "group": "Proxy",
-      "pages": ["api-reference/proxy/proxy"]
     }
   ],
   "footerSocials": {
