@@ -31,9 +31,8 @@ description: "Capture screenshots of a website, convert HTML to both image and P
   </Expandable>
 </ParamField>
 <ParamField body="scale" type="number" initialValue="1">
-  Scale of the output image, pdf, e.t.c
+  The device scale factor. The default value is 1.
 </ParamField>
-
 <ParamField body="full_page" type="boolean">
   Whether to capture the full page.
 </ParamField>
@@ -73,10 +72,15 @@ description: "Capture screenshots of a website, convert HTML to both image and P
 <ParamField body="pdf_print_background" type="boolean"></ParamField>
 <ParamField body="pdf_page_range" type="string"></ParamField>
 
-<ParamField body="is_mobile" type="boolean"></ParamField>
-<ParamField body="dark_mode" type="boolean"></ParamField>
-<ParamField body="use_graphic_renderer" type="boolean"></ParamField>
-
+<ParamField body="is_mobile" type="boolean">
+  Sets the viewport to mobile.
+</ParamField>
+<ParamField body="dark_mode" type="boolean">
+  Sets the color scheme to dark mode.
+</ParamField>
+<ParamField body="use_graphic_renderer" type="boolean">
+  Enables the graphics renderer
+</ParamField>
 <Snippet file="header.mdx" />
 
 ### Screen size presets

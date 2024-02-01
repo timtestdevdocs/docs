@@ -83,10 +83,12 @@ description: "The scrape API allows for retrieving contents from a web page. You
   The screen size preset to use.
 </ParamField>
 
-<ParamField body="is_mobile" type="boolean"></ParamField>
+<ParamField body="is_mobile" type="boolean">
+  Sets the viewport to mobile.
+</ParamField>
 
 <ParamField body="scale" type="number" initialValue="1">
-
+  The device scale factor. The default value is 1.
 </ParamField>
 
 <Snippet file="header.mdx" />
