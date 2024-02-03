@@ -37,12 +37,12 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "authentication", "error"]
+      "pages": ["introduction", "authentication", "error", "jigsawstack-badge"]
     },
 
     {
       "group": "Integration",
-      "pages": ["jigsawstack-badge", "integration/zapier"]
+      "pages": ["integration/zapier"]
     },
     {
       "group": "Use Cases",
