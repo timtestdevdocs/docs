@@ -122,7 +122,7 @@ Wait for.
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/scrape";
+const endpoint = "https://api.jigsawstack.com/v1/web/scrape";
 const options = {
   method: "POST",
   headers: {
@@ -138,7 +138,7 @@ const data = await result.json();
 ```
 
 ```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/scrape' \
+curl --location --request POST 'https://api.jigsawstack.com/v1/web/scrape' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{

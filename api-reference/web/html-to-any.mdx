@@ -110,7 +110,7 @@ See the full list of screen size presets [here](https://gist.github.com/iamNarci
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/generate/html_to_any";
+const endpoint = "https://api.jigsawstack.com/v1/web/html_to_any";
 const options = {
   method: "POST",
   headers: {
@@ -130,7 +130,7 @@ const data = await result.blob();
 ```
 
 ```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/generate/html_to_any' \
+curl --location --request POST 'https://api.jigsawstack.com/v1/web/html_to_any' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
