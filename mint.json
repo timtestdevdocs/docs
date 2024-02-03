@@ -62,7 +62,7 @@
         "api-reference/ai/email-generator",
         "api-reference/ai/summary",
         "api-reference/ai/prediction",
-        "api-reference/ai/scrape/index"
+        "api-reference/ai/scrape"
       ]
     },
     {
@@ -79,17 +79,38 @@
     ]
     },
     {
-      "group": "Webpage",
-      "pages": ["api-reference/scrape/scrape", "api-reference/generate/html-to-any"]
-    },
-
-    {
       "group": "Currency",
       "pages": [
         "api-reference/currency/list",
         "api-reference/currency/convert",
         "api-reference/currency/rates",
         "api-reference/currency/formatter"
+      ]
+    },
+    {
+      "group": "Web",
+      "pages": ["api-reference/web/scrape", "api-reference/web/html-to-any"]
+    },
+    {
+      "group": "Data",
+      "pages": [
+        "api-reference/data/gender",
+        "api-reference/data/holiday",
+        "api-reference/data/industry",
+        "api-reference/data/language",
+        "api-reference/data/occupation",
+        "api-reference/data/programming",
+        "api-reference/data/skill"
+      ]
+    },
+    {
+      "group": "Generate",
+      "pages": [
+        "api-reference/convert/qrcode",
+        "api-reference/generate/password",
+        "api-reference/generate/profile-picture",
+        "api-reference/generate/unsplash",
+        "api-reference/generate/faker"
       ]
     },
     {
@@ -105,59 +126,12 @@
       ]
     },
     {
-      "group": "Upload",
-      "pages": ["api-reference/store/file/add", "api-reference/store/file/get", "api-reference/store/file/delete"]
-    },
-    {
-      "group": "Generate",
-      "pages": [
-        "api-reference/convert/qrcode",
-        "api-reference/generate/password",
-        "api-reference/generate/profile-picture",
-        "api-reference/generate/unsplash",
-        "api-reference/generate/faker"
-      ]
-    },
-
-    {
-      "group": "Validate",
-      "pages": [
-        "api-reference/validate/email",
-        "api-reference/validate/mx_record",
-        "api-reference/validate/bank-account",
-        "api-reference/validate/creditcard",
-        "api-reference/validate/crypto",
-        "api-reference/validate/national_id",
-        "api-reference/validate/nsfw",
-        "api-reference/validate/passport",
-        "api-reference/validate/phone_number",
-        "api-reference/validate/profanity",
-        "api-reference/validate/spellcheck"
-      ]
-    },
-    {
       "group": "Link",
       "pages": [
         "api-reference/link/create",
         "api-reference/link/get-links",
         "api-reference/link/delete",
         "api-reference/link/update"
-      ]
-    },
-    {
-      "group": "Store",
-      "pages": ["api-reference/store/add","api-reference/store/get","api-reference/store/delete"]
-    },
-    {
-      "group": "Data",
-      "pages": [
-        "api-reference/data/gender",
-        "api-reference/data/holiday",
-        "api-reference/data/industry",
-        "api-reference/data/language",
-        "api-reference/data/occupation",
-        "api-reference/data/programming",
-        "api-reference/data/skill"
       ]
     },
     {
@@ -168,6 +142,32 @@
           "pages": ["api-reference/logs/channels/create", "api-reference/logs/channels/get", "api-reference/logs/channels/delete", "api-reference/logs/channels/update"]
         }
 
+      ]
+    },
+    {
+      "group": "Store",
+      "pages": [{
+        "group": "KV",
+        "pages": ["api-reference/store/add","api-reference/store/get","api-reference/store/delete"]
+      },{
+        "group": "File",
+        "pages": ["api-reference/store/file/add", "api-reference/store/file/get", "api-reference/store/file/delete"]
+      }]
+    },
+    {
+      "group": "Validate",
+      "pages": [
+        "api-reference/validate/email",
+        "api-reference/validate/mx-record",
+        "api-reference/validate/bank-account",
+        "api-reference/validate/creditcard",
+        "api-reference/validate/crypto",
+        "api-reference/validate/national-id",
+        "api-reference/validate/nsfw",
+        "api-reference/validate/passport",
+        "api-reference/validate/phone-number",
+        "api-reference/validate/profanity",
+        "api-reference/validate/spellcheck"
       ]
     }
   ],
