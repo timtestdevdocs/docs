@@ -46,7 +46,7 @@
     },
     {
       "group": "Use Cases",
-      "pages": ["use-cases/currency-conversion"]
+      "pages": ["use-cases/currency-conversion", "use-cases/screenshot"]
     },
     {
       "group": "API Documentation",
