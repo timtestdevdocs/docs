@@ -1,0 +1,64 @@
+---
+title: "Website Screenshot"
+description: "Capture website screenshots and receive output in both image and PDF formats using the [HTML To ANY API](https://docs.jigsawstack.com/api-reference/web/html-to-any)."
+icon: "camera-retro"
+---
+
+## Initial Steps
+
+- Setup an account (if you don't have an account already)
+- Get your API key from [here](https://jigsawstack.com/dashboard).
+
+## Usage
+
+<CodeGroup>
+
+```javascript Node.js
+const screenshot = async () => {
+  const endpoint = "http://api.jigsawstack.com/v1/web/html_to_any";
+
+  const params = {
+    url: "https://jigsawstack.com",
+    quality: 80,
+    full_page: true,
+    type: "jpeg",
+    dark_mode: true,
+  };
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": "<your-api-key-here>",
+    },
+    body: JSON.stringify(params),
+  };
+
+  const result = await fetch(endpoint, options);
+
+  if (!resp.ok) {
+    const error = await resp.json();
+    throw error;
+  }
+
+  const buffer = await resp.arrayBuffer();
+
+  fs.writeFileSync(
+    path.join(__dirname, `/screens/screenshot.jpeg`),
+    Buffer.from(buffer)
+  );
+};
+```
+
+```bash cURL
+curl --location --request POST 'http://api.jigsawstack.com/v1/web/html_to_any'  --header 'Content-Type: application/json' --header 'x-api-key: <your-api-key-here>' \
+--data '{
+    url: "https://jigsawstack.com",
+    quality: 80,
+    full_page: true,
+    type: "jpeg",
+    dark_mode: true,
+  }'
+```
+
+</CodeGroup>

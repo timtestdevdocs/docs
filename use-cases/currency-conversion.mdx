@@ -14,24 +14,20 @@ icon: "code"
 <CodeGroup>
 
 ```javascript Node.js
-const apiUrl = "http://api.jigsawstack.com/v1";
-const onConvert = async () => {
-  try {
-    const headers = {
+const convert = async () => {
+  const endpoint = "http://api.jigsawstack.com/v1/currency/convert";
+
+  const options = {
+    headers: {
       "Content-Type": "application/json",
       "x-api-key": "<your-api-key-here>",
-    };
+    },
+  };
 
-    const result = await fetch(
-      `${apiUrl}/currency/convert?from=USD&to=NGN&amount=1000`,
-      {
-        headers,
-      }
-    );
-    console.log(result);
-  } catch (e) {
-    handleError(e);
-  }
+  const resp = await fetch(`${endpoint}?from=USD&to=NGN&amount=1000`, options);
+
+  const data = await resp.json();
+  console.log(data);
 };
 ```
 
