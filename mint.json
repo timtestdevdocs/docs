@@ -98,8 +98,15 @@
         "api-reference/email/contact/update"
       ]
     },
-
-
+    {
+      "group": "Email Template",
+      "pages": [
+        "api-reference/email/template/create",
+        "api-reference/email/template/get",
+        "api-reference/email/template/list",
+        "api-reference/email/template/delete"
+      ]
+    },
     {
       "group": "Currency",
       "pages": [
