@@ -79,6 +79,16 @@
     ]
     },
     {
+      "group": "Email",
+      "pages": [
+        "api-reference/email/send-email",
+        "api-reference/email/get-email",
+        "api-reference/email/bulk-email",
+        "api-reference/email/get-bulk-email",
+        "api-reference/email/delete-bulk-email"
+      ]
+    },
+    {
       "group": "Currency",
       "pages": [
         "api-reference/currency/list",
