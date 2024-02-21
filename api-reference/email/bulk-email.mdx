@@ -1,7 +1,7 @@
 ---
 title: "Send Bulk Emails"
 api: "POST https://api.jigsawstack.com/v1/email/bulk"
-description: "Send bulk emails effortlessly with great reliability using the jigsawstack email API."
+description: "Send bulk emails effortlessly with great reliability using the JigSawstack email API."
 ---
 
 ### Body Parameters
@@ -43,6 +43,19 @@ description: "Send bulk emails effortlessly with great reliability using the jig
 <ParamField body="text" type="string">
   The plain text version of the message.
 </ParamField>
+
+<ParamField body="template" type="object">
+  The template data.
+  <Expandable title="property">
+    <ParamField body="id" type="string">
+      The template id.
+    </ParamField>
+    <ParamField body="variables" type="object">
+      The substitution variables.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
 </Expandable>
 </ParamField>
 

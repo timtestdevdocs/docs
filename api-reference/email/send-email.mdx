@@ -1,7 +1,7 @@
 ---
 title: "Send Email"
 api: "POST https://api.jigsawstack.com/v1/email"
-description: "Send emails effortlessly with great reliability using the jigsawstack email API."
+description: "Send emails effortlessly with great reliability using the JigSawstack email API."
 ---
 
 ### Body Parameters
@@ -42,6 +42,18 @@ description: "Send emails effortlessly with great reliability using the jigsawst
   The plain text version of the message.
 </ParamField>
 
+<ParamField body="template" type="object">
+  The template data.
+  <Expandable title="property">
+    <ParamField body="id" type="string">
+      The template id.
+    </ParamField>
+    <ParamField body="variables" type="object">
+      The substitution variables.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
 <ParamField body="schedule_for" type="string">
   The datetime to send the email at a later time. Supported schedule_for format
   is the `timestamp (ISO8601 format)`
@@ -50,13 +62,13 @@ description: "Send emails effortlessly with great reliability using the jigsawst
 <ParamField body="attachments" type="array">
   Filename and content of attachments (max 40mb per email).
 <Expandable title="property">
-  <ParamField body="content" type="string |buffer">
-  Content of an attached file.
+  <ParamField body="file_store_key" type="string">
+  The file store key. 
   </ParamField>
   <ParamField body="filename" type="string">
    Name of attached file.
   </ParamField>
-    <ParamField body="path" type="string">
+    <ParamField body="url" type="string">
     Path where the attachment file is hosted
   </ParamField>
 </Expandable>
@@ -120,10 +132,8 @@ const data = await result.json();
   "html": "<p>Hi Team, You are awesome.</p>",
   "subject": "Jigsawstack, You rock!",
   "text": null,
-  "template_id": null,
   "to": "john-doe@example.com",
   "updated_at": "2024-02-21T17:43:54.072075+00:00",
-  "variables": null,
   "webhook_url": null,
   "bulk_id": null,
   "tags": {},
