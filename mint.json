@@ -89,6 +89,15 @@
       ]
     },
     {
+      "group": "Email Audience",
+      "pages": [
+        "api-reference/email/audience/create",
+        "api-reference/email/audience/get",
+        "api-reference/email/audience/list",
+        "api-reference/email/audience/delete"
+      ]
+    },
+    {
       "group": "Email Contact",
       "pages": [
         "api-reference/email/contact/create",

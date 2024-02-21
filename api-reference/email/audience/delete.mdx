@@ -1,0 +1,52 @@
+---
+title: "Delete Audience"
+api: "DELETE https://api.jigsawstack.com/v1/email/audience/{audience_id}"
+description: "Delete an audience."
+---
+
+### Path Parameters
+
+<ParamField path="audience_id" type="string" required>
+  The audience id.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/email/audience/{audience_id}";
+const options = {
+  method: "DELETE",
+  headers: {
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+```bash cURL
+curl --location --request DELETE 'https://api.jigsawstack.com/v1/email/audience/{audience_id}' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "id": "1773978e-409f-41d5-8c0e-18fe6220e496"
+}
+```
+
+</ResponseExample>
