@@ -89,6 +89,18 @@
       ]
     },
     {
+      "group": "Email Contact",
+      "pages": [
+        "api-reference/email/contact/create",
+        "api-reference/email/contact/get",
+        "api-reference/email/contact/list",
+        "api-reference/email/contact/delete",
+        "api-reference/email/contact/update"
+      ]
+    },
+
+
+    {
       "group": "Currency",
       "pages": [
         "api-reference/currency/list",

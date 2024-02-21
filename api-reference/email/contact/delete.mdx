@@ -1,13 +1,13 @@
 ---
-title: "Delete URL"
-api: "DELETE https://api.jigsawstack.com/v1/link/{slug}"
-description: "This endpoint deletes an existing URL."
+title: "Delete Contact"
+api: "DELETE https://api.jigsawstack.com/v1/email/contact/{email}"
+description: "Delete a contact."
 ---
 
-### Path Params
+### Path Parameters
 
-<ParamField path="slug" type="string" required>
-  The slug of the URL you want to delete
+<ParamField path="email" type="string" required>
+  The contact email address.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -18,14 +18,10 @@ description: "This endpoint deletes an existing URL."
   Indicates whether the call was successful.
 </ResponseField>
 
-<ResponseField name="message" type="string">
-  The message returned by the API.
-</ResponseField>
-
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/link/{slug}";
+const endpoint = "https://api.jigsawstack.com/v1/email/contact/{email}";
 const options = {
   method: "DELETE",
   headers: {
@@ -37,7 +33,7 @@ const data = await result.json();
 ```
 
 ```bash cURL
-curl --location --request DELETE 'https://api.jigsawstack.com/v1/link/{slug}' \
+curl --location --request DELETE 'https://api.jigsawstack.com/v1/email/contact/{email}' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>'
 ```
@@ -48,8 +44,7 @@ curl --location --request DELETE 'https://api.jigsawstack.com/v1/link/{slug}' \
 
 ```json Response
 {
-  "success": true,
-  "message": "Link deleted successfully"
+  "success": true
 }
 ```
 
