@@ -96,7 +96,9 @@
         "api-reference/email/audience/list",
         "api-reference/email/audience/delete",
         "api-reference/email/audience/member/create",
-        "api-reference/email/audience/member/list"
+        "api-reference/email/audience/member/list",
+        "api-reference/email/audience/member/update",
+        "api-reference/email/audience/member/delete"
       ]
     },
     {
@@ -105,8 +107,8 @@
         "api-reference/email/contact/create",
         "api-reference/email/contact/get",
         "api-reference/email/contact/list",
-        "api-reference/email/contact/delete",
-        "api-reference/email/contact/update"
+        "api-reference/email/contact/update",
+        "api-reference/email/contact/delete"
       ]
     },
     {
@@ -170,8 +172,8 @@
       "pages": [
         "api-reference/link/create",
         "api-reference/link/get-links",
-        "api-reference/link/delete",
-        "api-reference/link/update"
+        "api-reference/link/update",
+        "api-reference/link/delete"
       ]
     },
     {

@@ -1,0 +1,73 @@
+---
+title: "Update Member"
+api: "POST https://api.jigsawstack.com/v1/email/audience/{audience_id}/member/{email}"
+description: "Update details of a member in audience."
+---
+
+### Path Parameters
+
+<ParamField path="email" type="string" required>
+  The email address of the member.
+</ParamField>
+
+<ParamField path="audience_id" type="string" required>
+  The audience id.
+</ParamField>
+
+### Body Parameters
+
+<ParamField body="metadata" type="object">
+  The metadata of of the member.
+</ParamField>
+
+<ParamField body="unsubscribed" type="boolean">
+  Unsubscribed a user from an audience.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint =
+  "https://api.jigsawstack.com/v1/email/audience/{audience_id}/member/{email}";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    unsubscribed: false,
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/email/audience/{audience_id}/member/{email}' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "unsubscribed": false}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "unsubscribed": false
+}
+```
+
+</ResponseExample>
