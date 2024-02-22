@@ -1,0 +1,70 @@
+---
+title: "Add Member"
+api: "POST https://api.jigsawstack.com/v1/email/audience/{audience_id}/member"
+description: "Add a contact to an audience."
+---
+
+### Path Parameters
+
+<ParamField path="audience_id" type="string" required>
+  The audience id.
+</ParamField>
+
+### Body Parameters
+
+<ParamField body="email" type="string" required>
+  The email address of the contact.
+</ParamField>
+
+<ParamField body="metadata" type="object">
+  Metadata of the contact.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint =
+  "https://api.jigsawstack.com/v1/email/audience/{audience_id}/member";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    email: "john-doe@example.com",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+```bash cURL
+    curl --location --request POST 'https://api.jigsawstack.com/v1/email/audience/{audience_id}/member' \
+    --header 'Content-Type: application/json' \
+    --header "x-api-key: <your-api-here>" \
+    --data '{
+    "email": "john-doe@example.com",
+    }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "id": "1773978e-409f-41d5-8c0e-18fe6220e496"
+}
+```
+
+</ResponseExample>

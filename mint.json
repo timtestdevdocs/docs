@@ -94,7 +94,9 @@
         "api-reference/email/audience/create",
         "api-reference/email/audience/get",
         "api-reference/email/audience/list",
-        "api-reference/email/audience/delete"
+        "api-reference/email/audience/delete",
+        "api-reference/email/audience/member/create",
+        "api-reference/email/audience/member/list"
       ]
     },
     {

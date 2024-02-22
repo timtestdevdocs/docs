@@ -1,13 +1,13 @@
 ---
-title: "Get List of Contacts"
-api: "GET https://api.jigsawstack.com/v1/email/contact"
-description: "Get contacts."
+title: "Get Members"
+api: "GET https://api.jigsawstack.com/v1/email/audience/{audience_id}/member"
+description: "Get audience members list."
 ---
 
-### Query
+### Query Parameters
 
 <ParamField query="limit" default="30" type="string">
-  The number of contacts to return.
+  The number of audience members to return.
 </ParamField>
 
 <ParamField query="page" default="1" type="string">
@@ -25,13 +25,14 @@ description: "Get contacts."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/email/contact";
+const endpoint =
+  "https://api.jigsawstack.com/v1/email/audience/{audience_id}/member";
 const result = await fetch(endpoint);
 const data = await result.json();
 ```
 
 ```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/email/contact' \
+curl --location --request GET 'https://api.jigsawstack.com/v1/email/audience/{audience_id}/member' \
 --header 'x-api-key: <your-api-key>'
 ```
 
@@ -46,11 +47,12 @@ curl --location --request GET 'https://api.jigsawstack.com/v1/email/contact' \
     {
       "email": "john-doe@example.com",
       "first_name": "John",
+      "last_name": null,
       "metadata": null,
-      "last_name": null
+      "unsubscribed": false
     }
   ],
-  "page": 1,
+  "page": 0,
   "limit": 10,
   "has_more": false
 }
