@@ -1,0 +1,114 @@
+---
+title: "Send Email to an Audience"
+api: "POST https://api.jigsawstack.com/v1/email/audience/{audience_id}"
+description: "Send an email broadcast to audience members."
+---
+
+### Path Parameters
+
+<ParamField path="audience_id" type="string" required>
+  The audience id.
+</ParamField>
+
+### Body Parameters
+
+<ParamField body="from" type="string" required>
+  Sender email address. 
+ Use this format `"Your Name <sender@your-domain.com>"` to  include a friendly name.
+</ParamField>
+
+<ParamField body="subject" type="string" required>
+  Email subject.
+</ParamField>
+
+<ParamField body="cc" type="string | string[]">
+  Cc recipient email address. For multiple addresses, send as an array of
+  strings.
+</ParamField>
+
+<ParamField body="bcc" type="string |string[]">
+  Bcc recipient email address. For multiple addresses, send as an array of
+  strings.
+</ParamField>
+
+<ParamField body="reply_to" type="string | string[]">
+  Reply-to email address. For multiple addresses, send as an array of strings.
+</ParamField>
+
+<ParamField body="html" type="string">
+  The HTML version of the message.
+</ParamField>
+
+<ParamField body="text" type="string">
+  The plain text version of the message.
+</ParamField>
+
+<ParamField body="template" type="object">
+  The template data.
+  <Expandable title="property">
+    <ParamField body="id" type="string">
+      The template id.
+    </ParamField>
+    <ParamField body="variables" type="object">
+      The substitution variables.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="schedule_for" type="string">
+  The datetime to send the bulk email at a later time. Supported schedule_for
+  format is the `timestamp (ISO8601 format)`
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/email/audience/{audience_id}";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    from: "name@your-email.com",
+    subject: "Jigsawstack, You Rock!",
+    html: "<p>Hi Team, you are awesome.</p>",
+  }),
+};
+
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+```bash cURL
+    curl --location --request POST 'https://api.jigsawstack.com/v1/email/audience/{audience_id}' \
+    --header 'Content-Type: application/json' \
+    --header "x-api-key: <your-api-here>" \
+    --data '{
+        from: "name@your-email.com",
+        subject: "Jigsawstack, You Rock!",
+        html: "<p>Hi Team, you are awesome.</p>",
+    }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "status": "sent"
+}
+```
+
+</ResponseExample>
