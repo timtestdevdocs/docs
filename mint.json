@@ -92,14 +92,16 @@
       "group": "Email Audience",
       "pages": [
         "api-reference/email/audience/create",
-        "api-reference/email/audience/broadcast/create",
         "api-reference/email/audience/get",
         "api-reference/email/audience/list",
         "api-reference/email/audience/delete",
         "api-reference/email/audience/member/create",
         "api-reference/email/audience/member/list",
         "api-reference/email/audience/member/update",
-        "api-reference/email/audience/member/delete"
+        "api-reference/email/audience/member/delete",
+        "api-reference/email/audience/broadcast/create",
+        "api-reference/email/audience/broadcast/get",
+        "api-reference/email/audience/broadcast/delete"
       ]
     },
     {

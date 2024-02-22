@@ -1,0 +1,53 @@
+---
+title: "Get Broadcast"
+api: "GET https://api.jigsawstack.com/v1/email/audience/{audience_id}/{broadcast_id}"
+description: "Get details of an audience email broadcast."
+---
+
+### Path Parameters
+
+<ParamField path="audience_id" type="string" required>
+  The audience id.
+</ParamField>
+
+<ParamField path="broadcast_id" type="string" required>
+  The broadcast id.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint =
+  "https://api.jigsawstack.com/v1/email/audience/{audience_id}/{broadcast_id}";
+const result = await fetch(endpoint);
+const data = result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/email/audience/{audience_id}/{broadcast_id}' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "id": "d32d49bc-81ee-4df8-9d5a-2012837920fc",
+  "status": "sent",
+  "schedule_for": null,
+  "emails": []
+}
+```
+
+</ResponseExample>
