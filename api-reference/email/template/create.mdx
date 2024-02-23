@@ -11,7 +11,15 @@ description: "Create email template."
 </ParamField>
 
 <ParamField body="content" type="string" required>
-  The html content of the template.
+  The html or text content.
+</ParamField>
+
+<ParamField body="type" type="string">
+  The type of content. Possible values:
+  <ul>
+    <li>`html`</li>
+    <li>`text`</li>
+  </ul>
 </ParamField>
 
 <Snippet file="header.mdx" />
