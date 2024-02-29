@@ -123,6 +123,17 @@
         "api-reference/email/template/delete"
       ]
     },
+
+    {
+      "group": "Domain",
+      "pages": [
+        "api-reference/domain/add-domain",
+        "api-reference/domain/verify-domain",
+        "api-reference/domain/get-domain",
+        "api-reference/domain/list-domain",
+        "api-reference/domain/delete-domain"
+      ]
+    },
     {
       "group": "Currency",
       "pages": [

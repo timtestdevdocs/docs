@@ -1,0 +1,75 @@
+---
+title: "Add Domain"
+api: "POST https://api.jigsawstack.com/v1/domain"
+description: "Add custom domain for use for emails and URLs redirects."
+---
+
+### Body Parameters
+
+<ParamField body="domain" type="string" required>
+  The domain to be added.
+</ParamField>
+
+<ParamField body="redirect_to" type="string">
+  Domain redirect.
+</ParamField>
+
+<ParamField body="is_host" type="boolean">
+  Indicates whether the domain is to be used for link redirects.
+</ParamField>
+
+<ParamField body="is_email" type="boolean">
+  Indicates whether the domain is to be used for email domain.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/domain";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    domain: "email.example.com",
+    is_email: true,
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+```bash cURL
+    curl --location --request POST 'https://api.jigsawstack.com/v1/domain' \
+    --header 'Content-Type: application/json' \
+    --header "x-api-key: <your-api-here>" \
+    --data '{
+    domain: "email.example.com",
+    is_email: true,
+    }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "domain": "email.example.com",
+  "apex_domain": "example.com",
+  "verified": false
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,73 @@
+---
+title: "Verify Domain"
+api: "GET https://api.jigsawstack.com/v1/domain/{domain}/verify"
+description: "Verify a domain."
+---
+
+### Path
+
+<ParamField path="domain" type="string" required>
+  The domain to verify.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/domain/{domain}/verify'";
+const result = await fetch(endpoint);
+const data = result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/domain/{domain}/verify' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "domain": "email.example.com",
+  "redirect_to": null,
+  "verified": false,
+  "status": "pending",
+  "apex_domain": "example.com",
+  "verifications": [
+    {
+      "type": "MX",
+      "name": "send",
+      "value": "feedback-smtp.us-east-1.amazonses.com",
+      "ttl": "Auto",
+      "priority": 10,
+      "status": "pending"
+    },
+    {
+      "type": "TXT",
+      "name": "send",
+      "value": "v=spf1 include:amazonses.com ~all",
+      "ttl": "Auto",
+      "status": "pending"
+    },
+    {
+      "type": "TXT",
+      "name": "s._domainkey.t",
+      "value": "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDLAetwJ8ql8Isod29KqR16vSyy01JeE0gNodn15EGF8Ff4aXZBAvDi2hvrlNeOnUwG+9df8ZPSrfYa3GoiCh50IIKAwqGYU/toPXizsK6rtnEgvEaC5tIfugiCrt76LY1SgO3yyB6nVejlRcNDCWeJ6Y0DqDwZewIDAQAB",
+      "ttl": "Auto",
+      "status": "pending"
+    }
+  ]
+}
+```
+
+</ResponseExample>
