@@ -4,6 +4,12 @@ api: "POST https://api.jigsawstack.com/v1/email/template"
 description: "Create email template."
 ---
 
+<Info>
+  Template support personalization using the `{{ attribute }}` format. For more
+  information visit
+  [Liquidjs](https://liquidjs.com/tutorials/intro-to-liquid.html)
+</Info>
+
 ### Body Parameters
 
 <ParamField body="name" type="string" required>
@@ -14,7 +20,7 @@ description: "Create email template."
   The html or text content.
 </ParamField>
 
-<ParamField body="type" type="string">
+<ParamField body="type" type="string" default="html">
   The type of content. Possible values:
   <ul>
     <li>`html`</li>
