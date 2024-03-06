@@ -1,13 +1,13 @@
 ---
-title: "Cancel Scheduled Bulk Email"
-api: "DELETE https://api.jigsawstack.com/v1/email/bulk/{id}"
-description: "Cancel a scheduled bulk email"
+title: "Cancel Scheduled Email"
+api: "DELETE https://api.jigsawstack.com/v1/email/{id}"
+description: "Cancel a scheduled email"
 ---
 
 ### Path Params
 
 <ParamField path="id" type="string" required>
-  Bulk email id.
+  The email id.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -21,7 +21,7 @@ description: "Cancel a scheduled bulk email"
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/email/bulk/{id}";
+const endpoint = "https://api.jigsawstack.com/v1/email/{id}";
 const options = {
   method: "DELETE",
   headers: {
@@ -33,7 +33,7 @@ const data = await result.json();
 ```
 
 ```bash cURL
-curl --location --request DELETE 'https://api.jigsawstack.com/v1/email/bulk/{id}' \
+curl --location --request DELETE 'https://api.jigsawstack.com/v1/email/{id}' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>'
 ```

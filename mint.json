@@ -83,47 +83,47 @@
       "pages": [
         "api-reference/email/send-email",
         "api-reference/email/get-email",
+        "api-reference/email/cancel-email",
         "api-reference/email/bulk-email",
         "api-reference/email/get-bulk-email",
-        "api-reference/email/delete-bulk-email"
+        "api-reference/email/delete-bulk-email",
+        {
+          "group": "Template",
+          "pages": [
+            "api-reference/email/template/create",
+            "api-reference/email/template/get",
+            "api-reference/email/template/list",
+            "api-reference/email/template/delete"
+          ]
+        },
+        {
+          "group": "Contact",
+          "pages": [
+            "api-reference/email/contact/create",
+            "api-reference/email/contact/get",
+            "api-reference/email/contact/list",
+            "api-reference/email/contact/update",
+            "api-reference/email/contact/delete"
+          ]
+        },
+        {
+          "group": "Audience",
+          "pages": [
+            "api-reference/email/audience/create",
+            "api-reference/email/audience/get",
+            "api-reference/email/audience/list",
+            "api-reference/email/audience/delete",
+            "api-reference/email/audience/member/create",
+            "api-reference/email/audience/member/list",
+            "api-reference/email/audience/member/update",
+            "api-reference/email/audience/member/delete",
+            "api-reference/email/audience/broadcast/create",
+            "api-reference/email/audience/broadcast/get",
+            "api-reference/email/audience/broadcast/delete"
+          ]
+        }
       ]
     },
-    {
-      "group": "Email Audience",
-      "pages": [
-        "api-reference/email/audience/create",
-        "api-reference/email/audience/get",
-        "api-reference/email/audience/list",
-        "api-reference/email/audience/delete",
-        "api-reference/email/audience/member/create",
-        "api-reference/email/audience/member/list",
-        "api-reference/email/audience/member/update",
-        "api-reference/email/audience/member/delete",
-        "api-reference/email/audience/broadcast/create",
-        "api-reference/email/audience/broadcast/get",
-        "api-reference/email/audience/broadcast/delete"
-      ]
-    },
-    {
-      "group": "Email Contact",
-      "pages": [
-        "api-reference/email/contact/create",
-        "api-reference/email/contact/get",
-        "api-reference/email/contact/list",
-        "api-reference/email/contact/update",
-        "api-reference/email/contact/delete"
-      ]
-    },
-    {
-      "group": "Email Template",
-      "pages": [
-        "api-reference/email/template/create",
-        "api-reference/email/template/get",
-        "api-reference/email/template/list",
-        "api-reference/email/template/delete"
-      ]
-    },
-
     {
       "group": "Domain",
       "pages": [
