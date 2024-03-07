@@ -83,6 +83,7 @@
       "pages": [
         "api-reference/email/send-email",
         "api-reference/email/get-email",
+        "api-reference/email/list-email",
         "api-reference/email/cancel-email",
         "api-reference/email/bulk-email",
         "api-reference/email/get-bulk-email",

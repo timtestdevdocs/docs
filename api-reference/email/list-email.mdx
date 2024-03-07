@@ -1,0 +1,67 @@
+---
+title: "Get Email List"
+api: "GET https://api.jigsawstack.com/v1/email"
+description: "Get project email logs."
+---
+
+### Query
+
+<ParamField query="limit" default="30" type="string">
+  The number of emails to return.
+</ParamField>
+
+<ParamField query="page" default="1" type="string">
+  The page to return.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/email";
+const result = await fetch(endpoint);
+const data = await result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/email' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "list": [
+    {
+      "id": "d418e82e-4793-4862-a809-bd6252dc273b",
+      "from": "hello@jigsawstack.com",
+      "to": "john-doe@example.com",
+      "bcc": null,
+      "cc": null,
+      "html": "<p>Hi Team, You are awesome.</p>",
+      "subject": "Jigsawstack, You rock!",
+      "text": null,
+      "tags": {},
+      "status": "sent",
+      "schedule_for": null,
+      "created_at": "2024-02-21T17:43:54.072075+00:00"
+    }
+  ],
+  "page": 0,
+  "limit": 10,
+  "has_more": false
+}
+```
+
+</ResponseExample>
