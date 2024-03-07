@@ -65,6 +65,14 @@ description: "Send emails effortlessly with great reliability using the JigSawst
   is the `timestamp (ISO8601 format)`
 </ParamField>
 
+<ParamField body="headers" type="record<string, string>">
+  Additional header parameters.
+</ParamField>
+
+<ParamField body="webhook_url" type="string">
+  Webhook URL to emit email event to.
+</ParamField>
+
 <ParamField body="attachments" type="array">
   Filename and content of attachments (max 40mb per email).
 <Expandable title="property">

@@ -44,6 +44,14 @@ description: "Send bulk emails effortlessly with great reliability using the Jig
   The plain text version of the message.
 </ParamField>
 
+<ParamField body="headers" type="record<string, string>">
+  Additional header parameters.
+</ParamField>
+
+<ParamField body="webhook_url" type="string">
+  Webhook URL to emit email event to.
+</ParamField>
+
 <ParamField body="template" type="object">
   The template data.
   <Expandable title="property">
