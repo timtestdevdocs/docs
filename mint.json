@@ -102,6 +102,7 @@
             "api-reference/email/contact/create",
             "api-reference/email/contact/get",
             "api-reference/email/contact/list",
+            "api-reference/email/contact/audiences",
             "api-reference/email/contact/update",
             "api-reference/email/contact/delete"
           ]
