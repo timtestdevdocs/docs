@@ -157,7 +157,7 @@
     },
     {
       "group": "Web",
-      "pages": ["api-reference/web/scrape", "api-reference/web/html-to-any"]
+      "pages": ["api-reference/web/scrape", "api-reference/web/html-to-any", "api-reference/web/dns"]
     },
     {
       "group": "Data",
