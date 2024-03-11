@@ -1,17 +1,19 @@
 ---
 title: "Get Broadcast"
-api: "GET https://api.jigsawstack.com/v1/email/audience/{audience_id}/{broadcast_id}"
+api: "GET https://api.jigsawstack.com/v1/email/audience/broadcast/{broadcast_id}"
 description: "Get details of an audience email broadcast."
 ---
 
 ### Path Parameters
 
-<ParamField path="audience_id" type="string" required>
-  The audience id.
-</ParamField>
-
 <ParamField path="broadcast_id" type="string" required>
   The broadcast id.
+</ParamField>
+
+### Query Parameters
+
+<ParamField query="audience_id" type="string" required>
+  The audience id.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -26,13 +28,13 @@ description: "Get details of an audience email broadcast."
 
 ```javascript Node.js
 const endpoint =
-  "https://api.jigsawstack.com/v1/email/audience/{audience_id}/{broadcast_id}";
+  "https://api.jigsawstack.com/v1/email/audience/broadcast/{broadcast_id}?audience_id={audience_id}";
 const result = await fetch(endpoint);
 const data = result.json();
 ```
 
 ```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/email/audience/{audience_id}/{broadcast_id}' \
+curl --location --request GET 'https://api.jigsawstack.com/v1/email/audience/broadcast/{broadcast_id}?audience_id={audience_id}' \
 --header 'x-api-key: <your-api-key>'
 ```
 

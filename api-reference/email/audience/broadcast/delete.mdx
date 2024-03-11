@@ -1,17 +1,19 @@
 ---
 title: "Cancel Scheduled Broadcast"
-api: "DELETE https://api.jigsawstack.com/v1/email/audience/{audience_id}/{broadcast_id}"
+api: "DELETE https://api.jigsawstack.com/v1/email/audience/broadcast/{broadcast_id}"
 description: "Cancel a scheduled broadcast."
 ---
 
 ### Path Parameters
 
-<ParamField path="audience_id" type="string" required>
-  The audience id.
-</ParamField>
-
 <ParamField path="broadcast_id" type="string" required>
   The broadcast id.
+</ParamField>
+
+### Query Parameters
+
+<ParamField query="audience_id" type="string" required>
+  The audience id.
 </ParamField>
 
 <Snippet file="header.mdx" />

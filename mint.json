@@ -85,16 +85,13 @@
         "api-reference/email/get-email",
         "api-reference/email/list-email",
         "api-reference/email/cancel-email",
-        "api-reference/email/bulk-email",
-        "api-reference/email/get-bulk-email",
-        "api-reference/email/delete-bulk-email",
         {
-          "group": "Template",
+          "group": "Bulk",
           "pages": [
-            "api-reference/email/template/create",
-            "api-reference/email/template/get",
-            "api-reference/email/template/list",
-            "api-reference/email/template/delete"
+            "api-reference/email/bulk-email",
+            "api-reference/email/get-bulk-email",
+            "api-reference/email/list-bulk-email",
+            "api-reference/email/delete-bulk-email"
           ]
         },
         {
@@ -116,14 +113,6 @@
             "api-reference/email/audience/list",
             "api-reference/email/audience/delete",
             {
-              "group": "Broadcast",
-              "pages": [
-                "api-reference/email/audience/broadcast/create",
-                "api-reference/email/audience/broadcast/get",
-                "api-reference/email/audience/broadcast/delete"
-              ]
-            },
-            {
               "group": "Manage Members",
               "pages": [
                 "api-reference/email/audience/member/create",
@@ -132,6 +121,24 @@
                 "api-reference/email/audience/member/delete"
               ]
             }
+          ]
+        },
+        {
+          "group": "Broadcast",
+          "pages": [
+            "api-reference/email/audience/broadcast/create",
+            "api-reference/email/audience/broadcast/get",
+            "api-reference/email/audience/broadcast/list",
+            "api-reference/email/audience/broadcast/delete"
+          ]
+        },
+        {
+          "group": "Template",
+          "pages": [
+            "api-reference/email/template/create",
+            "api-reference/email/template/get",
+            "api-reference/email/template/list",
+            "api-reference/email/template/delete"
           ]
         }
       ]

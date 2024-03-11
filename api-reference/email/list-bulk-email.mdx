@@ -1,0 +1,70 @@
+---
+title: "Get Bulk Email List"
+api: "GET https://api.jigsawstack.com/v1/email/bulk"
+description: "Get the list of bulk emails."
+---
+
+### Query
+
+<ParamField query="limit" default="30" type="string">
+  The number of bulk emails to return.
+</ParamField>
+
+<ParamField query="page" default="1" type="string">
+  The page to return.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/bulk";
+const result = await fetch(endpoint);
+const data = await result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/bulk' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "logs": [
+    {
+      "id": "069d90db-ec1d-42e6-afe2-81500e780e16",
+      "created_at": "2024-02-29T01:30:49.65452+00:00",
+      "status": "sent",
+      "status_message": null,
+      "schedule_for": null,
+      "total_email_count": 2,
+      "audience_id": null
+    },
+    {
+      "id": "7b4514e0-6d0b-41ea-94f6-a95f3c99013b",
+      "created_at": "2024-02-22T07:43:43.769731+00:00",
+      "status": "sent",
+      "status_message": null,
+      "schedule_for": null,
+      "total_email_count": 2,
+      "audience_id": null
+    }
+  ],
+  "page": 0,
+  "limit": 10
+}
+```
+
+</ResponseExample>

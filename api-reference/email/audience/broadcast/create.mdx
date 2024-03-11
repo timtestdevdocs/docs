@@ -1,16 +1,14 @@
 ---
 title: "Send Broadcast Email"
-api: "POST https://api.jigsawstack.com/v1/email/audience/{audience_id}"
+api: "POST https://api.jigsawstack.com/v1/email/audience/broadcast"
 description: "Send an email broadcast to audience members."
 ---
 
-### Path Parameters
+### Body Parameters
 
-<ParamField path="audience_id" type="string" required>
+<ParamField body="audience_id" type="string" required>
   The audience id.
 </ParamField>
-
-### Body Parameters
 
 <ParamField body="from" type="string" required>
   Sender email address. 
@@ -83,7 +81,7 @@ description: "Send an email broadcast to audience members."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/email/audience/{audience_id}";
+const endpoint = "https://api.jigsawstack.com/v1/email/audience/broadcast";
 const options = {
   method: "POST",
   headers: {
@@ -91,6 +89,7 @@ const options = {
     "x-api-key": "<your-api-key>", // Replace with your actual API key.
   },
   body: JSON.stringify({
+    audience_id: "d32d49bc-81ee-4df8-9d5a-2012837920fc",
     from: "name@your-email.com",
     subject: "Jigsawstack, You Rock!",
     html: "<p>Hi Team, you are awesome.</p>",
@@ -102,10 +101,11 @@ const data = await result.json();
 ```
 
 ```bash cURL
-    curl --location --request POST 'https://api.jigsawstack.com/v1/email/audience/{audience_id}' \
+    curl --location --request POST 'https://api.jigsawstack.com/v1/email/audience/broadcast' \
     --header 'Content-Type: application/json' \
     --header "x-api-key: <your-api-here>" \
     --data '{
+        audience_id:"d32d49bc-81ee-4df8-9d5a-2012837920fc",
         from: "name@your-email.com",
         subject: "Jigsawstack, You Rock!",
         html: "<p>Hi Team, you are awesome.</p>",
