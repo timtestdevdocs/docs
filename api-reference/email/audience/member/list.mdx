@@ -14,6 +14,15 @@ description: "Get audience members list."
   The page to return.
 </ParamField>
 
+<ParamField query="filter_subscribed" default="all" type="string">
+  Additional filters to retrieve members by. Supported filters are:
+  <ul>
+    <li>`all`</li>
+    <li>`subscribed`</li>
+    <li>`unsubscribed`</li>
+  </ul>
+</ParamField>
+
 <Snippet file="header.mdx" />
 
 ### Response

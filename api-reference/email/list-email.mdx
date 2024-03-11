@@ -1,6 +1,6 @@
 ---
 title: "Get Email List"
-api: "GET https://api.jigsawstack.com/v1/email"
+api: "POST https://api.jigsawstack.com/v1/email/list"
 description: "Get project email logs."
 ---
 
@@ -18,6 +18,10 @@ description: "Get project email logs."
   The bulk id to filter emails.
 </ParamField>
 
+<ParamField body="tags" type="array<object> | array<string>">
+  Email tags. Maximum is `10`. Example `[{"name":"marketing"}]` or `["name"]`
+</ParamField>
+
 <ParamField query="broadcast_id" type="string">
   The broadcast id to filter emails.
 </ParamField>
@@ -33,14 +37,28 @@ description: "Get project email logs."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/email";
-const result = await fetch(endpoint);
+const endpoint = "https://api.jigsawstack.com/v1/email/list";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    page: "2",
+  }),
+};
+const result = await fetch(endpoint, options);
 const data = await result.json();
 ```
 
 ```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/email' \
---header 'x-api-key: <your-api-key>'
+    curl --location --request POST 'https://api.jigsawstack.com/v1/email/list' \
+    --header 'Content-Type: application/json' \
+    --header "x-api-key: <your-api-here>" \
+    --data '{
+      page:"2"
+    }'
 ```
 
 </RequestExample>

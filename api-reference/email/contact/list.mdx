@@ -1,6 +1,6 @@
 ---
 title: "Get List of Contacts"
-api: "GET https://api.jigsawstack.com/v1/email/contact"
+api: "POST https://api.jigsawstack.com/v1/email/contact/list"
 description: "Get contacts."
 ---
 
@@ -14,6 +14,32 @@ description: "Get contacts."
   The page to return.
 </ParamField>
 
+<ParamField body="audience" type="object">
+  <Expandable title="property">
+    <ParamField body="ids" type="array<string>">
+      The audience ids to filter by.
+    </ParamField>
+    <ParamField
+      body="filter_subscribed"
+      type="string"
+      default="all"
+    >
+  Supported values are:
+     <ul>
+       <li>`all`</li>
+       <li>`subscribed`</li>
+       <li>`unsubscribed`</li>
+     </ul>
+
+    </ParamField>
+
+  </Expandable>
+</ParamField>
+
+<ParamField query="search_value" type="string">
+  Retrieve contacts that are similar to the given search value.
+</ParamField>
+
 <Snippet file="header.mdx" />
 
 ### Response
@@ -25,14 +51,28 @@ description: "Get contacts."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/email/contact";
-const result = await fetch(endpoint);
+const endpoint = "https://api.jigsawstack.com/v1/email/contact/list";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    page: "2",
+  }),
+};
+const result = await fetch(endpoint, options);
 const data = await result.json();
 ```
 
 ```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/email/contact' \
---header 'x-api-key: <your-api-key>'
+    curl --location --request POST 'https://api.jigsawstack.com/v1/email/contact/list' \
+    --header 'Content-Type: application/json' \
+    --header "x-api-key: <your-api-here>" \
+    --data '{
+      page:"2"
+    }'
 ```
 
 </RequestExample>
