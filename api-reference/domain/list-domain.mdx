@@ -14,6 +14,17 @@ description: "Get domains in your project."
   The page to return.
 </ParamField>
 
+<ParamField body="filter_type" type="string" default="all">
+  Supported values are:
+  <ul>
+    <li>`all`</li>
+    <li>`email`</li>
+    <li>`smtp`</li>
+    <li>`host`</li>
+
+  </ul>
+</ParamField>
+
 <Snippet file="header.mdx" />
 
 ### Response
