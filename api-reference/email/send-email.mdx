@@ -77,14 +77,14 @@ description: "Send emails effortlessly with great reliability using the JigSawst
   Email tags. Maximum is `10`. Example `{"name":"marketing"}`
 </ParamField>
 
-<ParamField body="attachments" type="array">
+<ParamField body="attachments" type="array<object>">
   Filename and content of attachments (max 40mb per email).
 <Expandable title="property">
   <ParamField body="file_store_key" type="string">
   The file store key. 
   </ParamField>
   <ParamField body="filename" type="string">
-   Name of attached file.
+   Name of attached file. Should include the file extension. Example `image-name.jpg`
   </ParamField>
     <ParamField body="url" type="string">
     Path where the attachment file is hosted
