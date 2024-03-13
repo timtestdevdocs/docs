@@ -13,8 +13,11 @@ description: "Send emails effortlessly with great reliability using the JigSawst
 ### Body Parameters
 
 <ParamField body="from" type="string" required>
-  Sender email address. 
- Use this format `"Your Name <sender@your-domain.com>"` to  include a friendly name.
+  Sender email address.
+</ParamField>
+
+<ParamField body="from_name" type="string">
+  Sender name. The sender name is used to include a friendly email address. Example: `"Your Name <sender@your-domain.com>"`
 </ParamField>
 
 <ParamField body="to" type="string | string[]" required>
@@ -143,6 +146,7 @@ const data = await result.json();
   "success": true,
   "id": "d418e82e-4793-4862-a809-bd6252dc273b",
   "from": "hello@jigsawstack.com",
+  "from_name": null,
   "to": "john-doe@example.com",
   "bcc": null,
   "cc": null,

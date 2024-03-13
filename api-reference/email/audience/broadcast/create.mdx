@@ -4,6 +4,11 @@ api: "POST https://api.jigsawstack.com/v1/email/audience/broadcast"
 description: "Send an email broadcast to audience members."
 ---
 
+<Info>
+  To ensure broadcast emails get delivered, include `
+  {{ JIGSAWSTACK_UNSUBSCRIBE_URL }}` tag in your html content.
+</Info>
+
 ### Body Parameters
 
 <ParamField body="audience_id" type="string" required>

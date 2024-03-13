@@ -98,6 +98,7 @@
           "group": "Contact",
           "pages": [
             "api-reference/email/contact/create",
+            "api-reference/email/contact/bulk",
             "api-reference/email/contact/get",
             "api-reference/email/contact/list",
             "api-reference/email/contact/audiences",
