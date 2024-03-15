@@ -17,7 +17,7 @@ description: "Add a contact to an audience."
 </ParamField>
 
 <ParamField body="metadata" type="object">
-  Metadata of the contact.
+  Metadata of the contact. Example `{city:"Singapore"}`
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -41,6 +41,7 @@ const options = {
   },
   body: JSON.stringify({
     email: "john-doe@example.com",
+    metadata: { city: "Singapore" },
   }),
 };
 const result = await fetch(endpoint, options);
@@ -53,6 +54,7 @@ const data = await result.json();
     --header "x-api-key: <your-api-here>" \
     --data '{
     "email": "john-doe@example.com",
+      metadata: { city: "Singapore" },
     }'
 ```
 

@@ -82,18 +82,19 @@ description: "Send emails effortlessly with great reliability using the JigSawst
 
 <ParamField body="attachments" type="array<object>">
   Filename and content of attachments (max 40mb per email).
-<Expandable title="property">
-  <ParamField body="file_store_key" type="string">
-  The file store key. 
-  </ParamField>
-  <ParamField body="filename" type="string">
-   Name of attached file. Should include the file extension. Example `image-name.jpg`
-  </ParamField>
+  <Expandable title="property">
+    <ParamField body="filename" type="string" required>
+      Name of attached file with the file extension. Example `filename.jpg`.
+      Supported file extensions `.jpg, .png, .webp, .pdf` etc.
+    </ParamField>
+    <ParamField body="file_store_key" type="string">
+      The file store key. Should only be provided if `url` is not provided.
+    </ParamField>
     <ParamField body="url" type="string">
-    Path where the attachment file is hosted
-  </ParamField>
-</Expandable>
-
+      Path where the attachment file is hosted. Should only be provided if
+      `file_store_key` is not provided.
+    </ParamField>
+  </Expandable>
 </ParamField>
 
 <Snippet file="header.mdx" />

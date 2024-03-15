@@ -4,6 +4,11 @@ api: "DELETE https://api.jigsawstack.com/v1/domain/{domain}"
 description: "Delete a domain."
 ---
 
+<Warning>
+  Emails and URL redirects will immediately stop working once the domain is
+  deleted.
+</Warning>
+
 ### Path Parameters
 
 <ParamField path="domain" type="string" required>

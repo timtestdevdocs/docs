@@ -45,6 +45,7 @@ const options = {
   },
   body: JSON.stringify({
     unsubscribed: false,
+    metadata: { city: "Singapore" },
   }),
 };
 const result = await fetch(endpoint, options);

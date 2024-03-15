@@ -21,7 +21,7 @@ description: "Update  a Contact"
 </ParamField>
 
 <ParamField body="metadata" type="object">
-  The metadata of the contact.
+  The metadata of the contact. E.g `{ city: "Singapore" }`
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -44,6 +44,7 @@ const options = {
   },
   body: JSON.stringify({
     first_name: "Jane",
+    metadata: { city: "Singapore" },
   }),
 };
 const result = await fetch(endpoint, options);
