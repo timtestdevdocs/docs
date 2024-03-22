@@ -1,0 +1,179 @@
+---
+title: "Object Detention"
+api: "POST https://api.jigsawstack.com/v1/ai/object_detection"
+description: "Recognise objects within an image with great accuracy."
+---
+
+### Body
+
+<ParamField body="url" type="string">
+  The image url.
+</ParamField>
+
+<ParamField body="file_store_key" type="string">
+  The key used to store the image on Jigsawstack file
+  [Storage](https://docs.jigsawstack.com/api-reference/store/file/add).
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/ai/object_detection";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Collabo%201080x842.jpg?t=2024-03-22T09%3A22%3A48.442Z",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/object_detection' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Collabo%201080x842.jpg?t=2024-03-22T09%3A22%3A48.442Z",
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "width": 1080,
+  "height": 842,
+  "tags": [
+    "clothing",
+    "human face",
+    "person",
+    "man",
+    "woman",
+    "wall",
+    "table",
+    "indoor",
+    "smile",
+    "sharing",
+    "food",
+    "people",
+    "group",
+    "eating"
+  ],
+  "objects": [
+    {
+      "name": "person",
+      "confidence": 0.599,
+      "bounds": {
+        "top_left": {
+          "x": 430,
+          "y": 290
+        },
+        "top_right": {
+          "x": 631,
+          "y": 290
+        },
+        "bottom_right": {
+          "x": 631,
+          "y": 523
+        },
+        "bottom_left": {
+          "x": 430,
+          "y": 523
+        },
+        "width": 201,
+        "height": 233
+      }
+    },
+    {
+      "name": "person",
+      "confidence": 0.542,
+      "bounds": {
+        "top_left": {
+          "x": 230,
+          "y": 273
+        },
+        "top_right": {
+          "x": 440,
+          "y": 273
+        },
+        "bottom_right": {
+          "x": 440,
+          "y": 610
+        },
+        "bottom_left": {
+          "x": 230,
+          "y": 610
+        },
+        "width": 210,
+        "height": 337
+      }
+    },
+    {
+      "name": "person",
+      "confidence": 0.869,
+      "bounds": {
+        "top_left": {
+          "x": 16,
+          "y": 279
+        },
+        "top_right": {
+          "x": 397,
+          "y": 279
+        },
+        "bottom_right": {
+          "x": 397,
+          "y": 818
+        },
+        "bottom_left": {
+          "x": 16,
+          "y": 818
+        },
+        "width": 381,
+        "height": 539
+      }
+    },
+    {
+      "name": "person",
+      "confidence": 0.847,
+      "bounds": {
+        "top_left": {
+          "x": 546,
+          "y": 226
+        },
+        "top_right": {
+          "x": 1078,
+          "y": 226
+        },
+        "bottom_right": {
+          "x": 1078,
+          "y": 825
+        },
+        "bottom_left": {
+          "x": 546,
+          "y": 825
+        },
+        "width": 532,
+        "height": 599
+      }
+    }
+  ]
+}
+```
+
+</ResponseExample>

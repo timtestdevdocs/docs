@@ -1,0 +1,127 @@
+---
+title: "OCR"
+api: "POST https://api.jigsawstack.com/v1/ai/ocr"
+description: "Recognise texts within an image effortlessly."
+---
+
+### Body
+
+<ParamField body="url" type="string">
+  The image url.
+</ParamField>
+
+<ParamField body="file_store_key" type="string">
+  The key used to store the image on Jigsawstack File
+  [Storage](https://docs.jigsawstack.com/api-reference/store/file/add).
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/ai/ocr";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/firebase-logo.png?t=2024-03-22T09%3A12%3A57.009Z",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/ocr' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/firebase-logo.png?t=2024-03-22T09%3A12%3A57.009Z",
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "width": 938,
+  "height": 264,
+  "tags": ["yellow"],
+  "has_text": true,
+  "sections": [
+    {
+      "text": "Firebase",
+      "lines": [
+        {
+          "text": "Firebase",
+          "chunks": [
+            {
+              "text": "Firebase",
+              "bounds": {
+                "top_left": {
+                  "x": 243,
+                  "y": 55
+                },
+                "top_right": {
+                  "x": 932,
+                  "y": 67
+                },
+                "bottom_right": {
+                  "x": 930,
+                  "y": 214
+                },
+                "bottom_left": {
+                  "x": 243,
+                  "y": 206
+                },
+                "width": 688,
+                "height": 149
+              },
+              "words": [
+                {
+                  "text": "Firebase",
+                  "bounds": {
+                    "top_left": {
+                      "x": 244,
+                      "y": 56
+                    },
+                    "top_right": {
+                      "x": 913,
+                      "y": 88
+                    },
+                    "bottom_right": {
+                      "x": 915,
+                      "y": 207
+                    },
+                    "bottom_left": {
+                      "x": 244,
+                      "y": 208
+                    },
+                    "width": 670,
+                    "height": 135.5
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+</ResponseExample>
