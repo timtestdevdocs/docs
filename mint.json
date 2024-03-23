@@ -63,7 +63,7 @@
         "api-reference/ai/summary",
         "api-reference/ai/prediction",
         "api-reference/ai/scrape",
-        "api-reference/ai/transcribe",
+        "api-reference/ai/speech-to-text",
         "api-reference/ai/ocr",
         "api-reference/ai/vision"
       ]
