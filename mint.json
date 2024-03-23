@@ -82,6 +82,16 @@
     ]
     },
     {
+      "group": "Prompt Engine",
+      "pages": [
+        "api-reference/ai/prompt/create",
+        "api-reference/ai/prompt/run",
+        "api-reference/ai/prompt/retrieve",
+        "api-reference/ai/prompt/list",
+        "api-reference/ai/prompt/delete"
+      ]
+    },
+    {
       "group": "Email",
       "pages": [
         "api-reference/email/send-email",

@@ -1,0 +1,85 @@
+---
+title: "Create Prompt"
+api: "POST https://api.jigsawstack.com/v1/ai/prompt_engine"
+description: "Create a prompt for easy resuse."
+---
+
+### Body
+
+<ParamField body="prompt" type="string" required>
+  The prompt.
+</ParamField>
+
+<ParamField body="inputs" type="array<object>">
+  The prompt inputs.
+</ParamField>
+
+<ParamField body="return_prompt" type="string | array | object">
+  How the prompt result should be returned or formatted.
+</ParamField>
+
+### Header
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/ai/prompt_engine";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    prompt: "Tell me a story about {about}",
+    inputs: [
+      {
+        key: "about",
+        optional: false,
+        initial_value: "Leaning Tower of Pisa",
+      },
+    ],
+    return_prompt: "Return the result in a markdown format",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+```bash cURL
+    curl --location --request POST 'https://api.jigsawstack.com/v1/ai/prompt_engine' \
+    --header 'Content-Type: application/json' \
+    --header "x-api-key: <your-api-here>" \
+    --data '{
+      "prompt": "Tell me a story about {about}",
+      "inputs": [
+        {
+          "key": "about",
+          "optional": false,
+          "initial_value":"Leaning Tower of Pisa"
+        }
+      ],
+     "return_prompt": "Return the result in a markdown format",
+    }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "prompt_engine_id": "9100b51f-9c27-4b19-81ce-6845c9c74220"
+}
+```
+
+</ResponseExample>

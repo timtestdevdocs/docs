@@ -1,0 +1,53 @@
+---
+title: "Delete a Prompt"
+api: "DELETE https://api.jigsawstack.com/v1/ai/prompt_engine/{id}"
+description: "Deletes a prompt engine."
+---
+
+### Path Params
+
+<ParamField path="id" type="string" required>
+  The prompt ID.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/ai/prompt_engine/{id}";
+const options = {
+  method: "DELETE",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+```bash cURL
+curl --location --request DELETE 'https://api.jigsawstack.com/v1/ai/prompt_engine/{id}' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "prompt_engine_id": "e58d762a-9a00-4907-8cab-5ce6221bb6df"
+}
+```
+
+</ResponseExample>
