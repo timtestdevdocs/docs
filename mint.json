@@ -49,6 +49,10 @@
       "pages": ["use-cases/currency-conversion", "use-cases/screenshot"]
     },
     {
+      "group": "Additional Resources",
+      "pages": ["additional-resources/size-preset"]
+    },
+    {
       "group": "API Documentation",
       "pages": ["api-reference/authentication", "api-reference/error"]
     },

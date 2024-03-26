@@ -17,14 +17,17 @@ description: "Transcribe video and audio files with ease leveraging Whisper Larg
 </ParamField>
 
 <ParamField body="language" type="string">
-  The language to translate the file into.
+  The language to translate the file into. If not specified, the model will
+  automatically detect the language and transcribe accordingly.
 </ParamField>
 
-<ParamField body="translate" type="boolean" defaultValue="false">
+<ParamField body="translate" type="boolean" default="false">
   Translates the file into the given language.
 </ParamField>
 
-<ParamField body="by_speaker" type="boolean" defaultValue="false"></ParamField>
+<ParamField body="by_speaker" type="boolean" default="false">
+  Identifies and separates different speakers in the audio file.
+</ParamField>
 <ParamField body="webhook_url" type="string">
   Webhook URL to send result to.
 </ParamField>
