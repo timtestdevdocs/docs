@@ -7,16 +7,67 @@ description: "Create a prompt for easy reuse."
 ### Body
 
 <ParamField body="prompt" type="string" required>
-  The prompt.
+  The prompt. Prompt supports dynamic inputs. See example below.
 </ParamField>
 
 <ParamField body="inputs" type="array<object>">
-  The prompt inputs.
+  The prompt inputs. See example below.
 </ParamField>
 
 <ParamField body="return_prompt" type="string | array | object">
-  How the prompt result should be returned or formatted.
+  How the prompt result should be returned or formatted. See examples below
 </ParamField>
+
+## Sample Prompt Payload
+
+- Dynamic prompt with String `return_prompt`
+
+```javascript
+{
+    prompt: "Tell me a story about {about}",
+    inputs: [
+      {
+        key: "about",
+        optional: false,
+        initial_value: "Leaning Tower of Pisa",
+      },
+    ],
+    return_prompt: "Return the result in a markdown format",
+  }
+```
+
+- Dynamic prompt with Array `return_prompt`
+
+```javascript
+
+{
+    prompt: "Tell me a story about {about}",
+    inputs: [
+      {
+        key: "about",
+        optional: false,
+        initial_value: "Leaning Tower of Pisa",
+      },
+    ],
+    return_prompt: [{ excerpt: "short story text", summary: "summary of story" }],
+  }
+```
+
+- Dynamic prompt with Object `return_prompt`
+
+```javascript
+{
+    prompt: "Tell me a story about {about}",
+    inputs: [
+      {
+        key: "about",
+        optional: false,
+        initial_value: "Leaning Tower of Pisa",
+      },
+    ],
+    return_prompt: { excerpt: "short story text", summary: "summary of story" },
+  }
+```
 
 <Snippet file="header.mdx" />
 
