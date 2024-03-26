@@ -1,29 +1,31 @@
 ---
-title: "Send Chat Message"
+title: "Chat"
 api: "POST https://api.jigsawstack.com/v1/ai/chat/{chat_session_id}"
-description: "This endpoint is used to send a chat message"
+description: "Create a chat conversation."
 ---
 
 ### Body
 
 <ParamField body="message" type="string" required>
-  Chat message
+  The chat message.
 </ParamField>
 
 <ParamField body="additional_context" type="string">
-  Additional context for the message
+  Additional context for the message.
 </ParamField>
 
-<ParamField body="include_history" type="boolean">
-  Include the history of the previous messages
+<ParamField body="include_history" type="boolean" default="true">
+  Use previous chat message history to determine a response. Defaults to `true`
 </ParamField>
 
-<ParamField body="include_context" type="boolean">
-  Include the context
+<ParamField body="include_context" type="boolean" default="true">
+  Use chat session context (documents) to determine a response. Defaults to
+  `true` A chat session context can be added by [attaching a
+  document](https://docs.jigsawstack.com/api-reference/ai/chat/document/attach).
 </ParamField>
 
-<ParamField body="strict_context" type="boolean">
-  Only rely on the context for the response
+<ParamField body="strict_context" type="boolean" default="false">
+  Only rely on the context of the chat to determine a response.
 </ParamField>
 
 <Snippet file="header.mdx" />

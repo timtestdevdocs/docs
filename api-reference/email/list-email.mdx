@@ -15,16 +15,39 @@ description: "List project email logs."
 </ParamField>
 
 <ParamField query="bulk_id" type="string">
-  The bulk id to filter emails.
-</ParamField>
-
-<ParamField body="tags" type="array<object> | array<string>">
-  Email tags. Maximum is `10`. Example `[{"name":"marketing"}]` or `["name"]`
+  The bulk id to filter emails. Not required if `broadcast_id` is specified.
 </ParamField>
 
 <ParamField query="broadcast_id" type="string">
-  The broadcast id to filter emails.
+  The broadcast id to filter emails. Not required if `bulk_id` is specified.
 </ParamField>
+
+<ParamField body="tags" type="array<object> | array<string>">
+  Email tags. The maximum email tags is `10`.
+</ParamField>
+
+### Email Tags
+
+- `Array<object>`
+
+  ```javascript
+
+  {
+    ...rest, // other parameters
+    "tags" :  [{ key: "category", value:"billing"}]
+  }
+
+  ```
+
+  - `Array<string>`
+
+  ```javascript
+
+  {
+   ...rest, // other parameters
+    "tags" :  ["marketing", "billing"]
+  }
+  ```
 
 <Snippet file="header.mdx" />
 
