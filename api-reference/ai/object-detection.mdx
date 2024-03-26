@@ -7,12 +7,13 @@ description: "Recognise objects within an image with great accuracy."
 ### Body
 
 <ParamField body="url" type="string">
-  The image url.
+  The image url. Not required if `file_store_key` is specified.
 </ParamField>
 
 <ParamField body="file_store_key" type="string">
   The key used to store the image on Jigsawstack file
-  [Storage](https://docs.jigsawstack.com/api-reference/store/file/add).
+  [Storage](https://docs.jigsawstack.com/api-reference/store/file/add). Not
+  required if `url` is specified.
 </ParamField>
 
 <Info>Either `file_store_key` or `url` can be provided not both.</Info>

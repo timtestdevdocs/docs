@@ -7,13 +7,13 @@ description: "Send bulk emails effortlessly with great reliability using the Jig
 ### Body Parameters
 
 <ParamField body="emails" type="array<object>" required>
-<Expandable title="property">
+<Expandable title="property" defaultOpen="true">
 <ParamField body="from" type="string" required>
   Sender email address. 
 </ParamField>
 
 <ParamField body="from_name" type="string">
-  Sender name. The sender name is used to include a friendly email address. Example: `"Your Name <sender@your-domain.com>"` 
+  The sender name.
 </ParamField>
 
 <ParamField body="to" type="string | string[]" required>
@@ -57,7 +57,7 @@ description: "Send bulk emails effortlessly with great reliability using the Jig
 
 <ParamField body="template" type="object">
   The template data.
-  <Expandable title="property">
+  <Expandable title="property" defaultOpen="true">
     <ParamField body="id" type="string">
       The template id.
     </ParamField>

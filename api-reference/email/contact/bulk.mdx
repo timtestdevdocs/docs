@@ -7,7 +7,7 @@ description: "Add bulk contacts."
 ### Body Parameters
 
 <ParamField body="contacts" type="array<object>" required>
-<Expandable title="property">
+<Expandable title="property" defaultOpen="true">
 <ParamField body="email" type="string" required>
 The email address of the contact.
 </ParamField>
@@ -22,7 +22,7 @@ The first name of the contact.
 
 <ParamField body="audiences" type="array">
   The audiences to add contact to.
-  <Expandable title="property">
+  <Expandable title="property" defaultOpen="true">
     <ParamField body="audience_id" type="string">
       The audience id.
     </ParamField>

@@ -17,7 +17,7 @@ description: "Send emails effortlessly with great reliability using the JigSawst
 </ParamField>
 
 <ParamField body="from_name" type="string">
-  Sender name. The sender name is used to include a friendly email address. Example: `"Your Name <sender@your-domain.com>"`
+  The sender name.
 </ParamField>
 
 <ParamField body="to" type="string | string[]" required>
@@ -53,7 +53,7 @@ description: "Send emails effortlessly with great reliability using the JigSawst
 
 <ParamField body="template" type="object">
   The template data.
-  <Expandable title="property">
+  <Expandable title="property" defaultOpen="true">
     <ParamField body="id" type="string">
       The template id.
     </ParamField>
@@ -82,7 +82,7 @@ description: "Send emails effortlessly with great reliability using the JigSawst
 
 <ParamField body="attachments" type="array<object>">
   Filename and content of attachments (max 40mb per email).
-  <Expandable title="property">
+  <Expandable title="property" defaultOpen="true">
     <ParamField body="filename" type="string" required>
       Name of attached file with the file extension. Example `filename.jpg`.
       Supported file extensions `.jpg, .png, .webp, .pdf` etc.

@@ -16,7 +16,7 @@ description: "The scrape API allows for retrieving contents from a web page. You
 
 <ParamField body="elements" type="array<object>">
   The list of selectors you are interested in.
-  <Expandable title="property">
+  <Expandable title="property" defaultOpen="true">
     <ResponseField name="selector" type="string">
       HTML selector you are interested in. e.g `h1`, `p`, `span`, e.t.c
     </ResponseField>
@@ -25,7 +25,7 @@ description: "The scrape API allows for retrieving contents from a web page. You
 
 <ParamField body="advance_config" type="object">
   Advance configurations
-  <Expandable title="property">
+  <Expandable title="property" defaultOpen="true">
     <ResponseField name="console" type="boolean"></ResponseField>
     <ResponseField name="network" type="boolean"></ResponseField>
     <ResponseField name="cookies" type="boolean"></ResponseField>
@@ -46,7 +46,7 @@ description: "The scrape API allows for retrieving contents from a web page. You
 
 <ParamField body="goto_options" type="object">
   This parameter allows you to specify custom page-load behavior.
-  <Expandable title="property">
+  <Expandable title="property" defaultOpen="true">
     <ResponseField name="timeout" type="number">
       Custom timeout in milliseconds. Maximum value is 15000(15seconds)
     </ResponseField>

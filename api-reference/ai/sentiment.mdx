@@ -18,8 +18,20 @@ description: "Perform sentiment analysis on a given text leveraging artificial i
   Indicates whether the call was successful.
 </ResponseField>
 
+<ResponseField name="sentiment" type="object">
+<Expandable title="Toggle object" defaultOpen="true">
 <ResponseField name="sentiment" type="string">
-  The sentiment of the text.
+  Indicates the sentiment the text. E.g `positive` or `negative`
+</ResponseField>
+<ResponseField name="emotion" type="string">
+  Indicates the type of emotion inferred from the text. E.g `happiness`
+</ResponseField>
+<ResponseField name="score" type="number">
+  Indicates the sentiment score of the text.
+</ResponseField>
+
+</Expandable>
+
 </ResponseField>
 
 <RequestExample>

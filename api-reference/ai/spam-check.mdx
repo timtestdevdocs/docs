@@ -18,13 +18,9 @@ description: "Perform spam check analysis on a given text in seconds."
   Indicates whether the call was successful.
 </ResponseField>
 
-<ResponseField name="sentiment" type="string">
-  The sentiment of the text.
-</ResponseField>
-
 <ResponseField name="check" type="object">
 
-<Expandable title="Toggle object">
+<Expandable title="Toggle object" defaultOpen="true">
 
 <ResponseField name="is_spam" type="boolean" default="true">
   Indicates whether the text is spam. If the text is not spam, this will be
