@@ -26,11 +26,11 @@ description: "Add a log."
   Emoji string value.
 </ParamField>
 
-<ParamField body="platform_key" type="string">
+<ParamField body="platform_key" type="string" default="default">
   The platform key. Default is `default`
 </ParamField>
 
-<ParamField body="description_parser" type="string">
+<ParamField body="description_parser" type="string" default="text">
   Description parser. Default is `text`. Supported values are:
   <ul>
     <li>text</li>
@@ -42,7 +42,7 @@ description: "Add a log."
   The value.
 </ParamField>
 
-<ParamField body="value_type" type="string">
+<ParamField body="value_type" type="string" default="default">
   The value type. Default value is `default`. Supported values are:
 
   <ul>

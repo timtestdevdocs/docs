@@ -12,8 +12,11 @@ description: "Recognise texts within an image effortlessly."
 
 <ParamField body="file_store_key" type="string">
   The key used to store the image on Jigsawstack File
-  [Storage](https://docs.jigsawstack.com/api-reference/store/file/add).
+  [Storage](https://docs.jigsawstack.com/api-reference/store/file/add). This
+  should only be provided when `url` is not specified.
 </ParamField>
+
+<Info>Either `url` or `file_store_key` should be provided not both.</Info>
 
 <Snippet file="header.mdx" />
 

@@ -12,10 +12,11 @@ description: "Recognise and describe objects within an image with great accuracy
 
 <ParamField body="file_store_key" type="string">
   The key used to store the image on Jigsawstack File
-  [Storage](https://docs.jigsawstack.com/api-reference/store/file/add).
+  [Storage](https://docs.jigsawstack.com/api-reference/store/file/add). This
+  should only be provided when `url` is not specified.
 </ParamField>
 
-<ParamField body="ocr" type="boolean" defaultValue="true">
+<ParamField body="ocr" type="boolean" defaultValue="true" default="true">
   When true, identifies all the objects within the image. Else, only describes
   the image. The default value is true.
 </ParamField>
@@ -23,6 +24,8 @@ description: "Recognise and describe objects within an image with great accuracy
 <ParamField body="prompt" type="string">
   The prompt used to describe the image.
 </ParamField>
+
+<Info>Either `url` or `file_store_key` should be provided not both.</Info>
 
 <Snippet file="header.mdx" />
 

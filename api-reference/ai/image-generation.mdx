@@ -26,7 +26,7 @@ description: "Generate an image based on the given text by employing AI models l
   The prompt to generate the image from.
 </ParamField>
 
-<ParamField body="model" type="string" initialValue="dalle">
+<ParamField body="model" type="string" default="dalle" initialValue="dalle">
   The model to use for the generation. Default is `dalle`
   <ul>
     <li>`dalle` - Dall-e</li>
@@ -41,7 +41,7 @@ description: "Generate an image based on the given text by employing AI models l
 
 </ParamField>
 
-<ParamField body="size" type="string" initialValue="medium">
+<ParamField body="size" type="string" initialValue="medium" default="medium">
   The size of the image. Default is `medium`.
   <ul>
     <li>small</li>
@@ -72,7 +72,7 @@ description: "Generate an image based on the given text by employing AI models l
     <ParamField body="seed" type="number">
       The seed to generate the image.
     </ParamField>
-    <ParamField body="scheduler" type="string">
+    <ParamField body="scheduler" type="string" default="dpmsolver++">
       The scheduler to generate the image. The default value is `dpmsolver++`.
        <ul>
         <li>`dpmsolver++`</li>

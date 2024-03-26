@@ -12,7 +12,8 @@ description: "Transcribe video and audio files with ease leveraging Whisper Larg
 
 <ParamField body="file_store_key" type="string">
   The key used to store the video/audio file on Jigsawstack File
-  [Storage](https://docs.jigsawstack.com/api-reference/store/file/add).
+  [Storage](https://docs.jigsawstack.com/api-reference/store/file/add). This
+  should only be provided when `url` is not specified.
 </ParamField>
 
 <ParamField body="language" type="string">
@@ -27,6 +28,8 @@ description: "Transcribe video and audio files with ease leveraging Whisper Larg
 <ParamField body="webhook_url" type="string">
   Webhook URL to send result to.
 </ParamField>
+
+<Info>Either `url` or `file_store_key` should be provided not both.</Info>
 
 <Snippet file="header.mdx" />
 
