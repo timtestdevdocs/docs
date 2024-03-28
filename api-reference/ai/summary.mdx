@@ -11,10 +11,10 @@ description: "Generate smarter text summaries with AI"
 </ParamField>
 
 <ParamField body="type" type="string" default="text">
-  The summary type. Supported values are:
+  The summary result type. Supported values are:
   <ul>
-    <li>`text`</li>
-    <li>`points`</li>
+    <li>`text` - Returns a text summary.</li>
+    <li>`points` - Returns an array with points summary.</li>
   </ul>
 </ParamField>
 
@@ -26,7 +26,7 @@ description: "Generate smarter text summaries with AI"
   Indicates whether the call was successful.
 </ResponseField>
 
-<ResponseField name="summary" type="string">
+<ResponseField name="summary" type="string | array<string>">
   The summarized text.
 </ResponseField>
 

@@ -6,6 +6,11 @@ description: "Recognise and describe objects within an image with great accuracy
 
 ### Body
 
+<ParamField body="prompt" type="string">
+  The prompt used to describe the image. Default prompt is `Describe the image
+  in detail.`
+</ParamField>
+
 <ParamField body="url" type="string">
   The image url. Not required if `file_store_key` is specified.
 </ParamField>
@@ -18,11 +23,7 @@ description: "Recognise and describe objects within an image with great accuracy
 
 <ParamField body="ocr" type="boolean" defaultValue="true" default="true">
   When true, identifies all the objects within the image. Else, only describes
-  the image. The default value is true.
-</ParamField>
-
-<ParamField body="prompt" type="string">
-  The prompt used to describe the image.
+  the image based on the specified prompt.
 </ParamField>
 
 <Info>Either `url` or `file_store_key` should be provided not both.</Info>
