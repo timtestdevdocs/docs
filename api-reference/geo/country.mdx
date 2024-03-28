@@ -7,15 +7,15 @@ description: "Get geo information for a country"
 ### Query
 
 <ParamField query="country_code" type="string">
-  The country code of the country. Specify to filter by country code.
+  The country code of the country. Filters result by country code.
 </ParamField>
 
 <ParamField query="currency_code" type="string">
-  The currency code of the country to
+  The currency code. Filters result by currency code.
 </ParamField>
 
 <ParamField query="city_code" type="string">
-  The city code of the city.
+  The city code of the city. Filters result by city code.
 </ParamField>
 
 <ParamField query="search_value" type="string">
@@ -23,11 +23,11 @@ description: "Get geo information for a country"
 </ParamField>
 
 <ParamField query="lat" type="string">
-  The latitude of the country.
+  The latitude of the country. Required if `lng` is specified.
 </ParamField>
 
 <ParamField query="lng" type="string">
-  The longitude of the country.
+  The longitude of the country. Required if `lat` is specified.
 </ParamField>
 
 <ParamField query="limit" type="string" default="10">
@@ -40,14 +40,6 @@ description: "Get geo information for a country"
 
 <ResponseField name="success" type="boolean">
   Indicates whether the call was successful.
-</ResponseField>
-
-<ResponseField name="message" type="string">
-  The message returned by the API.
-</ResponseField>
-
-<ResponseField name="data" type="JSON">
-  Array containing the data returned by the API.
 </ResponseField>
 
 <RequestExample>

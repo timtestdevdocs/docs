@@ -7,19 +7,23 @@ description: "Get the timezone information for a given country, city or coordina
 ### Query
 
 <ParamField query="country_code" type="string">
-  The country code of the country to get the timezone information for.
+  The country code of the country to get the timezone information for. Not
+  required if `city_code` is specified.
 </ParamField>
 
 <ParamField query="city_code" type="string">
-  The city code of the city to get the timezone information for.
+  The city code of the city to get the timezone information for. Not required if
+  `country_code` is specified.
 </ParamField>
 
 <ParamField query="lat" type="string">
-  The the latitude to get the timezone
+  The the latitude to get the timezone. Required if `lng` is specified. Not
+  required if `city_code` or `country_code` is specified.
 </ParamField>
 
 <ParamField query="lng" type="string">
-  The longitude to get the timezone
+  The longitude to get the timezone. Required if `lat` is specified. Not
+  required if `city_code` or `country_code` is specified.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -28,14 +32,6 @@ description: "Get the timezone information for a given country, city or coordina
 
 <ResponseField name="success" type="boolean">
   Indicates whether the call was successful.
-</ResponseField>
-
-<ResponseField name="message" type="string">
-  The message returned by the API.
-</ResponseField>
-
-<ResponseField name="timezone" type="object">
-  Object containing the data returned by the API.
 </ResponseField>
 
 <RequestExample>

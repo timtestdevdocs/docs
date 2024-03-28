@@ -7,15 +7,18 @@ description: "Get geo information for a city"
 ### Query
 
 <ParamField query="country_code" type="string">
-  The country code of the city.
+  The country code of the city. Filters cities by country code. Not required
+  when other parameters are specified.
 </ParamField>
 
 <ParamField query="state_code" type="string">
-  The state code of the city.
+  The state code of the city. Filters cities by state code. Not required when
+  other parameters are specified.
 </ParamField>
 
 <ParamField query="city_code" type="string">
-  The city code of the city.
+  The city code of the city. Filters cities by city code. Not required when
+  other parameters are specified.
 </ParamField>
 
 <ParamField query="search_value" type="string">
@@ -23,11 +26,11 @@ description: "Get geo information for a city"
 </ParamField>
 
 <ParamField query="lat" type="string">
-  The latitude of the city.
+  The latitude of the city. Required if `lng` is specified.
 </ParamField>
 
 <ParamField query="lng" type="string">
-  The longitude of the city.
+  The longitude of the city. Required if `lat` is specified.
 </ParamField>
 
 <ParamField query="limit" type="string" default="10">
@@ -40,14 +43,6 @@ description: "Get geo information for a city"
 
 <ResponseField name="success" type="boolean">
   Indicates whether the call was successful.
-</ResponseField>
-
-<ResponseField name="message" type="string">
-  The message returned by the API.
-</ResponseField>
-
-<ResponseField name="data" type="JSON">
-  Array containing the data returned by the API.
 </ResponseField>
 
 <RequestExample>
