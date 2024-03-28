@@ -4,11 +4,13 @@ api: "POST https://api.jigsawstack.com/v1/logs/channel/{name}"
 description: "Update Log Channel."
 ---
 
-### Body
+### Path
 
 <ParamField path="name" type="string" required>
   The name of the channel.
 </ParamField>
+
+### Body
 
 <ParamField body="new_name" type="string">
   The new name of the channel.

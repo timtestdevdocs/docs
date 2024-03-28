@@ -14,11 +14,13 @@ description: "Add data to KV store."
   The value to store.
 </ParamField>
 
-<ParamField body="encrypt" type="boolean">
-  Whether to encrypt the data.
+<ParamField body="encrypt" type="boolean" default="false">
+  Whether to encrypt the data at rest. If set to true, the data will be
+  encrypted using the
+  [AES-256](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
+  encryption algorithm. We recommend you set this value to true for sensitive
+  data.
 </ParamField>
-
-### Header
 
 <Snippet file="header.mdx" />
 

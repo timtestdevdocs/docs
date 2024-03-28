@@ -50,7 +50,7 @@
     },
     {
       "group": "Additional Resources",
-      "pages": ["additional-resources/size-preset"]
+      "pages": ["additional-resources/size-preset", "additional-resources/dns-types"]
     },
     {
       "group": "API Documentation",
