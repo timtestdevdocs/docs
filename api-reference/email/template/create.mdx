@@ -4,11 +4,6 @@ api: "POST https://api.jigsawstack.com/v1/email/template"
 description: "Create email template."
 ---
 
-<Info>
-  Template support personalization using the `{{ attribute }}` format. For more
-  information visit [Mustache](https://github.com/janl/mustache.js)
-</Info>
-
 ### Body Parameters
 
 <ParamField body="name" type="string" required>
@@ -18,6 +13,66 @@ description: "Create email template."
 <ParamField body="content" type="string" required>
   The html or text content.
 </ParamField>
+
+### Examples
+
+- Simple data
+
+```javascript
+
+// Sample data
+
+{
+  "name": {
+    "first": "Michael",
+    "last": "Jackson"
+  },
+  "age": 50
+}
+
+// Usage
+
+`{{name.first}} {{name.last}} died at age {{age}}.`
+
+// Output
+
+`Michael Jackson died at age 50.`
+```
+
+- Data with array of strings.
+
+> When looping over an array of strings, a `.` can be used to refer to the current item in the list.
+
+```javascript
+
+// Data
+
+{
+  "musketeers": ["Athos", "Aramis", "Porthos", "D'Artagnan"]
+}
+
+
+// Usage
+
+{{#musketeers}}
+ {{.}}
+{{/musketeers}}
+
+// Output
+
+* Athos
+* Aramis
+* Porthos
+* D'Artagnan
+
+```
+
+{" "}
+
+<Info>
+  For more template usage guide visit
+  [Mustache](https://github.com/janl/mustache.js)
+</Info>
 
 <Snippet file="header.mdx" />
 
