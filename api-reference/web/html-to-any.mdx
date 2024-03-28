@@ -88,13 +88,14 @@ description: "Capture screenshots of a website, convert HTML to both image and P
 <ParamField body="pdf_page_range" type="string"></ParamField>
 
 <ParamField body="is_mobile" type="boolean">
-  Sets the viewport to mobile.
+  Sets whether the meta viewport tag is taken into account.
 </ParamField>
 <ParamField body="dark_mode" type="boolean">
   Sets the color scheme to dark mode.
 </ParamField>
-<ParamField body="use_graphic_renderer" type="boolean">
-  Enables the graphics renderer
+<ParamField body="use_graphic_renderer" type="boolean" default="false">
+  Enables webgl, gpu and other 3d-apis. This option when enabled, can impact
+  performance and increase api latency.
 </ParamField>
 <Snippet file="header.mdx" />
 
