@@ -26,9 +26,17 @@ description: "The scrape API allows for retrieving contents from a web page. You
 <ParamField body="advance_config" type="object">
   Advance configurations
   <Expandable title="property">
-    <ResponseField name="console" type="boolean"></ResponseField>
-    <ResponseField name="network" type="boolean"></ResponseField>
-    <ResponseField name="cookies" type="boolean"></ResponseField>
+    <ResponseField name="console" type="boolean" default="false">
+      Tracks console messages emitted when JavaScript within the page calls one
+      of console API methods. E.g `console.log`
+    </ResponseField>
+    <ResponseField name="network" type="boolean" default="false">
+      Tracks network response information such as `url`, `method`, `status`,
+      `headers` and `body`.
+    </ResponseField>
+    <ResponseField name="cookies" type="boolean" default="false">
+      Tracks cookie information.
+    </ResponseField>
   </Expandable>
 </ParamField>
 
