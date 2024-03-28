@@ -15,7 +15,10 @@ description: "Get the geohash of a given latitude and longitude."
 </ParamField>
 
 <ParamField query="precision" type="string" default="9" initialValue="9">
-  The precision of the geohash
+  The precision of the geohash. A higher precision value results in a shorter
+  geohash string but represents a smaller area with more precision, while a
+  lower precision value results in a longer geohash string but represents a
+  larger area with less precision.
 </ParamField>
 
 <Snippet file="header.mdx" />
