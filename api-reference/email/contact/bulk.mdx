@@ -17,7 +17,7 @@ The first name of the contact.
 <ParamField body="last_name" type="string">The last name of the contact.</ParamField>
 
 <ParamField body="metadata" type="object">
-  Metadata about the contact. E.g { city: "Singapore" }
+ Set of key-value pairs that you can attach to the contact object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. E.g { city: "Singapore" }
 </ParamField>
 
 <ParamField body="audiences" type="array">
@@ -27,7 +27,7 @@ The first name of the contact.
       The audience id.
     </ParamField>
     <ParamField body="audience_metadata" type="object">
-      More information about this contact in an audience. Eg. `{ ative: true }`
+      Set of key-value pairs that you can attach to the contact object. This can be useful for storing additional information about the contact in an audience in a structured format. E.g. `{ ative: true }`
     </ParamField>
   </Expandable>
 </ParamField>
