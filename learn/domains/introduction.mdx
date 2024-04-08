@@ -77,8 +77,8 @@ The DKIM configuration is made of a TXT record that contains a public key that i
 
 > Domains can have different statuses, including:
 
-- Not Started: you’ve added a domain to Resend, but you haven’t clicked on Verify DNS Records yet.
-- Pending: Resend is still trying to verify the domain.
-- Verified: your domain is successfully verified for sending in Resend.
-- Failure: Resend was unable to detect the DNS records within 72 hours.
-- Temporary Failure: for a previously verified domain, Resend will periodically check for the DNS record required for verification. If at some point, Resend is unable to detect the record, the status would change to “Temporary Failure”. Resend will recheck for the DNS record for 72 hours, and if it’s unable to detect the record, the domain status would change to “Failure”. If it’s able to detect the record, the domain status would change to “Verified”.
+- Not Started: you’ve added a domain, but you haven’t clicked on Verify DNS Records yet.
+- Pending: We are still trying to verify the domain.
+- Verified: your domain is successfully verified for sending in JigsawStack.
+- Failure: JigsawStack was unable to detect the DNS records within 72 hours.
+- Temporary Failure: for a previously verified domain, JigsawStack will periodically check for the DNS record required for verification. If at some point, we are unable to detect the record, the status would change to “Temporary Failure”. We will recheck for the DNS record for 72 hours, and if it’s unable to detect the record, the domain status would change to “Failure”. If it’s able to detect the record, the domain status would change to “Verified”.
