@@ -60,7 +60,7 @@
       },
       {
         "group": "Web",
-        "pages": ["learn/webhook/introduction", "learn/webhook/event-types", "learn/webhook/secure"]
+        "pages": ["learn/web/selector"]
       }
     ]
     },
