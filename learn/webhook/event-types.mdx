@@ -1,0 +1,32 @@
+---
+title: "Event Types"
+description: "The supported email event types on JigsawStack."
+---
+
+- `email.sent`
+
+The API request was successful and we will attempt to deliver the message to the recipient’s mail server.
+
+- `email.delivered`
+
+We have successfully delivered the email to the recipient’s mail server.
+
+- `email.delivery_delayed`
+
+The email couldn’t be delivered to the recipient’s mail server because a temporary issue occurred. Delivery delays can occur, for example, when the recipient’s inbox is full, or when the receiving email server experiences a transient issue.
+
+- `email.complained`
+
+The email was successfully delivered to the recipient’s mail server, but the recipient marked it as spam
+
+- `email.bounced`
+
+The recipient’s mail server permanently rejected the email.
+
+- `email.opened`
+
+The recipient’s opened the email.
+
+- `email.clicked`
+
+The recipient’s clicked on an email link.

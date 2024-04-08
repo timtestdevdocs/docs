@@ -1,0 +1,64 @@
+---
+title: "DMARC"
+description: "Setting up DMARC to prevent email spoofing and protect against unauthorized use of a domain in email messages."
+---
+
+### Prerequisites
+
+To get the most out of this guide, your existing emails should be passing SPF and DKIM.
+
+### What is DMARC?
+
+DMARC (or [Domain-based Message Authentication, Reporting, and Conformance](https://dmarc.org/overview/)) is an email authentication protocol used to prevent email spoofing and protect against unauthorized use of a domain in email messages.
+
+### 1. Add Flexible DMARC Record
+
+To start, add a flexible DMARC record to your domain.
+
+| Name                | Type | Value                                                         |
+| ------------------- | ---- | ------------------------------------------------------------- |
+| \_dmarc.example.com | TXT  | “v=DMARC1;p=none;pct=100;rua=mailto:dmarcreports@example.com” |
+
+This record is specifying a few parameters (see Reference section for more details):
+
+`"v=DMARC1; p=none; pct=90; rua=mailto:dmarcreports@example.com"`
+
+- `v` - Version: This is the version of DMARC
+- `p` - Policy: This is telling the inbox how to process messages that fail DMARC. Options are `none`, `quarantine`, `reject` . It’s a best practice to use at least quarantine or reject, but you should only do it once you know your messages are delivering and fully passing DMARC.
+- `pct` - Percentage: This specifies the percentage of failed messages that the DMARC policy should be applied to. This can be set to a lower number once you move to a quarantine or reject policy to gradually roll out.
+- `rua` - Reporting URI of Aggregate: This should be a valid address that can receive messages. This can be a different domain than the one you are setting the DMARC policy on, but see step 2 for instructions.
+
+### 2. Test to Confirm Delivery and Passing
+
+You should now send test emails and make sure they are delivering.
+
+You should also inspect the email headers to find `dmarc=pass`.
+
+### 3. Upgrade Policy
+
+Once you feel comfortable with how DMARC is behaving across all your sending, you should upgrade your Policy to `quarantine` . This gives greater confidence because it tells the inbox providers that they should treat the failing messages.
+
+You can use the `pct` here to do a gradual rollout.
+
+### 4. Send Report to a Different Domain (Optional)
+
+If you want to receive the DMARC reports to an address on a different domain, you need to specify in the `rua` of the sending domain but also add a record in the recipient domain giving access to receive the reports.
+
+Let’s say you are sending with _blue.com_ but want to send the reports to _red.com_:
+
+| Name                              | Type | Value      |
+| --------------------------------- | ---- | ---------- |
+| blue.com.\_report.\_dmarc.red.com | TXT  | “v=DMARC1” |
+
+### Reference
+
+| Parameter | Purpose                                       | Example                           |
+| --------- | --------------------------------------------- | --------------------------------- |
+| `v`       | Protocol version                              | `v=DMARC1`                        |
+| `pct`     | Percentage of messages subjected to filtering | `pct=20`                          |
+| `ruf`     | Reporting URI for forensic reports            | `ruf=mailto:authfail@example.com` |
+| `rua`     | Reporting URI of aggregate reports            | `rua=mailto:aggrep@example.com`   |
+| `p`       | Policy for organizational domain              | `p=quarantine`                    |
+| `sp`      | Policy for subdomains of the OD               | `sp=reject`                       |
+| `adkim`   | Alignment mode for DKIM                       | `adkim=s`                         |
+| `aspf`    | Alignment mode for SPF                        | `aspf=r`                          |

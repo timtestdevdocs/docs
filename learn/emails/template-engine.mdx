@@ -1,0 +1,140 @@
+---
+title: "Template Engine"
+description: "Template and email personalisation on JigsawStack."
+---
+
+JigsawStack uses [Mustache.js](https://github.com/janl/mustache.js) for its templating engine.
+
+Mustache is a logic-less template syntax. It can be used for HTML, config files, source code - anything. It works by expanding tags in a template using values provided in a hash or object.
+
+It is called "logic-less" because there are no if statements, else clauses, or for loops. Instead there are only tags. Some tags are replaced with a value, some nothing, and others a series of values.
+
+### Simple Usage
+
+> **Data**
+
+```javascript
+{
+  "name": {
+    "first": "Michael",
+    "last": "Jackson"
+  },
+  "age": 50
+}
+```
+
+> **Template String**:
+
+```javascript
+`{{name.first}} {{name.last}} died at age {{age}}.`;
+```
+
+> **Output:**
+
+`Michael Jackson died at age 50.`;
+
+### Variables
+
+The most basic tag type is a simple variable. A `{{name}}` tag renders the value of the `name` key in the current context. If there is no such key, nothing is rendered.
+
+All variables are HTML-escaped by default. If you want to render unescaped HTML, use the triple mustache: `{{{name}}}`.
+
+### Sections
+
+Sections render blocks of text zero or more times, depending on the value of the key in the current context.
+
+A section begins with a pound and ends with a slash. That is, `{{#person}}` begins a person section, while `{{/person}}` ends it. The text between the two tags is referred to as that section's "block".
+
+The behavior of the section is determined by the value of the key.
+
+- False Values or Empty Lists
+
+If the person key does not exist, or exists and has a value of null, undefined, false, 0, or NaN, or is an empty string or an empty list, the block will not be rendered.
+
+> **Data**
+
+```javascript
+
+{
+  "person": false
+}
+```
+
+> **Template String:**
+
+```javascript
+Shown.
+{{#person}}
+Never shown!
+{{/person}}
+```
+
+> **Output:**
+
+Shown.
+
+### Non-Empty Lists
+
+If the `person` key exists and is not `null`, `undefined`, or `false`, and is not an empty list the block will be rendered one or more times.
+
+When the value is a list, the block is rendered once for each item in the list. The context of the block is set to the current item in the list for each iteration. In this way we can loop over collections.
+
+> **Data**
+
+```javascript
+{
+  "stooges": [
+    { "name": "Moe" },
+    { "name": "Larry" },
+    { "name": "Curly" }
+  ]
+}
+```
+
+> **Template String:**
+
+```javascript
+{{#stooges}}
+<b>{{name}}</b>
+{{/stooges}}
+```
+
+> **Output:**
+
+- <b>Moe</b>
+- <b>Larry</b>
+- <b>Curly</b>
+
+### Data with array of strings.
+
+> When looping over an array of strings, a `.` can be used to refer to the current item in the list.
+
+> **Data**
+
+```javascript
+{
+  "musketeers": ["Athos", "Aramis", "Porthos", "D'Artagnan"]
+}
+```
+
+> **Template String:**
+
+```javascript
+{{#musketeers}}
+{{.}}
+{{/musketeers}}
+```
+
+> **Output:**
+
+```javascript
+- Athos
+- Aramis
+- Porthos
+- D'Artagnan
+
+```
+
+<Info>
+  For more usage guide visit [Mustache](https://github.com/janl/mustache.js)
+</Info>

@@ -1,0 +1,57 @@
+---
+title: "Secure Webhook"
+description: "Securing your webhook."
+---
+
+- Add a public key as a parameter to your webhook URL.
+- Verify the the public key on your server.
+
+### Example.
+
+1. Add a public key as a parameter to your webhook URL
+
+```javascript
+const webhookUrl =
+  "https://your-domain.com/webhook/email?publicKey=${publicKey}";
+```
+
+2. Attach webhook to request payload
+
+```javascript
+const endpoint = "https://api.jigsawstack.com/v1/email";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    from: "name@your-email.com",
+    to: "hello@jigsawstack.com",
+    subject: "Jigsawstack, You Rock!",
+    html: "<p>Hi Team, you are awesome.</p>",
+    webhook_url: webhookUrl, // your webhook url here.
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+3. Verify public key on your server.
+
+- Extract the public key parameter from the webhook URL.
+- Compare the extracted public key with the expected public key on your server.
+
+```javascript
+// On your server, you do something like this:
+
+const requestBody = await request.json();
+
+const parsedUrl = new URL(requestBody.webhookUrl);
+
+const publicKey = parsedUrl.searchParams.get("publicKey");
+
+// Proceed to verify the public key
+
+const result = await verifyPublicKey(publicKey);
+```

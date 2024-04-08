@@ -39,17 +39,47 @@
       "group": "Get Started",
       "pages": ["introduction", "authentication", "error", "jigsawstack-badge"]
     },
-
     {
       "group": "Integration",
       "pages": ["integration/zapier"]
     },
     {
-      "group": "Use Cases",
-      "pages": ["use-cases/currency-conversion", "use-cases/screenshot"]
+      "group": "Learn",
+      "pages": [
+        {
+          "group": "Email",
+          "pages": ["learn/emails/introduction", "learn/emails/template-engine"]
+        },
+        {
+        "group": "Domain",
+        "pages": ["learn/domains/introduction", "learn/domains/dmarc"]
+      },
+      {
+        "group": "Webhook",
+        "pages": ["learn/webhook/introduction", "learn/webhook/event-types", "learn/webhook/secure"]
+      },
+      {
+        "group": "Web",
+        "pages": ["learn/webhook/introduction", "learn/webhook/event-types", "learn/webhook/secure"]
+      }
+    ]
     },
     {
-      "group": "Additional Resources",
+      "group": "Examples",
+      "pages": [
+        {
+        "group": "Currency",
+        "pages": ["use-cases/currency-conversion"]
+      },
+
+      {
+        "group": "Web",
+        "pages": ["use-cases/screenshot"]
+      }
+    ]
+    },
+    {
+      "group": "Resources",
       "pages": ["additional-resources/size-preset", "additional-resources/dns-types"]
     },
     {
