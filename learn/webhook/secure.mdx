@@ -3,19 +3,24 @@ title: "Secure Webhook"
 description: "Securing your webhook."
 ---
 
-- Add a public key as a parameter to your webhook URL.
-- Verify the the public key on your server.
+Webhooks are not secured by default. To secure your webhook, You need to generate a key on your own server, attach it as a parameter in the webhook url and verify on your server.
 
 ### Example.
 
-1. Add a public key as a parameter to your webhook URL
+1. Generate a random secured webhook key.
+
+```javascript
+const webhookKey = generateWebhookKey();
+```
+
+2. Add the key as a query parameter to your webhook URL
 
 ```javascript
 const webhookUrl =
-  "https://your-domain.com/webhook/email?publicKey=${publicKey}";
+  "https://your-domain.com/webhook/email?webhookKey=${webhookKey}";
 ```
 
-2. Attach webhook to request payload
+3. Attach webhook to request payload
 
 ```javascript
 const endpoint = "https://api.jigsawstack.com/v1/email";
@@ -37,10 +42,10 @@ const result = await fetch(endpoint, options);
 const data = await result.json();
 ```
 
-3. Verify public key on your server.
+4. Verify public key on your server.
 
-- Extract the public key parameter from the webhook URL.
-- Compare the extracted public key with the expected public key on your server.
+- Extract the webhook key parameter from the webhook URL.
+- Compare the extracted webhook key with the expected webhook key on your server.
 
 ```javascript
 // On your server, you do something like this:
@@ -49,9 +54,9 @@ const requestBody = await request.json();
 
 const parsedUrl = new URL(requestBody.webhookUrl);
 
-const publicKey = parsedUrl.searchParams.get("publicKey");
+const webhookKey = parsedUrl.searchParams.get("webhookKey");
 
 // Proceed to verify the public key
 
-const result = await verifyPublicKey(publicKey);
+const result = await verifyWehhooKey(webhookKey);
 ```

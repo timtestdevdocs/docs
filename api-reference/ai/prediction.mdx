@@ -7,12 +7,35 @@ description: "Forecast a wide range of time series data in seconds with one simp
 ### Body
 
 <ParamField body="dataset" type="Array<object>" required>
-  The dataset to make predictions on.
+  The dataset to make predictions on. This is an array of object with keys
+  `date` and `value`. See example below for more information.
 </ParamField>
 
 <ParamField body="count" type="number" default="5" initialValue="5">
   The number of predictions to make.
 </ParamField>
+
+### Sample Dataset
+
+> A dateset must be an array of object containing keys `date` and `value`.
+
+```javascript
+type Dataset = {
+  date: string,
+  value: number | string,
+};
+
+const dataset: Array<Dataset> = [
+  {
+    date: "2023-10-10",
+    value: 10,
+  },
+  {
+    date: "2023-09-10",
+    value: 5,
+  },
+];
+```
 
 <Snippet file="header.mdx" />
 
