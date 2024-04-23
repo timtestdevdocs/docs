@@ -1,0 +1,56 @@
+---
+title: "Webhook Events"
+description: "The supported email webhook event types on JigsawStack."
+---
+
+- `email.sent`
+
+The API request was successful and we will attempt to deliver the message to the recipient’s mail server.
+
+- `email.delivered`
+
+We have successfully delivered the email to the recipient’s mail server.
+
+- `email.delivery_delayed`
+
+The email couldn’t be delivered to the recipient’s mail server because a temporary issue occurred. Delivery delays can occur, for example, when the recipient’s inbox is full, or when the receiving email server experiences a transient issue.
+
+- `email.complained`
+
+The email was successfully delivered to the recipient’s mail server, but the recipient marked it as spam
+
+- `email.bounced`
+
+The recipient’s mail server permanently rejected the email.
+
+- `email.opened`
+
+The recipient’s opened the email.
+
+- `email.clicked`
+
+The recipient’s clicked on an email link.
+
+### Sample Request Payload
+
+```javascript
+{
+    "type": "email.sent",
+    "created_at": "2023-02-22T23:41:12.126Z",
+    "data": {
+      "id": "d418e82e-4793-4862-a809-bd6252dc273b",
+      "from": "hello@jigsawstack.com",
+      "from_name": null,
+      "to": "john-doe@example.com",
+      "bcc": null,
+      "cc": null,
+      "html": "<p>Hi Team, You are awesome.</p>",
+      "subject": "Jigsawstack, You rock!",
+      "text": null,
+      "tags": {},
+      "status": "sent",
+      "schedule_for": null,
+      "created_at": "2024-02-21T17:43:54.072075+00:00"
+    }
+}
+```

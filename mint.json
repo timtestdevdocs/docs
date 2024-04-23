@@ -48,7 +48,7 @@
       "pages": [
         {
           "group": "Email",
-          "pages": ["learn/emails/introduction", "learn/emails/template-engine"]
+          "pages": ["learn/emails/introduction", "learn/emails/event-types", "learn/emails/template-engine"]
         },
         {
         "group": "Domain",
@@ -56,7 +56,7 @@
       },
       {
         "group": "Webhook",
-        "pages": ["learn/webhook/introduction", "learn/webhook/event-types", "learn/webhook/secure"]
+        "pages": ["learn/webhook/introduction", "learn/webhook/secure"]
       },
       {
         "group": "Web",
