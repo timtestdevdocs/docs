@@ -60,10 +60,10 @@ For more information on selectors click [here](https://docs.jigsawstack.com/lear
 <ParamField body="goto_options" type="object">
   This parameter allows you to specify custom page-load behavior.
   <Expandable title="property">
-    <ResponseField name="timeout" type="number">
+    <ResponseField name="timeout" type="number" default="15000">
       Custom timeout in milliseconds. Maximum value is 15000(15seconds)
     </ResponseField>
-    <ResponseField name="wait_until" type="string">
+    <ResponseField name="wait_until" type="string" default="load">
       <ul>
         <li>load</li>
         <li>domcontentloaded</li>
