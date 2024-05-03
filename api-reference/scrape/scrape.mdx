@@ -22,18 +22,18 @@ For more information on selectors click [here](https://docs.jigsawstack.com/lear
 <ParamField body="elements" type="array<object>">
   The list of selectors you are interested in.
   <Expandable title="property" defaultOpen="true">
-    <ResponseField name="selector" type="string">
+    <ParamField body="selector" type="string">
       HTML selector you are interested in. e.g `h1`, `p`, `span`, e.t.c
-    </ResponseField>
+    </ParamField>
   </Expandable>
 </ParamField>
 
 <ParamField body="advance_config" type="object">
   Advance configurations
   <Expandable title="property" defaultOpen="true">
-    <ResponseField name="console" type="boolean"></ResponseField>
-    <ResponseField name="network" type="boolean"></ResponseField>
-    <ResponseField name="cookies" type="boolean"></ResponseField>
+    <ParamField body="console" type="boolean"></ParamField>
+    <ParamField body="network" type="boolean"></ParamField>
+    <ParamField body="cookies" type="boolean"></ParamField>
   </Expandable>
 </ParamField>
 
@@ -52,17 +52,17 @@ For more information on selectors click [here](https://docs.jigsawstack.com/lear
 <ParamField body="goto_options" type="object">
   This parameter allows you to specify custom page-load behavior.
   <Expandable title="property" defaultOpen="true">
-    <ResponseField name="timeout" type="number" default="15000">
+    <ParamField body="timeout" type="number" default="15000">
       Custom timeout in milliseconds. Maximum value is 15000(15seconds)
-    </ResponseField>
-    <ResponseField name="wait_until" type="string" default="load">
+    </ParamField>
+    <ParamField body="wait_until" type="string" default="load">
       <ul>
         <li>load</li>
         <li>domcontentloaded</li>
         <li>networkidle0</li>
         <li>networkidle2</li>
       </ul>
-    </ResponseField>
+    </ParamField>
   </Expandable>
 </ParamField>
 
