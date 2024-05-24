@@ -1,0 +1,107 @@
+---
+title: "Search"
+api: "GET https://api.jigsawstack.com/v1/geo/search"
+description: "Effortlessly search for addresses, places, and points of interest."
+---
+
+### Query
+
+<ParamField query="search_value" type="string" required>
+  The search value.
+</ParamField>
+
+<ParamField query="country_code" type="string">
+  The ISO 3 country code to filter search results.
+</ParamField>
+
+<ParamField query="limit" type="string">
+  The limit to the number of results.
+</ParamField>
+
+<ParamField query="proximity_lat" type="string">
+  The proximity latitude of the search value.
+</ParamField>
+
+<ParamField query="proximity_lng" type="string">
+  The proximity longitude of the search value.
+</ParamField>
+
+<ParamField query="types" type="string">
+  <ul>
+    <li>`address`</li>
+    <li>`street`</li>
+    <li>`neighborhood`</li>
+    <li>`country`</li>
+    <li>`region`</li>
+    <li>`place`</li>
+    <li>`street`</li>
+    <li>`postcode`</li>
+    <li>`district`</li>
+    <li>`city`</li>
+  </ul>
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint =
+  "https://api.jigsawstack.com/v1/geo/search?search_value='Times square'";
+const result = await fetch(endpoint);
+const data = await result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/geo/search?search_value=Times square' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "data": [
+    {
+      "type": "poi",
+      "full_address": "New York, New York, New York 10036, United States",
+      "name": "Times Square",
+      "place_formatted": "New York, New York 10036, United States",
+      "postcode": "10036",
+      "place": "New York City",
+      "region": {
+        "name": "New York",
+        "region_code": "NY",
+        "region_code_full": "US-NY"
+      },
+      "country": {
+        "name": "United States",
+        "country_code": "US",
+        "country_code_alpha_3": "USA"
+      },
+      "language": "en",
+      "geoloc": {
+        "type": "Point",
+        "coordinates": [-73.9851204, 40.75889]
+      },
+      "poi_category": ["historic site", "monument", "tourist attraction"],
+      "addtional_properties": {
+        "phone": "(212) 768-1560",
+        "website": "https://www.timessquarenyc.org",
+        "open_hours": {}
+      }
+    }
+  ]
+}
+```
+
+</ResponseExample>

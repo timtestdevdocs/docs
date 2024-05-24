@@ -239,6 +239,8 @@
     {
       "group": "Geo",
       "pages": [
+        "api-reference/geo/search",
+        "api-reference/geo/geocode",
         "api-reference/geo/city",
         "api-reference/geo/country",
         "api-reference/geo/state",
