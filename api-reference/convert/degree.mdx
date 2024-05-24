@@ -1,6 +1,6 @@
 ---
 title: "Degree"
-api: "GET https://api.jigsawstack.com/v1/convert/degree"
+api: "GET https://api.jigsawstack.com/v1/generate/degree"
 description: "This endpoint converts a degree to another degree."
 ---
 
@@ -50,13 +50,13 @@ description: "This endpoint converts a degree to another degree."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/convert/degree";
+const endpoint = "https://api.jigsawstack.com/v1/generate/degree";
 const result = await fetch(endpoint);
 const data = await result.json();
 ```
 
 ```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/convert/degree' \
+curl --location --request GET 'https://api.jigsawstack.com/v1/generate/degree' \
 --header 'x-api-key: <your-api-key>'
 ```
 

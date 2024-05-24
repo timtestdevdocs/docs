@@ -229,7 +229,7 @@
     {
       "group": "Generate",
       "pages": [
-        "api-reference/convert/qrcode",
+        "api-reference/generate/qrcode",
         "api-reference/generate/password",
         "api-reference/generate/profile-picture",
         "api-reference/generate/unsplash",

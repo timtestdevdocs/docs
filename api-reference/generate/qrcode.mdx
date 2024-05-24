@@ -1,6 +1,6 @@
 ---
 title: "QR Code"
-api: "GET https://api.jigsawstack.com/v1/convert/qrcode"
+api: "GET https://api.jigsawstack.com/v1/generate/qrcode"
 description: "Generate QR code from a text."
 ---
 
@@ -41,13 +41,13 @@ description: "Generate QR code from a text."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/convert/qrcode";
+const endpoint = "https://api.jigsawstack.com/v1/generate/qrcode";
 const result = await fetch(endpoint);
 const data = await result.blob();
 ```
 
 ```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/convert/qrcode' \
+curl --location --request GET 'https://api.jigsawstack.com/v1/generate/qrcode' \
 --header 'x-api-key: <your-api-key>'
 ```
 
