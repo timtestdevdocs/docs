@@ -273,7 +273,7 @@
       "group": "Store",
       "pages": [{
         "group": "KV",
-        "pages": ["api-reference/store/add","api-reference/store/get","api-reference/store/delete"]
+        "pages": ["api-reference/store/kv/add","api-reference/store/kv/get","api-reference/store/kv/delete"]
       },{
         "group": "File",
         "pages": ["api-reference/store/file/add", "api-reference/store/file/get", "api-reference/store/file/delete"]
