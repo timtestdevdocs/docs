@@ -23,7 +23,8 @@ description: "Generate an image based on the given text by employing AI models l
 ### Body
 
 <ParamField body="prompt" type="string" required>
-  The prompt to generate the image from.
+  The prompt to generate the image from. Maximum prompt character length is
+  1000.
 </ParamField>
 
 <ParamField body="model" type="string" default="dalle" initialValue="dalle">
@@ -102,7 +103,7 @@ const options = {
     "x-api-key": "<your-api-key>", // Replace with your actual API key.
   },
   body: JSON.stringify({
-    text: "cute siamese cat",
+    prompt: "cute siamese cat",
     size: "small",
     model: "dalle",
   }),
@@ -116,7 +117,7 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/image_generati
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
-    "text": "cute siamese cat",
+    "prompt": "cute siamese cat",
     "size": "small",
 }'
 ```
