@@ -46,18 +46,6 @@
     {
       "group": "Learn",
       "pages": [
-        {
-          "group": "Email",
-          "pages": ["learn/emails/introduction", "learn/emails/event-types", "learn/emails/template-engine"]
-        },
-        {
-        "group": "Domain",
-        "pages": ["learn/domains/introduction", "learn/domains/dmarc"]
-      },
-      {
-        "group": "Webhook",
-        "pages": ["learn/webhook/introduction", "learn/webhook/secure"]
-      },
       {
         "group": "Web",
         "pages": ["learn/web/selector"]
@@ -126,116 +114,10 @@
       ]
     },
     {
-      "group": "Email",
-      "pages": [
-        "api-reference/email/send-email",
-        "api-reference/email/get-email",
-        "api-reference/email/list-email",
-        "api-reference/email/cancel-email",
-        {
-          "group": "Bulk",
-          "pages": [
-            "api-reference/email/bulk-email",
-            "api-reference/email/get-bulk-email",
-            "api-reference/email/list-bulk-email",
-            "api-reference/email/delete-bulk-email"
-          ]
-        },
-        {
-          "group": "Contact",
-          "pages": [
-            "api-reference/email/contact/create",
-            "api-reference/email/contact/bulk",
-            "api-reference/email/contact/get",
-            "api-reference/email/contact/list",
-            "api-reference/email/contact/audiences",
-            "api-reference/email/contact/update",
-            "api-reference/email/contact/delete"
-          ]
-        },
-        {
-          "group": "Audience",
-          "pages": [
-            "api-reference/email/audience/create",
-            "api-reference/email/audience/get",
-            "api-reference/email/audience/list",
-            "api-reference/email/audience/delete",
-            {
-              "group": "Manage Members",
-              "pages": [
-                "api-reference/email/audience/member/create",
-                "api-reference/email/audience/member/list",
-                "api-reference/email/audience/member/update",
-                "api-reference/email/audience/member/delete"
-              ]
-            }
-          ]
-        },
-        {
-          "group": "Broadcast",
-          "pages": [
-            "api-reference/email/audience/broadcast/create",
-            "api-reference/email/audience/broadcast/get",
-            "api-reference/email/audience/broadcast/list",
-            "api-reference/email/audience/broadcast/delete"
-          ]
-        },
-        {
-          "group": "Template",
-          "pages": [
-            "api-reference/email/template/create",
-            "api-reference/email/template/get",
-            "api-reference/email/template/list",
-            "api-reference/email/template/delete"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Domain",
-      "pages": [
-        "api-reference/domain/add-domain",
-        "api-reference/domain/verify-domain",
-        "api-reference/domain/get-domain",
-        "api-reference/domain/list-domain",
-        "api-reference/domain/delete-domain"
-      ]
-    },
-    {
-      "group": "Currency",
-      "pages": [
-        "api-reference/currency/list",
-        "api-reference/currency/convert",
-        "api-reference/currency/rates",
-        "api-reference/currency/formatter"
-      ]
-    },
-    {
       "group": "Web",
       "pages": ["api-reference/web/scrape", "api-reference/web/html-to-any", "api-reference/web/dns"]
     },
-    {
-      "group": "Data",
-      "pages": [
-        "api-reference/data/gender",
-        "api-reference/data/holiday",
-        "api-reference/data/industry",
-        "api-reference/data/language",
-        "api-reference/data/occupation",
-        "api-reference/data/programming",
-        "api-reference/data/skill"
-      ]
-    },
-    {
-      "group": "Generate",
-      "pages": [
-        "api-reference/generate/qrcode",
-        "api-reference/generate/password",
-        "api-reference/generate/profile-picture",
-        "api-reference/generate/unsplash",
-        "api-reference/generate/faker"
-      ]
-    },
+
     {
       "group": "Geo",
       "pages": [
@@ -248,25 +130,6 @@
         "api-reference/geo/timezone",
         "api-reference/geo/geohash",
         "api-reference/geo/geohash-decode"
-      ]
-    },
-    {
-      "group": "Link",
-      "pages": [
-        "api-reference/link/create",
-        "api-reference/link/get-links",
-        "api-reference/link/update",
-        "api-reference/link/delete"
-      ]
-    },
-    {
-      "group": "Logs",
-      "pages": ["api-reference/logs/create-log","api-reference/logs/get-logs","api-reference/logs/delete-log", "api-reference/logs/get-log",
-        {
-          "group": "Channel",
-          "pages": ["api-reference/logs/channels/create", "api-reference/logs/channels/get", "api-reference/logs/channels/delete", "api-reference/logs/channels/update"]
-        }
-
       ]
     },
     {
