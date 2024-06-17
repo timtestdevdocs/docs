@@ -87,7 +87,8 @@
         "api-reference/ai/scrape",
         "api-reference/ai/speech-to-text",
         "api-reference/ai/ocr",
-        "api-reference/ai/vision"
+        "api-reference/ai/vision",
+        "api-reference/ai/object-detection"
       ]
     },
     {
