@@ -1,0 +1,71 @@
+---
+title: "Text to SQL"
+api: "POST https://api.jigsawstack.com/v1/ai/sql"
+description: "Recognise objects within an image with great accuracy."
+---
+
+### Body
+
+<ParamField body="question" type="string" required>
+  Prompt to generate sql for.
+</ParamField>
+
+<ParamField body="sql_schema" type="string">
+  The database schema where the query will be run. Not required if
+  `file_store_key` is specified.
+</ParamField>
+
+<ParamField body="file_store_key" type="string">
+  The key used to store the database schema on Jigsawstack file
+  [Storage](https://docs.jigsawstack.com/api-reference/store/file/add). Not
+  required if `sql_schema` is specified.
+</ParamField>
+
+<Info>Either `file_store_key` or `sql_schema` can be provided not both.</Info>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/ai/sql";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Collabo%201080x842.jpg?t=2024-03-22T09%3A22%3A48.442Z",
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/sql' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Collabo%201080x842.jpg?t=2024-03-22T09%3A22%3A48.442Z",
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true
+}
+```
+
+</ResponseExample>

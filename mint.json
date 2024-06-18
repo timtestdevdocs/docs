@@ -55,11 +55,6 @@
     {
       "group": "Examples",
       "pages": [
-        {
-        "group": "Currency",
-        "pages": ["use-cases/currency-conversion"]
-      },
-
       {
         "group": "Web",
         "pages": ["use-cases/screenshot"]
