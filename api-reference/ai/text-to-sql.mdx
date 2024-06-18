@@ -1,13 +1,13 @@
 ---
 title: "Text to SQL"
 api: "POST https://api.jigsawstack.com/v1/ai/sql"
-description: "Recognise objects within an image with great accuracy."
+description: "Generate semantically correct SQL queries from text."
 ---
 
 ### Body
 
 <ParamField body="question" type="string" required>
-  Prompt to generate sql for.
+  The text that will be translated to an SQL query.
 </ParamField>
 
 <ParamField body="sql_schema" type="string">
@@ -42,7 +42,10 @@ const options = {
     "x-api-key": "<your-api-key>", // Replace with your actual API key.
   },
   body: JSON.stringify({
-    url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Collabo%201080x842.jpg?t=2024-03-22T09%3A22%3A48.442Z",
+    question:
+      "Generate a query to get transactions that amount exceed 10000 and sort by when created",
+    sql_schema:
+      "CREATE TABLE Transactions (transaction_id INT PRIMARY KEY, user_id INT NOT NULL,total_amount DECIMAL(10, 2 NOT NULL, transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,status VARCHAR(20) DEFAULT 'pending',FOREIGN KEY(user_id) REFERENCES Users(user_id))",
   }),
 };
 const result = await fetch(endpoint, options);
@@ -54,7 +57,8 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/sql' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
-    url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Collabo%201080x842.jpg?t=2024-03-22T09%3A22%3A48.442Z",
+    "question": "Generate a query to get transactions that amount exceed 10000 and sort by when created",
+    "sql_schema": "CREATE TABLE Transactions (transaction_id INT PRIMARY KEY, user_id INT NOT NULL,total_amount DECIMAL(10, 2 NOT NULL, transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,status VARCHAR(20) DEFAULT 'pending',FOREIGN KEY(user_id) REFERENCES Users(user_id))"
 }'
 ```
 
@@ -64,7 +68,8 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/sql' \
 
 ```json Response
 {
-  "success": true
+  "success": true,
+  "sql": "SELECT t.transaction_id, t.user_id, t.total_amount, t.transaction_date, t.status FROM Transactions t WHERE t.total_amount > 10000 ORDER BY t.transaction_date NULLS LAST;"
 }
 ```
 
