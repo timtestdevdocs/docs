@@ -55,6 +55,10 @@
     {
       "group": "Examples",
       "pages": [
+        {
+          "group": "AI",
+          "pages": ["examples/ai/sql"]
+      },
       {
         "group": "Web",
         "pages": ["use-cases/screenshot"]

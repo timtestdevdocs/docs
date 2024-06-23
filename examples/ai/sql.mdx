@@ -1,0 +1,107 @@
+---
+title: "Text To SQL"
+description: "JigsawStack Text to SQL example."
+---
+
+## Initial Steps
+
+- Setup a JigsawStack account (if you don't have an account already)
+- Get your JigsawStack API key from [here](https://jigsawstack.com/dashboard).
+- [Optional] Obtain your Dzero token from [here](https://dzero.dev/dashboard).
+
+### SQL Schema
+
+> A valid schema is passed to the `sql_schema` parameter as a string. The model uses this schema to generate an accurate SQL statement based on the given prompt. Below is an example of valid schema:
+
+```sql
+CREATE TABLE transactions (
+  id TEXT UNIQUE NOT NULL DEFAULT (
+    lower(hex(randomblob(4))) || '-' || lower(hex(randomblob(2))) || '-4' || substr(lower(hex(randomblob(2))), 2) || '-' || substr('89ab', abs(random()) % 4 + 1, 1) || substr(lower(hex(randomblob(2))), 2) || '-' || lower(hex(randomblob(6)))
+  ),
+  created_at DATETIME NOT NULL DEFAULT (datetime('now', 'subsec')),
+  amount NUMERIC NOT NULL,
+  user_id TEXT NOT NULL,
+  PRIMARY KEY (id));
+```
+
+### Basic Usage
+
+```javascript sql.ts
+type TextToSQLParams = {
+  prompt: string,
+  sql_schema: string,
+};
+
+type TextToSQLResult = {
+  success: boolean,
+  sql: string,
+};
+
+type BodyParams = {
+  prompt: string,
+};
+
+export const POST = async (request: Request) => {
+  try {
+    const params: BodyParams = await request.json();
+
+    // SQL schema
+    const schema = `CREATE TABLE transactions (
+  id TEXT UNIQUE NOT NULL DEFAULT (
+    lower(hex(randomblob(4))) || '-' || lower(hex(randomblob(2))) || '-4' || substr(lower(hex(randomblob(2))), 2) || '-' || substr('89ab', abs(random()) % 4 + 1, 1) || substr(lower(hex(randomblob(2))), 2) || '-' || lower(hex(randomblob(6)))
+  ),
+  created_at DATETIME NOT NULL DEFAULT (datetime('now', 'subsec')),
+  amount NUMERIC NOT NULL,
+  user_id TEXT NOT NULL,
+  PRIMARY KEY (id))`;
+
+    const payload: TextToSQLParams = {
+      prompt: params.prompt,
+      sql_schema: schema,
+    };
+
+    const result = await fetch("https://api.jigsawstack.com/v1/ai/sql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": "<your-api-key>", // Replace with your actual API key.
+      },
+
+      body: JSON.stringify(payload),
+    });
+
+    const data: TextToSQLResult = await result.json();
+
+    // Makes DB call with translated query
+    // Instead of using Dzero, you can use any SQL DB service of your choice.
+
+    const dbResponse = await fetch("https://db.dzero.dev", {
+      method: "POST",
+      headers: {
+        token: "<your-dzero-token>",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        sql: data.sql,
+      }),
+    });
+    const resp = await dbResponse.json();
+
+    return Response.json(
+      {
+        results: resp.results,
+      },
+      {
+        status: 200,
+      }
+    );
+  } catch (error) {
+    handleError(error);
+  }
+};
+```
+
+<Info>
+  Find more information on Text to SQL API
+  [here](https://docs.jigsawstack.com/api-reference/ai/text-to-sql)
+</Info>
