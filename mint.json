@@ -57,7 +57,7 @@
       "pages": [
         {
           "group": "AI",
-          "pages": ["examples/ai/sql"]
+          "pages": ["examples/ai/sql", "examples/ai/prompt-engine"]
       },
       {
         "group": "Web",
