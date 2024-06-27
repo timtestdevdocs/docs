@@ -74,24 +74,18 @@
       "pages": ["api-reference/authentication", "api-reference/error"]
     },
     {
-      "group": "AI",
+      "group": "Text Generation",
       "pages": [
-        "api-reference/ai/image-generation",
         "api-reference/ai/sentiment",
         "api-reference/ai/translate",
         "api-reference/ai/spam-check",
         "api-reference/ai/email-generator",
         "api-reference/ai/summary",
-        "api-reference/ai/prediction",
-        "api-reference/ai/speech-to-text",
-        "api-reference/ai/ocr",
-        "api-reference/ai/vision",
-        "api-reference/ai/object-detection",
-        "api-reference/ai/text-to-sql"
+        "api-reference/ai/prediction"
       ]
     },
     {
-      "group": "AI Chat",
+      "group": "Chat Completion",
       "pages": [
         "api-reference/ai/chat/chat-session",
         "api-reference/ai/chat/chat", 
@@ -117,7 +111,30 @@
       "group": "Web",
       "pages": ["api-reference/ai/scrape","api-reference/web/scrape", "api-reference/web/html-to-any", "api-reference/web/dns"]
     },
+    {
+      "group": "Image Generation",
+      "pages": [
+        "api-reference/ai/image-generation"
+      ]
+    },
 
+    {
+      "group": "Vision",
+      "pages": [
+        "api-reference/ai/vision",
+        "api-reference/ai/object-detection"
+      ]
+    },
+    {
+      "group": "Speech-to-Text",
+      "pages": [
+        "api-reference/ai/speech-to-text"
+      ]
+    },
+    {
+      "group": "Code",
+      "pages": ["api-reference/ai/text-to-sql"]
+    },
     {
       "group": "Geo",
       "pages": [
