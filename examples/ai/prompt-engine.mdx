@@ -5,7 +5,7 @@ description: "JigsawStack Prompt Engine example."
 
 ## Introduction
 
-In this example, we will utilize the [Prompt Engine API](https://docs.jigsawstack.com/api-reference/ai/prompt/create) to evaluate job applications and determine if candidates meet the necessary criteria.
+In this example, we will utilize the [Prompt Engine API](https://docs.jigsawstack.com/api-reference/ai/prompt/create) to evaluate job applications and determine if candidates meet the necessary job requirements.
 
 ## Initial Steps
 
@@ -14,7 +14,7 @@ In this example, we will utilize the [Prompt Engine API](https://docs.jigsawstac
 
 ### Step 1 - Create a resuable prompt
 
-```javascript example.ts
+```javascript prompt.ts
 const endpoint = "https://api.jigsawstack.com/v1/ai/prompt_engine";
 const options = {
   method: "POST",
@@ -46,9 +46,11 @@ const result = await fetch(endpoint, options);
 const data = await result.json();
 ```
 
-### Step 2 - Run Prompt
+### Step 2 - Execute prompt
 
-```javascript run.ts
+We will execute the prompt created in `Step 1` by providing the required input value(s).
+
+```javascript execute.ts
 const endpoint =
   "https://api.jigsawstack.com/v1/ai/prompt_engine/f849c7d6-c917-42ff-8d94-5dc1bd4ee2a2";
 const options = {
@@ -68,18 +70,20 @@ const result = await fetch(endpoint, options);
 const data = await result.json();
 ```
 
-### Result
+### The result
 
-```
+```json
 {
-    "success": true,
-    "result": {
-        "experienceWithNodejs": true,
-        "seniorInReactNative": false,
-        "sectorExperience": "Fintech"
-    }
+  "success": true,
+  "result": {
+    "experienceWithNodejs": true,
+    "seniorInReactNative": false,
+    "sectorExperience": "Fintech"
+  }
 }
 ```
+
+That's it! We've used the [Prompt Engine API](https://docs.jigsawstack.com/api-reference/ai/prompt/create) to automatically evaluate job applications.
 
 <Info>
   Find more information on Prompt Engine API
