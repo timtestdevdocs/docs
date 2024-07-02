@@ -82,7 +82,8 @@
         "api-reference/ai/email-generator",
         "api-reference/ai/summary",
         "api-reference/ai/prediction",
-        "api-reference/ai/text-to-sql"
+        "api-reference/ai/text-to-sql",
+        "api-reference/ai/image-generation"
       ]
     },
     {
@@ -112,13 +113,6 @@
       "group": "Web",
       "pages": ["api-reference/ai/scrape","api-reference/web/scrape", "api-reference/web/html-to-any", "api-reference/web/dns"]
     },
-    {
-      "group": "Image Generation",
-      "pages": [
-        "api-reference/ai/image-generation"
-      ]
-    },
-
     {
       "group": "Vision",
       "pages": [
