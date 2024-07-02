@@ -1,0 +1,91 @@
+---
+title: "Prompt Engine"
+description: "JigsawStack Prompt Engine example."
+---
+
+## Introduction
+
+In this example, we will utilize the [Prompt Engine API](https://docs.jigsawstack.com/api-reference/ai/prompt/create) to evaluate job applications and determine if candidates meet the necessary job requirements.
+
+## Initial Steps
+
+- Setup a JigsawStack account (if you don't have an account already)
+- Get your JigsawStack API key from [here](https://jigsawstack.com/dashboard).
+
+### Step 1 - Create a resuable prompt
+
+```javascript prompt.ts
+const endpoint = "https://api.jigsawstack.com/v1/ai/prompt_engine";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    prompt:
+      "Given this candidate's experience:{experience}, determine if she should be considered for the Senior Fullstack Mobile Engineer Role with React Native, Node.js, AWS, Next.js, Typescript",
+    inputs: [
+      {
+        key: "experience",
+        optional: false,
+      },
+    ],
+    return_prompt: {
+      experienceWithNodejs:
+        "Return true, if candidate has 4 years and above experience with Node.js. Else return false",
+      seniorInReactNative:
+        "Return true if candidate has 6 years and above experience building apps with React Native",
+      sectorExperience:
+        "Return sector the candidate has the most experience in. Example of sector include: Fintech, Edtech, blockchain, Ecommerce, etc.",
+    },
+  }),
+};
+
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+### Step 2 - Execute prompt
+
+We will execute the prompt created in `Step 1` by providing the required input value(s).
+
+```javascript execute.ts
+const endpoint =
+  "https://api.jigsawstack.com/v1/ai/prompt_engine/f849c7d6-c917-42ff-8d94-5dc1bd4ee2a2";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    input_values: {
+      experience:
+        "As a seasoned React Native Developer with 4 years of experience, I have a proven track record in building high-quality mobile applications. Over the past 2 years, I have also gained substantial expertise in Node.js, enhancing my ability to develop robust backend services. My proficiency in TypeScript, acquired over the last year, further strengthens my development skills. In my most recent role in the Fintech sector, I successfully contributed to creating secure and efficient financial applications, demonstrating my ability to thrive in dynamic and challenging environments. My comprehensive skill set ensures seamless integration and functionality across diverse platforms.",
+    },
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+### The result
+
+```json
+{
+  "success": true,
+  "result": {
+    "experienceWithNodejs": true,
+    "seniorInReactNative": false,
+    "sectorExperience": "Fintech"
+  }
+}
+```
+
+That's it! We've used the [Prompt Engine API](https://docs.jigsawstack.com/api-reference/ai/prompt/create) to automatically evaluate job applications.
+
+<Info>
+  Find more information on Prompt Engine API
+  [here](https://docs.jigsawstack.com/api-reference/ai/prompt/create)
+</Info>
