@@ -86,19 +86,12 @@
         "api-reference/ai/image-generation"
       ]
     },
+
     {
-      "group": "Chat Completion",
-      "pages": [
-        "api-reference/ai/chat/chat-session",
-        "api-reference/ai/chat/chat", 
-        "api-reference/ai/chat/get-chat-sessions",
-        "api-reference/ai/chat/delete-chat-session", 
-        {
-          "group": "Document",
-          "pages": ["api-reference/ai/chat/document/add-document", "api-reference/ai/chat/document/attach", "api-reference/ai/chat/document/detach", "api-reference/ai/chat/document/delete", "api-reference/ai/chat/document/get","api-reference/ai/chat/document/get-documents"]
-        }
-    ]
+      "group": "Web",
+      "pages": ["api-reference/ai/scrape","api-reference/web/scrape", "api-reference/web/html-to-any", "api-reference/web/dns"]
     },
+
     {
       "group": "Prompt Engine",
       "pages": [
@@ -108,10 +101,6 @@
         "api-reference/ai/prompt/list",
         "api-reference/ai/prompt/delete"
       ]
-    },
-    {
-      "group": "Web",
-      "pages": ["api-reference/ai/scrape","api-reference/web/scrape", "api-reference/web/html-to-any", "api-reference/web/dns"]
     },
     {
       "group": "Vision",
@@ -125,6 +114,19 @@
       "pages": [
         "api-reference/ai/speech-to-text"
       ]
+    },
+    {
+      "group": "Chat Completion",
+      "pages": [
+        "api-reference/ai/chat/chat-session",
+        "api-reference/ai/chat/chat", 
+        "api-reference/ai/chat/get-chat-sessions",
+        "api-reference/ai/chat/delete-chat-session", 
+        {
+          "group": "Document",
+          "pages": ["api-reference/ai/chat/document/add-document", "api-reference/ai/chat/document/attach", "api-reference/ai/chat/document/detach", "api-reference/ai/chat/document/delete", "api-reference/ai/chat/document/get","api-reference/ai/chat/document/get-documents"]
+        }
+    ]
     },
     {
       "group": "Geo",
