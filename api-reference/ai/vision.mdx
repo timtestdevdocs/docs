@@ -1,12 +1,12 @@
 ---
-title: "Vision"
-api: "POST https://api.jigsawstack.com/v1/ai/vision"
+title: "VOCR"
+api: "POST https://api.jigsawstack.com/v1/vocr"
 description: "Recognise and describe objects within an image with great accuracy."
 ---
 
 ### Body
 
-<ParamField body="prompt" type="string">
+<ParamField body="prompt" type="string | Array<string>">
   The prompt used to describe the image. Default prompt is `Describe the image
   in detail.`
 </ParamField>
@@ -28,6 +28,26 @@ description: "Recognise and describe objects within an image with great accuracy
 
 <Info>Either `url` or `file_store_key` should be provided not both.</Info>
 
+## Prompt Example
+
+- **`String`**
+
+```javascript
+{
+  prompt: "Describe the image in detail.";
+}
+```
+
+- **`Array<String>`**
+
+> Use this approach to retrieve specific data from the image file.
+
+```javascript
+{
+  prompt: ["Get first name", "Get last name"];
+}
+```
+
 <Snippet file="header.mdx" />
 
 ### Response
@@ -39,7 +59,7 @@ description: "Recognise and describe objects within an image with great accuracy
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/ai/vision";
+const endpoint = "https://api.jigsawstack.com/v1/vocr";
 const options = {
   method: "POST",
   headers: {
@@ -55,7 +75,7 @@ const data = await result.json();
 ```
 
 ```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/vision' \
+curl --location --request POST 'https://api.jigsawstack.com/v1/vocr' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
