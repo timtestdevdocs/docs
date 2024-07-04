@@ -95,11 +95,11 @@
     {
       "group": "Prompt Engine",
       "pages": [
-        "api-reference/ai/prompt/create",
-        "api-reference/ai/prompt/run",
-        "api-reference/ai/prompt/retrieve",
-        "api-reference/ai/prompt/list",
-        "api-reference/ai/prompt/delete"
+        "api-reference/prompt-engine/create",
+        "api-reference/prompt-engine/run",
+        "api-reference/prompt-engine/retrieve",
+        "api-reference/prompt-engine/list",
+        "api-reference/prompt-engine/delete"
       ]
     },
     {

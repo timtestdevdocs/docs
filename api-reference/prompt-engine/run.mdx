@@ -1,0 +1,64 @@
+---
+title: "Run Prompt"
+api: "POST https://api.jigsawstack.com/v1/prompt_engine/{id}"
+description: "Run a prompt."
+---
+
+<Snippet file="header.mdx" />
+
+### Body
+
+<ParamField body="input_values" type="object">
+  The input values. This is required if the `inputs` paramter was specified when
+  creating a prompt.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint = "https://api.jigsawstack.com/v1/prompt_engine/{id}";
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  },
+  body: JSON.stringify({
+    input_values: {
+      about: "Leaning Tower of Pisa",
+    },
+  }),
+};
+const result = await fetch(endpoint, options);
+const data = await result.json();
+```
+
+```bash cURL
+    curl --location --request POST 'https://api.jigsawstack.com/v1/prompt_engine/{id}' \
+    --header 'Content-Type: application/json' \
+    --header "x-api-key: <your-api-here>" \
+    --data '{
+       input_values: {
+      about: "Leaning Tower of Pisa",
+    },
+    }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "result": "Once upon a time, in the beautiful city of Pisa, Italy, there stood a magnificent tower that would become known as the Leaning Tower of Pisa. The tower was originally built as a bell tower for the nearby cathedral, and construction began in 1173.\n\nHowever, as the tower began to rise higher and higher, it became clear that there was a problem - the tower was leaning to one side. The soft ground beneath the tower was unable to support its weight, causing it to tilt at an angle. Despite efforts to correct the lean during construction, the tower continued to lean as it was completed in 1372.\n\nOver the centuries, the Leaning Tower of Pisa became a famous landmark and a symbol of Italy. Tourists from all over the world flocked to Pisa to see the tower and take pictures of themselves pretending to hold it up or push it over.\n\nDespite its precarious lean, the tower has managed to stand for over 800 years, thanks to various engineering efforts to stabilize it. In the 20th century, further measures were taken to prevent the tower from toppling over, including removing soil from underneath the tower and installing counterweights.\n\nToday, the Leaning Tower of Pisa remains one of the most iconic and beloved landmarks in Italy, attracting millions of visitors each year who marvel at its unique tilt and the incredible feat of engineering that has kept it standing for so long. It serves as a reminder that even the most flawed and imperfect structures can still be beautiful and enduring."
+}
+```
+
+</ResponseExample>
