@@ -1,0 +1,62 @@
+---
+title: "Search Suggestion"
+api: "GET https://api.jigsawstack.com/v1/web/search/suggest"
+description: "Get suggestions for a given query in real time."
+---
+
+### Query
+
+<ParamField query="query" type="string" required>
+  The search value. The maximum query character length is 200.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+const endpoint =
+  "https://api.jigsawstack.com/v1/web/search/suggest?query='Time Square New Yor'";
+const result = await fetch(endpoint);
+const data = await result.json();
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/web/search/suggest?query=Time Square New Yor' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "suggestions": [
+    "time square new york",
+    "time square new york hotels",
+    "time square new york live",
+    "time square new york city",
+    "time square new york billboard price",
+    "time square new york weather",
+    "time square new york map",
+    "time square new york zip code",
+    "time square new york restaurants",
+    "time square new york today",
+    "time square new york live cam",
+    "time square new york stores",
+    "time square new york parking",
+    "time square new york things to do",
+    "time square new york time now"
+  ]
+}
+```
+
+</ResponseExample>

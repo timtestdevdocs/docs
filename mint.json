@@ -89,7 +89,7 @@
 
     {
       "group": "Web",
-      "pages": ["api-reference/ai/scrape","api-reference/web/scrape", "api-reference/web/html-to-any", "api-reference/web/dns"]
+      "pages": ["api-reference/ai/scrape","api-reference/web/search/index","api-reference/web/search/suggest","api-reference/web/scrape", "api-reference/web/html-to-any", "api-reference/web/dns"]
     },
 
     {
