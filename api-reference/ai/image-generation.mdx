@@ -4,13 +4,6 @@ api: "POST https://api.jigsawstack.com/v1/ai/image_generation"
 description: "Generate an image based on the given text by employing AI models like stable diffusion, DALL·E, and other pertinent models."
 ---
 
-<Info>`advance_config` is not supported for `dalle` model</Info>
-
-<Info>
-  Custom `height` and `width` are not supported for `dalle` model. Use the
-  `size` parameter.
-</Info>
-
 <Tip>
   Supported values for the `size` parameter.
   <ul>
@@ -27,10 +20,9 @@ description: "Generate an image based on the given text by employing AI models l
   1000.
 </ParamField>
 
-<ParamField body="model" type="string" default="dalle" initialValue="dalle">
-  The model to use for the generation. Default is `dalle`
+<ParamField body="model" type="string" default="sdxl" initialValue="sdxl">
+  The model to use for the generation. Default is `sdxl`
   <ul>
-    <li>`dalle` - Dall-e</li>
     <li>`sd1.5` - Stable Diffusion v1.5</li>
     <li>`sdxl` - Stable Diffusion XL</li>
     <li>`ead1.0` - Anime Diffusion </li>
@@ -38,6 +30,7 @@ description: "Generate an image based on the given text by employing AI models l
     <li>`rv3` - Realistic Vision v3</li>
     <li>`rv5.1` - Realistic Vision v5.1</li>
     <li>`ar1.8` - AbsoluteReality v1.8.1</li>
+
   </ul>
 
 </ParamField>
@@ -105,7 +98,7 @@ const options = {
   body: JSON.stringify({
     prompt: "cute siamese cat",
     size: "small",
-    model: "dalle",
+    model: "sdxl",
   }),
 };
 const result = await fetch(endpoint, options);
