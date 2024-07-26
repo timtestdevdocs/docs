@@ -58,16 +58,16 @@ description: "Generate an image based on the given text by employing AI models l
       The negative prompt to generate the image from.
     </ParamField>
     <ParamField body="steps" type="number">
-      The number of steps to generate the image.
+     The number of denoising steps. More steps usually can produce higher quality images, but take more time to generate.
     </ParamField>
     <ParamField body="guidance" type="number">
-      The guidance to generate the image.
+     Higer guidance forces the model to better follow the prompt, but result in lower quality output.
     </ParamField>
     <ParamField body="seed" type="number">
-      The seed to generate the image.
+     Makes generation deterministic. Using the same seed and set of parameters will produce identical image each time.
     </ParamField>
     <ParamField body="scheduler" type="string" default="dpmsolver++">
-      The scheduler to generate the image. The default value is `dpmsolver++`.
+     Scheduler used to denoise the encoded image latents. The default value is `dpmsolver++`.
        <ul>
         <li>`dpmsolver++`</li>
         <li>`lms`</li>
