@@ -3,27 +3,33 @@ title: "Secure Webhook"
 description: "Securing your webhook."
 ---
 
-Webhooks are not secured by default. To secure your webhook, You need to generate a key on your own server, attach it as a parameter in the webhook url and verify on your server.
+Webhooks are not secured by default. To secure your webhook involve the steps below:
+
+1. Generate a webhook key
+2. Attach it as a parameter in the webhook URL
+3. Verify webhook key on your server.
 
 ### Example.
 
 1. Generate a random secured webhook key.
 
 ```javascript
-const webhookKey = generateWebhookKey();
+function generateHmacKey(secret, payload) {
+  return crypto.createHmac("sha256", secret).update(payload).digest("hex");
+}
+const webhookKey = generateHmacKey(secretKey, "leaning tower of pisa");
 ```
 
 2. Add the key as a query parameter to your webhook URL
 
 ```javascript
-const webhookUrl =
-  "https://your-domain.com/webhook/email?webhookKey=${webhookKey}";
+const webhookUrl = "https://your-domain.com/webhook?webhookKey=${webhookKey}";
 ```
 
 3. Attach webhook to request payload
 
 ```javascript
-const endpoint = "https://api.jigsawstack.com/v1/email";
+const endpoint = "https://api.jigsawstack.com/v1/ai/transcribe";
 const options = {
   method: "POST",
   headers: {
@@ -31,32 +37,30 @@ const options = {
     "x-api-key": "<your-api-key>", // Replace with your actual API key.
   },
   body: JSON.stringify({
-    from: "name@your-email.com",
-    to: "hello@jigsawstack.com",
-    subject: "Jigsawstack, You Rock!",
-    html: "<p>Hi Team, you are awesome.</p>",
-    webhook_url: webhookUrl, // your webhook url here.
+    url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Video%201737458382653833217.mp4?t=2024-03-22T09%3A50%3A49.894Z",
+    webhook_url: webhookUrl, // Replace with your actual webhook URL.
   }),
 };
 const result = await fetch(endpoint, options);
 const data = await result.json();
 ```
 
-4. Verify public key on your server.
-
-- Extract the webhook key parameter from the webhook URL.
-- Compare the extracted webhook key with the expected webhook key on your server.
+4. Verify webhook key on your server.
 
 ```javascript
-// On your server, you do something like this:
+app.post("/webhook", (req, res) => {
+  const receivedHmac = req.query["webhookKey"];
 
-const requestBody = await request.json();
+  // Generate HMAC
+  const generatedHmac = generateHmacKey(secretKey, "learning tower of pisa");
 
-const parsedUrl = new URL(requestBody.webhookUrl);
-
-const webhookKey = parsedUrl.searchParams.get("webhookKey");
-
-// Proceed to verify the public key
-
-const result = await verifyWehhooKey(webhookKey);
+  // Verify the HMAC
+  if (receivedHmac === generatedHmac) {
+    console.log("Webhook verified and processed:", req.body);
+    res.status(200).send("Webhook verified and processed");
+  } else {
+    console.log("Webhook verification failed");
+    res.status(401).send("Webhook verification failed");
+  }
+});
 ```

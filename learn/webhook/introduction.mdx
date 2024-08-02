@@ -17,23 +17,26 @@ Webhooks are used to push real-time data to you about changes(updates) to certai
 
 - Under the Settings tab, select Webhook
 - Enable the type of logs to receive i.e `Success logs` or `Error logs`
-- Enable to webhook URL. E.g `http://your-domain.com/webhook/log/`
+- Add webhook URL in the endpoint field.
+- Click `Create` button to save.
 
-  <Frame>
-    <img
-      src="https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png"
-      alt="Add domain"
-    />
-  </Frame>
+<Frame>
+  <img
+    src="https://res.cloudinary.com/dev-ninja/image/upload/v1722611004/add_Webhook_moiw4e.png"
+    alt="Add Webhook URL"
+  />
+</Frame>
 
-### 2. For Emails
+Hurray! You can now receive log events.
 
-> Receive email log events
+### 2. For Speech To Text
 
-- Attach the webhook url to the email body parameters. See example below:
+> Asynchronously receive result for the [Speech To Text API](https://docs.jigsawstack.com/api-reference/ai/speech-to-text)
+
+- Attach the webhook URL to the body parameters. See example below:
 
 ```javascript
-const endpoint = "https://api.jigsawstack.com/v1/email";
+const endpoint = "https://api.jigsawstack.com/v1/ai/transcribe";
 const options = {
   method: "POST",
   headers: {
@@ -41,13 +44,36 @@ const options = {
     "x-api-key": "<your-api-key>", // Replace with your actual API key.
   },
   body: JSON.stringify({
-    from: "name@your-email.com",
-    to: "hello@jigsawstack.com",
-    subject: "Jigsawstack, You Rock!",
-    html: "<p>Hi Team, you are awesome.</p>",
-    webhook_url: "http://your-domain.com/webhook/email", // attach your webhook url here.
+    url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Video%201737458382653833217.mp4?t=2024-03-22T09%3A50%3A49.894Z",
+    webhook_url: "https://webhook.site/b65232af-9e53-4c7b-be87-38a7bb5c9fc0", // Replace with your actual webhook URL.
   }),
 };
 const result = await fetch(endpoint, options);
 const data = await result.json();
 ```
+
+#### Sample Webhook Result
+
+```json
+{
+  "success": false,
+  "status": "success",
+  "id": "35643965633a84534a396dcc11252cd1",
+  "text": "Hey guys, I'm pretty excited to talk about a new API that we're going to be releasing in Jigsaw Stack. It's our AI Scrape API, which can basically scrape any website by just prompting and giving you back structured data consistently, no matter the site."
+  "chunks":[
+    {
+     "timestamp": [
+        0.96,
+        7.2
+      ],
+      "text": " Hey guys, I'm pretty excited to talk about a new API that we're going to be releasing in Jigsaw"
+    },
+    ...
+  ]
+}
+```
+
+<Info>
+  To secure your webhook, follow this guide [Secure
+  Webhook](https://docs.jigsawstack.com/learn/webhook/secure)
+</Info>

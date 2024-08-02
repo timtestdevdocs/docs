@@ -49,6 +49,10 @@
       {
         "group": "Web",
         "pages": ["learn/web/selector"]
+      },
+      {
+        "group": "Webhook",
+        "pages": ["learn/webhook/introduction", "learn/webhook/secure"]
       }
     ]
     },
