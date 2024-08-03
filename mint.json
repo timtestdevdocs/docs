@@ -95,8 +95,8 @@
       "group": "Web",
       "pages": [
         {
-        "group": "Search Engine",
-        "pages": ["api-reference/web/search-engine/search","api-reference/web/search-engine/suggest"]},"api-reference/ai/scrape","api-reference/web/scrape", "api-reference/web/html-to-any", "api-reference/web/dns"]
+        "group": "Search",
+        "pages": ["api-reference/web/ai-search","api-reference/web/search-suggestion"]},"api-reference/ai/scrape","api-reference/web/scrape", "api-reference/web/html-to-any", "api-reference/web/dns"]
     },
 
     {
@@ -128,11 +128,7 @@
         "api-reference/ai/chat/chat-session",
         "api-reference/ai/chat/chat", 
         "api-reference/ai/chat/get-chat-sessions",
-        "api-reference/ai/chat/delete-chat-session", 
-        {
-          "group": "Document",
-          "pages": ["api-reference/ai/chat/document/add-document", "api-reference/ai/chat/document/attach", "api-reference/ai/chat/document/detach", "api-reference/ai/chat/document/delete", "api-reference/ai/chat/document/get","api-reference/ai/chat/document/get-documents"]
-        }
+        "api-reference/ai/chat/delete-chat-session"
     ]
     },
     {

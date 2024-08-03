@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Webhook Introduction"
 description: "Webhooks on JigsawStack."
 ---
 
@@ -11,29 +11,10 @@ Webhooks are used to push real-time data to you about changes(updates) to certai
 - Store all payload events in your own database for custom reporting/retention
 - Update the status of an async request in your application.
 
-### 1. For Logs
+# Steps to receive webhooks on JigsawStack
 
-> Enable webhook for the [Logs API](https://docs.jigsawstack.com/api-reference/logs/create-log).
-
-- Under the Settings tab, select Webhook
-- Enable the type of logs to receive i.e `Success logs` or `Error logs`
-- Add webhook URL in the endpoint field.
-- Click `Create` button to save.
-
-<Frame>
-  <img
-    src="https://res.cloudinary.com/dev-ninja/image/upload/v1722611004/add_Webhook_moiw4e.png"
-    alt="Add Webhook URL"
-  />
-</Frame>
-
-Hurray! You can now receive log events.
-
-### 2. For Speech To Text
-
-> Asynchronously receive result for the [Speech To Text API](https://docs.jigsawstack.com/api-reference/ai/speech-to-text)
-
-- Attach the webhook URL to the body parameters. See example below:
+- Create a webhook endpoint to receive requests on your server. E.g `https://your-domain.com/api/webhook`
+- Attach your webhook endpoint to the body parameters of an API that supports webhooks. See example below:
 
 ```javascript
 const endpoint = "https://api.jigsawstack.com/v1/ai/transcribe";
@@ -45,7 +26,7 @@ const options = {
   },
   body: JSON.stringify({
     url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Video%201737458382653833217.mp4?t=2024-03-22T09%3A50%3A49.894Z",
-    webhook_url: "https://webhook.site/b65232af-9e53-4c7b-be87-38a7bb5c9fc0", // Replace with your actual webhook URL.
+    webhook_url: "https://your-domain.com/api/webhook", // Replace with your actual webhook URL.
   }),
 };
 const result = await fetch(endpoint, options);
@@ -72,6 +53,24 @@ const data = await result.json();
   ]
 }
 ```
+
+### Logs API
+
+To enable webhook for the [Logs API](https://docs.jigsawstack.com/api-reference/logs/create-log), follow the steps below:
+
+- Under the Settings tab, select Webhook
+- Enable the type of logs to receive i.e `Success logs` or `Error logs`
+- Add webhook URL in the endpoint field.
+- Click `Create` button to save.
+
+<Frame>
+  <img
+    src="https://res.cloudinary.com/dev-ninja/image/upload/v1722611004/add_Webhook_moiw4e.png"
+    alt="Add Webhook URL"
+  />
+</Frame>
+
+Hurray! You can now receive log events.
 
 <Info>
   To secure your webhook, follow this guide [Secure
