@@ -71,7 +71,7 @@
     },
     {
       "group": "Resources",
-      "pages": ["jigsawstack-badge", "additional-resources/size-preset", "additional-resources/dns-types"]
+      "pages": ["additional-resources/jigsawstack-badge", "additional-resources/size-preset", "additional-resources/dns-types"]
     },
     {
       "group": "API Documentation",

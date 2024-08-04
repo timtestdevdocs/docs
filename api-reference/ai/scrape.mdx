@@ -80,8 +80,74 @@ description: "Scrape any website instantly and get consistent structured data in
   </Expandable>
 </ParamField>
 
-<ParamField body="cookies" type="array<object>">
+<ParamField body="cookies" type="array<CookieParameter>">
   Set cookie(s)
+    <Expandable title="CookieParameter" defaultOpen="true">
+    <ParamField body="name" type="string" required>
+     Cookie name.
+    </ParamField>
+    <ParamField body="value" type="string" required>
+     Cookie value.
+    </ParamField>
+    <ParamField body="url" type="string">
+     The request-URI to associate with the setting of the cookie. This value can affect the default domain, path, source port, and source scheme values of the created cookie.
+    </ParamField>
+    <ParamField body="domain" type="string">
+     Cookie domain.
+    </ParamField>
+    <ParamField body="path" type="string">
+     Cookie path.
+    </ParamField>
+     <ParamField body="secure" type="boolean">
+      True if cookie is secure.
+    </ParamField>
+    <ParamField body="httpOnly" type="boolean">
+      True if cookie is http-only.
+    </ParamField>
+     <ParamField body="sameSite" type="string">
+     Cookie SameSite type.Supported values:
+      <ul>
+        <li>`Strict`</li>
+        <li>`Lax`</li>
+        <li>`None`</li>
+      </ul>
+    </ParamField>
+     <ParamField body="expires" type="number">
+    Cookie expiration date, session cookie if not set.
+    </ParamField>
+    <ParamField body="priority" type="string">
+       Cookie Priority. Supported values:
+     <ul>
+        <li>`Low`</li>
+        <li>`Medium`</li>
+        <li>`High`</li>
+      </ul>
+    </ParamField>
+
+    <ParamField body="sameParty" type="boolean">
+     True if cookie is SameParty.
+    </ParamField>
+      <ParamField body="partitionKey" type="string">
+        Cookie partition key. The site of the top-level URL the browser was visiting
+        at the start of the request to the endpoint that set the cookie. If not set,
+        the cookie will be set as not partitioned.
+      </ParamField>
+
+    <ParamField body="sourcePort" type="number">
+    Cookie source port. Valid values are {-1, [1, 65535]}, -1 indicates an unspecified port. An unspecified port value allows protocol clients to emulate legacy cookie scope for the port. This is a temporary ability and it will be removed in the future.
+    </ParamField>
+
+    <ParamField body="sourceScheme" type="string">
+     Cookie source scheme type. Supported values:
+      <ul>
+        <li>`Secure`</li>
+        <li>`NonSecure`</li>
+        <li>`Unset`</li>
+      </ul>
+    </ParamField>
+
+  </Expandable>
+
 </ParamField>
 
 <ParamField body="size_preset" type="string">
