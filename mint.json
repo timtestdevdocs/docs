@@ -123,15 +123,6 @@
       ]
     },
     {
-      "group": "Chat Completion",
-      "pages": [
-        "api-reference/ai/chat/chat-session",
-        "api-reference/ai/chat/chat", 
-        "api-reference/ai/chat/get-chat-sessions",
-        "api-reference/ai/chat/delete-chat-session"
-    ]
-    },
-    {
       "group": "Geo",
       "pages": [
         "api-reference/geo/search",
