@@ -53,7 +53,7 @@ description: "Scrape any website instantly and get consistent structured data in
 </ParamField>
 
 <ParamField body="wait_for" type="object">
-  Wait for.
+  Specifies conditions under which an operation should wait before proceeding.
   <Expandable title="property" defaultOpen="true">
     <ParamField body="mode" type="string">
       Supported values:
@@ -181,6 +181,34 @@ description: "Scrape any website instantly and get consistent structured data in
 
 <ParamField body="height" type="number" default="1080">
   The height of the viewport
+</ParamField>
+
+<ParamField body="force_rotate_proxy" type="boolean">
+  When enabled, this option forces a proxy rotation on every request. Note:
+  Enabling this feature incurs an extra API request cost. For example, for every
+  single request, you will be billed for two.
+</ParamField>
+
+<ParamField body="byo_proxy" type="object">
+  Allows you to specify any proxy for the scraping task.
+  <Expandable title="property" defaultOpen="true">
+    <ParamField body="server" type="string">
+      The proxy server url. E.g `https://{username}:{password}@proxy.com`
+    </ParamField>
+    <ParamField body="auth" type="object">
+      Authentication credentials. If the credentials are already included in the
+      server URL (e.g., `https://{username}:{password}@proxy.com`), there is no
+      need to provide the `auth` parameter.
+      <Expandable title="credentials" defaultOpen="true">
+        <ParamField body="username" type="string">
+          The authentication username.
+        </ParamField>
+        <ParamField body="password" type="string">
+          The authentication password.
+        </ParamField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
 </ParamField>
 
 <Snippet file="header.mdx" />
