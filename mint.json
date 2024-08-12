@@ -150,13 +150,7 @@
       "group": "Validate",
       "pages": [
         "api-reference/validate/email",
-        "api-reference/validate/bank-account",
-        "api-reference/validate/creditcard",
-        "api-reference/validate/crypto",
-        "api-reference/validate/national-id",
         "api-reference/validate/nsfw",
-        "api-reference/validate/passport",
-        "api-reference/validate/phone-number",
         "api-reference/validate/profanity",
         "api-reference/validate/spellcheck"
       ]
