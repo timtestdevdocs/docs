@@ -82,8 +82,6 @@
       "pages": [
         "api-reference/ai/sentiment",
         "api-reference/ai/translate",
-        "api-reference/ai/spam-check",
-        "api-reference/ai/email-generator",
         "api-reference/ai/summary",
         "api-reference/ai/prediction",
         "api-reference/ai/text-to-sql",
@@ -152,7 +150,8 @@
         "api-reference/validate/email",
         "api-reference/validate/nsfw",
         "api-reference/validate/profanity",
-        "api-reference/validate/spellcheck"
+        "api-reference/validate/spellcheck",
+        "api-reference/ai/spam-check"
       ]
     }
   ],
