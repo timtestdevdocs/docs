@@ -41,10 +41,16 @@
     },
     {
         "group": "Quick Start",
-        "pages": [{
+        "pages": [
+          {
           "group": "Node.js",
           "pages": ["quick-start/node/introduction", "quick-start/node/next"]
-        }]
+        },
+        {
+          "group": "Python",
+          "pages": ["quick-start/python/introduction"]
+        }
+      ]
 
     },
     {

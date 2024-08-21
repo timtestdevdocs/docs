@@ -30,6 +30,12 @@ pnpm add jigsawstack
 
 </CodeGroup>
 
+## Set the API key as an environment variable
+
+```bash .env
+JIGSAWSTACK_API_KEY='your-api-key'
+```
+
 ## Usage
 
 Let's use AI scrape to scrape an amazon product page.
@@ -38,7 +44,7 @@ Let's use AI scrape to scrape an amazon product page.
 import { JigsawStack } from "jigsawstack";
 
 const jigsawstack = JigsawStack({
-  apiKey: "your-api-key",
+  apiKey: "your-api-key", // This is not required if API key is set as an environment variable.
 });
 
 const resp = await jigsawstack.web.ai_scrape({

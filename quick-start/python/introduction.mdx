@@ -1,0 +1,50 @@
+---
+title: "Introduction"
+description: "Learn how to use the Python SDK to build AI powered applications."
+---
+
+## Prerequisites
+
+To get the most out of this guide, you’ll need to:
+
+- **Set up an** [account](https://jigsawstack.com/dashboard)
+- **Create and retrieve your** [API key](https://jigsawstack.com/dashboard)
+
+<Info>You should have installed Python (version 3.7 or higher).</Info>
+
+## Installation
+
+<CodeGroup>
+
+```bash pip
+pip install jigsawstack
+```
+
+</CodeGroup>
+
+## Set the API key as an environment variable
+
+```bash .env
+JIGSAWSTACK_API_KEY='your-api-key'
+```
+
+## Usage
+
+Let's use AI scrape to scrape an amazon product page.
+
+```py
+from jigsawstack import JigsawStack
+
+jigsaw = JigsawStack() # API key will be read from environment.
+
+# jigsaw = JigsawStack(api_key="your-api-key")
+
+params = {
+ "url": "https://www.amazon.com/Cadbury-Mini-Caramel-Eggs-Bulk/dp/B0CWM99G5W",
+ "element_prompts": ["prices"]
+}
+
+result = jigsaw.web.ai_scrape(params)
+```
+
+Kudos, You are set!
