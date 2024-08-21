@@ -32,10 +32,16 @@ description: "Get the geohash of a given latitude and longitude."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint =
-  "https://api.jigsawstack.com/v1/geo/geohash?lat=9.838478&lat=8.84847";
-const result = await fetch(endpoint);
-const data = await result.json();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.geo.geohash({
+  lat: 9.838478,
+  lng: 8.84847,
+});
 ```
 
 ```bash cURL

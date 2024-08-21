@@ -41,10 +41,18 @@ description: "Get the distance between two points on the earth."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint =
-  "https://api.jigsawstack.com/v1/geo/distance?lat1=9.338&lat2=8.9383&lng1=4.39494&lng2=6.847847";
-const result = await fetch(endpoint);
-const data = await result.json();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.geo.distance({
+  lat1: 9.338,
+  lat2: 8.9383,
+  lng1: 4.39494,
+  lat2: 6.847847,
+});
 ```
 
 ```bash cURL

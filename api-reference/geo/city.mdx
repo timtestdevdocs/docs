@@ -48,9 +48,16 @@ description: "Get geo information for a city"
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/geo/city";
-const result = await fetch(endpoint);
-const city = await result.json();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.geo.city({
+  country_code: "SGP",
+  search_value: "Singapore",
+});
 ```
 
 ```bash cURL

@@ -58,10 +58,16 @@ description: "Search for addresses or locations by name (forward search) or coor
 <RequestExample>
 
 ```javascript Node.js
-const endpoint =
-  "https://api.jigsawstack.com/v1/geo/geocode?lng=-73.9654897&lat=40.7824635'";
-const result = await fetch(endpoint);
-const data = await result.json();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.geo.geocode({
+  lat: 40.78337,
+  lng: -73.96442,
+});
 ```
 
 ```bash cURL

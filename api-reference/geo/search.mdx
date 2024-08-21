@@ -48,10 +48,15 @@ description: "Effortlessly search for addresses, places, and points of interest.
 <RequestExample>
 
 ```javascript Node.js
-const endpoint =
-  "https://api.jigsawstack.com/v1/geo/search?search_value='Times square'";
-const result = await fetch(endpoint);
-const data = await result.json();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.geo.search({
+  search_value: "Times square",
+});
 ```
 
 ```bash cURL

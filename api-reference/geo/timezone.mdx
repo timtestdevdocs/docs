@@ -37,9 +37,15 @@ description: "Get the timezone information for a given country, city or coordina
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/geo/timezone";
-const result = await fetch(endpoint);
-const data = await result.json();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.geo.timezone({
+  country_code: "NGN",
+});
 ```
 
 ```bash cURL
