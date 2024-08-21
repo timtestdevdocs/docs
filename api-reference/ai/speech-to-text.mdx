@@ -50,20 +50,16 @@ description: "Transcribe video and audio files with ease leveraging Whisper larg
 
 <RequestExample>
 
-```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/ai/transcribe";
-const options = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "x-api-key": "<your-api-key>", // Replace with your actual API key.
-  },
-  body: JSON.stringify({
-    url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Video%201737458382653833217.mp4?t=2024-03-22T09%3A50%3A49.894Z",
-  }),
-};
-const result = await fetch(endpoint, options);
-const data = await result.json();
+```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.speech_to_text({
+  url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Video%201737458382653833217.mp4?t=2024-03-22T09%3A50%3A49.894Z",
+});
 ```
 
 ```bash cURL

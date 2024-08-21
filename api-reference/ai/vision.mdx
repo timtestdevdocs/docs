@@ -53,20 +53,17 @@ description: "Recognise, describe and retrieve data within an image with great a
 
 <RequestExample>
 
-```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/vocr";
-const options = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "x-api-key": "<your-api-key>", // Replace with your actual API key.
-  },
-  body: JSON.stringify({
-    url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Collabo%201080x842.jpg?t=2024-03-22T09%3A22%3A48.442Z",
-  }),
-};
-const result = await fetch(endpoint, options);
-const data = await result.json();
+```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.vision.vocr({
+  prompt : "Describe the image in detail"
+  url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Collabo%201080x842.jpg?t=2024-03-22T09%3A22%3A48.442Z",
+});
 ```
 
 ```bash cURL
