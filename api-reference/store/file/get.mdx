@@ -33,8 +33,13 @@ description: "Retrieve a file."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/store/file/{key}";
-const result = await fetch(endpoint);
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({ apiKey: "your-api-key" });
+
+const key = "file.png";
+
+const result = await jigsawstack.store.retrieve(key);
 const data = result.blob();
 ```
 

@@ -20,15 +20,14 @@ description: "Delete a file."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/store/file/{key}";
-const options = {
-  method: "DELETE",
-  headers: {
-    "x-api-key": "<your-api-key>", // Replace with your actual API key.
-  },
-};
-const result = await fetch(endpoint, options);
-const data = await result.json();
+import { JigsawStack } from "jigsawstack";
+
+const key = "file.png";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+const result = await jigsawstack.store.delete(key);
 ```
 
 ```bash cURL

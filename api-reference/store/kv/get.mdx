@@ -35,9 +35,12 @@ description: "Get data from the KV store."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/store/kv/{key}'";
-const result = await fetch(endpoint);
-const data = result.json();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({ apiKey: "your-api-key" });
+
+const key = "jigsaw";
+const result = await jigsawstack.store.kv.get(key);
 ```
 
 ```bash cURL

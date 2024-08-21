@@ -25,15 +25,15 @@ description: "Delete a key-value pair from the store"
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/store/kv/{key}";
-const options = {
-  method: "DELETE",
-  headers: {
-    "x-api-key": "<your-api-key>", // Replace with your actual API key.
-  },
-};
-const result = await fetch(endpoint, options);
-const data = await result.json();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const key = "jigsaw";
+
+const result = await jigsawstack.store.kv.delete(key);
 ```
 
 ```bash cURL
