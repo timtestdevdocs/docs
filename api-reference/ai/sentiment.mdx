@@ -36,20 +36,14 @@ description: "Perform sentiment analysis on a given text leveraging artificial i
 
 <RequestExample>
 
-```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/ai/sentiment";
-const options = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "x-api-key": "<your-api-key>", // Replace with your actual API key.
-  },
-  body: JSON.stringify({
-    text: "I am happy!",
-  }),
-};
-const result = await fetch(endpoint, options);
-const data = await result.json();
+```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.sentiment({ text: "I am happy!" });
 ```
 
 ```bash cURL

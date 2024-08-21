@@ -88,21 +88,19 @@ description: "Generate an image based on the given text by employing AI models l
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/ai/image_generation";
-const options = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "x-api-key": "<your-api-key>", // Replace with your actual API key.
-  },
-  body: JSON.stringify({
-    prompt: "cute siamese cat",
-    size: "small",
-    model: "sdxl",
-  }),
-};
-const result = await fetch(endpoint, options);
-const data = await result.blob();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.image_generation({
+  prompt: "cute siamese cat",
+  size: "small",
+  model: "sdxl",
+});
+
+const data = result.blob();
 ```
 
 ```bash cURL

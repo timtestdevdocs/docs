@@ -51,29 +51,25 @@ const dataset: Array<Dataset> = [
 
 <RequestExample>
 
-```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/ai/prediction";
-const options = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "x-api-key": "<your-api-key>", // Replace with your actual API key.
-  },
-  body: JSON.stringify({
-    dataset: [
-      {
-        date: "2023-10-10",
-        value: 10,
-      },
-      {
-        date: "2023-09-10",
-        value: 5,
-      },
-    ],
-  }),
-};
-const result = await fetch(endpoint, options);
-const data = await result.json();
+```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.prediction({
+  dataset: [
+    {
+      date: "2023-10-10",
+      value: 10,
+    },
+    {
+      date: "2023-09-10",
+      value: 5,
+    },
+  ],
+});
 ```
 
 ```bash cURL
