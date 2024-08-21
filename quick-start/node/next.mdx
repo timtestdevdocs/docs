@@ -1,0 +1,64 @@
+---
+title: "Next.js"
+description: "Learn how to use the JigsawStack Javascript SDK to build AI powered applications."
+---
+
+## Prerequisites
+
+To get the most out of this guide, you’ll need to:
+
+- **Set up an** [account](https://jigsawstack.com/dashboard)
+- **Create and retrieve your** [API key](https://jigsawstack.com/dashboard)
+
+<Info>You should have installed Node.js (version 18.10.0 or higher).</Info>
+
+## Installation
+
+<CodeGroup>
+
+```bash npm
+npm install jigsawstack
+```
+
+```bash yarn
+yarn add jigsawstack
+```
+
+```bash pnpm
+pnpm add jigsawstack
+```
+
+</CodeGroup>
+
+## Set the API key as an environment variable
+
+```bash .env
+JIGSAWSTACK_API_KEY='your-api-key'
+```
+
+## Usage
+
+Let's use AI scrape to scrape an amazon product page.
+
+```javascript pages/api/tts.ts
+import type { NextApiRequest, NextApiResponse } from "next";
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack(); // API key will be read from environment
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    const result = await jigsawstack.audio.text_to_speech({
+      text: "Hello, how are you doing?",
+    });
+
+    const data = result.blob();
+
+    res.status(200).json({
+      success: true,
+    });
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+};
+```

@@ -1,0 +1,50 @@
+---
+title: "Introduction"
+description: "Learn how to use the JigsawStack Node.js SDK to build AI powered applications."
+---
+
+## Prerequisites
+
+To get the most out of this guide, you’ll need to:
+
+- **Set up an** [account](https://jigsawstack.com/dashboard)
+- **Create and retrieve your** [API key](https://jigsawstack.com/dashboard)
+
+<Info>You should have installed Node.js (version 18.10.0 or higher).</Info>
+
+## Installation
+
+<CodeGroup>
+
+```bash npm
+npm install jigsawstack
+```
+
+```bash yarn
+yarn add jigsawstack
+```
+
+```bash pnpm
+pnpm add jigsawstack
+```
+
+</CodeGroup>
+
+## Usage
+
+Let's use AI scrape to scrape an amazon product page.
+
+```javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const resp = await jigsawstack.web.ai_scrape({
+  url: "https://www.amazon.com/Cadbury-Mini-Caramel-Eggs-Bulk/dp/B0CWM99G5W",
+  element_prompts: ["prices"],
+});
+```
+
+Kudos, You are set!

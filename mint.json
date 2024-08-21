@@ -40,6 +40,14 @@
       "pages": ["introduction"]
     },
     {
+        "group": "Quick Start",
+        "pages": [{
+          "group": "Node.js",
+          "pages": ["quick-start/node/introduction", "quick-start/node/next"]
+        }]
+
+    },
+    {
       "group": "Integration",
       "pages": ["integration/zapier"]
     },
