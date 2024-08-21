@@ -1,0 +1,65 @@
+---
+title: "Text to Speech"
+api: "POST https://api.jigsawstack.com/v1/ai/tts"
+description: "Turn text to human-like AI voices with low latency and great quality."
+---
+
+### Body
+
+<ParamField body="text" type="string">
+  The text to generate speech from.
+</ParamField>
+
+<ParamField body="accent" type="string" default="en-US-male-1">
+  Speeker voice accent. Not required if either `speaker_clone_file_store_key` or
+  `speaker_clone_url` is specified.
+</ParamField>
+
+<ParamField body="speaker_clone_url" type="string">
+  The url to the voice clone sample. Not required if
+  `speaker_clone_file_store_key` is specified.
+</ParamField>
+
+<ParamField body="speaker_clone_file_store_key" type="string">
+  The key used to store the voice sample file on Jigsawstack File
+  [Storage](https://docs.jigsawstack.com/api-reference/store/file/add). Not
+  required if `speaker_clone_url` is specified.
+</ParamField>
+
+<Info>
+  See [Speaker
+  Voices](https://docs.jigsawstack.com/additional-resources/speaker-voices) for
+  more speaker accents.
+</Info>
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Javascript
+const resp = await jigsawstack.audio.text_to_speech({
+  text: "Hello, how are you doing?",
+});
+const data = await resp.blob();
+```
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/tts' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    text: "Hello, how are you doing?",
+}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+</ResponseExample>
