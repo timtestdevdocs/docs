@@ -37,10 +37,13 @@ description: "Verify any email address, check deliverability and disposable stat
 <RequestExample>
 
 ```javascript Node.js
-const endpoint =
-  "https://api.jigsawstack.com/v1/validate/email?email='samurai@jigsawstack.com'";
-const result = await fetch(endpoint);
-const data = await result.json();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.validate.email("john-doe@example.com");
 ```
 
 ```bash cURL

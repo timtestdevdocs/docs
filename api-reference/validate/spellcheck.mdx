@@ -40,9 +40,16 @@ If no misspellings were found, the original text is returned.
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/validate/spell_check";
-const result = await fetch(endpoint);
-const data = await result.json();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.validate.spellcheck({
+  text: "All the world's a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts.",
+  language_code: "en",
+});
 ```
 
 ```bash cURL

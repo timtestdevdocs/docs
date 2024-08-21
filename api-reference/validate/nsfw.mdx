@@ -25,9 +25,14 @@ description: "Quickly detect nudity, violence, hentai, porn and more NSFW conten
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/validate/nsfw?url=''";
-const result = await fetch(endpoint);
-const data = await result.json();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const url = "";
+const result = await jigsawstack.validate.nsfw(url);
 ```
 
 ```bash cURL

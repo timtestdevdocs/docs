@@ -41,9 +41,16 @@ description: "Check any text for profanity."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/validate/profanity";
-const result = await fetch(endpoint);
-const data = await result.json();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.validate.profanity({
+  text: "All the world's a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts.",
+  censor_replacement: "*",
+});
 ```
 
 ```bash cURL
