@@ -25,9 +25,13 @@ description: "List all prompts in your project."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/prompt_engine";
-const result = await fetch(endpoint);
-const data = await result.json();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.prompt_engine.list({ page: 1 });
 ```
 
 ```bash cURL

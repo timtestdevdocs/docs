@@ -81,27 +81,23 @@ description: "Create a prompt for easy reuse."
 <RequestExample>
 
 ```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/prompt_engine";
-const options = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "x-api-key": "<your-api-key>", // Replace with your actual API key.
-  },
-  body: JSON.stringify({
-    prompt: "Tell me a story about {about}",
-    inputs: [
-      {
-        key: "about",
-        optional: false,
-        initial_value: "Leaning Tower of Pisa",
-      },
-    ],
-    return_prompt: "Return the result in a markdown format",
-  }),
-};
-const result = await fetch(endpoint, options);
-const data = await result.json();
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.prompt_engine.create({
+  prompt: "Tell me a story about {about}",
+  inputs: [
+    {
+      key: "about",
+      optional: false,
+      initial_value: "Leaning Tower of Pisa",
+    },
+  ],
+  return_prompt: "Return the result in a markdown format",
+});
 ```
 
 ```bash cURL
