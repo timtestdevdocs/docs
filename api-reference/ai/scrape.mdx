@@ -225,21 +225,17 @@ description: "Scrape any website instantly and get consistent structured data in
 
 <RequestExample>
 
-```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/ai/scrape";
-const options = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "x-api-key": "<your-api-key>", // Replace with your actual API key.
-  },
-  body: JSON.stringify({
-    url: "https://supabase.com/pricing",
-    element_prompts: ["Plan title", "Plan price"],
-  }),
-};
-const result = await fetch(endpoint, options);
-const data = await result.json();
+```javascript JavaScript
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.web.ai_scrape({
+  url: "https://supabase.com/pricing",
+  element_prompts: ["Plan title", "Plan price"],
+});
 ```
 
 ```bash cURL

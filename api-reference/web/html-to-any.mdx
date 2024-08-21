@@ -107,24 +107,22 @@ description: "Capture screenshots of a website, convert HTML to both image and P
 
 <RequestExample>
 
-```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/web/html_to_any";
-const options = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "x-api-key": "<your-api-key>", // Replace with your actual API key.
-  },
-  body: JSON.stringify({
-    html: "<div>hello</div>",
-    quality: 100,
-    full_page: true,
-    omit_background: false,
-    type: "jpeg",
-  }),
-};
-const result = await fetch(endpoint, options);
-const data = await result.blob();
+```javascript JavaScript
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.web.html_to_any({
+  html: "<div>hello</div>",
+  quality: 100,
+  full_page: true,
+  omit_background: false,
+  type: "jpeg",
+});
+
+const data = result.blob();
 ```
 
 ```bash cURL

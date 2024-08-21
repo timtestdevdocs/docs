@@ -149,20 +149,16 @@ Wait for.
 
 <RequestExample>
 
-```javascript Node.js
-const endpoint = "https://api.jigsawstack.com/v1/web/scrape";
-const options = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "x-api-key": "<your-api-key>", // Replace with your actual API key.
-  },
-  body: JSON.stringify({
-    url: "https://jigsawstack.com",
-  }),
-};
-const result = await fetch(endpoint, options);
-const data = await result.json();
+```javascript JavaScript
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.web.scrape({
+  url: "https://jigsawstack.com",
+});
 ```
 
 ```bash cURL

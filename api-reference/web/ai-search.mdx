@@ -37,11 +37,18 @@ description: "Effortlessly search the Web and get access to high-quality results
 
 <RequestExample>
 
-```javascript Node.js
-const endpoint =
-  "https://api.jigsawstack.com/v1/web/search?query='Time Square New Yor'";
-const result = await fetch(endpoint);
-const data = await result.json();
+```javascript JavaScript
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.web.search.ai({
+  query: "Time Square New Yor",
+  safe_search: "strict",
+  spell_check: true,
+});
 ```
 
 ```bash cURL

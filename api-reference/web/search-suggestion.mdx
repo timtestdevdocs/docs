@@ -20,11 +20,16 @@ description: "Get suggestions for a given query in real time."
 
 <RequestExample>
 
-```javascript Node.js
-const endpoint =
-  "https://api.jigsawstack.com/v1/web/search/suggest?query='Time Square New Yor'";
-const result = await fetch(endpoint);
-const data = await result.json();
+```javascript JavaScript
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.web.search.suggestion({
+  query: "Time Square New Yor",
+});
 ```
 
 ```bash cURL
