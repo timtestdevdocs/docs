@@ -1,0 +1,52 @@
+---
+title: "Window.ai"
+description: "Learn how to use the JigsawStack Javascript SDK on your browser."
+---
+
+The new `window.ai` Chrome API (currently available only in Chrome Canary) introduces native AI models that run locally and completely offline within the web environment.
+
+However, it's not yet widely available or compatible across different devices and browsers, and it currently supports only a small language model, which limits its use cases. Despite these limitations, the potential for this technology is significant.
+
+JigsawStack enhances this by integrating a suite of powerful AI utilities into the `window.ai` object. Here's how you can use it:
+
+## Prerequisites
+
+To get the most out of this guide, you’ll need to:
+
+- **Set up an** [account](https://jigsawstack.com/dashboard)
+- **Create and retrieve your** [Public key](https://jigsawstack.com/dashboard)
+
+<Info>
+  We recommend using your `public key` for client-side access. To enhance
+  security and control, you can further restrict the `public key` to specific
+  APIs. For more information,
+  [visit](https://docs.jigsawstack.com/api-reference/authentication#public-and-secret-api-keys)
+</Info>
+
+## Installation
+
+```javascript script.js
+const jigsawstack = JigsawStack({ apiKey: "pk_fecc....92je9" });
+window.ai = jigsawstack;
+```
+
+## Usage
+
+```javascript
+window.ai.sentiment("I love how easy it is to get started");
+```
+
+- For typescript projects, you can add JigsawStack types to `window.ai` by doing the following:
+
+```javascript
+//index.d.ts
+import type { JigsawStack } from "jigsawstack";
+
+declare global {
+  interface Window {
+    ai: ReturnType<typeof JigsawStack>;
+  }
+}
+
+export {};
+```

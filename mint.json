@@ -44,7 +44,7 @@
         "pages": [
           {
           "group": "Node.js",
-          "pages": ["quick-start/node/introduction", "quick-start/node/next"]
+          "pages": ["quick-start/node/introduction", "quick-start/node/next",  "quick-start/node/window-ai"]
         },
         {
           "group": "Python",

@@ -1,7 +1,11 @@
 ---
 title: "Authentication"
-description: "Authentication for JigsawStack API"
+description: "API & SDK Authentication onr JigsawStack API"
 ---
+
+## Base URL
+
+The JigsawStack base URL is built on REST principles. We enforce HTTPS in every request to improve data security, integrity, and privacy. The base URL does not support HTTP.
 
 <Info>Base URL `https://api.jigsawstack.com`</Info>
 
@@ -17,7 +21,11 @@ const headers = {
 };
 const baseUrl = "https://api.jigsawstack.com";
 
-const result = await fetch(`${baseUrl}/v1/currency`, {
+const result = await fetch(`${baseUrl}/v1/ai/summary`, {
+  method: "POST",
+  body: {
+    text: "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral",
+  },
   headers,
 });
 ```
@@ -31,24 +39,83 @@ await fetch(`${baseUrl}/v1/currency?x-api-key=<your-api-key-here>`);
 
 <Info> `x-api-key` as query parameter only works for public API keys. </Info>
 
+## SDK authentication
+
+- Configure API key as an environment variable
+
+```bash .env
+JIGSAWSTACK_API_KEY='your-api-key'
+```
+
+- Authenticate
+
+<CodeGroup>
+
+```javascript hello.js
+const jigsawstack = JigsawStack(); // API key will be read from environment.
+
+/**
+----------------------------------------------------------------
+To explicitly specify the API key, do the following:
+const jigsawstack = JigsawStack({apiKey: "your-api-key"});
+----------------------------------------------------------------
+*/
+```
+
+```python hello.py
+
+jigsaw = JigsawStack() # API key will be read from environment.
+
+## To explicitly set the API key, do the following:
+## jigsaw = JigsawStack(api_key="your-api-key")
+```
+
+</CodeGroup>
+
 ## To retrieve your API key
 
 - Log in to your JigsawStack [dashboard](https://jigsawstack.com)
 - Navigate to Keys tab.
-- Click on `Create new key` button to create a new api key.
-- Copy the api key and use it in your requests.
+- Click on `Create new key` button to create a new API key.
+- Copy the API key and use it in your requests.
 
 ## Public and Secret API keys
 
 The JigsawStack API has two types of API keys: `public` and `secret`.
 
-- Public API keys are great for frontend applications and APIs required to be called on the front end. Requires API restriction to be set.
+### Public API keys
+
+- Public API keys are ideal for frontend applications, allowing direct API calls from the client side. However, it's important to set API restrictions for added security.
+
+<img
+  className="block"
+  src="https://res.cloudinary.com/dev-ninja/image/upload/v1724681563/public_key_n0vwwl.png"
+  alt="Public Key Setup"
+/>
 
 <Tip>Domain whitelisting is recommended when creating `public` api keys.</Tip>
 
-- Secret API keys are great for backend services. Has access to all APIs.
+### Secret API keys
+
+- Secret API keys are great for backend services. A secret key have unlimited access to your APIs.
+
+<img
+  className="block"
+  src="https://res.cloudinary.com/dev-ninja/image/upload/v1724681564/secret_key_rzx8ly.png"
+  alt="Secret Key Setup"
+/>
 
 <Tip>
   Your `secret` API key should never be public, shared or exposed in a github
   repository.
 </Tip>
+
+## Protecting against key leakage.
+
+- Avoid storing keys in source code repositories (e.g., GitHub). Bad actors often scan public repositories for leaked keys. Even if the repository is private, it can still be accessed by team members in their development environments.
+
+- Never embed secret keys directly in applications. Instead, read them from environment variables to keep them secure.
+
+- Use only public keys in client-side applications. Ensure that you whitelist specific domains that can access this public key to prevent unauthorized use.
+
+- Store secret keys in secure key management systems (KMS). When creating a key (e.g., from the JigsawStack Dashboard), it will only be revealed once. Immediately copy the key to a KMS, which is designed to handle sensitive information with encryption and access controls. Ensure that you don't leave a copy of the key in any local files.
