@@ -4,6 +4,15 @@ api: "POST https://api.jigsawstack.com/v1/store/file"
 description: "Upload images, videos and documents effortlessly."
 ---
 
+<Info>
+  Uploaded files are private by default. To make them public or accessible,
+  attach your `public key` to the `x-api-key` query parameter.
+</Info>
+
+```javascript
+const publicUrl = `${result.url}?x-api-key=${publicKey}`;
+```
+
 <Snippet file="header.mdx" />
 
 <ParamField header="Content-Type" type="string">
@@ -59,7 +68,7 @@ const result = await jigsawstack.store.upload(imageFile, {
   filename: "file.png",
 });
 
-console.log("public url:", `${result.url}?x-api-key=${publicKey}`);
+const publicFileUrl = `${result.url}?x-api-key=${publicKey}`;
 ```
 
 ```bash cURL
