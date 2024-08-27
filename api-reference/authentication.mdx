@@ -85,7 +85,12 @@ The JigsawStack API has two types of API keys: `public` and `secret`.
 
 ### Public API keys
 
-- Public API keys are ideal for frontend applications, allowing direct API calls from the client side. However, it's important to set API restrictions for added security.
+- Public API keys are ideal for frontend applications, allowing direct API calls from the client side. However, it's important to set public key restrictions for added security.
+
+#### Public Key Restrictions
+
+1. **API access** - Limits public key access to the specified APIs.
+2. **Whitelist domains(routes)** - Restrict public key access to the specified domains.
 
 <img
   className="block"
