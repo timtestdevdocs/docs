@@ -60,6 +60,14 @@ const result = await jigsawstack.geo.city({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.geo.city({"country_code":"SGP","search_value": "Singapore" });
+```
+
 ```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/geo/city' \
 --header 'x-api-key: <your-api-key>'

@@ -30,6 +30,14 @@ const jigsawstack = JigsawStack({
 const result = await jigsawstack.geo.geohash_decode("s14kv8brz");
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.geo.geohash_decode("s14kv8brz")
+```
+
 ```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/geo/geohash/{geohash}' \
 --header 'x-api-key: <your-api-key>'

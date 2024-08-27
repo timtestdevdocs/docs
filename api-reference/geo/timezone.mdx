@@ -48,6 +48,14 @@ const result = await jigsawstack.geo.timezone({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.geo.timezone({"country_code": "NGN"})
+```
+
 ```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/geo/timezone' \
 --header 'x-api-key: <your-api-key>'

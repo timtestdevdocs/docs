@@ -56,6 +56,14 @@ const result = await jigsawstack.geo.country({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.geo.country({"country_code":"SGP" });
+```
+
 ```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/geo/country' \
 --header 'x-api-key: <your-api-key>'

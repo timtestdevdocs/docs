@@ -59,6 +59,16 @@ const result = await jigsawstack.geo.search({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.geo.search({
+ "search_value": "Times square",
+})
+```
+
 ```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/geo/search?search_value=Times square' \
 --header 'x-api-key: <your-api-key>'

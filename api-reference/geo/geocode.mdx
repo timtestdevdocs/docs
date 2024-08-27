@@ -70,6 +70,14 @@ const result = await jigsawstack.geo.geocode({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.geo.geocode({ "lat": 40.78337,"lng": -73.96442, });
+```
+
 ```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/geo/geocode?lng=-73.9654897&lat=40.7824635' \
 --header 'x-api-key: <your-api-key>'
