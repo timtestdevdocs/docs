@@ -48,6 +48,18 @@ const result = await jigsawstack.text_to_sql({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+params = {
+    "prompt": "Generate a query to get transactions that amount exceed 10000 and sort by when created",
+    "sql_schema": "CREATE TABLE Transactions (transaction_id INT PRIMARY KEY, user_id INT NOT NULL,total_amount DECIMAL(10, 2 NOT NULL, transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,status VARCHAR(20) DEFAULT 'pending',FOREIGN KEY(user_id) REFERENCES Users(user_id))"
+}
+result = jigsawstack.text_to_sql(params);
+```
+
 ```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/ai/sql' \
 --header 'Content-Type: application/json' \

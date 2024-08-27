@@ -57,9 +57,17 @@ const jigsawstack = JigsawStack({
   apiKey: "your-api-key",
 });
 
-const result = await jigsawstack.speech_to_text({
+const result = await jigsawstack.audio.speech_to_text({
   url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Video%201737458382653833217.mp4?t=2024-03-22T09%3A50%3A49.894Z",
 });
+```
+
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.audio.speech_to_text({ "url": "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Video%201737458382653833217.mp4?t=2024-03-22T09%3A50%3A49.894Z"});
 ```
 
 ```bash cURL

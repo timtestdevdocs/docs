@@ -60,6 +60,17 @@ const result = await jigsawstack.web.dns({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.web.dns({
+  "domain": "google.com",
+  "type": "A",
+});
+```
+
 ```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/web/dns' \
 --header 'x-api-key: <your-api-key>'

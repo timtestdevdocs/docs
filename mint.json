@@ -115,6 +115,7 @@
       "group": "Prompt Engine",
       "pages": [
         "api-reference/prompt-engine/create",
+        "api-reference/prompt-engine/execute",
         "api-reference/prompt-engine/run",
         "api-reference/prompt-engine/retrieve",
         "api-reference/prompt-engine/list",

@@ -40,6 +40,14 @@ const result = await jigsawstack.vision.object_detection({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+ result = jigsawstack.vision.object_detection({"url": "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Collabo%201080x842.jpg?t=2024-03-22T09%3A22%3A48.442Z"});
+```
+
 ```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/ai/object_detection' \
 --header 'Content-Type: application/json' \

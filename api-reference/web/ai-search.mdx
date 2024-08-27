@@ -51,6 +51,18 @@ const result = await jigsawstack.web.search({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsaw = JigsawStack(api_key="your-api-key")
+
+result = jigsaw.web.search({
+  "query": "Time Square New Yor",
+  "safe_search": "strict",
+  "spell_check": true,
+});
+```
+
 ```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/web/search?query=Time Square New Yor' \
 --header 'x-api-key: <your-api-key>'

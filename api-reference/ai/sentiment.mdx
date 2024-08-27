@@ -46,6 +46,14 @@ const jigsawstack = JigsawStack({
 const result = await jigsawstack.sentiment({ text: "I am happy!" });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+ result = jigsawstack.sentiment({ text: "I am happy!" });
+```
+
 ```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/ai/sentiment' \
 --header 'Content-Type: application/json' \

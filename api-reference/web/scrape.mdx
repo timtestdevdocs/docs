@@ -161,6 +161,16 @@ const result = await jigsawstack.web.scrape({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.web.scrape({
+  "url": "https://jigsawstack.com",
+});
+```
+
 ```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/web/scrape' \
 --header 'Content-Type: application/json' \

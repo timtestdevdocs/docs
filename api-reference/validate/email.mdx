@@ -46,6 +46,14 @@ const jigsawstack = JigsawStack({
 const result = await jigsawstack.validate.email("john-doe@example.com");
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.validate.email("john-doe@example.com");
+```
+
 ```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/validate/email?email=""' \
 --header 'x-api-key: <your-api-key>'

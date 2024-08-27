@@ -72,6 +72,27 @@ const result = await jigsawstack.prediction({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+params = {
+    "dataset": [
+        {
+            "date": "2023-10-10",
+            "value": 10,
+        },
+        {
+            "date": "2023-09-10",
+            "value": 5,
+        },
+    ]
+}
+
+result = jigsawstack.prediction(params)
+```
+
 ```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/ai/prediction' \
 --header 'Content-Type: application/json' \

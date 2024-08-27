@@ -49,6 +49,14 @@ const resp = await jigsawstack.audio.text_to_speech({
 const data = await resp.blob();
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.audio.text_to_speech({ "text": "Hello, how are you doing?"})
+```
+
 ```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/ai/tts' \
 --header 'Content-Type: application/json' \

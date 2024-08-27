@@ -122,7 +122,21 @@ const result = await jigsawstack.web.html_to_any({
   type: "jpeg",
 });
 
-const data = result.blob();
+const data = await result.blob();
+```
+
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.web.html_to_any({
+  "html": "<div>hello</div>",
+  "quality": 100,
+  "full_page": true,
+  "omit_background": false,
+  "type": "jpeg",
+});
 ```
 
 ```bash cURL

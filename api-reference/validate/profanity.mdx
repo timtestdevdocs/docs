@@ -53,6 +53,17 @@ const result = await jigsawstack.validate.profanity({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsaw = JigsawStack(api_key="your-api-key")
+
+result = jigsaw.validate.profanity({
+  "text": "All the world's a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts.",
+  "censor_replacement": "*",
+});
+```
+
 ```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/validate/profanity' \
 --header 'x-api-key: <your-api-key>'

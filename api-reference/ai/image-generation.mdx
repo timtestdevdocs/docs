@@ -100,7 +100,7 @@ const result = await jigsawstack.image_generation({
   model: "sdxl",
 });
 
-const data = result.blob();
+const data = await result.blob();
 ```
 
 ```bash cURL

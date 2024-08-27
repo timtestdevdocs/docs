@@ -48,6 +48,14 @@ const result = await jigsawstack.translate({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.translate({ text: "Hello, world!", target_language:"es", current_language:"en" });
+```
+
 ```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/ai/translate' \
 --header 'Content-Type: application/json' \

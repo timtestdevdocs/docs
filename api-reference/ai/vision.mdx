@@ -66,6 +66,14 @@ const result = await jigsawstack.vision.vocr({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.vision.vocr({"url": "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Collabo%201080x842.jpg?t=2024-03-22T09%3A22%3A48.442Z", "prompt" : "Describe the image in detail"});
+```
+
 ```bash cURL
 curl --location --request POST 'https://api.jigsawstack.com/v1/vocr' \
 --header 'Content-Type: application/json' \
