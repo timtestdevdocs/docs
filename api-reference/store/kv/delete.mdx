@@ -31,9 +31,15 @@ const jigsawstack = JigsawStack({
   apiKey: "your-api-key",
 });
 
-const key = "jigsaw";
+const result = await jigsawstack.store.kv.delete("jigsaw");
+```
 
-const result = await jigsawstack.store.kv.delete(key);
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.store.kv.delete("jigsaw");
 ```
 
 ```bash cURL

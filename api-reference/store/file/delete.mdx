@@ -30,6 +30,14 @@ const jigsawstack = JigsawStack({
 const result = await jigsawstack.store.delete(key);
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.store.delete("jigsaw");
+```
+
 ```bash cURL
 curl --location --request DELETE 'https://api.jigsawstack.com/v1/store/file/{key}' \
 --header 'Content-Type: application/json' \

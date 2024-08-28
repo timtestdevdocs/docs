@@ -39,8 +39,15 @@ import { JigsawStack } from "jigsawstack";
 
 const jigsawstack = JigsawStack({ apiKey: "your-api-key" });
 
-const key = "jigsaw";
-const result = await jigsawstack.store.kv.get(key);
+const result = await jigsawstack.store.kv.get("jigsaw");
+```
+
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.store.kv.get("jigsaw");
 ```
 
 ```bash cURL

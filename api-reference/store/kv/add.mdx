@@ -48,6 +48,19 @@ const result = await jigsawstack.store.kv.add({
 });
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.store.kv.add({
+  key:"italy",
+  value: "Leanning Tower of Pisa",
+  encrypt: true
+  })
+
+```
+
 ```bash cURL
     curl --location --request POST 'https://api.jigsawstack.com/v1/store/kv' \
     --header 'Content-Type: application/json' \

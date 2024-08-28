@@ -71,6 +71,23 @@ const result = await jigsawstack.store.upload(imageFile, {
 const publicFileUrl = `${result.url}?x-api-key=${publicKey}`;
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+try:
+    with open("beach_house.jpg", "rb") as image_file:
+        image_data = image_file.read()
+        result = jigsaw.store.upload(
+            image_data, {"filename": "beach_house.jpg", "overwrite": True}
+        )
+    print("Image uploaded successfully:", result)
+
+except JigsawStackError as err:
+    print(f"An error occurred: {err}")
+```
+
 ```bash cURL
 curl -X POST 'https://api.jigsawstack.com/v1/store/file?key=jigsaw-logo' \
   -H "Content-Type: multipart/form-data" \
