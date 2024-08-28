@@ -30,7 +30,33 @@ CREATE TABLE transactions (
 
 This schema was copied from the Dzero dashboard after the table was created.
 
-### Basic Usage
+### How to retrieve schema
+
+#### - SQLite
+
+> Run this query to retrieve a schema for your SQLite database.
+
+```SQL
+SELECT sql,name FROM sqlite_schema WHERE type='table' AND sql NOT NULL
+```
+
+#### - MySQL
+
+```SQL
+  SHOW CREATE TABLE your_table_name;
+```
+
+### After getting schema (optional)
+
+> If you are performing the operation above in node.js, you can consider the following below:
+
+```javascript
+const fullSchema = schemas.map((s) => s.sql).join("\n\n");
+
+// Then use the full schema on guide below.
+```
+
+### Usage
 
 ```javascript sql.ts
 type TextToSQLParams = {
