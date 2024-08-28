@@ -1,17 +1,83 @@
 ---
-title: "Execute Prompt"
-api: "POST https://api.jigsawstack.com/v1/prompt_engine/{id}"
-description: "Execute a prompt using the prompt id."
+title: "Run Prompt Direct"
+api: "POST https://api.jigsawstack.com/v1/prompt_engine/run"
+description: "Run a prompt directly."
 ---
+
+<Info>
+  It is recommended to
+  [create](https://docs.jigsawstack.com/api-reference/prompt-engine/create) and
+  [run](https://docs.jigsawstack.com/api-reference/prompt-engine/run) a prompt
+  for better reliability.
+</Info>
 
 <Snippet file="header.mdx" />
 
 ### Body
 
-<ParamField body="input_values" type="object">
-  The input values. This is required if the `inputs` paramter was specified when
-  creating a prompt.
+<ParamField body="prompt" type="string" required>
+  The prompt. Maximum character limit is `3000`. Prompt supports dynamic inputs.
+  See example below.
 </ParamField>
+
+<ParamField body="inputs" type="array<object>">
+  The prompt inputs. See example below.
+</ParamField>
+
+<ParamField body="return_prompt" type="string | array | object">
+  How the prompt result should be returned or formatted. See examples below
+</ParamField>
+
+## Sample Prompt Payload
+
+- String `return_prompt`
+
+```javascript
+{
+    prompt: "Tell me a story about {about}",
+    inputs: [
+      {
+        key: "about",
+        optional: false,
+        initial_value: "Leaning Tower of Pisa",
+      },
+    ],
+    return_prompt: "Return the result in a markdown format",
+  }
+```
+
+- `Array<object>` `return_prompt`
+
+```javascript
+
+{
+    prompt: "Tell me a story about {about}",
+    inputs: [
+      {
+        key: "about",
+        optional: false,
+        initial_value: "Leaning Tower of Pisa",
+      },
+    ],
+    return_prompt: [{ excerpt: "short story text", summary: "summary of story" }],
+  }
+```
+
+- Object `return_prompt`
+
+```javascript
+{
+    prompt: "Tell me a story about {about}",
+    inputs: [
+      {
+        key: "about",
+        optional: false,
+        initial_value: "Leaning Tower of Pisa",
+      },
+    ],
+    return_prompt: { excerpt: "short story text", summary: "summary of story" },
+  }
+```
 
 ### Response
 
@@ -28,11 +94,16 @@ const jigsawstack = JigsawStack({
   apiKey: "your-api-key",
 });
 
-const result = await jigsawstack.prompt_engine.execute({
-  id: "e58d762a-9a00-4907-8cab-5ce6221bb6df",
-  input_values: {
-    about: "Leaning Tower of Pisa",
-  },
+const result = await jigsawstack.prompt_engine.run({
+  prompt: "Tell me a story about {about}",
+  inputs: [
+    {
+      key: "about",
+      optional: false,
+      initial_value: "Leaning Tower of Pisa",
+    },
+  ],
+  return_prompt: "Return the result in a markdown format",
 });
 ```
 
@@ -41,9 +112,8 @@ const result = await jigsawstack.prompt_engine.execute({
     --header 'Content-Type: application/json' \
     --header "x-api-key: <your-api-here>" \
     --data '{
-       input_values: {
-      about: "Leaning Tower of Pisa",
-    },
+     prompt: "Tell me a story about {about}",
+     return_prompt: "Return the result in a markdown format",
     }'
 ```
 
