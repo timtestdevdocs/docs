@@ -32,6 +32,15 @@ const result = await jigsawstack.prompt_engine.delete(
 );
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.prompt_engine.delete("e58d762a-9a00-4907-8cab-5ce6221bb6df")
+
+```
+
 ```bash cURL
 curl --location --request DELETE 'https://api.jigsawstack.com/v1/prompt_engine/{id}' \
 --header 'Content-Type: application/json' \

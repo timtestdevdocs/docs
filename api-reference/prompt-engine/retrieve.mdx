@@ -26,6 +26,14 @@ const result = await jigsawstack.prompt_engine.get(
 );
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.prompt_engine.get("e58d762a-9a00-4907-8cab-5ce6221bb6df")
+```
+
 ```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/prompt_engine/{id}' \
 --header 'x-api-key: <your-api-key>'

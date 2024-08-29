@@ -4,11 +4,15 @@ api: "POST https://api.jigsawstack.com/v1/prompt_engine/run"
 description: "Run a prompt directly."
 ---
 
+<Info>**Run Prompt Direct** is ideal for one-time prompt usage.</Info>
+
 <Info>
-  It is recommended to
-  [create](https://docs.jigsawstack.com/api-reference/prompt-engine/create) and
-  [run](https://docs.jigsawstack.com/api-reference/prompt-engine/run) a prompt
-  for better reliability.
+  For prompts that will be used multiple times, it is recommended to first
+  [Create a
+  Prompt](https://docs.jigsawstack.com/api-reference/prompt-engine/create) and
+  then [Run the
+  Prompt](https://docs.jigsawstack.com/api-reference/prompt-engine/run) for
+  better reliability.
 </Info>
 
 <Snippet file="header.mdx" />
@@ -94,7 +98,7 @@ const jigsawstack = JigsawStack({
   apiKey: "your-api-key",
 });
 
-const result = await jigsawstack.prompt_engine.run({
+const result = await jigsawstack.prompt_engine.run_prompt_direct({
   prompt: "Tell me a story about {about}",
   inputs: [
     {
@@ -105,6 +109,25 @@ const result = await jigsawstack.prompt_engine.run({
   ],
   return_prompt: "Return the result in a markdown format",
 });
+```
+
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+params = {
+    "prompt": "Tell me a story about {about}",
+    "inputs": [
+        {
+            "key": "about",
+            "optional": false,
+            "initial_value": "Leaning Tower of Pisa",
+        },
+    ],
+    "return_prompt": "Return the result in a markdown format",
+}
+result = jigsawstack.prompt_engine.run_prompt_direct(params)
 ```
 
 ```bash cURL

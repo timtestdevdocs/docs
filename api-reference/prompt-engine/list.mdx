@@ -31,7 +31,15 @@ const jigsawstack = JigsawStack({
   apiKey: "your-api-key",
 });
 
-const result = await jigsawstack.prompt_engine.list({ page: 1 });
+const result = await jigsawstack.prompt_engine.list({ limit: 10 });
+```
+
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.prompt_engine.list({"limit": 10})
 ```
 
 ```bash cURL

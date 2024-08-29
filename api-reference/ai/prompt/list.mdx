@@ -30,6 +30,26 @@ const result = await fetch(endpoint);
 const data = await result.json();
 ```
 
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+
+params = {
+  "prompt": "Tell me a story about {about}",
+  "inputs": [
+    {
+      key: "about",
+      optional: false,
+      initial_value: "Leaning Tower of Pisa",
+    },
+  ],
+  "return_prompt": "Return the result in a markdown format",
+}
+result = jigsawstack.prompt_engine.create(params);
+```
+
 ```bash cURL
 curl --location --request GET 'https://api.jigsawstack.com/v1/ai/prompt_engine' \
 --header 'x-api-key: <your-api-key>'
