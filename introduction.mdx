@@ -14,7 +14,70 @@ _*Here are some of the benefits of using JigsawStack API:*_
 - Speed: JigsawStack is served on the edge network, so your requests are always delivered quickly and reliably. This is especially important for applications that require low latency or high availability.
 - Ease of use: JigsawStack is easy to use and integrate with your applications. The documentation is clear and concise, and the API is well-designed.
 
+## Prerequisites
+
+To get the most out of this guide, you’ll need to:
+
+- **Set up an** [account](https://jigsawstack.com/dashboard)
+- **Create and retrieve your** [API key](https://jigsawstack.com/dashboard)
+
+## Get started
+
+Get started using the JigsawStack SDK in your project.
+
+### Installation
+
+<CodeGroup>
+
+```bash node.js
+npm install jigsawstack
+# or
+yarn add jigsawstack
+# or
+pnpm add jigsawstack
+```
+
+```bash python
+pip install jigsawstack
+```
+
+</CodeGroup>
+
+### Usage
+
+<CodeGroup>
+
+```javascript node.js
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.web.ai_scrape({
+  url: "https://www.amazon.com/Cadbury-Mini-Caramel-Eggs-Bulk/dp/B0CWM99G5W",
+  element_prompts: ["prices"],
+});
+```
+
+```py python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+params = {
+ "url": "https://www.amazon.com/Cadbury-Mini-Caramel-Eggs-Bulk/dp/B0CWM99G5W",
+ "element_prompts": ["prices"]
+}
+
+result = jigsawstack.web.ai_scrape(params)
+```
+
+</CodeGroup>
+
 ## Quickstart
+
+Learn more on how to get JigsawStack set up in your project.
 
 <CardGroup cols={2}>
   <Card
@@ -31,24 +94,5 @@ _*Here are some of the benefits of using JigsawStack API:*_
     href="/quick-start/python/introduction"
   >
     Learn how to use the Python SDK to build AI powered applications.
-  </Card>
-</CardGroup>
-
-## Setting up
-
-<CardGroup cols={2}>
-  <Card
-    title="Sign up"
-    icon="pen-to-square"
-    href="https://jigsawstack.com/dashboard"
-  >
-    Sign up for a free account and get started in minutes
-  </Card>
-  <Card
-    title="Retrieve your api key"
-    icon="code"
-    href="https://jigsawstack.com/dashboard"
-  >
-    Retrieve your api key and start using it for your api calls
   </Card>
 </CardGroup>
