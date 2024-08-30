@@ -124,3 +124,25 @@ The JigsawStack API has two types of API keys: `public` and `secret`.
 - Use only public keys in client-side applications. Ensure that you whitelist specific domains that can access this public key to prevent unauthorized use.
 
 - Store secret keys in secure key management systems (KMS). When creating a key (e.g., from the JigsawStack Dashboard), it will only be revealed once. Immediately copy the key to a KMS, which is designed to handle sensitive information with encryption and access controls. Ensure that you don't leave a copy of the key in any local files.
+
+## Logging API requests
+
+Attach the header parameter `x-jigsaw-no-request-log` to control how requests payload are handled. If set to `true`, request payload will not be logged (stored).
+By default, our servers logged every request payload.
+
+```js
+const headers = {
+  "x-api-key": "<your-api-key-here>",
+  "x-jigsaw-no-request-log": "true",
+};
+
+const baseUrl = "https://api.jigsawstack.com";
+
+const result = await fetch(`${baseUrl}/v1/ai/summary`, {
+  method: "POST",
+  body: {
+    text: "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral",
+  },
+  headers,
+});
+```
