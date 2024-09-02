@@ -43,7 +43,9 @@ SELECT sql,name FROM sqlite_schema WHERE type='table' AND sql NOT NULL
 #### - MySQL
 
 ```SQL
-  SHOW CREATE TABLE your_table_name;
+SELECT CONCAT('SHOW CREATE TABLE ', table_name, ';')
+FROM information_schema.tables
+WHERE table_schema = 'your_database_name';
 ```
 
 ### After getting schema (optional)

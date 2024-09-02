@@ -7,6 +7,14 @@ description: "Run any prompt and get the optimal model to execute it without wor
 
 JigsawStack Prompt Engine is a powerfult API built from the ground up to execute any prompt or instruction seamlessly. It intelligently selects the best model from a cluster of state-of-the-art models, allowing you to focus on results without worrying about GPUs, tokens, or rate limits.
 
+<img
+  className="block"
+  src="https://res.cloudinary.com/dev-ninja/image/upload/v1725295285/prompt_engine_o3ly4j.png"
+  alt="prompt engine"
+/>
+
+The **Prompt Engine** takes in three things: the prompt, dynamic variables, and the output structure you expect every single time you run the prompt. The last two are optional. The **Prompt Engine** automatically enhances the initial prompt to improve accuracy, reduce token usage, and prevent output structure breakage.
+
 The **Prompt Engine** is great for a variety of task which include:
 
 - Intelligent AI agents or Chatbots.
@@ -14,74 +22,63 @@ The **Prompt Engine** is great for a variety of task which include:
 - Data extraction and analysis.
 - Complex natural language processing
 
-Let's utilize the [Prompt Engine API](https://docs.jigsawstack.com/api-reference/ai/prompt/create) to evaluate job applications and determine if candidates meet the necessary job requirements.
+### The Prompt Engine can be utilized in two ways:
 
-## Initial Steps
+1. Creating and running a reusable prompt (recommended)
+2. Executing a prompt directly
+
+Let’s explore these approaches by evaluating job application entries to determine if candidates meet the necessary job requirements.
+
+## Initial requirements
 
 - Setup a JigsawStack account (if you don't have an account already)
 - Get your JigsawStack API key from [here](https://jigsawstack.com/dashboard).
+- Install the [Node.js SDK](http://localhost:3000/quick-start/node/introduction)
 
-### Step 1 - Create a resuable prompt
+### 1. Create and execute a reusable prompt (recommended)
 
 ```javascript prompt.ts
-const endpoint = "https://api.jigsawstack.com/v1/ai/prompt_engine";
-const options = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "x-api-key": "<your-api-key>", // Replace with your actual API key.
-  },
-  body: JSON.stringify({
-    prompt:
-      "Given this candidate's experience:{experience}, determine if she should be considered for the Senior Fullstack Mobile Engineer Role with React Native, Node.js, AWS, Next.js, Typescript",
-    inputs: [
-      {
-        key: "experience",
-        optional: false,
-      },
-    ],
-    return_prompt: {
-      experienceWithNodejs:
-        "Return true, if candidate has 4 years and above experience with Node.js. Else return false",
-      seniorInReactNative:
-        "Return true if candidate has 6 years and above experience building apps with React Native",
-      sectorExperience:
-        "Return sector the candidate has the most experience in. Example of sector include: Fintech, Edtech, blockchain, Ecommerce, etc.",
+import { JigsawStack } from "jigsawstack";
+
+// initialize the JigsawStack SDK
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+// Create a reusable prompt
+const params = {
+  prompt:
+    "Given this candidate's experience:{experience}, determine if she should be considered for the Senior Fullstack Mobile Engineer Role with React Native, Node.js, AWS, Next.js, Typescript",
+  inputs: [
+    {
+      key: "experience",
+      optional: false,
     },
-  }),
-};
-
-const result = await fetch(endpoint, options);
-const data = await result.json();
-```
-
-### Step 2 - Execute prompt
-
-We will execute the prompt created in `Step 1` by providing the required input value(s).
-
-```javascript execute.ts
-const endpoint =
-  "https://api.jigsawstack.com/v1/ai/prompt_engine/f849c7d6-c917-42ff-8d94-5dc1bd4ee2a2";
-const options = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "x-api-key": "<your-api-key>", // Replace with your actual API key.
+  ],
+  return_prompt: {
+    experienceWithNodejs:
+      "Return true, if candidate has 4 years and above experience with Node.js. Else return false",
+    seniorInReactNative:
+      "Return true if candidate has 6 years and above experience building apps with React Native",
+    sectorExperience:
+      "Return sector the candidate has the most experience in. Example of sector include: Fintech, Edtech, blockchain, Ecommerce, etc.",
   },
-  body: JSON.stringify({
-    input_values: {
-      experience:
-        "As a seasoned React Native Developer with 4 years of experience, I have a proven track record in building high-quality mobile applications. Over the past 2 years, I have also gained substantial expertise in Node.js, enhancing my ability to develop robust backend services. My proficiency in TypeScript, acquired over the last year, further strengthens my development skills. In my most recent role in the Fintech sector, I successfully contributed to creating secure and efficient financial applications, demonstrating my ability to thrive in dynamic and challenging environments. My comprehensive skill set ensures seamless integration and functionality across diverse platforms.",
-    },
-  }),
 };
-const result = await fetch(endpoint, options);
-const data = await result.json();
-```
+const result = await jigsawstack.prompt_engine.create(params);
 
-### The result
 
-```json
+const prompt_id = result.prompt_engine_id;
+
+// Execute the prompt using the prompt id
+const result = await jigsawstack.prompt_engine.run({
+  id: prompt_id,
+  input_values: {
+    experience:
+      "As a seasoned React Native Developer with 4 years of experience, I have a proven track record in building high-quality mobile applications. Over the past 2 years, I have also gained substantial expertise in Node.js, enhancing my ability to develop robust backend services. My proficiency in TypeScript, acquired over the last year, further strengthens my development skills. In my most recent role in the Fintech sector, I successfully contributed to creating secure and efficient financial applications, demonstrating my ability to thrive in dynamic and challenging environments. My comprehensive skill set ensures seamless integration and functionality across diverse platforms.",
+  },
+});
+
+// Here is the sample result
 {
   "success": true,
   "result": {
@@ -92,7 +89,57 @@ const data = await result.json();
 }
 ```
 
-That's it! We've used the [Prompt Engine API](https://docs.jigsawstack.com/api-reference/ai/prompt/create) to automatically evaluate job applications.
+### 2. Executing the prompt directly
+
+```javascript run_prompt_direct.ts
+import { JigsawStack } from "jigsawstack";
+
+// initialize the JigsawStack SDK
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+
+const params = {
+  prompt:
+    "Given this candidate's experience:{experience}, determine if she should be considered for the Senior Fullstack Mobile Engineer Role with React Native, Node.js, AWS, Next.js, Typescript",
+  inputs: [
+    {
+      key: "experience",
+      optional: false,
+    },
+  ],
+  return_prompt: {
+    experienceWithNodejs:
+      "Return true, if candidate has 4 years and above experience with Node.js. Else return false",
+    seniorInReactNative:
+      "Return true if candidate has 6 years and above experience building apps with React Native",
+    sectorExperience:
+      "Return sector the candidate has the most experience in. Example of sector include: Fintech, Edtech, blockchain, Ecommerce, etc.",
+  },
+};
+
+
+// Execute prompt outrightly
+const result = await jigsawstack.prompt_engine.run_prompt_direct(params);
+
+// Here is the sample result
+{
+  "success": true,
+  "result": {
+    "experienceWithNodejs": true,
+    "seniorInReactNative": false,
+    "sectorExperience": "Fintech"
+  }
+}
+```
+
+That's it! We've used the Prompt Engine API to automatically evaluate job applications.
+
+### Recommendations
+
+- For prompts that will be used multiple times, it is recommended to first [Create](https://docs.jigsawstack.com/api-reference/ai/prompt/create) the prompt and then [Run](https://docs.jigsawstack.com/api-reference/prompt-engine/run) it using the prompt ID for better reliability.
+- [Run Prompt Direct](https://docs.jigsawstack.com/api-reference/prompt-engine/run-direct) is ideal for one-time use.
 
 <Info>
   Find more information on Prompt Engine API
