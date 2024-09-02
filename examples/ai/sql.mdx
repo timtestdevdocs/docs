@@ -75,6 +75,12 @@ type BodyParams = {
   prompt: string,
 };
 
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
 export const POST = async (request: Request) => {
   try {
     const params: BodyParams = await request.json();
@@ -94,17 +100,7 @@ export const POST = async (request: Request) => {
       sql_schema: schema,
     };
 
-    const result = await fetch("https://api.jigsawstack.com/v1/ai/sql", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": "<your-api-key>", // Replace with your actual API key.
-      },
-
-      body: JSON.stringify(payload),
-    });
-
-    const data: TextToSQLResult = await result.json();
+    const data: TextToSQLResult = await jigsawstack.text_to_sql(payload);
 
     // Makes DB call with translated query
     // Instead of using Dzero, you can use any SQL DB service of your choice.

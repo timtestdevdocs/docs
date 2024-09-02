@@ -35,7 +35,9 @@ Let’s explore these approaches by evaluating job application entries to determ
 - Get your JigsawStack API key from [here](https://jigsawstack.com/dashboard).
 - Install the [Node.js SDK](http://localhost:3000/quick-start/node/introduction)
 
-### 1. Create and execute a reusable prompt (recommended)
+### Approach 1 - Creating and executing a reusable prompt (recommended)
+
+#### - Create the prompt
 
 ```javascript prompt.ts
 import { JigsawStack } from "jigsawstack";
@@ -65,10 +67,14 @@ const params = {
   },
 };
 const result = await jigsawstack.prompt_engine.create(params);
-
-
 const prompt_id = result.prompt_engine_id;
 
+console.log(prompt_id);
+```
+
+#### - Run the prompt
+
+```javascript
 // Execute the prompt using the prompt id
 const result = await jigsawstack.prompt_engine.run({
   id: prompt_id,
@@ -89,7 +95,7 @@ const result = await jigsawstack.prompt_engine.run({
 }
 ```
 
-### 2. Executing the prompt directly
+### Approach 2 - Executing the prompt directly
 
 ```javascript run_prompt_direct.ts
 import { JigsawStack } from "jigsawstack";

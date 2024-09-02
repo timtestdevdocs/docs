@@ -13,40 +13,27 @@ description: "Capture website screenshots and receive output in both image and P
 <CodeGroup>
 
 ```javascript Node.js
-const screenshot = async () => {
-  const endpoint = "http://api.jigsawstack.com/v1/web/html_to_any";
+import { JigsawStack } from "jigsawstack";
 
-  const params = {
-    url: "https://jigsawstack.com",
-    quality: 80,
-    full_page: true,
-    type: "jpeg",
-    dark_mode: true,
-  };
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
 
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": "<your-api-key-here>",
-    },
-    body: JSON.stringify(params),
-  };
-
-  const result = await fetch(endpoint, options);
-
-  if (!resp.ok) {
-    const error = await resp.json();
-    throw error;
-  }
-
-  const buffer = await resp.arrayBuffer();
-
-  fs.writeFileSync(
-    path.join(__dirname, `/screens/screenshot.jpeg`),
-    Buffer.from(buffer)
-  );
+const params = {
+  url: "https://jigsawstack.com",
+  quality: 80,
+  full_page: true,
+  type: "jpeg",
+  dark_mode: true,
 };
+const result = await jigsawstack.web.html_to_any(params);
+
+const buffer = await result.arrayBuffer();
+
+fs.writeFileSync(
+  path.join(__dirname, `/screens/screenshot.jpeg`),
+  Buffer.from(buffer)
+);
 ```
 
 ```bash cURL

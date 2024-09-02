@@ -16,7 +16,7 @@ The vOCR is a robust Object Character Recognition (OCR) API, enhanced with fine-
 
 Let's see the vOCR in action by building a simple ID data extractor.
 
-## Initial Steps
+## Initial requirements
 
 - Setup a JigsawStack account (if you don't have an account already)
 - Get your JigsawStack API key from [here](https://jigsawstack.com/dashboard).
@@ -40,20 +40,7 @@ const payload: OCRParams = {
 ### Make request
 
 ```javascript
-const result = await fetch("https://api.jigsawstack.com/v1/vocr", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "x-api-key": "<your-api-key>", // Replace with your actual API key.
-  },
-  body: JSON.stringify(payload),
-});
-```
-
-### Retrieve Result
-
-```javascript
-const data = await result.json();
+const data = await jigsawstack.vision.vocr(payload);
 ```
 
 ### Here is the complete code
@@ -67,18 +54,10 @@ export const POST = async (request: Request) => {
       prompt: ["First name", "last name", "dob", "id"], // streamline to the data you need.
     };
 
-    const result = await fetch("https://api.jigsawstack.com/v1/ai/vocr", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": "<your-api-key>", // Replace with your actual API key.
-      },
-      body: JSON.stringify(payload),
-    });
-
-    const data = await result.json();
+    const data = await jigsawstack.vision.vocr(payload);
 
     // Process and store data however you want to.
+    console.log(data);
 
     return Response.json(
       {
@@ -92,6 +71,14 @@ export const POST = async (request: Request) => {
     handleError(error);
   }
 };
+```
+
+### Curl request
+
+```bash
+curl -X POST http://localhost:3000/api/id-extractor
+   -H 'Content-Type: application/json'
+   -d '{"imageUrl":"<your-image-url>"}'
 ```
 
 <Info>
