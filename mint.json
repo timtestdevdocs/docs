@@ -64,6 +64,10 @@
         "examples/ai/prompt-engine",
         "examples/file-upload",
         "examples/ai/sql",
+        "examples/nsfw",
+        "examples/geo-search",
+        "examples/speech-to-text",
+        "examples/text-to-speech",
         "use-cases/screenshot"
     ]
     },
@@ -134,7 +138,8 @@
       "group": "Audio",
       "pages": [
         "api-reference/ai/speech-to-text",
-        "api-reference/ai/text-to-speech"
+        "api-reference/ai/text-to-speech",
+        "api-reference/audio/speaker-voice-accents"
       ]
     },
     {
@@ -175,6 +180,7 @@
   "footerSocials": {
     "twitter": "https://twitter.com/jigsawstack",
     "github": "https://github.com/jigsawstack",
-    "linkedin": "https://www.linkedin.com/company/jigsawstack"
+    "linkedin": "https://www.linkedin.com/company/jigsawstack",
+    "discord": "https://discord.gg/dj8fMBpnqd"
   }
 }

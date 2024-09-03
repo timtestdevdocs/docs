@@ -1,0 +1,102 @@
+---
+title: "Speaker Voice Accents"
+api: "GET https://api.jigsawstack.com/v1/ai/tts"
+description: "Get the list of supported speaker voice accents."
+---
+
+<Snippet file="header.mdx" />
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<RequestExample>
+
+```javascript Node.js
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.audio.speaker_voice_accents();
+```
+
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.audio.speaker_voice_accents()
+```
+
+```bash cURL
+curl --location --request GET 'https://api.jigsawstack.com/v1/ai/tts' \
+--header 'x-api-key: <your-api-key>'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "accents": [
+    {
+      "accent": "af-ZA-female-1",
+      "locale_name": "Afrikaans (South Africa)",
+      "gender": "female"
+    },
+    {
+      "accent": "af-ZA-male-1",
+      "locale_name": "Afrikaans (South Africa)",
+      "gender": "male"
+    },
+    {
+      "accent": "am-ET-female-1",
+      "locale_name": "Amharic (Ethiopia)",
+      "gender": "female"
+    },
+    {
+      "accent": "am-ET-male-1",
+      "locale_name": "Amharic (Ethiopia)",
+      "gender": "male"
+    },
+    {
+      "accent": "ar-AE-female-1",
+      "locale_name": "Arabic (United Arab Emirates)",
+      "gender": "female"
+    },
+    {
+      "accent": "ar-AE-male-1",
+      "locale_name": "Arabic (United Arab Emirates)",
+      "gender": "male"
+    },
+    {
+      "accent": "ar-BH-female-1",
+      "locale_name": "Arabic (Bahrain)",
+      "gender": "female"
+    },
+    {
+      "accent": "ar-BH-male-1",
+      "locale_name": "Arabic (Bahrain)",
+      "gender": "male"
+    },
+    {
+      "accent": "ar-DZ-female-1",
+      "locale_name": "Arabic (Algeria)",
+      "gender": "female"
+    },
+    {
+      "accent": "ar-DZ-male-1",
+      "locale_name": "Arabic (Algeria)",
+      "gender": "male"
+    }
+  ]
+}
+```
+
+</ResponseExample>

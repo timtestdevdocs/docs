@@ -1,0 +1,107 @@
+---
+title: "Geo Search"
+description: "Learn how use the Geo Search API"
+---
+
+## Initial requirements
+
+- Setup a JigsawStack account (if you don't have an account already)
+- Get your API key from [here](https://jigsawstack.com/dashboard).
+- Install the [Node.js SDK](https://docs.jigsawstack.com/quick-start/node/introduction)
+
+### Search by a search value
+
+<CodeGroup>
+
+```javascript node.js
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.geo.search({
+  search_value: "Times square",
+});
+```
+
+</CodeGroup>
+
+### Narrow search to a specific country
+
+<CodeGroup>
+
+```javascript node.js
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.geo.search({
+  search_value: "Times square",
+  country_code: "USA",
+});
+```
+
+</CodeGroup>
+
+### Improve search result accuracy by providing latitude and longitude
+
+<CodeGroup>
+
+```javascript node.js
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.geo.search({
+  search_value: "Times square",
+  proximity_lat: "-73.9851204",
+  proximity_lng: "40.75889",
+});
+```
+
+</CodeGroup>
+
+### Sample result
+
+```javascript
+{
+  "success": true,
+  "data": [
+    {
+      "type": "poi",
+      "full_address": "New York, New York, New York 10036, United States",
+      "name": "Times Square",
+      "place_formatted": "New York, New York 10036, United States",
+      "postcode": "10036",
+      "place": "New York City",
+      "region": {
+        "name": "New York",
+        "region_code": "NY",
+        "region_code_full": "US-NY"
+      },
+      "country": {
+        "name": "United States",
+        "country_code": "US",
+        "country_code_alpha_3": "USA"
+      },
+      "language": "en",
+      "geoloc": {
+        "type": "Point",
+        "coordinates": [-73.9851204, 40.75889]
+      },
+      "poi_category": ["historic site", "monument", "tourist attraction"],
+      "addtional_properties": {
+        "phone": "(212) 768-1560",
+        "website": "https://www.timessquarenyc.org",
+        "open_hours": {}
+      }
+    }
+  ]
+}
+
+```
