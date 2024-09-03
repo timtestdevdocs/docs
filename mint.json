@@ -69,6 +69,10 @@
     {
       "group": "Learn",
       "pages": [
+        {
+          "group": "Prompt Engine",
+          "pages": ["learn/prompt/introduction"]
+        },
       {
         "group": "Webhook",
         "pages": ["learn/webhook/introduction", "learn/webhook/secure"]
