@@ -1,0 +1,94 @@
+---
+title: "File Upload"
+description: "Learn how to upload files on JigsawStack File Storage"
+---
+
+<Info>
+  The file upload method is ideal for files that are not larger than 100MB.
+</Info>
+
+The file Storage will assume the content type of an asset from the file extension. However, you can specify specific file content types like `image/jpeg`, `image/png`, e.t.c
+
+## Initial requirements
+
+- Setup a JigsawStack account (if you don't have an account already)
+- Get your `public` and `secret` API keys from [here](https://jigsawstack.com/dashboard).
+- Install the [Node.js SDK](http://localhost:3000/quick-start/node/introduction)
+
+### Upload a file
+
+```javascript
+import { JigsawStack } from "jigsawstack";
+
+const publicKey = "your-public-key";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const imageFile = fs.readFileSync("./beach_house.png");
+
+const result = await jigsawstack.store.upload(imageFile, {
+  filename: "beach_house.png",
+});
+
+// Attach your public key to make your uploaded file accessible
+const publicFileUrl = `${result.url}?x-api-key=${publicKey}`;
+```
+
+### Overwriting files
+
+When uploading a file with a filename that already exists, the default behavior is to return a 400 file already exists error. If you want to overwrite a file that already exists, set `overwrite` to `true`
+
+```javascript
+import { JigsawStack } from "jigsawstack";
+
+const publicKey = "your-public-key";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const imageFile = fs.readFileSync("./beach_house.png");
+
+const result = await jigsawstack.store.upload(imageFile, {
+  filename: "beach_house.png",
+  overwrite: true,
+});
+
+// Attach your public key to make your uploaded file accessible
+const publicFileUrl = `${result.url}?x-api-key=${publicKey}`;
+```
+
+### Content Type
+
+By default, the File Storage will assume the content type of an asset from the file extension. If you want to specify the content type for your asset simply pass the contentType option during upload.
+
+```javascript
+import { JigsawStack } from "jigsawstack";
+
+const publicKey = "your-public-key";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const imageFile = fs.readFileSync("./beach_house.png");
+
+const result = await jigsawstack.store.upload(imageFile, {
+  filename: "beach_house.png",
+  overwrite: true,
+  contentType: "image/png",
+});
+
+// Attach your public key to make your uploaded file accessible
+const publicFileUrl = `${result.url}?x-api-key=${publicKey}`;
+```
+
+### Make your uploaded file accessible
+
+Uploaded files are private by default. To make them public or accessible, attach your public key to the x-api-key query parameter.
+
+```javascript
+const publicFileUrl = `${result.url}?x-api-key=${publicKey}`;
+```

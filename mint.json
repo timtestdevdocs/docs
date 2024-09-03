@@ -63,6 +63,7 @@
         "examples/ai/vocr",
         "examples/ai/prompt-engine",
         "examples/ai/sql",
+        "examples/file-upload",
         "use-cases/screenshot"
     ]
     },
