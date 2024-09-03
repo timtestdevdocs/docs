@@ -1,0 +1,61 @@
+---
+title: "Image Generation"
+description: "Learn how use JigsawStack SDK to generate a images"
+---
+
+Generate an image based on the given text by employing AI models like stable diffusion, DALL·E, and other pertinent models.
+
+## Initial requirements
+
+- Setup a JigsawStack account (if you don't have an account already)
+- Get your API key from [here](https://jigsawstack.com/dashboard).
+- Install the [Node.js SDK](https://docs.jigsawstack.com/quick-start/node/introduction)
+
+### Basic usage
+
+<CodeGroup>
+
+```javascript node.js
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.image_generation({
+  prompt: "cute siamese cat",
+});
+
+const data = await result.blob();
+```
+
+</CodeGroup>
+
+### Specify output image size
+
+Supported sizes are:
+
+<ul>
+  <li>`small`</li>
+  <li>`medium`</li>
+  <li>`large`</li>
+</ul>
+
+<CodeGroup>
+
+```javascript node.js
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const result = await jigsawstack.image_generation({
+  prompt: "cute siamese cat",
+  size: "medium",
+});
+
+const data = await result.blob();
+```
+
+</CodeGroup>

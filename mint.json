@@ -71,6 +71,7 @@
         "examples/geo-search",
         "examples/speech-to-text",
         "examples/text-to-speech",
+        "examples/image-generation",
         "use-cases/screenshot"
     ]
     },
