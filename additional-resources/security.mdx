@@ -1,0 +1,39 @@
+---
+title: "Security"
+description: "An overview of JigsawStack security features and practices."
+---
+
+## Data protection
+
+#### 1. Data at rest
+
+All sensitive data are encrypted at rest. Sensitive collections and tables also use row-level encryption.
+
+#### 2. Data in transit
+
+JigsawStack uses TLS 1.3 or higher everywhere data is transmitted over potentially insecure networks.
+
+#### 3. Data backup
+
+JigsawStack backs-up all production data using a point-in-time approach. Backups are persisted for 30 days, and are globally replicated for resiliency against regional disasters.
+
+## Prevent logging API requests
+
+By default, our servers logged every request payload. Attach the header parameter `x-jigsaw-no-request-log` to control how requests payload are handled. If set to `true`, request payload will not be logged (stored).
+
+```javascript
+const headers = {
+  "x-api-key": "<your-api-key-here>",
+  "x-jigsaw-no-request-log": "true",
+};
+
+const baseUrl = "https://api.jigsawstack.com";
+
+const result = await fetch(`${baseUrl}/v1/ai/summary`, {
+  method: "POST",
+  body: {
+    text: "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral",
+  },
+  headers,
+});
+```
