@@ -122,7 +122,7 @@ const imageFile = fs.readFileSync("./beach_house.png");
 const result = await jigsawstack.store.upload(imageFile, {
   filename: "beach_house.png",
   overwrite: true,
-  contentType: "image/png",
+  content_type: "image/png",
 });
 ```
 
