@@ -70,7 +70,7 @@ jigsawstack = JigsawStack(api_key="your-api-key")
 try:
     with open("beach_house.jpg", "rb") as image_file:
         image_data = image_file.read()
-        result = jigsaw.store.upload(
+        result = jigsawstack.store.upload(
             image_data, {"filename": "beach_house.jpg", "overwrite": True}
         )
     print("Image uploaded successfully:", result)

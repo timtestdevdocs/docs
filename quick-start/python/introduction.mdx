@@ -35,16 +35,16 @@ Let's use AI scrape to scrape an amazon product page.
 ```py
 from jigsawstack import JigsawStack
 
-jigsaw = JigsawStack() # API key will be read from environment.
+jigsawstack = JigsawStack() # API key will be read from environment.
 
-# jigsaw = JigsawStack(api_key="your-api-key")
+# jigsawstack = JigsawStack(api_key="your-api-key")
 
 params = {
  "url": "https://www.amazon.com/Cadbury-Mini-Caramel-Eggs-Bulk/dp/B0CWM99G5W",
  "element_prompts": ["prices"]
 }
 
-result = jigsaw.web.ai_scrape(params)
+result = jigsawstack.web.ai_scrape(params)
 ```
 
 Kudos, You are set!
