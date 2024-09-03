@@ -6,8 +6,7 @@
     "light": "/logo/logo.svg"
   },
   "feedback": {
-    "thumbsRating": true,
-    "suggestEdit": true
+    "thumbsRating": true
   },
   "favicon": "/favicon.png",
   "colors": {
