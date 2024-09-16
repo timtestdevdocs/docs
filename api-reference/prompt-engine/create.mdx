@@ -19,6 +19,10 @@ description: "Create a prompt for easy reuse."
   How the prompt result should be returned or formatted. See examples below
 </ParamField>
 
+<ParamField body="prompt_guard" type="array<string>">
+  Include this to guard against unsafe inputs from users
+</ParamField>
+
 ## Sample Prompt Payload
 
 - String `return_prompt`
@@ -34,6 +38,7 @@ description: "Create a prompt for easy reuse."
       },
     ],
     return_prompt: "Return the result in a markdown format",
+    "prompt_guard": ["sexual_content", "defamation"]
   }
 ```
 
@@ -51,6 +56,7 @@ description: "Create a prompt for easy reuse."
       },
     ],
     return_prompt: [{ excerpt: "short story text", summary: "summary of story" }],
+    "prompt_guard": ["sexual_content", "defamation"]
   }
 ```
 
@@ -67,6 +73,7 @@ description: "Create a prompt for easy reuse."
       },
     ],
     return_prompt: { excerpt: "short story text", summary: "summary of story" },
+    "prompt_guard": ["sexual_content", "defamation"]
   }
 ```
 
@@ -97,6 +104,7 @@ const result = await jigsawstack.prompt_engine.create({
     },
   ],
   return_prompt: "Return the result in a markdown format",
+  prompt_guard: ["sexual_content", "defamation"],
 });
 ```
 
@@ -115,6 +123,7 @@ params = {
         },
     ],
     "return_prompt": "Return the result in a markdown format",
+    "prompt_guard": ["sexual_content", "defamation"]
 }
 result = jigsawstack.prompt_engine.create(params)
 ```
