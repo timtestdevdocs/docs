@@ -33,7 +33,17 @@ description: "Run a prompt directly."
 </ParamField>
 
 <ParamField body="prompt_guard" type="array<string>">
-  Include this to guard against unsafe inputs from users
+  Include this to guard against unsafe inputs from users. Supported values:
+  <ul>
+    <li>`defamation`</li>
+    <li>`privacy`</li>
+    <li>`hate`</li>
+    <li>`sexual_content`</li>
+    <li>`elections`</li>
+    <li>`code_interpreter_abuse`</li>
+    <li>`indiscrimate_weapons`</li>
+    <li>`specialized_advice`</li>
+  </ul>
 </ParamField>
 
 <ParamField body="input_values" type="object">
