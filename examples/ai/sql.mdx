@@ -30,9 +30,9 @@ CREATE TABLE transactions (
 
 This schema was copied from the Dzero dashboard after the table was created.
 
-### How to retrieve schema
+## How to retrieve schema
 
-#### - SQLite
+#### SQLite
 
 > Run this query to retrieve a schema for your SQLite database.
 
@@ -40,12 +40,37 @@ This schema was copied from the Dzero dashboard after the table was created.
 SELECT sql,name FROM sqlite_schema WHERE type='table' AND sql NOT NULL
 ```
 
-#### - MySQL
+#### MySQL
 
 ```SQL
 SELECT CONCAT('SHOW CREATE TABLE ', table_name, ';')
 FROM information_schema.tables
 WHERE table_schema = 'your_database_name';
+```
+
+#### PostgreSQL
+
+```SQL
+SELECT
+    'CREATE TABLE ' || table_name || ' (' ||
+    string_agg(
+        column_name || ' ' || data_type ||
+        CASE
+            WHEN character_maximum_length IS NOT NULL THEN '(' || character_maximum_length || ')'
+            ELSE ''
+        END ||
+        CASE
+            WHEN is_nullable = 'NO' THEN ' NOT NULL'
+            ELSE ''
+        END,
+        ', '
+    ) || ');' AS create_table_statement
+FROM
+    information_schema.columns
+WHERE
+    table_schema = 'your_database_name'
+GROUP BY
+    table_schema, table_name;
 ```
 
 ### After getting schema (optional)
