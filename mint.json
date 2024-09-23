@@ -80,7 +80,7 @@
       "pages": [
         {
           "group": "Prompt Engine",
-          "pages": ["learn/prompt/introduction"]
+          "pages": ["learn/prompt/introduction", "learn/prompt/how-prompt-engine-works"]
         },
       {
         "group": "Webhook",
