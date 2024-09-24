@@ -58,7 +58,7 @@
     },
     {
       "group": "Integration",
-      "pages": ["integration/zapier", "integration/groq"]
+      "pages": ["integration/groq", "integration/zapier"]
     },
     {
       "group": "Examples",
