@@ -58,7 +58,7 @@
     },
     {
       "group": "Integration",
-      "pages": ["integration/zapier"]
+      "pages": ["integration/zapier", "integration/groq"]
     },
     {
       "group": "Examples",
@@ -80,7 +80,7 @@
       "pages": [
         {
           "group": "Prompt Engine",
-          "pages": ["learn/prompt/introduction", "learn/prompt/how-prompt-engine-works"]
+          "pages": ["learn/prompt/introduction"]
         },
       {
         "group": "Webhook",
