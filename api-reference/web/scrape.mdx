@@ -187,7 +187,168 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/web/scrape' \
 ```json Response
 {
   "success": true,
-  "data": {}
+  "data": [
+    {
+      "selector": "h3:contains('Free')",
+      "results": [
+        {
+          "html": "Free",
+          "text": "Free",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "text-foreground text-2xl font-normal uppercase flex items-center gap-4 font-mono"
+            }
+          ]
+        },
+        {
+          "html": "Free",
+          "text": "Free",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "text-lg xl:text-xl 2xl:text-2xl leading-5 uppercase font-mono font-normal flex items-center"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "selector": "h3:contains('Pro')",
+      "results": [
+        {
+          "html": "Pro",
+          "text": "Pro",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "text-foreground text-2xl font-normal uppercase flex items-center gap-4 font-mono"
+            }
+          ]
+        },
+        {
+          "html": "Pro",
+          "text": "Pro",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "text-lg xl:text-xl 2xl:text-2xl leading-5 uppercase font-mono font-normal flex items-center"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "selector": "h3:contains('Team')",
+      "results": [
+        {
+          "html": "Team",
+          "text": "Team",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "text-foreground text-2xl font-normal uppercase flex items-center gap-4 font-mono"
+            }
+          ]
+        },
+        {
+          "html": "Team",
+          "text": "Team",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "text-lg xl:text-xl 2xl:text-2xl leading-5 uppercase font-mono font-normal flex items-center"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "selector": "h3:contains('Enterprise')",
+      "results": [
+        {
+          "html": "Enterprise",
+          "text": "Enterprise",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "text-foreground text-2xl font-normal uppercase flex items-center gap-4 font-mono"
+            }
+          ]
+        },
+        {
+          "html": "Enterprise",
+          "text": "Enterprise",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "text-lg xl:text-xl 2xl:text-2xl leading-5 uppercase font-mono font-normal flex items-center"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "selector": "p.font-mono:contains('$0')",
+      "results": [
+        {
+          "html": "$0",
+          "text": "$0",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "mt-2 pb-1 font-mono text-5xl"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "selector": "p.font-mono:contains('$25')",
+      "results": [
+        {
+          "html": "$25",
+          "text": "$25",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "mt-2 pb-1 font-mono text-5xl"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "selector": "p.font-mono:contains('$599')",
+      "results": [
+        {
+          "html": "$599",
+          "text": "$599",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "mt-2 pb-1 font-mono text-5xl"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "selector": "p.font-mono:contains('Custom')",
+      "results": [
+        {
+          "html": "Custom",
+          "text": "Custom",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "mt-2 pb-1 font-mono text-4xl"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
 

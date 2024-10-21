@@ -29,6 +29,9 @@ description: "Perform sentiment analysis on a given text leveraging artificial i
 <ResponseField name="score" type="number">
   Indicates the sentiment score of the text.
 </ResponseField>
+<ResponseField name="sentences" type="Array<object>">
+  The list of texts with associated sentiment result
+</ResponseField>
 
 </Expandable>
 
@@ -73,7 +76,15 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/sentiment' \
   "sentiment": {
     "emotion": "happiness",
     "sentiment": "positive",
-    "score": 0.9
+    "score": 0.95,
+    "sentences": [
+      {
+        "text": "I am so happy",
+        "emotion": "happiness",
+        "sentiment": "positive",
+        "score": 0.95
+      }
+    ]
   }
 }
 ```
