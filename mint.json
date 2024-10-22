@@ -58,7 +58,7 @@
     },
     {
       "group": "Integration",
-      "pages": ["integration/groq", "integration/zapier", "integration/aries"]
+      "pages": ["integration/groq", "integration/langchain", "integration/zapier", "integration/aries"]
     },
     {
       "group": "Examples",
