@@ -1,7 +1,7 @@
 ---
 title: "Sentiment"
 api: "POST https://api.jigsawstack.com/v1/ai/sentiment"
-description: "Perform sentiment analysis on a given text leveraging artificial intelligence."
+description: "Perform line by line sentiment analysis on any text."
 ---
 
 ### Body
@@ -24,7 +24,32 @@ description: "Perform sentiment analysis on a given text leveraging artificial i
   Indicates the sentiment the text. E.g `positive` or `negative`
 </ResponseField>
 <ResponseField name="emotion" type="string">
-  Indicates the type of emotion inferred from the text. E.g `happiness`
+  Indicates the type of emotion inferred from the text. 
+  Supported emotions:
+  <ul>
+  <li>`anger`</li>
+  <li>`fear`</li>
+  <li>`sadness`</li>
+  <li>`happiness`</li>
+  <li>`anxiety`</li>
+  <li>`disgust`</li>
+  <li>`embarrassment`</li>
+  <li>`love`</li>
+  <li>`surprise`</li>
+  <li>`shame`</li>
+  <li>`envy`</li>
+  <li>`satisfaction`</li>
+  <li>`self-confidence`</li>
+  <li>`annoyance`</li>
+  <li>`boredom`</li>
+  <li>`hatred`</li>
+  <li>`compassion`</li>
+  <li>`guilt`</li>
+  <li>`loneliness`</li>
+  <li>`depression`</li>
+  <li>`pride`</li>
+  <li>`neutral`</li>
+  </ul>
 </ResponseField>
 <ResponseField name="score" type="number">
   Indicates the sentiment score of the text.
