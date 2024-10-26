@@ -117,7 +117,7 @@
       "pages": [
         {
         "group": "Search",
-        "pages": ["api-reference/web/ai-search","api-reference/web/search-suggestion"]},"api-reference/ai/scrape","api-reference/web/scrape", "api-reference/web/html-to-any", "api-reference/web/dns"]
+        "pages": ["api-reference/web/ai-search","api-reference/web/search-suggestion"]},"api-reference/ai/scrape","api-reference/web/scrape", "api-reference/web/html-to-any"]
     },
 
     {
@@ -150,14 +150,7 @@
       "group": "Geo",
       "pages": [
         "api-reference/geo/search",
-        "api-reference/geo/geocode",
-        "api-reference/geo/city",
-        "api-reference/geo/country",
-        "api-reference/geo/state",
-        "api-reference/geo/distance",
-        "api-reference/geo/timezone",
-        "api-reference/geo/geohash",
-        "api-reference/geo/geohash-decode"
+        "api-reference/geo/geocode"
       ]
     },
     {
@@ -173,7 +166,6 @@
     {
       "group": "Validate",
       "pages": [
-        "api-reference/validate/email",
         "api-reference/validate/nsfw",
         "api-reference/validate/profanity",
         "api-reference/validate/spellcheck",
