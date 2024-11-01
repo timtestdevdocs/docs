@@ -94,7 +94,7 @@
     },
     {
       "group": "Resources",
-      "pages": ["additional-resources/security","additional-resources/jigsawstack-badge", "additional-resources/size-preset", "additional-resources/dns-types", "additional-resources/voices", "additional-resources/speaker-voices"]
+      "pages": ["additional-resources/security","additional-resources/jigsawstack-badge", "additional-resources/size-preset", "additional-resources/dns-types", "additional-resources/languages", "additional-resources/speaker-voices"]
     },
     {
       "group": "API Documentation",
