@@ -50,6 +50,14 @@ description: "Run a prompt directly."
   Key-value pair for dynamic prompt variables.
 </ParamField>
 
+<ParamField body="stream" type="boolean" defaultValue="false">
+  If set, partial message chunk will be sent.
+</ParamField>
+
+<ParamField body="use_internet" type="boolean" defaultValue="false">
+  Include this to allow prompt engine to use the internet.
+</ParamField>
+
 ## Sample Prompt Payload
 
 - String `return_prompt`
