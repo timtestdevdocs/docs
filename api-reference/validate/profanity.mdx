@@ -1,10 +1,10 @@
 ---
 title: "Profanity"
-api: "GET https://api.jigsawstack.com/v1/validate/profanity"
+api: "POST https://api.jigsawstack.com/v1/validate/profanity"
 description: "Check any text for profanity."
 ---
 
-### Query
+### Params
 
 <ParamField query="text" type="string" required>
   The text to validate.
@@ -65,7 +65,7 @@ result = jigsawstack.validate.profanity({
 ```
 
 ```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/validate/profanity' \
+curl --location --request POST 'https://api.jigsawstack.com/v1/validate/profanity' \
 --header 'x-api-key: <your-api-key>'
 ```
 

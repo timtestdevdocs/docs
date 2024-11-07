@@ -1,12 +1,12 @@
 ---
 title: "Spam Check"
-api: "POST https://api.jigsawstack.com/v1/ai/spamcheck"
+api: "POST https://api.jigsawstack.com/v1/validate/spam_check"
 description: "Perform spam check analysis on a given text in seconds."
 ---
 
 ### Body
 
-<ParamField body="text" type="string" required>
+<ParamField body="text" type="string | string[]" required>
   The text to check for spam.
 </ParamField>
 
@@ -55,7 +55,7 @@ result = jigsawstack.validate.spamcheck({"text": "I am happy!"});
 ```
 
 ```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/spamcheck' \
+curl --location --request POST 'https://api.jigsawstack.com/v1/validate/spam_check' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{

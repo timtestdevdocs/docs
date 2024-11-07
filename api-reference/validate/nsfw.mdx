@@ -1,10 +1,10 @@
 ---
 title: "NSFW"
-api: "GET https://api.jigsawstack.com/v1/validate/nsfw"
+api: "POST https://api.jigsawstack.com/v1/validate/nsfw"
 description: "Quickly detect nudity, violence, hentai, porn and more NSFW content in images."
 ---
 
-### Query
+### Params
 
 <ParamField query="url" type="string" required>
   The image URL to validate.
@@ -45,7 +45,7 @@ result = jigsawstack.validate.nsfw(url);
 ```
 
 ```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/validate/nsfw?url=""' \
+curl --location --request POST 'https://api.jigsawstack.com/v1/validate/nsfw?url=""' \
 --header 'x-api-key: <your-api-key>'
 ```
 
