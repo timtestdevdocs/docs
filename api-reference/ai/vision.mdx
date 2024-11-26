@@ -23,12 +23,6 @@ description: "Recognise, describe and retrieve data within an image with great a
 
 <Info>Either `url` or `file_store_key` should be provided not both.</Info>
 
-<Info>
-Supported file types:
-- **Images**: JPEG, JPG, PNG
-- **Documents**: Multi-page PDFs (up to 20 pages per API request)
-</Info>
-
 ## Prompt Example
 
 - **`String`**
@@ -56,6 +50,12 @@ Supported file types:
 <ResponseField name="success" type="boolean">
   Indicates whether the call was successful.
 </ResponseField>
+
+<Info>
+Supported file types:
+- **Images**: JPEG, JPG, PNG
+- **Documents**: Multi-page PDFs (up to 20 pages per API request)
+</Info>
 
 <RequestExample>
 
