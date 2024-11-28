@@ -7,7 +7,9 @@ description: "Turn text to human-like AI voices with low latency and great quali
 ### Body
 
 <ParamField body="text" type="string">
-  The text to generate speech from.
+  The text to generate speech from. Character Limits:
+  - Standard TTS: 1,500 characters
+  - Voice Cloning TTS: 500 characters
 </ParamField>
 
 <ParamField body="accent" type="string" default="en-US-female-27">
