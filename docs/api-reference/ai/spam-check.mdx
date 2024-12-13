@@ -6,8 +6,16 @@ description: "Perform spam check analysis on a given text in seconds."
 
 ### Body
 
-<ParamField body="text" type="string | string[]" required>
+<ParamField body="text" type="string" required>
   The text to check for spam.
+
+The `text` parameter supports two types:
+
+  <ul>
+    <li>`string` - `{"text":"Your text here"}`</li>
+    <li>`Array<string>` - `{"text":["Text 1", "Text 2"]}`</li>
+  </ul>
+
 </ParamField>
 
 <Snippet file="header.mdx" />
