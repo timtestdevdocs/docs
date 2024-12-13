@@ -34,45 +34,45 @@
   "tabs": [
     {
       "name": "API Reference",
-      "url": "api-reference"
+      "url": "docs/api-reference"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction"]
+      "pages": ["docs/introduction"]
     },
     {
         "group": "Quick Start",
         "pages": [
           {
           "group": "Node.js",
-          "pages": ["quick-start/node/introduction", "quick-start/node/next",  "quick-start/node/window-ai"]
+          "pages": ["docs/quick-start/node/introduction", "docs/quick-start/node/next",  "docs/quick-start/node/window-ai"]
         },
         {
           "group": "Python",
-          "pages": ["quick-start/python/introduction"]
+          "pages": ["docs/quick-start/python/introduction"]
         }
       ]
 
     },
     {
       "group": "Integration",
-      "pages": ["integration/groq", "integration/langchain", "integration/zapier", "integration/aries"]
+      "pages": ["docs/integration/groq", "docs/integration/langchain", "docs/integration/zapier", "docs/integration/aries"]
     },
     {
       "group": "Examples",
       "pages": [
-        "examples/ai/vocr",
-        "examples/ai/prompt-engine",
-        "examples/file-upload",
-        "examples/ai/sql",
-        "examples/nsfw",
-        "examples/geo-search",
-        "examples/speech-to-text",
-        "examples/text-to-speech",
-        "examples/image-generation",
-        "use-cases/screenshot"
+        "docs/examples/ai/vocr",
+        "docs/examples/ai/prompt-engine",
+        "docs/examples/file-upload",
+        "docs/examples/ai/sql",
+        "docs/examples/nsfw",
+        "docs/examples/geo-search",
+        "docs/examples/speech-to-text",
+        "docs/examples/text-to-speech",
+        "docs/examples/image-generation",
+        "docs/use-cases/screenshot"
     ]
     },
     {
@@ -80,35 +80,35 @@
       "pages": [
         {
           "group": "Prompt Engine",
-          "pages": ["learn/prompt/introduction"]
+          "pages": ["docs/learn/prompt/introduction"]
         },
       {
         "group": "Webhook",
-        "pages": ["learn/webhook/introduction", "learn/webhook/secure"]
+        "pages": ["docs/learn/webhook/introduction", "docs/learn/webhook/secure"]
       },
       {
         "group": "Web",
-        "pages": ["learn/web/selector"]
+        "pages": ["docs/learn/web/selector"]
       }
     ]
     },
     {
       "group": "Resources",
-      "pages": ["additional-resources/security","additional-resources/jigsawstack-badge", "additional-resources/size-preset", "additional-resources/dns-types", "additional-resources/languages", "additional-resources/speaker-voices"]
+      "pages": ["docs/additional-resources/security","docs/additional-resources/jigsawstack-badge", "docs/additional-resources/size-preset", "docs/additional-resources/dns-types", "docs/additional-resources/languages", "docs/additional-resources/speaker-voices"]
     },
     {
       "group": "API Documentation",
-      "pages": ["api-reference/authentication", "api-reference/error"]
+      "pages": ["docs/api-reference/authentication", "docs/api-reference/error"]
     },
     {
       "group": "",
       "pages": [
-        "api-reference/ai/sentiment",
-        "api-reference/ai/translate",
-        "api-reference/ai/summary",
-        "api-reference/ai/prediction",
-        "api-reference/ai/text-to-sql",
-        "api-reference/ai/image-generation"
+        "docs/api-reference/ai/sentiment",
+        "docs/api-reference/ai/translate",
+        "docs/api-reference/ai/summary",
+        "docs/api-reference/ai/prediction",
+        "docs/api-reference/ai/text-to-sql",
+        "docs/api-reference/ai/image-generation"
       ]
     },
 
@@ -117,59 +117,59 @@
       "pages": [
         {
         "group": "Search",
-        "pages": ["api-reference/web/ai-search","api-reference/web/search-suggestion"]},"api-reference/ai/scrape","api-reference/web/scrape", "api-reference/web/html-to-any"]
+        "pages": ["docs/api-reference/web/ai-search","docs/api-reference/web/search-suggestion"]},"docs/api-reference/ai/scrape","docs/api-reference/web/scrape", "docs/api-reference/web/html-to-any"]
     },
 
     {
       "group": "Prompt Engine",
       "pages": [
-        "api-reference/prompt-engine/create",
-        "api-reference/prompt-engine/run",
-        "api-reference/prompt-engine/retrieve",
-        "api-reference/prompt-engine/list",
-        "api-reference/prompt-engine/delete",
-        "api-reference/prompt-engine/run-direct"
+        "docs/api-reference/prompt-engine/create",
+        "docs/api-reference/prompt-engine/run",
+        "docs/api-reference/prompt-engine/retrieve",
+        "docs/api-reference/prompt-engine/list",
+        "docs/api-reference/prompt-engine/delete",
+        "docs/api-reference/prompt-engine/run-direct"
       ]
     },
     {
       "group": "Vision",
       "pages": [
-        "api-reference/ai/vision",
-        "api-reference/ai/object-detection"
+        "docs/api-reference/ai/vision",
+        "docs/api-reference/ai/object-detection"
       ]
     },
     {
       "group": "Audio",
       "pages": [
-        "api-reference/ai/speech-to-text",
-        "api-reference/ai/text-to-speech",
-        "api-reference/audio/speaker-voice-accents"
+        "docs/api-reference/ai/speech-to-text",
+        "docs/api-reference/ai/text-to-speech",
+        "docs/api-reference/audio/speaker-voice-accents"
       ]
     },
     {
       "group": "Geo",
       "pages": [
-        "api-reference/geo/search",
-        "api-reference/geo/geocode"
+        "docs/api-reference/geo/search",
+        "docs/api-reference/geo/geocode"
       ]
     },
     {
       "group": "Store",
       "pages": [{
         "group": "KV",
-        "pages": ["api-reference/store/kv/add","api-reference/store/kv/get","api-reference/store/kv/delete"]
+        "pages": ["docs/api-reference/store/kv/add","docs/api-reference/store/kv/get","docs/api-reference/store/kv/delete"]
       },{
         "group": "File",
-        "pages": ["api-reference/store/file/add", "api-reference/store/file/get", "api-reference/store/file/delete"]
+        "pages": ["docs/api-reference/store/file/add", "docs/api-reference/store/file/get", "docs/api-reference/store/file/delete"]
       }]
     },
     {
       "group": "Validate",
       "pages": [
-        "api-reference/validate/nsfw",
-        "api-reference/validate/profanity",
-        "api-reference/validate/spellcheck",
-        "api-reference/ai/spam-check"
+        "docs/api-reference/validate/nsfw",
+        "docs/api-reference/validate/profanity",
+        "docs/api-reference/validate/spellcheck",
+        "docs/api-reference/ai/spam-check"
       ]
     }
   ],
