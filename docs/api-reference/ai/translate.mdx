@@ -14,8 +14,15 @@ description: "Translate text from one language to another."
   The language code of the text to translate to.
 </ParamField>
 
-<ParamField body="text" type="string | string[]" required>
-  The text to translate.
+<ParamField body="text" type="string" required>
+ The text to translate.
+
+The `text` parameter supports two types:
+
+  <ul>
+    <li>`string` - `{"text":"Hello, how are you doing"}`</li>
+    <li>`Array<string>` - `{"text":["Hello", "How are you doing"]}`</li>
+  </ul>
 </ParamField>
 
 <Tip>Max text character is 5000.</Tip>
