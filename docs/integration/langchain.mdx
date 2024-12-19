@@ -11,16 +11,16 @@ description: "Unlock the Power of the JigsawStack on LangChain!"
   width="300"
 />
 
-LangChain.js now supports calling [JigsawStack Prompt Engine](https://docs.jigsawstack.com/examples/ai/prompt-engine) and more through the JigsawStack Tool.
+LangChain.js now supports calling [JigsawStack Prompt Engine](/docs/examples/ai/prompt-engine) and more through the JigsawStack Tool.
 
 The JigsawStack Tool provides your agent with several capabilities:
 
-* **JigsawStack Prompt Engine**: Use JigsawStack's advanced prompt engine to interact with large language models.
-* **JigsawStackAIScrape**: Scrape web content with AI-powered precision.
-* **JigsawStackAISearch**: Perform AI-powered web searches for high-quality results.
-* **JigsawStackSpeechToText**: Transcribe audio or video using the powerful large V3 Whisper model.
-* **JigsawStackVOCR**: Recognize and extract data from images via AI prompts.
-* **JigsawStackTextToSQL**: Generate SQL queries from natural language text.
+- **JigsawStack Prompt Engine**: Use JigsawStack's advanced prompt engine to interact with large language models.
+- **JigsawStackAIScrape**: Scrape web content with AI-powered precision.
+- **JigsawStackAISearch**: Perform AI-powered web searches for high-quality results.
+- **JigsawStackSpeechToText**: Transcribe audio or video using the powerful large V3 Whisper model.
+- **JigsawStackVOCR**: Recognize and extract data from images via AI prompts.
+- **JigsawStackTextToSQL**: Generate SQL queries from natural language text.
 
 ## Setup
 
@@ -55,7 +55,9 @@ import { JigsawStackPromptEngine } from "@langchain/jigsawstack";
 
 export const run = async () => {
   const model = new JigsawStackPromptEngine();
-  const res = await model.invoke("Tell me about the leaning tower of pisa?\nAnswer:");
+  const res = await model.invoke(
+    "Tell me about the leaning tower of pisa?\nAnswer:"
+  );
   console.log({ res });
 };
 ```
@@ -74,10 +76,12 @@ import {
 // Example of AI Scrape Tool
 const aiScrapeTool = new JigsawStackAIScrape({
   params: {
-    element_prompts: ["Pro plan"]
-  }
+    element_prompts: ["Pro plan"],
+  },
 });
-const scrapeResult = await aiScrapeTool.invoke("https://jigsawstack.com/pricing");
+const scrapeResult = await aiScrapeTool.invoke(
+  "https://jigsawstack.com/pricing"
+);
 console.log({ scrapeResult });
 
 // Example of AI Search Tool
@@ -88,8 +92,8 @@ console.log({ searchResult });
 // Example of VOCR Tool
 const vocrTool = new JigsawStackVOCR({
   params: {
-    prompt: "Describe the image in detail"
-  }
+    prompt: "Describe the image in detail",
+  },
 });
 const vocrResult = await vocrTool.invoke("https://link-to-image.jpg");
 console.log({ vocrResult });
@@ -101,10 +105,13 @@ await sttTool.invoke("https://link-to-video.mp4");
 // Example of Text-to-SQL Tool
 const sqlTool = new JigsawStackTextToSQL({
   params: {
-    sql_schema: "CREATE TABLE Transactions (transaction_id INT PRIMARY KEY, user_id INT NOT NULL, ... )",
+    sql_schema:
+      "CREATE TABLE Transactions (transaction_id INT PRIMARY KEY, user_id INT NOT NULL, ... )",
   },
 });
-const sqlResult = await sqlTool.invoke("Generate a query to get transactions exceeding $10,000.");
+const sqlResult = await sqlTool.invoke(
+  "Generate a query to get transactions exceeding $10,000."
+);
 console.log({ sqlResult });
 ```
 
@@ -134,15 +141,17 @@ const tools = [
 
 const executor = await initializeAgentExecutorWithOptions(tools, model, {
   agentType: "zero-shot-react-description",
-  verbose: true
+  verbose: true,
 });
 
 const res = await executor.invoke({
-  input: "Kokkalo Restaurant Santorini"
+  input: "Kokkalo Restaurant Santorini",
 });
 
 console.log(res.output);
 ```
+
 <Info>
-For more details, visit the [LangChain documentation](https://js.langchain.com/docs/integrations/llms/jigsawstack/).
+  For more details, visit the [LangChain
+  documentation](https://js.langchain.com/docs/integrations/llms/jigsawstack/).
 </Info>
