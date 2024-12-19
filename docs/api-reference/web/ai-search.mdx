@@ -1,10 +1,10 @@
 ---
 title: "AI Search"
-api: "GET https://api.jigsawstack.com/v1/web/search"
+api: "POST https://api.jigsawstack.com/v1/web/search"
 description: "Effortlessly search the Web and get access to high-quality results powered with AI."
 ---
 
-### Query
+### Body
 
 <ParamField query="query" type="string" required>
   The search value. The maximum query character length is 400.
@@ -25,6 +25,10 @@ description: "Effortlessly search the Web and get access to high-quality results
 
 <ParamField query="spell_check" type="boolean" default="true">
   Spell check the search query.
+</ParamField>
+
+<ParamField query="byo_urls" type="string[]">
+  Return results from the specified URLs.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -64,7 +68,7 @@ result = jigsawstack.web.search({
 ```
 
 ```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/web/search?query=Time Square New Yor' \
+curl --location --request POST 'https://api.jigsawstack.com/v1/web/search?query=Time Square New Yor' \
 --header 'x-api-key: <your-api-key>'
 ```
 
