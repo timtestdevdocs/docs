@@ -17,7 +17,7 @@ description: "Run a prompt directly."
 ### Body
 
 <ParamField body="prompt" type="string" required>
-  The prompt. Maximum character limit is `3000`. Prompt supports dynamic inputs.
+  The prompt. Maximum character limit is `500000`. Prompt supports dynamic inputs.
   See example below.
 </ParamField>
 
@@ -31,6 +31,7 @@ description: "Run a prompt directly."
 
 <ParamField body="prompt_guard" type="array<string>">
   Include this to guard against unsafe inputs from users. Supported values:
+
   <ul>
     <li>`defamation`</li>
     <li>`privacy`</li>
@@ -44,7 +45,7 @@ description: "Run a prompt directly."
 </ParamField>
 
 <ParamField body="input_values" type="object">
-  Key-value pair for dynamic prompt variables.
+  Key-value pair for dynamic prompt variables. Each input value has a character limit of 500000
 </ParamField>
 
 <ParamField body="stream" type="boolean" defaultValue="false">
@@ -57,7 +58,7 @@ description: "Run a prompt directly."
 
 ## Sample Prompt Payload
 
-- String `return_prompt`
+* String `return_prompt`
 
 ```javascript
 {
@@ -76,7 +77,7 @@ description: "Run a prompt directly."
   }
 ```
 
-- `Array<object>` `return_prompt`
+* `Array<object>` `return_prompt`
 
 ```javascript
 
@@ -97,7 +98,7 @@ description: "Run a prompt directly."
   }
 ```
 
-- Object `return_prompt`
+* Object `return_prompt`
 
 ```javascript
 {
@@ -124,73 +125,69 @@ description: "Run a prompt directly."
 </ResponseField>
 
 <RequestExample>
+  ```javascript Node.js
+  import { JigsawStack } from "jigsawstack";
 
-```javascript Node.js
-import { JigsawStack } from "jigsawstack";
+  const jigsawstack = JigsawStack({
+    apiKey: "your-api-key",
+  });
 
-const jigsawstack = JigsawStack({
-  apiKey: "your-api-key",
-});
-
-const result = await jigsawstack.prompt_engine.run_prompt_direct({
-  prompt: "Tell me a story about {about}",
-  inputs: [
-    {
-      key: "about",
-      optional: false,
-      initial_value: "Leaning Tower of Pisa",
-    },
-  ],
-  return_prompt: "Return the result in a markdown format",
-  prompt_guard: ["sexual_content", "defamation"],
-  input_values: {
-    about: "Santorini",
-  },
-});
-```
-
-```python Python
-from jigsawstack import JigsawStack
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-
-params = {
-    "prompt": "Tell me a story about {about}",
-    "inputs": [
-        {
-            "key": "about",
-            "optional": false,
-            "initial_value": "Leaning Tower of Pisa",
-        },
+  const result = await jigsawstack.prompt_engine.run_prompt_direct({
+    prompt: "Tell me a story about {about}",
+    inputs: [
+      {
+        key: "about",
+        optional: false,
+        initial_value: "Leaning Tower of Pisa",
+      },
     ],
-    "return_prompt": "Return the result in a markdown format",
-    "prompt_guard": ["sexual_content", "defamation"],
-    "input_values": {
-      "about": "Santorini",
-    }
-}
-result = jigsawstack.prompt_engine.run_prompt_direct(params)
-```
+    return_prompt: "Return the result in a markdown format",
+    prompt_guard: ["sexual_content", "defamation"],
+    input_values: {
+      about: "Santorini",
+    },
+  });
+  ```
 
-```bash cURL
-    curl --location --request POST 'https://api.jigsawstack.com/v1/prompt_engine/{id}' \
-    --header 'Content-Type: application/json' \
-    --header "x-api-key: <your-api-here>" \
-    --data '{
-     prompt: "Tell me a story about {about}",
-     return_prompt: "Return the result in a markdown format",
-    }'
-```
+  ```python Python
+  from jigsawstack import JigsawStack
 
+  jigsawstack = JigsawStack(api_key="your-api-key")
+
+  params = {
+      "prompt": "Tell me a story about {about}",
+      "inputs": [
+          {
+              "key": "about",
+              "optional": false,
+              "initial_value": "Leaning Tower of Pisa",
+          },
+      ],
+      "return_prompt": "Return the result in a markdown format",
+      "prompt_guard": ["sexual_content", "defamation"],
+      "input_values": {
+        "about": "Santorini",
+      }
+  }
+  result = jigsawstack.prompt_engine.run_prompt_direct(params)
+  ```
+
+  ```bash cURL
+      curl --location --request POST 'https://api.jigsawstack.com/v1/prompt_engine/{id}' \
+      --header 'Content-Type: application/json' \
+      --header "x-api-key: <your-api-here>" \
+      --data '{
+       prompt: "Tell me a story about {about}",
+       return_prompt: "Return the result in a markdown format",
+      }'
+  ```
 </RequestExample>
 
 <ResponseExample>
-
-```json Response
-{
-  "success": true,
-  "result": "Once upon a time, in the beautiful city of Pisa, Italy, there stood a magnificent tower that would become known as the Leaning Tower of Pisa. The tower was originally built as a bell tower for the nearby cathedral, and construction began in 1173.\n\nHowever, as the tower began to rise higher and higher, it became clear that there was a problem - the tower was leaning to one side. The soft ground beneath the tower was unable to support its weight, causing it to tilt at an angle. Despite efforts to correct the lean during construction, the tower continued to lean as it was completed in 1372.\n\nOver the centuries, the Leaning Tower of Pisa became a famous landmark and a symbol of Italy. Tourists from all over the world flocked to Pisa to see the tower and take pictures of themselves pretending to hold it up or push it over.\n\nDespite its precarious lean, the tower has managed to stand for over 800 years, thanks to various engineering efforts to stabilize it. In the 20th century, further measures were taken to prevent the tower from toppling over, including removing soil from underneath the tower and installing counterweights.\n\nToday, the Leaning Tower of Pisa remains one of the most iconic and beloved landmarks in Italy, attracting millions of visitors each year who marvel at its unique tilt and the incredible feat of engineering that has kept it standing for so long. It serves as a reminder that even the most flawed and imperfect structures can still be beautiful and enduring."
-}
-```
-
+  ```json Response
+  {
+    "success": true,
+    "result": "Once upon a time, in the beautiful city of Pisa, Italy, there stood a magnificent tower that would become known as the Leaning Tower of Pisa. The tower was originally built as a bell tower for the nearby cathedral, and construction began in 1173.\n\nHowever, as the tower began to rise higher and higher, it became clear that there was a problem - the tower was leaning to one side. The soft ground beneath the tower was unable to support its weight, causing it to tilt at an angle. Despite efforts to correct the lean during construction, the tower continued to lean as it was completed in 1372.\n\nOver the centuries, the Leaning Tower of Pisa became a famous landmark and a symbol of Italy. Tourists from all over the world flocked to Pisa to see the tower and take pictures of themselves pretending to hold it up or push it over.\n\nDespite its precarious lean, the tower has managed to stand for over 800 years, thanks to various engineering efforts to stabilize it. In the 20th century, further measures were taken to prevent the tower from toppling over, including removing soil from underneath the tower and installing counterweights.\n\nToday, the Leaning Tower of Pisa remains one of the most iconic and beloved landmarks in Italy, attracting millions of visitors each year who marvel at its unique tilt and the incredible feat of engineering that has kept it standing for so long. It serves as a reminder that even the most flawed and imperfect structures can still be beautiful and enduring."
+  }
+  ```
 </ResponseExample>
