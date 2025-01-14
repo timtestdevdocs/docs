@@ -8,7 +8,7 @@ description: "Recognise, describe and retrieve data within an image with great a
 
 <ParamField body="prompt" type="string | Array<string>">
   The prompt used to describe the image. Default prompt is `Describe the image
-        in detail.`
+          in detail.`
 </ParamField>
 
 <ParamField body="url" type="string">
@@ -94,43 +94,36 @@ description: "Recognise, describe and retrieve data within an image with great a
 
 <ResponseExample>
   ```json Response
-  {
-  success: true,
-  context: {
-    Title: [ 'Webhook Trigger' ],
-    Description: [
-      'Select events that will trigger the webhook will listen to. At least one event must be selected.',
-      'Success logs',
-      'Error logs',
-      'Endpoint',
-      'Create'
+{
+  "success": true,
+  "context": {
+    "Title": [
+      "Webhook Trigger"
+    ],
+    "Description": [
+      "Select events that will trigger the webhook will listen to. At least one event must be selected.",
+      "Success logs",
+      "Error logs",
+      "Endpoint",
+      "Create"
     ]
   },
-  width: 2880,
-  height: 1800,
-  tags: [
-    'text',
-    'screenshot',
-    'software',
-    'multimedia software',
-    'graphics software'
+  "width": 2880,
+  "height": 1800,
+  "tags": [
+    "text",
+    "screenshot",
+    "software",
+    "multimedia software",
+    "graphics software"
   ],
-  has_text: true,
-  sections: [
+  "has_text": true,
+  "sections": [
     {
-      text: 'default V Feedback Help Docs\n' +
-        'Overview APIs Keys Logs Team Billing Settings\n' +
-        'General\n' +
-        'Webhook Trigger\n' +
-        'Webhook Select events that will trigger the webhook will listen to. At least one event must be selected.\n' +
-        'Domains\n' +
-        'Success logs Error logs\n' +
-        'Endpoint @\n' +
-        'https://\n' +
-        'Create',
-      lines: [Array]
+      "text": "",
+      "lines": []
     }
   ]
-  }
+}
   ```
 </ResponseExample>
