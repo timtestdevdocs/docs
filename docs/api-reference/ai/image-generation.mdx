@@ -1,81 +1,57 @@
 ---
 title: "Image generation"
 api: "POST https://api.jigsawstack.com/v1/ai/image_generation"
-description: "Generate an image based on the given text by employing AI models like stable diffusion, DALL·E, and other pertinent models."
+description: "Generate an image based on the given text by employing AI models like Flux, Stable Diffusion, DALL·E, and other top models."
 ---
 
-<Tip>
-  Supported values for the `size` parameter.
-  <ul>
-    <li>`small` = 256x256</li>
-    <li>`medium` = 512x512</li>
-    <li>`large` = 1024x1024</li>
-  </ul>
-</Tip>
-
 ### Body
+<Note>
+ The default model used for image generation is `flux`. The best model will be automatically chosen by the image generation model based on the prompt.
+<Note> 
 
 <ParamField body="prompt" type="string" required>
-  The prompt to generate the image from. Maximum prompt character length is
-  1000.
+  The text prompt to generate the image from. Must be between 1-5000 characters.
 </ParamField>
 
-<ParamField body="model" type="string" default="sdxl" initialValue="sdxl">
-  The model to use for the generation. Default is `sdxl`
+<ParamField body="aspect_ratio" type="string" default="4:3">
+  The aspect ratio of the generated image. 
   <ul>
-    <li>`sd1.5` - Stable Diffusion v1.5</li>
-    <li>`sdxl` - Stable Diffusion XL</li>
-    <li>`ead1.0` - Anime Diffusion </li>
-    <li>`rv1.3` - Realistic Vision v1.3</li>
-    <li>`rv3` - Realistic Vision v3</li>
-    <li>`rv5.1` - Realistic Vision v5.1</li>
-    <li>`ar1.8` - AbsoluteReality v1.8.1</li>
-
-  </ul>
-
-</ParamField>
-
-<ParamField body="size" type="string" initialValue="medium" default="medium">
-  The size of the image. Default is `medium`.
-  <ul>
-    <li>small</li>
-    <li>medium</li>
-    <li>large</li>
+        <li>`1:1`</li>
+        <li>`16:9`</li>
+        <li>`21:9`</li>
+        <li>`3:2`</li>
+        <li>`2:3`</li>
+        <li>`4:5`</li>
+        <li>`5:4`</li>
+        <li>`3:4`</li>
+        <li>`4:3`</li>
+        <li>`9:16`</li>
+        <li>`9:21`</li>
   </ul>
 </ParamField>
 
 <ParamField body="width" type="number">
-  The width of the image.
+  The width of the image. Must be between 256-1920 pixels.
 </ParamField>
 
 <ParamField body="height" type="number">
-  The height of the image.
+  The height of the image. Must be between 256-1920 pixels.
+</ParamField>
+
+<ParamField body="steps" type="number">
+  The number of denoising steps. Must be between 1-90. Higher values produce better quality images but take more time to generate.
 </ParamField>
 
 <ParamField body="advance_config" type="object">
   <Expandable title="advance_config" defaultOpen="false">
     <ParamField body="negative_prompt" type="string">
-      Text input that will not guide the image generation. 
-    </ParamField>
-    <ParamField body="steps" type="number">
-     The number of denoising steps. More steps usually can produce higher quality images, but take more time to generate.
+      Text describing what you don't want in the image. 
     </ParamField>
     <ParamField body="guidance" type="number">
-     Higer guidance forces the model to better follow the prompt, but result in lower quality output.
+     Higer guidance forces the model to better follow the prompt, but result in lower quality output. Must be between 1-28.
     </ParamField>
     <ParamField body="seed" type="number">
      Makes generation deterministic. Using the same seed and set of parameters will produce identical image each time.
-    </ParamField>
-    <ParamField body="scheduler" type="string" default="dpmsolver++">
-     Scheduler used to denoise the encoded image latents. The default value is `dpmsolver++`.
-       <ul>
-        <li>`dpmsolver++`</li>
-        <li>`lms`</li>
-        <li>`ddim`</li>
-        <li>`euler`</li>
-        <li>`euler_a`</li>
-        <li>`pndm`</li>
-     </ul>
     </ParamField>
 
   </Expandable>
@@ -95,9 +71,13 @@ const jigsawstack = JigsawStack({
 });
 
 const result = await jigsawstack.image_generation({
-  prompt: "cute siamese cat",
-  size: "small",
-  model: "sdxl",
+  prompt: "cute siamese cat playing with yarn in a sunlit room",
+  aspect_ratio: "1:1",
+  steps: 30,
+  advance_config: {
+    negative_prompt: "blurry, low quality",
+    guidance: 7.5
+  }
 });
 
 const data = await result.blob();
@@ -108,8 +88,13 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/image_generati
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
-    "prompt": "cute siamese cat",
-    "size": "small",
+    "prompt": "cute siamese cat playing with yarn in a sunlit room",
+    "aspect_ratio": "1:1",
+    "steps": 30,
+    "advance_config": {
+      "negative_prompt": "blurry, low quality",
+      "guidance": 7.5
+    }
 }'
 ```
 

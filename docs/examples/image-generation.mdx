@@ -3,7 +3,7 @@ title: "Image Generation"
 description: "Learn how use JigsawStack SDK to generate a images"
 ---
 
-Generate an image based on the given text by employing AI models like stable diffusion, DALL·E, and other pertinent models.
+Generate an image based on the given text by employing AI models like Flux, Stable Diffusion, DALL·E, and other top models.
 
 ## Initial requirements
 
@@ -23,7 +23,7 @@ const jigsawstack = JigsawStack({
 });
 
 const result = await jigsawstack.image_generation({
-  prompt: "cute siamese cat",
+  prompt: "cute siamese cat playing with yarn in a sunlit room",
 });
 
 const data = await result.blob();
@@ -31,15 +31,23 @@ const data = await result.blob();
 
 </CodeGroup>
 
-### Specify output image size
+### Specify the image aspect rato
 
-Supported sizes are:
+Supported ratios are:
 
 <ul>
-  <li>`small`</li>
-  <li>`medium`</li>
-  <li>`large`</li>
-</ul>
+        <li>`1:1`</li>
+        <li>`16:9`</li>
+        <li>`21:9`</li>
+        <li>`3:2`</li>
+        <li>`2:3`</li>
+        <li>`4:5`</li>
+        <li>`5:4`</li>
+        <li>`3:4`</li>
+        <li>`4:3`</li>
+        <li>`9:16`</li>
+        <li>`9:21`</li>
+  </ul>
 
 <CodeGroup>
 
@@ -51,8 +59,8 @@ const jigsawstack = JigsawStack({
 });
 
 const result = await jigsawstack.image_generation({
-  prompt: "cute siamese cat",
-  size: "medium",
+  prompt: "cute siamese cat playing with yarn in a sunlit room",
+  aspect_ratio: "1:1",
 });
 
 const data = await result.blob();
