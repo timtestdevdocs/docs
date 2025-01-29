@@ -4,10 +4,11 @@ api: "POST https://api.jigsawstack.com/v1/ai/image_generation"
 description: "Generate an image based on the given text by employing AI models like Flux, Stable Diffusion, DALL·E, and other top models."
 ---
 
-### Body
 <Note>
  The default model used for image generation is `flux`. The best model will be automatically chosen by the image generation model based on the prompt.
-<Note> 
+</Note> 
+
+### Body
 
 <ParamField body="prompt" type="string" required>
   The text prompt to generate the image from. Must be between 1-5000 characters.
