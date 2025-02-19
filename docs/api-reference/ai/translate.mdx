@@ -12,6 +12,7 @@ description: "Translate text from one language to another."
 
 <ParamField body="target_language" type="string" required>
   The language code of the text to translate to.
+  All supported language codes can be found [here](https://jigsawstack.com/docs/additional-resources/languages)
 </ParamField>
 
 <ParamField body="text" type="string" required>
@@ -60,7 +61,7 @@ from jigsawstack import JigsawStack
 
 jigsawstack = JigsawStack(api_key="your-api-key")
 
-result = jigsawstack.translate({ text: "Hello, world!", target_language:"es", current_language:"en" });
+result = jigsawstack.translate({ text: "Hello, world!", target_language:"es", current_language:"en" })
 ```
 
 ```bash cURL
