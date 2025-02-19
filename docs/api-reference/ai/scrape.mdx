@@ -239,6 +239,19 @@ description: "Scrape any website instantly and get consistent structured data in
   Scrape data of the page
 </ResponseField>
 
+<ResponseField name="link" type="array<object>">
+  <Expandable title="properties" defaultOpen="true">
+    <ResponseField name="href" type="string">
+      Href link
+    </ResponseField>
+
+    <ResponseField name="text" type="string">
+      Href link description
+    </ResponseField>
+
+  </Expandable>
+</ResponseField>
+
 <RequestExample>
 
 ```javascript JavaScript
@@ -303,6 +316,36 @@ result =  jigsawstack.web.ai_scrape({
             "p.font-mono:contains('Custom')"
         ]
     },
+    "link": [
+        {
+            "href": "https://supabase.com/dashboard/new?plan=free",
+            "text": "Start for Free"
+        },
+        {
+            "href": "https://supabase.com/dashboard/new?plan=pro",
+            "text": "Get Started"
+        },
+        {
+            "href": "https://supabase.com/pricing#addon-compute",
+            "text": "Need more compute?"
+        },
+        {
+            "href": "https://supabase.com/dashboard/new?plan=team",
+            "text": "Get Started"
+        },
+        {
+            "href": "https://supabase.com/pricing#addon-compute",
+            "text": "Need more compute?"
+        },
+        {
+            "href": "https://forms.supabase.com/enterprise",
+            "text": "Contact Us"
+        },
+        {
+            "href": "https://supabase.com/#compare-plans",
+            "text": "Compare Plans"
+        },
+    ],
     "data": [
         {
             "key": "Plan header",
