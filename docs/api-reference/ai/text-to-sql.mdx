@@ -15,6 +15,10 @@ description: "Generate semantically correct SQL queries from text."
   `file_store_key` is specified.
 </ParamField>
 
+<ParamField body="database" type="string">
+  The database type to generate SQL for. Supported values are `postgresql`, `mysql`, or `sqlite`.
+</ParamField>
+
 <ParamField body="file_store_key" type="string">
   The key used to store the database schema on Jigsawstack file
   [Storage](/docs/api-reference/store/file/add). Not required if `sql_schema` is
