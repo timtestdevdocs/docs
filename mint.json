@@ -156,9 +156,6 @@
     {
       "group": "Store",
       "pages": [{
-        "group": "KV",
-        "pages": ["docs/api-reference/store/kv/add","docs/api-reference/store/kv/get","docs/api-reference/store/kv/delete"]
-      },{
         "group": "File",
         "pages": ["docs/api-reference/store/file/add", "docs/api-reference/store/file/get", "docs/api-reference/store/file/delete"]
       }]

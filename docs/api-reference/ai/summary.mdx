@@ -7,11 +7,8 @@ description: "Generate smarter text summaries with AI"
 ### Body
 
 <ParamField body="text" type="string" required>
-  The text to summarize. Maximum character is 300,000. Not required if
-  `file_store_key` or `url` is specified.
-
-The `text` parameter supports two types:
-
+  The text to summarize. Maximum character is 300,000. Not required if `file_store_key` or `url` is specified.
+  The `text` parameter supports two types:
   <ul>
     <li>`string` - `{"text":"Your long text here"}`</li>
     <li>`Array<string>` - `{"text":["Long text 1", "Long text 2"]}`</li>

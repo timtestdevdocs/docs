@@ -52,8 +52,8 @@ For more information on selectors click [here](/docs/learn/web/selector)
 <ParamField body="goto_options" type="object">
   This parameter allows you to specify custom page-load behavior.
   <Expandable title="property" defaultOpen="true">
-    <ParamField body="timeout" type="number" default="15000">
-      Custom timeout in milliseconds. Maximum value is 15000(15seconds)
+    <ParamField body="timeout" type="number" default="30000">
+      Custom timeout in milliseconds. Maximum value is 40000(40 seconds)
     </ParamField>
     <ParamField body="wait_until" type="string" default="load">
       <ul>
@@ -80,7 +80,7 @@ Wait for.
   <ParamField body="value" type="string|number">
     This parameter can accept one of three options:
     <ul>
-      <li>A number indicating the time in milliseconds to wait. Maximum timeout  `15000`</li>
+      <li>A number indicating the time in milliseconds to wait. Maximum timeout  `40000`</li>
       <li>A valid selector to wait for. e.g `h2`</li>
        <li>
         A function to be ran within the page's context, inside of the browser.
