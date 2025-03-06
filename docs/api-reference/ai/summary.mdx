@@ -1,56 +1,71 @@
 ---
 title: "Summary"
 api: "POST https://api.jigsawstack.com/v1/ai/summary"
-description: "Generate smarter text summaries with AI"
+description: "Generate concise, intelligent summaries of text or documents with AI"
 ---
+
+## Request Parameters
 
 ### Body
 
-<ParamField body="text" type="string" required>
-  The text to summarize. Maximum character is 300,000. Not required if `file_store_key` or `url` is specified.
-  The `text` parameter supports two types:
-  <ul>
-    <li>`string` - `{"text":"Your long text here"}`</li>
-    <li>`Array<string>` - `{"text":["Long text 1", "Long text 2"]}`</li>
-  </ul>
-</ParamField>
-
-<ParamField body="type" type="string" default="text">
-  The summary result type. Supported values are:
-  <ul>
-    <li>`text` - Returns a text summary.</li>
-    <li>`points` - Returns an array with points summary.</li>
-  </ul>
+<ParamField body="text" type="string | string[]">
+  The text content to summarize. Maximum 300,000 characters.
+  Not required if `url` or `file_store_key` is specified.
+  The `text` parameter supports two formats:
+  - Single string: `{"text":"Your long text here"}`
+  - Array of strings: `{"text":["Long text 1", "Long text 2"]}`
 </ParamField>
 
 <ParamField body="url" type="string">
-  The PDF url. Not required if `file_store_key` or `text` is specified.
+  URL of a PDF document to summarize.
+  Not required if `text` or `file_store_key` is provided.
 </ParamField>
 
 <ParamField body="file_store_key" type="string">
-  The key used to store the PDF on Jigsawstack file
-  [Storage](/docs/api-reference/store/file/add). Not required if `url` or `text`
-  is specified.
+  The key of a stored PDF document to summarize from Jigsawstack File 
+  [Storage](/docs/api-reference/store/file/add).
+  Not required if `text` or `url` is provided.
+</ParamField>
+
+<ParamField body="type" type="string" default="text">
+  The format of the summary:
+  - `text`: Returns a continuous paragraph summary
+  - `points`: Returns bullet points as an array of strings
 </ParamField>
 
 <ParamField body="max_points" type="number" default="2">
-  The maximum number of points to return. Maximum is 100.
+  The maximum number of bullet points to generate when `type` is set to `points`.
+  Maximum value is 100.
 </ParamField>
 
 <ParamField body="max_characters" type="number">
-  The maximum number of characters to summarize text into
+  The maximum number of characters in the generated summary.
 </ParamField>
 
 <Snippet file="header.mdx" />
 
-### Response
+## Response Structure
+
+The response structure varies based on the `type` parameter:
+
+### When `type` is "text" (default)
 
 <ResponseField name="success" type="boolean">
   Indicates whether the call was successful.
 </ResponseField>
 
-<ResponseField name="summary" type="string | array<string>">
-  The summarized text.
+<ResponseField name="summary" type="string">
+  The generated summary as a continuous paragraph.
+</ResponseField>
+
+### When `type` is "points"
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="summary" type="string[]">
+  An array of strings, where each string represents a bullet point in the summary.
 </ResponseField>
 
 <RequestExample>
@@ -62,8 +77,31 @@ const jigsawstack = JigsawStack({
   apiKey: "your-api-key",
 });
 
-const result = await jigsawstack.summary({
-  text: "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral.",
+// Text paragraph summary
+const textSummary = await jigsawstack.summary({
+  text: "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city's Cathedral Square, after the Cathedral and the Baptistry. The tower's tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure's weight. The tilt increased in the decades before the structure was completed in the 14th century. It gradually increased until the structure was stabilized by efforts in the late 20th and early 21st centuries. The height of the tower is 55.86 metres (183.27 feet) from the ground on the low side and 56.67 metres (185.93 feet) on the high side. The width of the walls at the base is 2.44 m (8 ft 0.06 in). Its weight is estimated at 14,500 tonnes. The tower has 296 or 294 steps; the seventh floor has two fewer steps on the north-facing staircase.",
+  type: "text"
+});
+
+// Bullet point summary
+const bulletSummary = await jigsawstack.summary({
+  text: "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city's Cathedral Square, after the Cathedral and the Baptistry. The tower's tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure's weight. The tilt increased in the decades before the structure was completed in the 14th century. It gradually increased until the structure was stabilized by efforts in the late 20th and early 21st centuries. The height of the tower is 55.86 metres (183.27 feet) from the ground on the low side and 56.67 metres (185.93 feet) on the high side. The width of the walls at the base is 2.44 m (8 ft 0.06 in). Its weight is estimated at 14,500 tonnes. The tower has 296 or 294 steps; the seventh floor has two fewer steps on the north-facing staircase.",
+  type: "points",
+  max_points: 5
+});
+
+// Summarize from a PDF URL
+const pdfSummary = await jigsawstack.summary({
+  url: "https://example.com/document.pdf",
+  type: "text",
+  max_characters: 500
+});
+
+// Summarize from file storage
+const fileSummary = await jigsawstack.summary({
+  file_store_key: "documents/report.pdf",
+  type: "points",
+  max_points: 4
 });
 ```
 
@@ -72,15 +110,44 @@ from jigsawstack import JigsawStack
 
 jigsawstack = JigsawStack(api_key="your-api-key")
 
-result = jigsawstack.summary({"text": "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral." })
+# Text paragraph summary
+text_summary = jigsawstack.summary({
+  "text": "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city's Cathedral Square, after the Cathedral and the Baptistry. The tower's tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure's weight. The tilt increased in the decades before the structure was completed in the 14th century. It gradually increased until the structure was stabilized by efforts in the late 20th and early 21st centuries.",
+  "type": "text"
+})
+
+# Bullet point summary
+bullet_summary = jigsawstack.summary({
+  "text": "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city's Cathedral Square, after the Cathedral and the Baptistry. The tower's tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure's weight. The tilt increased in the decades before the structure was completed in the 14th century. It gradually increased until the structure was stabilized by efforts in the late 20th and early 21st centuries.",
+  "type": "points",
+  "max_points": 5
+})
+
+# Summarize from a PDF URL
+pdf_summary = jigsawstack.summary({
+  "url": "https://example.com/document.pdf",
+  "type": "text"
+})
 ```
 
 ```bash cURL
+# Text paragraph summary
 curl --location --request POST 'https://api.jigsawstack.com/v1/ai/summary' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
-    "text": "Lorem Ipsum!"
+    "text": "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city'\''s Cathedral Square, after the Cathedral and the Baptistry. The tower'\''s tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure'\''s weight.",
+    "type": "text"
+}'
+
+# Bullet point summary
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/summary' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "text": "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city'\''s Cathedral Square, after the Cathedral and the Baptistry. The tower'\''s tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure'\''s weight.",
+    "type": "points",
+    "max_points": 3
 }'
 ```
 
@@ -88,10 +155,45 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/summary' \
 
 <ResponseExample>
 
-```json Response
+```json Text Summary Response
 {
   "success": true,
-  "summary": ""
+  "summary": "The Leaning Tower of Pisa is the bell tower of Pisa Cathedral.  
+              Its tilt, caused by a weak foundation, worsened over centuries, 
+              eventually stabilized in the late 20th/early 21st century.  It's 
+              55.86-56.67 meters high and weighs ~14,500 tonnes."
+}
+```
+
+```json Bullet Points Summary Response
+{
+  "success": true,
+  "summary": [
+    "The Leaning Tower of Pisa is the campanile of Pisa Cathedral.",
+    "It's the third-oldest structure in Pisa Cathedral Square.",
+    "The tilt began in the 12th century due to an inadequate foundation.",
+    "The tilt worsened before completion in the 14th century.",
+    "The tower was stabilized in recent centuries."
+  ]
+}
+```
+
+```json PDF Summary Response
+{
+  "success": true,
+  "summary": "This document examines the economic impacts of climate change across different sectors. It highlights how rising temperatures affect agricultural productivity, with crop yields expected to decline by 15-25% by 2050 in tropical regions. Coastal cities face increased flooding risks, potentially causing $1 trillion in damages annually by 2050. The report recommends immediate investment in renewable energy infrastructure and climate-resilient agriculture to mitigate these impacts."
+}
+```
+
+```json File Storage Points Summary Response
+{
+  "success": true,
+  "summary": [
+    "The financial report shows a 12% increase in quarterly revenue, driven primarily by expansion in the APAC region.",
+    "Operating expenses decreased by 5% due to successful implementation of automation technologies.",
+    "New product lines contributed 18% to overall sales, exceeding initial projections by 7%.",
+    "The company plans to invest $25M in R&D over the next fiscal year to maintain competitive advantage."
+  ]
 }
 ```
 

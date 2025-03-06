@@ -1,65 +1,86 @@
 ---
 title: "Sentiment"
 api: "POST https://api.jigsawstack.com/v1/ai/sentiment"
-description: "Perform line by line sentiment analysis on any text."
+description: "Perform line by line sentiment analysis on any text with detailed emotion detection."
 ---
+
+## Request Parameters
 
 ### Body
 
 <ParamField body="text" type="string" required>
-  The text to be analyzed
+  The text content to analyze for sentiment and emotion.
 </ParamField>
 
 <Snippet file="header.mdx" />
 
-### Response
+## Response Structure
 
 <ResponseField name="success" type="boolean">
   Indicates whether the call was successful.
 </ResponseField>
 
 <ResponseField name="sentiment" type="object">
-<Expandable title="Toggle object" defaultOpen="true">
-<ResponseField name="sentiment" type="string">
-  Indicates the sentiment the text. E.g `positive` or `negative`
-</ResponseField>
-<ResponseField name="emotion" type="string">
-  Indicates the type of emotion inferred from the text. 
-  Supported emotions:
-  <ul>
-  <li>`anger`</li>
-  <li>`fear`</li>
-  <li>`sadness`</li>
-  <li>`happiness`</li>
-  <li>`anxiety`</li>
-  <li>`disgust`</li>
-  <li>`embarrassment`</li>
-  <li>`love`</li>
-  <li>`surprise`</li>
-  <li>`shame`</li>
-  <li>`envy`</li>
-  <li>`satisfaction`</li>
-  <li>`self-confidence`</li>
-  <li>`annoyance`</li>
-  <li>`boredom`</li>
-  <li>`hatred`</li>
-  <li>`compassion`</li>
-  <li>`guilt`</li>
-  <li>`loneliness`</li>
-  <li>`depression`</li>
-  <li>`pride`</li>
-  <li>`neutral`</li>
-  </ul>
-</ResponseField>
-<ResponseField name="score" type="number">
-  Indicates the sentiment score of the text.
-</ResponseField>
-<ResponseField name="sentences" type="Array<object>">
-  The list of texts with associated sentiment result
-</ResponseField>
-
-</Expandable>
-
+  Contains the sentiment analysis results.
+  
+  <Expandable title="Sentiment Object Structure" defaultOpen>
+    <ResponseField name="emotion" type="string">
+      The overall emotional tone of the text. Supported emotions include:
+      
+      - `anger`
+      - `fear`
+      - `sadness`
+      - `happiness`
+      - `anxiety`
+      - `disgust`
+      - `embarrassment`
+      - `love`
+      - `surprise`
+      - `shame`
+      - `envy`
+      - `satisfaction`
+      - `self-confidence`
+      - `annoyance`
+      - `boredom`
+      - `hatred`
+      - `compassion`
+      - `guilt`
+      - `loneliness`
+      - `depression`
+      - `pride`
+      - `neutral`
+    </ResponseField>
+    
+    <ResponseField name="sentiment" type="string">
+      The overall sentiment classification, typically "positive", "negative", or "neutral".
+    </ResponseField>
+    
+    <ResponseField name="score" type="number">
+      Numerical score representing the sentiment intensity, typically on a scale from 0 to 1, where higher values indicate more positive sentiment.
+    </ResponseField>
+    
+    <ResponseField name="sentences" type="array">
+      Detailed sentiment analysis broken down by individual sentences.
+      
+      <Expandable title="Sentence Object">
+        <ResponseField name="text" type="string">
+          The sentence text.
+        </ResponseField>
+        
+        <ResponseField name="emotion" type="string">
+          The emotional tone detected in this specific sentence (same supported emotions as above).
+        </ResponseField>
+        
+        <ResponseField name="sentiment" type="string">
+          The sentiment classification for this specific sentence.
+        </ResponseField>
+        
+        <ResponseField name="score" type="number">
+          Numerical sentiment score for this specific sentence.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
 </ResponseField>
 
 <RequestExample>
@@ -71,7 +92,20 @@ const jigsawstack = JigsawStack({
   apiKey: "your-api-key",
 });
 
-const result = await jigsawstack.sentiment({ text: "I am happy!" });
+// Simple happy message
+const result = await jigsawstack.sentiment({
+  text: "I am happy!"
+});
+
+// More complex mixed sentiment
+const mixedResult = await jigsawstack.sentiment({
+  text: "I love this product! It's amazing. However, the delivery was a bit late."
+});
+
+// Analyzing customer feedback
+const customerResult = await jigsawstack.sentiment({
+  text: "The interface is intuitive and easy to use. Customer service responded quickly, but they couldn't solve my issue completely."
+});
 ```
 
 ```python Python
@@ -79,7 +113,20 @@ from jigsawstack import JigsawStack
 
 jigsawstack = JigsawStack(api_key="your-api-key")
 
-result = jigsawstack.sentiment({ text: "I am happy!" })
+# Simple happy message
+result = jigsawstack.sentiment({
+  "text": "I am happy!"
+})
+
+# More complex mixed sentiment
+mixed_result = jigsawstack.sentiment({
+  "text": "I love this product! It's amazing. However, the delivery was a bit late."
+})
+
+# Analyzing customer feedback
+customer_result = jigsawstack.sentiment({
+  "text": "The interface is intuitive and easy to use. Customer service responded quickly, but they couldn't solve my issue completely."
+})
 ```
 
 ```bash cURL
@@ -95,22 +142,75 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/sentiment' \
 
 <ResponseExample>
 
-```json Response
+```json Simple Sentiment Response
 {
   "success": true,
   "sentiment": {
     "emotion": "happiness",
     "sentiment": "positive",
-    "score": 0.95,
+    "score": 0.9,
     "sentences": [
       {
-        "text": "I am so happy",
+        "text": "I am happy!",
+        "emotion": "happiness",
+        "sentiment": "positive",
+        "score": 0.9
+      }
+    ]}
+}
+```
+
+```json Mixed Sentiment Response
+{
+  "success": true,
+  "sentiment": {
+    "emotion": "happiness",
+    "sentiment": "positive",
+    "score": 0.85,
+    "sentences": [
+      {
+        "text": "I love this product!",
+        "emotion": "love",
+        "sentiment": "positive",
+        "score": 0.9
+      },
+      {
+        "text": "It's amazing.",
         "emotion": "happiness",
         "sentiment": "positive",
         "score": 0.95
+      },
+      {
+        "text": "However, the delivery was a bit late.",
+        "emotion": "frustration",
+        "sentiment": "negative",
+        "score": 0.7
       }
-    ]
-  }
+    ]}
+}
+```
+
+```json Customer Feedback Response
+{
+  "success": true,
+  "sentiment": {
+    "emotion": "frustration",
+    "sentiment": "negative",
+    "score": 0.8,
+    "sentences": [
+      {
+        "text": "The interface is intuitive and easy to use.",
+        "emotion": "happiness",
+        "sentiment": "positive",
+        "score": 0.9
+      },
+      {
+        "text": "Customer service responded quickly, but they couldn't solve my issue completely.",
+        "emotion": "frustration",
+        "sentiment": "negative",
+        "score": 0.7
+      }
+    ]}
 }
 ```
 

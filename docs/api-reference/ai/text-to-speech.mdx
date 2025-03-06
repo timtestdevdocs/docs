@@ -1,53 +1,156 @@
 ---
 title: "Text to Speech"
 api: "POST https://api.jigsawstack.com/v1/ai/tts"
-description: "Turn text to human-like AI voices with low latency and great quality."
+description: "Transform text into natural-sounding human-like AI voices with low latency and exceptional quality."
 ---
+
+## Overview
+
+The Text to Speech API converts written text into lifelike speech with options for:
+- Multiple languages and accents (700+ different voices)
+- Voice cloning from audio samples
+- High-quality, natural-sounding output
+
+## Request Parameters
 
 ### Body
 
-<ParamField body="text" type="string">
-  The text to generate speech from. Character Limits: - Standard TTS: 1,500
-  characters - Voice Cloning TTS: 500 characters
+<ParamField body="text" type="string" required>
+  The text to generate speech from.
+  
+  Character Limits:
+  - Standard TTS: 5-1,500 characters
+  - Voice Cloning TTS: 5-500 characters
 </ParamField>
 
 <ParamField body="accent" type="string" default="en-US-female-27">
-  Speeker voice accent. Not required if either `speaker_clone_file_store_key` or
-  `speaker_clone_url` is specified.
+  Speaker voice accent. Not required if using voice cloning.
+  
+  Over 700 different voices across multiple languages are available. See the [Speaker Voice Accents documentation](https://docs.jigsawstack.com/additional-resources/speaker-voices) for the complete list.
 </ParamField>
 
 <ParamField body="speaker_clone_url" type="string">
-  The url to the voice clone sample. Not required if
-  `speaker_clone_file_store_key` is specified.
+  URL to an audio file for voice cloning. The API will analyze this sample and generate speech that mimics the voice characteristics. Not required if `speaker_clone_file_store_key` is specified.
+  
+  When using voice cloning, the text is limited to 500 characters maximum.
 </ParamField>
 
 <ParamField body="speaker_clone_file_store_key" type="string">
-  The key used to store the voice sample file on Jigsawstack File
-  [Storage](/docs/api-reference/store/file/add). Not required if
-  `speaker_clone_url` is specified.
+  The key of an audio file stored in Jigsawstack File [Storage](/docs/api-reference/store/file/add) to use for voice cloning. Not required if `speaker_clone_url` is specified.
+  
+  When using voice cloning, the text is limited to 500 characters maximum.
 </ParamField>
 
 <Info>
-  See [Speaker Voice
-  Accents](https://gist.github.com/iamNarcisse/f2a8c9a42b8334566f85a3ab3344c5a1)
-  for more speaker accents.
+  Only one voice source is needed. You can either specify an `accent` for built-in voices, or provide a voice sample via `speaker_clone_url` or `speaker_clone_file_store_key` for voice cloning.
 </Info>
 
 <Snippet file="header.mdx" />
 
-### Response
+## Response
 
-<ResponseField name="success" type="boolean">
-  Indicates whether the call was successful.
-</ResponseField>
+The API returns the generated audio file directly in the response body as binary data, typically in MP3 format.
+
+## Popular Voice Accents
+
+Here's a selection of commonly used voice accents:
+
+### English Voices
+
+- `en-US-female-27` (Default) - American English, Female 27
+- `en-US-male-24` - American English, Male 24
+- `en-GB-female-2` - British English, Female 2
+- `en-GB-male-2` - British English, Male 2
+- `en-AU-female-2` - Australian English, Female 2
+- `en-IN-female-3` - Indian English, Female 3
+
+### Other Languages
+
+- `fr-FR-female-12` - French, Female 12
+- `de-DE-female-1` - German, Female 1
+- `es-ES-female-9` - Spanish (Spain), Female 9
+- `es-MX-female-12` - Spanish (Mexico), Female 12
+- `ja-JP-female-14` - Japanese, Female 14
+- `zh-CN-female-15` - Chinese (Mandarin), Female 15
+
+## Voice Cloning
+
+Voice cloning allows you to generate speech that mimics a specific voice from an audio sample. This is useful for creating custom voices for applications, personalized assistants, or consistent brand voices.
+
+### Using Voice Cloning
+
+1. Provide a clear audio sample using either:
+   - `speaker_clone_url` - Direct URL to an audio file
+   - `speaker_clone_file_store_key` - Key to a file in Jigsawstack storage
+
+2. Provide the text you want to convert to speech (maximum 500 characters)
+
+3. The API will analyze the sample and generate speech with similar voice characteristics
+
+### Best Practices for Voice Cloning
+
+- Use high-quality audio samples with minimal background noise
+- Samples should be clear speech without music or other voices
+- Longer samples (30+ seconds) provide better voice modeling
+- For best results, the sample should contain speech similar in tone and style to your desired output
+
+## Getting Available Voices
+
+To retrieve the complete list of available voices programmatically:
+
+```javascript
+const voices = await jigsawstack.audio.speaker_voice_accents();
+console.log(voices);
+```
+
+```python
+voices = jigsawstack.audio.speaker_voice_accents()
+print(voices)
+```
+
+## Common Use Cases
+
+- **Content Creation**: Generate voiceovers for videos, podcasts, and presentations
+- **Accessibility**: Convert written content to audio for visually impaired users
+- **Interactive Applications**: Build voice assistants, language learning apps, and interactive experiences
+- **Customer Service**: Create automated voice responses for customer service systems
+- **Localization**: Translate and vocalize content in multiple languages
+- **Personalization**: Clone a specific voice for consistent brand messaging
 
 <RequestExample>
 
 ```javascript Javascript
-const resp = await jigsawstack.audio.text_to_speech({
-  text: "Hello, how are you doing?",
+import { JigsawStack } from "jigsawstack";
+import fs from 'fs';
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
 });
-const data = await resp.blob();
+
+// Basic usage with default voice
+const response = await jigsawstack.audio.text_to_speech({
+  text: "Hello, how are you doing? This is a demonstration of the text-to-speech API using the default voice."
+});
+
+// Save the audio to a file
+const buffer = await response.arrayBuffer();
+fs.writeFileSync('output.mp3', Buffer.from(buffer));
+
+// Using a custom accent/voice
+const customVoice = await jigsawstack.audio.text_to_speech({
+  text: "Hello, I'm speaking with a British accent now. Isn't that lovely?",
+  accent: "en-GB-female-2"
+});
+
+// Voice cloning from a URL
+const clonedVoice = await jigsawstack.audio.text_to_speech({
+  text: "This is my cloned voice speaking through the text-to-speech API.",
+  speaker_clone_url: "https://example.com/my-voice-sample.mp3"
+});
+
+// Get available voices
+const voices = await jigsawstack.audio.speaker_voice_accents();
+console.log(voices);
 ```
 
 ```python Python
@@ -55,16 +158,61 @@ from jigsawstack import JigsawStack
 
 jigsawstack = JigsawStack(api_key="your-api-key")
 
-result = jigsawstack.audio.text_to_speech({ "text": "Hello, how are you doing?"})
+# Basic usage with default voice
+response = jigsawstack.audio.text_to_speech({
+  "text": "Hello, how are you doing? This is a demonstration of the text-to-speech API using the default voice."
+})
+
+# Save the audio to a file
+with open('output.mp3', 'wb') as f:
+    f.write(response.content)
+    
+# Using a custom accent/voice
+custom_voice = jigsawstack.audio.text_to_speech({
+  "text": "Hello, I'm speaking with a British accent now. Isn't that lovely?",
+  "accent": "en-GB-female-2"
+})
+
+# Voice cloning from a URL
+cloned_voice = jigsawstack.audio.text_to_speech({
+  "text": "This is my cloned voice speaking through the text-to-speech API.",
+  "speaker_clone_url": "https://example.com/my-voice-sample.mp3"
+})
+
+# Get available voices
+voices = jigsawstack.audio.speaker_voice_accents()
+print(voices)
 ```
 
 ```bash cURL
+# Basic usage with default voice
 curl --location --request POST 'https://api.jigsawstack.com/v1/ai/tts' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
-    text: "Hello, how are you doing?",
-}'
+    "text": "Hello, how are you doing? This is a demonstration of the text-to-speech API using the default voice."
+}' \
+--output output.mp3
+
+# Using a custom accent/voice
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/tts' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "text": "Hello, I'\''m speaking with a British accent now. Isn'\''t that lovely?",
+    "accent": "en-GB-female-2"
+}' \
+--output british_voice.mp3
+
+# Voice cloning from a URL
+curl --location --request POST 'https://api.jigsawstack.com/v1/ai/tts' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    "text": "This is my cloned voice speaking through the text-to-speech API.",
+    "speaker_clone_url": "https://example.com/my-voice-sample.mp3"
+}' \
+--output cloned_voice.mp3
 ```
 
 </RequestExample>

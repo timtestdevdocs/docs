@@ -1,13 +1,17 @@
 ---
 title: "Text to SQL"
 api: "POST https://api.jigsawstack.com/v1/ai/sql"
-description: "Generate semantically correct SQL queries from text."
+description: "Generate semantically correct SQL queries from natural language prompts."
 ---
+
+## Request Parameters
 
 ### Body
 
 <ParamField body="prompt" type="string" required>
-  The prompt that will be translated to an SQL query.
+  The natural language prompt that will be translated to an SQL query.
+  
+  Minimum length: 10 characters
 </ParamField>
 
 <ParamField body="sql_schema" type="string">
@@ -26,10 +30,14 @@ description: "Generate semantically correct SQL queries from text."
 
 <Snippet file="header.mdx" />
 
-### Response
+## Response Structure
 
 <ResponseField name="success" type="boolean">
   Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="sql" type="string">
+  The generated SQL query based on the natural language prompt and provided schema.
 </ResponseField>
 
 <RequestExample>
@@ -42,11 +50,21 @@ const jigsawstack = JigsawStack({
 });
 
 const result = await jigsawstack.text_to_sql({
-  prompt:
-    "Generate a query to get transactions that amount exceed 10000 and sort by when created",
-  sql_schema:
-    "CREATE TABLE Transactions (transaction_id INT PRIMARY KEY, user_id INT NOT NULL,total_amount DECIMAL(10, 2 NOT NULL, transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,status VARCHAR(20) DEFAULT 'pending',FOREIGN KEY(user_id) REFERENCES Users(user_id))",
+  prompt: "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
+  sql_schema: `
+    CREATE TABLE Transactions (
+      transaction_id INT PRIMARY KEY, 
+      user_id INT NOT NULL,
+      total_amount DECIMAL(10, 2) NOT NULL, 
+      transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      status VARCHAR(20) DEFAULT 'pending',
+      FOREIGN KEY(user_id) REFERENCES Users(user_id)
+    )
+  `,
+  database: "postgresql"
 });
+
+console.log(result.sql);
 ```
 
 ```python Python
@@ -55,10 +73,22 @@ from jigsawstack import JigsawStack
 jigsawstack = JigsawStack(api_key="your-api-key")
 
 params = {
-    "prompt": "Generate a query to get transactions that amount exceed 10000 and sort by when created",
-    "sql_schema": "CREATE TABLE Transactions (transaction_id INT PRIMARY KEY, user_id INT NOT NULL,total_amount DECIMAL(10, 2 NOT NULL, transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,status VARCHAR(20) DEFAULT 'pending',FOREIGN KEY(user_id) REFERENCES Users(user_id))"
+    "prompt": "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
+    "sql_schema": """
+    CREATE TABLE Transactions (
+      transaction_id INT PRIMARY KEY, 
+      user_id INT NOT NULL,
+      total_amount DECIMAL(10, 2) NOT NULL, 
+      transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      status VARCHAR(20) DEFAULT 'pending',
+      FOREIGN KEY(user_id) REFERENCES Users(user_id)
+    )
+    """,
+    "database": "postgresql"
 }
+
 result = jigsawstack.text_to_sql(params)
+print(result["sql"])
 ```
 
 ```bash cURL
@@ -66,8 +96,9 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/sql' \
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
-    "prompt": "Generate a query to get transactions that amount exceed 10000 and sort by when created",
-    "sql_schema": "CREATE TABLE Transactions (transaction_id INT PRIMARY KEY, user_id INT NOT NULL,total_amount DECIMAL(10, 2 NOT NULL, transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,status VARCHAR(20) DEFAULT 'pending',FOREIGN KEY(user_id) REFERENCES Users(user_id))"
+    "prompt": "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
+    "sql_schema": "CREATE TABLE Transactions (transaction_id INT PRIMARY KEY, user_id INT NOT NULL, total_amount DECIMAL(10, 2) NOT NULL, transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, status VARCHAR(20) DEFAULT '\''pending'\'', FOREIGN KEY(user_id) REFERENCES Users(user_id))",
+    "database": "postgresql"
 }'
 ```
 
@@ -78,7 +109,7 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/sql' \
 ```json Response
 {
   "success": true,
-  "sql": "SELECT t.transaction_id, t.user_id, t.total_amount, t.transaction_date, t.status FROM Transactions t WHERE t.total_amount > 10000 ORDER BY t.transaction_date NULLS LAST;"
+  "sql": "SELECT * FROM Transactions WHERE total_amount > 10000 ORDER BY transaction_date;"
 }
 ```
 
