@@ -201,19 +201,17 @@ from jigsawstack import JigsawStack
 jigsawstack = JigsawStack(api_key="your-api-key")
 
 try:
-    with open("beach_house.jpg", "rb") as image_file:
-        image_data = image_file.read()
-        result = jigsawstack.store.upload(
-            image_data, {"filename": "beach_house.jpg", "overwrite": True}
-        )
+  with open("translate_telugu.png", "rb") as image_file:
+    image_data = image_file.read()
+    result = jigsawstack.store.upload(
+      image_data, {"filename": "translate_telugu.png", "overwrite": True}
+      )
 
-        // Retrieve the file key.
-       fileKey = result.key
-     result = jigsawstack.vision.vocr({"file_store_key":fileKey,"prompt" : "Describe the image in detail"})
-
+    fileKey = result.json()["key"]
+    result = jigsawstack.vision.vocr({"file_store_key":fileKey,"prompt" : "Describe the image in detail"})
 
 except JigsawStackError as err:
-    print(f"An error occurred: {err}")
+  print(f"An error occurred: {err}")
 ```
 
 </CodeGroup>
