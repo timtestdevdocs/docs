@@ -3,7 +3,7 @@ title: "Supported Languages"
 description: "Complete list of languages supported across JigsawStack APIs"
 ---
 
-## Language Support Overview
+## Overview
 
 Our APIs currently support **184 languages** from around the world, including right-to-left (RTL) languages. Each language is identified by a unique ISO 639-1 two-letter code.
 
@@ -11,11 +11,11 @@ Our APIs currently support **184 languages** from around the world, including ri
 
 When making requests to JigsawStack APIs that support language specification, use the two-letter language code in your request parameters:
 
-```javascript
-// Example API request translating Engligh to Spanish
+```javascript Example
+// Translating Engligh to Spanish
 const result = await jigsawstack.translate({
-  current_language: "en", // Using the language code for English
-  target_language: "es", // Using the language code for Spanish
+  current_language: "en", // language code for English
+  target_language: "es", //  language code for Spanish
   text: "Hello, world!", 
 });
 ```
