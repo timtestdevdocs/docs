@@ -4,207 +4,164 @@ api: "POST https://api.jigsawstack.com/v1/ai/scrape"
 description: "Scrape any website instantly and get consistent structured data in seconds without writing any css selector code"
 ---
 
+## Request Parameters
+
 ### Body
 
-<ParamField body="url" type="string" required>
-  URL of the page to scrape
+<ParamField body="url" type="string">
+  URL of the page to scrape. Either `url` or `html` is required, but not both.
+</ParamField>
+
+<ParamField body="html" type="string">
+  HTML content to scrape. Either `url` or `html` is required, but not both.
 </ParamField>
 
 <ParamField body="element_prompts" type="array<string>" required>
-  Items on the page to scrape. E.g. Plan price, Plan title
+  Items on the page to scrape (maximum 5). E.g. "Plan price", "Plan title"
+</ParamField>
+
+<ParamField body="root_element_selector" type="string" default="main">
+  CSS selector to limit the scope of scraping to a specific element and its children
+</ParamField>
+
+<ParamField body="page_position" type="number" default="1">
+  For pagination, the current page number (minimum: 1)
 </ParamField>
 
 <ParamField body="advance_config" type="object">
-  Advance configurations
-  <Expandable title="property" defaultOpen="true">
-    <ParamField body="console" type="boolean"></ParamField>
-    <ParamField body="network" type="boolean"></ParamField>
-    <ParamField body="cookies" type="boolean"></ParamField>
+  Advanced configurations
+  <Expandable title="Properties">
+    <ParamField body="console" type="boolean">
+      Tracks console messages emitted when JavaScript within the page calls console API methods
+    </ParamField>
+    <ParamField body="network" type="boolean">
+      Tracks network response information such as URL, method, status, headers, and body
+    </ParamField>
+    <ParamField body="cookies" type="boolean">
+      Tracks cookie information
+    </ParamField>
   </Expandable>
 </ParamField>
 
 <ParamField body="http_headers" type="object">
-  This parameter allows you set header properties. e.g Authentication header
+  Custom HTTP headers to send with requests (key-value pairs)
 </ParamField>
 
 <ParamField body="reject_request_pattern" type="array<string>">
-  Intercepting requests
-  <ul>
-    <li>jpg</li>
-    <li>png</li>
-  </ul>
+  Array of patterns to intercept and block requests (e.g., ["jpg", "png"])
 </ParamField>
 
 <ParamField body="goto_options" type="object">
-  This parameter allows you to specify custom page-load behavior.
-  <Expandable title="property" defaultOpen="true">
-    <ParamField body="timeout" type="number" default="15000">
-      Custom timeout in milliseconds. Maximum value is 15000(15seconds)
+  Custom page-load behavior settings
+  <Expandable title="Properties">
+    <ParamField body="timeout" type="number" default="60000">
+      Custom timeout in milliseconds (maximum: 120000, or 2 minutes)
     </ParamField>
-    <ParamField body="wait_until" type="string" default="load">
+    <ParamField body="wait_until" type="string" default="networkidle2">
+      Page load event to wait for:
       <ul>
-        <li>load</li>
-        <li>domcontentloaded</li>
-        <li>networkidle0</li>
-        <li>networkidle2</li>
+        <li>`load` - Wait until the load event is fired</li>
+        <li>`domcontentloaded` - Wait until the DOMContentLoaded event is fired</li>
+        <li>`networkidle0` - Wait until there are no network connections for at least 500ms</li>
+        <li>`networkidle2` - Wait until there are no more than 2 network connections for at least 500ms</li>
       </ul>
     </ParamField>
   </Expandable>
 </ParamField>
 
 <ParamField body="wait_for" type="object">
-  Specifies conditions under which an operation should wait before proceeding.
-  <Expandable title="property" defaultOpen="true">
-    <ParamField body="mode" type="string">
-      Supported values:
+  Wait condition before scraping
+  <Expandable title="Properties">
+    <ParamField body="mode" type="string" required>
+      Type of waiting condition:
       <ul>
-        <li>`timeout`</li>
-        <li>`selector`</li>
-        <li>`function`</li>
+        <li>`timeout` - Wait for a specified time</li>
+        <li>`selector` - Wait for a specified CSS selector to appear</li>
+        <li>`function` - Wait for a specified function to return true</li>
       </ul>
     </ParamField>
-    <ParamField body="value" type="string|number">
-      This parameter can accept one of three options:
+    <ParamField body="value" type="string|number" required>
+      The value corresponding to the selected mode:
       <ul>
-        <li>
-          A number indicating the time in milliseconds to wait. Maximum timeout
-          `15000`
-        </li>
-        <li>A valid selector to wait for. e.g `h2`</li>
-        <li>
-          A function to be ran within the page's context, inside of the browser.
-          e.g `() => document.querySelector('h2')`
-        </li>
+        <li>For `timeout`: Number of milliseconds to wait (maximum: 60000)</li>
+        <li>For `selector`: CSS selector to wait for (e.g., "h2.title")</li>
+        <li>For `function`: JavaScript function as a string (e.g., "() => document.querySelector('h2')")</li>
       </ul>
     </ParamField>
   </Expandable>
 </ParamField>
 
-<ParamField body="cookies" type="array<CookieParameter>">
-  Set cookie(s)
-    <Expandable title="CookieParameter" defaultOpen="true">
+<ParamField body="cookies" type="array<object>">
+  Cookies to set for the page request
+  <Expandable title="Cookie Object Properties">
     <ParamField body="name" type="string" required>
-     Cookie name.
+      Cookie name
     </ParamField>
     <ParamField body="value" type="string" required>
-     Cookie value.
+      Cookie value
     </ParamField>
     <ParamField body="url" type="string">
-     The request-URI to associate with the setting of the cookie. This value can affect the default domain, path, source port, and source scheme values of the created cookie.
+      The URL to associate with the cookie (either `url` or `domain` is required)
     </ParamField>
     <ParamField body="domain" type="string">
-     Cookie domain.
+      Cookie domain (either `url` or `domain` is required)
     </ParamField>
-    <ParamField body="path" type="string">
-     Cookie path.
-    </ParamField>
-     <ParamField body="secure" type="boolean">
-      True if cookie is secure.
+    <ParamField body="secure" type="boolean">
+      Whether the cookie is secure (HTTPS only)
     </ParamField>
     <ParamField body="httpOnly" type="boolean">
-      True if cookie is http-only.
+      Whether the cookie is HTTP-only
     </ParamField>
-     <ParamField body="sameSite" type="string">
-     Cookie SameSite type.Supported values:
-      <ul>
-        <li>`Strict`</li>
-        <li>`Lax`</li>
-        <li>`None`</li>
-      </ul>
+    <ParamField body="sameParty" type="boolean">
+      Whether the cookie is same-party
     </ParamField>
-     <ParamField body="expires" type="number">
-    Cookie expiration date, session cookie if not set.
+    <ParamField body="expires" type="number">
+      Cookie expiration timestamp
     </ParamField>
     <ParamField body="priority" type="string">
-       Cookie Priority. Supported values:
-     <ul>
-        <li>`Low`</li>
-        <li>`Medium`</li>
-        <li>`High`</li>
-      </ul>
+      Cookie priority: "Low", "Medium", or "High"
     </ParamField>
-
-    <ParamField body="sameParty" type="boolean">
-     True if cookie is SameParty.
-    </ParamField>
-      <ParamField body="partitionKey" type="string">
-        Cookie partition key. The site of the top-level URL the browser was visiting
-        at the start of the request to the endpoint that set the cookie. If not set,
-        the cookie will be set as not partitioned.
-      </ParamField>
-
-    <ParamField body="sourcePort" type="number">
-    Cookie source port. Valid values are {-1, [1, 65535]}, -1 indicates an unspecified port. An unspecified port value allows protocol clients to emulate legacy cookie scope for the port. This is a temporary ability and it will be removed in the future.
-    </ParamField>
-
-    <ParamField body="sourceScheme" type="string">
-     Cookie source scheme type. Supported values:
-      <ul>
-        <li>`Secure`</li>
-        <li>`NonSecure`</li>
-        <li>`Unset`</li>
-      </ul>
-    </ParamField>
-
   </Expandable>
-
 </ParamField>
 
 <ParamField body="size_preset" type="string">
-  The screen size preset to use. Supported values are:
-  <ul>
-    <li>`QVGA`</li>
-    <li>`VGA`</li>
-    <li>`SVGA`</li>
-    <li>`HD`</li>
-    <li>`HD+`</li>
-    <li>`SXGA`</li>
-    <li>`FHD`</li>
-    <li>`2K`</li>
-    <li>`2K QHD`</li>
-    <li>`5K`</li>
-    <li>`4K UHD`</li>
-  </ul>
+  Predefined screen size preset (e.g., "HD", "FHD", "4K UHD")
 </ParamField>
 
-<ParamField body="is_mobile" type="boolean">
-  Sets the viewport to mobile.
+<ParamField body="is_mobile" type="boolean" default="false">
+  Whether to emulate a mobile device viewport
 </ParamField>
 
-<ParamField body="scale" type="number" initialValue="1" default="1">
-  The device scale factor. The default value is 1.
+<ParamField body="scale" type="number" default="1">
+  Device scale factor (minimum: 1)
 </ParamField>
 
 <ParamField body="width" type="number" default="1920">
-  The width of the viewport.
+  Viewport width in pixels
 </ParamField>
 
 <ParamField body="height" type="number" default="1080">
-  The height of the viewport
+  Viewport height in pixels
 </ParamField>
 
 <ParamField body="force_rotate_proxy" type="boolean">
-  When enabled, this option forces a proxy rotation on every request. Note:
-  Enabling this feature incurs an extra API request cost. For example, for every
-  single request, you will be billed for two.
+  Whether to force proxy rotation for each request (incurs additional costs)
 </ParamField>
 
 <ParamField body="byo_proxy" type="object">
-  Allows you to specify any proxy for the scraping task.
-  <Expandable title="property" defaultOpen="true">
-    <ParamField body="server" type="string">
-      The proxy server url. E.g `https://{username}:{password}@proxy.com`
+  Bring-your-own-proxy configuration
+  <Expandable title="Properties">
+    <ParamField body="server" type="string" required>
+      Proxy server URL (e.g., "https://username:password@proxy.example.com:8080")
     </ParamField>
     <ParamField body="auth" type="object">
-      Authentication credentials. If the credentials are already included in the
-      server URL (e.g., `https://{username}:{password}@proxy.com`), there is no
-      need to provide the `auth` parameter.
-      <Expandable title="credentials" defaultOpen="true">
-        <ParamField body="username" type="string">
-          The authentication username.
+      Authentication credentials (optional if included in server URL)
+      <Expandable title="Properties">
+        <ParamField body="username" type="string" required>
+          Proxy username
         </ParamField>
-        <ParamField body="password" type="string">
-          The authentication password.
+        <ParamField body="password" type="string" required>
+          Proxy password
         </ParamField>
       </Expandable>
     </ParamField>
@@ -213,57 +170,121 @@ description: "Scrape any website instantly and get consistent structured data in
 
 <Snippet file="header.mdx" />
 
-### Response
+## Response Structure
 
 <ResponseField name="success" type="boolean">
-  Indicates whether the call was successful.
+  Indicates whether the call was successful
 </ResponseField>
 
 <ResponseField name="page_position" type="number">
-  The page position.
+  The current page position when paginating through results
 </ResponseField>
 
 <ResponseField name="page_position_length" type="number">
-  The page position length.
+  The total number of pages available
 </ResponseField>
 
 <ResponseField name="context" type="record<string, array<string>>">
-  The page context
+  A map of element prompt keys to arrays of extracted text content from matched elements
 </ResponseField>
 
 <ResponseField name="selectors" type="record<string, array<string>>">
-  The page selector
+  A map of element prompt keys to arrays of CSS selectors that were used to find matching elements
 </ResponseField>
 
 <ResponseField name="data" type="array<object>">
-  Scrape data of the page
+  Detailed scrape data from the page
+  <Expandable title="Data Object Structure">
+    <ResponseField name="key" type="string">
+      The element prompt this data relates to
+    </ResponseField>
+    <ResponseField name="selector" type="string">
+      The CSS selector used to find this element
+    </ResponseField>
+    <ResponseField name="results" type="array<object>">
+      Array of matched elements with their details
+      <Expandable title="Result Object">
+        <ResponseField name="html" type="string">
+          The HTML content of the matched element
+        </ResponseField>
+        <ResponseField name="text" type="string">
+          The text content of the matched element
+        </ResponseField>
+        <ResponseField name="attributes" type="array<object>">
+          Array of HTML attributes on the matched element
+          <Expandable title="Attribute Object">
+            <ResponseField name="name" type="string">
+              The attribute name
+            </ResponseField>
+            <ResponseField name="value" type="string">
+              The attribute value
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
 </ResponseField>
 
 <ResponseField name="link" type="array<object>">
-  <Expandable title="properties" defaultOpen="true">
+  Links detected on the page
+  <Expandable title="Link Object">
     <ResponseField name="href" type="string">
-      Href link
+      The URL of the link
     </ResponseField>
-
     <ResponseField name="text" type="string">
-      Href link description
+      The text description of the link
     </ResponseField>
+    <ResponseField name="type" type="string">
+      The type of link, e.g., "a" for anchor links or "img" for image links
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
+<ResponseField name="advance_config" type="object">
+  Captured browser data if enabled in advance_config
+  <Expandable title="Properties">
+    <ResponseField name="console" type="array">
+      Console logs captured during scraping
+    </ResponseField>
+    <ResponseField name="network" type="array">
+      Network requests captured during scraping
+    </ResponseField>
+    <ResponseField name="cookies" type="array">
+      Cookies captured during scraping
+    </ResponseField>
   </Expandable>
 </ResponseField>
 
 <RequestExample>
 
-```javascript JavaScript
+```javascript Javascript
 import { JigsawStack } from "jigsawstack";
 
 const jigsawstack = JigsawStack({
   apiKey: "your-api-key",
 });
 
+// Basic usage - extract pricing information
 const result = await jigsawstack.web.ai_scrape({
   url: "https://supabase.com/pricing",
-  element_prompts: ["Plan title", "Plan price"],
+  element_prompts: ["Plan title", "Plan price"]
+});
+
+// Advanced usage with additional settings
+const advancedResult = await jigsawstack.web.ai_scrape({
+  url: "https://supabase.com/pricing",
+  element_prompts: ["Plan title", "Plan price", "Plan features"],
+  root_element_selector: ".pricing-section",
+  advance_config: {
+    console: true,
+    network: true
+  },
+  wait_for: {
+    mode: "selector",
+    value: ".pricing-card"
+  },
+  is_mobile: false
 });
 ```
 
@@ -279,7 +300,7 @@ result =  jigsawstack.web.ai_scrape({
 ```
 
 ```bash cURL
-    curl -X POST \
+ curl -X POST \
     -H "x-api-key: <your-api-key>" \
     -H "Content-Type: application/json" \
     -d '{"url": "https://supabase.com/pricing", "element_prompts": ["Plan header", "Plan price"]}' \
@@ -289,239 +310,310 @@ result =  jigsawstack.web.ai_scrape({
 </RequestExample>
 
 <ResponseExample>
+
 ```json Response
 {
-    "page_position": 1,
-    "page_position_length": 3,
-    "context": {
-        "Plan header": [
-            "Enterprise",
-            "Enterprise"
-        ],
-        "Plan price": [
-            "Custom"
-        ]
-    },
-    "selectors": {
-        "Plan header": [
-            "h3:contains('Free')",
-            "h3:contains('Pro')",
-            "h3:contains('Team')",
-            "h3:contains('Enterprise')"
-        ],
-        "Plan price": [
-            "p.font-mono:contains('$0')",
-            "p.font-mono:contains('$25')",
-            "p.font-mono:contains('$599')",
-            "p.font-mono:contains('Custom')"
-        ]
-    },
-    "link": [
-        {
-            "href": "https://supabase.com/dashboard/new?plan=free",
-            "text": "Start for Free"
-        },
-        {
-            "href": "https://supabase.com/dashboard/new?plan=pro",
-            "text": "Get Started"
-        },
-        {
-            "href": "https://supabase.com/pricing#addon-compute",
-            "text": "Need more compute?"
-        },
-        {
-            "href": "https://supabase.com/dashboard/new?plan=team",
-            "text": "Get Started"
-        },
-        {
-            "href": "https://supabase.com/pricing#addon-compute",
-            "text": "Need more compute?"
-        },
-        {
-            "href": "https://forms.supabase.com/enterprise",
-            "text": "Contact Us"
-        },
-        {
-            "href": "https://supabase.com/#compare-plans",
-            "text": "Compare Plans"
-        },
+  "page_position": 1,
+  "page_position_length": 3,
+  "context": {
+    "Plan title": [
+      "Free",
+      "Pro",
+      "Team",
+      "Enterprise"
     ],
-    "data": [
-        {
-            "key": "Plan header",
-            "selector": "h3:contains('Free')",
-            "results": [
-                {
-                    "html": "Free",
-                    "text": "Free",
-                    "attributes": [
-                        {
-                            "name": "class",
-                            "value": "text-foreground text-2xl font-normal uppercase flex items-center gap-4 font-mono"
-                        }
-                    ]
-                },
-                {
-                    "html": "Free",
-                    "text": "Free",
-                    "attributes": [
-                        {
-                            "name": "class",
-                            "value": "text-lg xl:text-xl 2xl:text-2xl leading-5 uppercase font-mono font-normal flex items-center"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "Plan header",
-            "selector": "h3:contains('Pro')",
-            "results": [
-                {
-                    "html": "Pro",
-                    "text": "Pro",
-                    "attributes": [
-                        {
-                            "name": "class",
-                            "value": "text-foreground text-2xl font-normal uppercase flex items-center gap-4 font-mono"
-                        }
-                    ]
-                },
-                {
-                    "html": "Pro",
-                    "text": "Pro",
-                    "attributes": [
-                        {
-                            "name": "class",
-                            "value": "text-lg xl:text-xl 2xl:text-2xl leading-5 uppercase font-mono font-normal flex items-center"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "Plan header",
-            "selector": "h3:contains('Team')",
-            "results": [
-                {
-                    "html": "Team",
-                    "text": "Team",
-                    "attributes": [
-                        {
-                            "name": "class",
-                            "value": "text-foreground text-2xl font-normal uppercase flex items-center gap-4 font-mono"
-                        }
-                    ]
-                },
-                {
-                    "html": "Team",
-                    "text": "Team",
-                    "attributes": [
-                        {
-                            "name": "class",
-                            "value": "text-lg xl:text-xl 2xl:text-2xl leading-5 uppercase font-mono font-normal flex items-center"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "Plan header",
-            "selector": "h3:contains('Enterprise')",
-            "results": [
-                {
-                    "html": "Enterprise",
-                    "text": "Enterprise",
-                    "attributes": [
-                        {
-                            "name": "class",
-                            "value": "text-foreground text-2xl font-normal uppercase flex items-center gap-4 font-mono"
-                        }
-                    ]
-                },
-                {
-                    "html": "Enterprise",
-                    "text": "Enterprise",
-                    "attributes": [
-                        {
-                            "name": "class",
-                            "value": "text-lg xl:text-xl 2xl:text-2xl leading-5 uppercase font-mono font-normal flex items-center"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "Plan price",
-            "selector": "p.font-mono:contains('$0')",
-            "results": [
-                {
-                    "html": "$0",
-                    "text": "$0",
-                    "attributes": [
-                        {
-                            "name": "class",
-                            "value": "mt-2 pb-1 font-mono text-5xl"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "Plan price",
-            "selector": "p.font-mono:contains('$25')",
-            "results": [
-                {
-                    "html": "$25",
-                    "text": "$25",
-                    "attributes": [
-                        {
-                            "name": "class",
-                            "value": "mt-2 pb-1 font-mono text-5xl"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "Plan price",
-            "selector": "p.font-mono:contains('$599')",
-            "results": [
-                {
-                    "html": "$599",
-                    "text": "$599",
-                    "attributes": [
-                        {
-                            "name": "class",
-                            "value": "mt-2 pb-1 font-mono text-5xl"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "Plan price",
-            "selector": "p.font-mono:contains('Custom')",
-            "results": [
-                {
-                    "html": "Custom",
-                    "text": "Custom",
-                    "attributes": [
-                        {
-                            "name": "class",
-                            "value": "mt-2 pb-1 font-mono text-4xl"
-                        }
-                    ]
-                }
-            ]
-        }
+    "Plan price": [
+      "$0",
+      "$25",
+      "$599",
+      "Custom"
+    ]
+  },
+  "selectors": {
+    "Plan title": [
+      "h3.text-foreground.text-2xl.font-normal.uppercase.flex.items-center.gap-4.font-mono"
     ],
-    "success": true,
-    "advance_config": {
-        "console": [],
-        "network": [],
-        "cookies": []
+    "Plan price": [
+      "div.text-foreground.flex.items-baseline.text-5xl.font-normal.lg\\:text-4xl.xl\\:text-4xl.border-b.border-default.lg\\:min-h-\\[175px\\].py-8.lg\\:pb-0.lg\\:pt-10 p.mt-2.pb-1.font-mono.text-5xl",
+      "div.text-foreground.flex.items-baseline.text-5xl.font-normal.lg\\:text-4xl.xl\\:text-4xl.border-b.border-default.lg\\:min-h-\\[175px\\].py-6.lg\\:pb-0.pt-6 p.mt-2.pb-1.font-mono.text-5xl",
+      "div.text-foreground.flex.items-baseline.text-5xl.font-normal.lg\\:text-4xl.xl\\:text-4xl.border-b.border-default.lg\\:min-h-\\[175px\\].py-8.lg\\:pb-0.lg\\:pt-10 p.mt-2.pb-1.font-mono.text-4xl"
+    ]
+  },
+  "link": [
+    {
+      "href": "https://supabase.com/dashboard/new?plan=free",
+      "text": "Start for Free",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/dashboard/new?plan=pro",
+      "text": "Get Started",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/pricing#addon-compute",
+      "text": "Need more compute?",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/dashboard/new?plan=team",
+      "text": "Get Started",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/pricing#addon-compute",
+      "text": "Need more compute?",
+      "type": "a"
+    },
+    {
+      "href": "https://forms.supabase.com/enterprise",
+      "text": "Contact Us",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/#compare-plans",
+      "text": " Compare Plans ",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/docs/guides/platform/billing-on-supabase#organization-based-billing",
+      "text": "Learn how billing works",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/docs/guides/platform/compute-add-ons",
+      "text": "Learn about Compute add-ons",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/docs/guides/platform/manage-your-usage/compute",
+      "text": "usage-based billing for compute",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/docs/guides/platform/compute-add-ons",
+      "text": "Compute Add-ons",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/docs/guides/platform/compute-and-disk#disk",
+      "text": "Learn about advanced disk config",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/docs/guides/platform/cost-control#spend-cap",
+      "text": "Learn about Cost Control",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/docs/guides/platform/custom-domains",
+      "text": "Flat fee $10/monthCustom DomainUse your own domain for your Supabase project to present a branded experience to your users.",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/docs/guides/platform/backups",
+      "text": "Starts from $100/monthPoint in Time RecoveryRoll back to any specific point in time, down to the second.",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/dashboard/new?plan=free",
+      "text": "Start for Free",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/dashboard/new?plan=free",
+      "text": "Start for Free",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/dashboard/new?plan=pro",
+      "text": "Get Started",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/dashboard/new?plan=team",
+      "text": "Get Started",
+      "type": "a"
+    },
+    {
+      "href": "https://forms.supabase.com/enterprise",
+      "text": "Contact Us",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.help",
+      "text": "Open a support ticket",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/dashboard",
+      "text": "Start your project",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/contact/sales",
+      "text": "Request a demo",
+      "type": "a"
+    },
+    {
+      "href": "https://supabase.com/_next/image?url=%2Fimages%2Fpricing%2Fcompute%2Fcompute-cube-light-active.svg&w=3840&q=75&dpl=dpl_9pfm3Zop9qyq1VxvYDPz12j4Ed6W",
+      "text": "Compute addon grid",
+      "type": "img"
+    },
+    {
+      "href": "https://supabase.com/_next/image?url=%2Fimages%2Fpricing%2Fcompute%2Fcompute-cube-light-active.svg&w=3840&q=75&dpl=dpl_9pfm3Zop9qyq1VxvYDPz12j4Ed6W",
+      "text": "Compute addon grid",
+      "type": "img"
+    },
+    {
+      "href": "https://supabase.com/_next/image?url=%2Fimages%2Fpricing%2Fcompute%2Fcompute-cube-light-active.svg&w=3840&q=75&dpl=dpl_9pfm3Zop9qyq1VxvYDPz12j4Ed6W",
+      "text": "Compute addon grid",
+      "type": "img"
+    },
+    {
+      "href": "https://supabase.com/_next/image?url=%2Fimages%2Fpricing%2Fcompute%2Fcompute-cube-light.svg&w=3840&q=75&dpl=dpl_9pfm3Zop9qyq1VxvYDPz12j4Ed6W",
+      "text": "Compute addon grid",
+      "type": "img"
+    },
+    {
+      "href": "https://supabase.com/_next/image?url=%2Fimages%2Fpricing%2Fcompute%2Fcompute-grid-light.svg&w=3840&q=75&dpl=dpl_9pfm3Zop9qyq1VxvYDPz12j4Ed6W",
+      "text": "Compute addon grid",
+      "type": "img"
+    },
+    {
+      "href": "https://supabase.com/_next/image?url=%2Fimages%2Fpricing%2Fcustom-domain-on.svg&w=3840&q=75&dpl=dpl_9pfm3Zop9qyq1VxvYDPz12j4Ed6W",
+      "text": "Custom Domain illustration",
+      "type": "img"
+    },
+    {
+      "href": "https://supabase.com/_next/image?url=%2Fimages%2Fpricing%2Fcustom-domain-upgrade.svg&w=32&q=75&dpl=dpl_9pfm3Zop9qyq1VxvYDPz12j4Ed6W",
+      "text": "Compute",
+      "type": "img"
+    },
+    {
+      "href": "https://supabase.com/_next/image?url=%2Fimages%2Fpricing%2Fpitr-on.svg&w=3840&q=75&dpl=dpl_9pfm3Zop9qyq1VxvYDPz12j4Ed6W",
+      "text": "Point in Time Recovery illustration",
+      "type": "img"
+    },
+    {
+      "href": "https://supabase.com/_next/image?url=%2Fimages%2Fpricing%2Fpitr-upgrade.svg&w=32&q=75&dpl=dpl_9pfm3Zop9qyq1VxvYDPz12j4Ed6W",
+      "text": "Compute",
+      "type": "img"
     }
+  ],
+  "data": [
+    {
+      "key": "Plan title",
+      "selector": "h3.text-foreground.text-2xl.font-normal.uppercase.flex.items-center.gap-4.font-mono",
+      "results": [
+        {
+          "html": "Free",
+          "text": "Free",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "text-foreground text-2xl font-normal uppercase flex items-center gap-4 font-mono"
+            }
+          ]
+        },
+        {
+          "html": "Pro",
+          "text": "Pro",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "text-foreground text-2xl font-normal uppercase flex items-center gap-4 font-mono"
+            }
+          ]
+        },
+        {
+          "html": "Team",
+          "text": "Team",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "text-foreground text-2xl font-normal uppercase flex items-center gap-4 font-mono"
+            }
+          ]
+        },
+        {
+          "html": "Enterprise",
+          "text": "Enterprise",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "text-foreground text-2xl font-normal uppercase flex items-center gap-4 font-mono"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "Plan price",
+      "selector": "div.text-foreground.flex.items-baseline.text-5xl.font-normal.lg\\:text-4xl.xl\\:text-4xl.border-b.border-default.lg\\:min-h-\\[175px\\].py-8.lg\\:pb-0.lg\\:pt-10 p.mt-2.pb-1.font-mono.text-5xl",
+      "results": [
+        {
+          "html": "$0",
+          "text": "$0",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "mt-2 pb-1 font-mono text-5xl"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "Plan price",
+      "selector": "div.text-foreground.flex.items-baseline.text-5xl.font-normal.lg\\:text-4xl.xl\\:text-4xl.border-b.border-default.lg\\:min-h-\\[175px\\].py-6.lg\\:pb-0.pt-6 p.mt-2.pb-1.font-mono.text-5xl",
+      "results": [
+        {
+          "html": "$25",
+          "text": "$25",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "mt-2 pb-1 font-mono text-5xl"
+            }
+          ]
+        },
+        {
+          "html": "$599",
+          "text": "$599",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "mt-2 pb-1 font-mono text-5xl"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "Plan price",
+      "selector": "div.text-foreground.flex.items-baseline.text-5xl.font-normal.lg\\:text-4xl.xl\\:text-4xl.border-b.border-default.lg\\:min-h-\\[175px\\].py-8.lg\\:pb-0.lg\\:pt-10 p.mt-2.pb-1.font-mono.text-4xl",
+      "results": [
+        {
+          "html": "Custom",
+          "text": "Custom",
+          "attributes": [
+            {
+              "name": "class",
+              "value": "mt-2 pb-1 font-mono text-4xl"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "success": true,
+  "advance_config": {
+    "console": [],
+    "network": [],
+    "cookies": []
+  }
 }
 ```
+
 </ResponseExample>

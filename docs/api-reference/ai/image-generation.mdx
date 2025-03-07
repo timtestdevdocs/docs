@@ -1,12 +1,14 @@
 ---
-title: "Image generation"
+title: "Image Generation"
 api: "POST https://api.jigsawstack.com/v1/ai/image_generation"
 description: "Generate an image based on the given text by employing AI models like Flux, Stable Diffusion, and other top models."
 ---
 
 <Note>
  The default model used for image generation is `flux`. The best model will be automatically chosen by the image generation model based on the prompt.
-</Note> 
+</Note>
+
+## Request Parameters
 
 ### Body
 
@@ -14,7 +16,7 @@ description: "Generate an image based on the given text by employing AI models l
   The text prompt to generate the image from. Must be between 1-5000 characters.
 </ParamField>
 
-<ParamField body="aspect_ratio" type="string" default="4:3">
+<ParamField body="aspect_ratio" type="string" default="1:1">
   The aspect ratio of the generated image. 
   <ul>
         <li>`1:1`</li>
@@ -39,7 +41,7 @@ description: "Generate an image based on the given text by employing AI models l
   The height of the image. Must be between 256-1920 pixels.
 </ParamField>
 
-<ParamField body="steps" type="number">
+<ParamField body="steps" type="number" default="4">
   The number of denoising steps. Must be between 1-90. Higher values produce better quality images but take more time to generate.
 </ParamField>
 
@@ -49,22 +51,23 @@ description: "Generate an image based on the given text by employing AI models l
       Text describing what you don't want in the image. 
     </ParamField>
     <ParamField body="guidance" type="number">
-     Higer guidance forces the model to better follow the prompt, but result in lower quality output. Must be between 1-28.
+     Higher guidance forces the model to better follow the prompt, but may result in lower quality output. Must be between 1-28.
     </ParamField>
     <ParamField body="seed" type="number">
      Makes generation deterministic. Using the same seed and set of parameters will produce identical image each time.
     </ParamField>
-
   </Expandable>
 </ParamField>
 
 <Snippet file="header.mdx" />
 
-### Response
+## Response
+
+The API returns the generated image directly in the response body as binary data.
 
 <RequestExample>
 
-```javascript Node.js
+```javascript Javascript
 import { JigsawStack } from "jigsawstack";
 
 const jigsawstack = JigsawStack({
@@ -72,8 +75,8 @@ const jigsawstack = JigsawStack({
 });
 
 const result = await jigsawstack.image_generation({
-  prompt: "cute siamese cat playing with yarn in a sunlit room",
-  aspect_ratio: "1:1",
+  prompt: "A serene mountain landscape with a lake reflecting the sunset",
+  aspect_ratio: "16:9",
   steps: 30,
   advance_config: {
     negative_prompt: "blurry, low quality",
@@ -81,7 +84,39 @@ const result = await jigsawstack.image_generation({
   }
 });
 
-const data = await result.blob();
+// The result is a Response object containing the image
+const imageData = await result.blob();
+// Use the imageData in your application
+```
+
+```python Python
+from jigsawstack import JigsawStack
+import requests
+from PIL import Image
+from io import BytesIO
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+params = {
+    "prompt": "A serene mountain landscape with a lake reflecting the sunset",
+    "aspect_ratio": "16:9",
+    "steps": 30,
+    "advance_config": {
+        "negative_prompt": "blurry, low quality",
+        "guidance": 7.5
+    }
+}
+
+response = requests.post(
+    "https://api.jigsawstack.com/v1/ai/image_generation",
+    headers={"x-api-key": "your-api-key"},
+    json=params
+)
+
+# Save the image
+if response.status_code == 200:
+    image = Image.open(BytesIO(response.content))
+    image.save("landscape.jpg")
 ```
 
 ```bash cURL
@@ -89,14 +124,15 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/image_generati
 --header 'Content-Type: application/json' \
 --header 'x-api-key: <your-api-key>' \
 --data '{
-    "prompt": "cute siamese cat playing with yarn in a sunlit room",
-    "aspect_ratio": "1:1",
+    "prompt": "A serene mountain landscape with a lake reflecting the sunset",
+    "aspect_ratio": "16:9",
     "steps": 30,
     "advance_config": {
       "negative_prompt": "blurry, low quality",
       "guidance": 7.5
     }
-}'
+}' \
+--output landscape.jpg
 ```
 
 </RequestExample>

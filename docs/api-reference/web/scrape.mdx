@@ -13,143 +13,212 @@ For more information on selectors click [here](/docs/learn/web/selector)
 
 </Info>
 
+## Request Parameters
+
 ### Body
 
-<ParamField body="url" type="string" required>
-  The URL of the page to retrieve the contents from.
+<ParamField body="url" type="string">
+  The URL of the page to retrieve the contents from. Either `url` or `html` is required, but not both.
 </ParamField>
 
-<ParamField body="elements" type="array<object>">
+<ParamField body="html" type="string">
+  HTML content to scrape directly. Either `url` or `html` is required, but not both.
+</ParamField>
+
+<ParamField body="elements" type="array<object>" default='[{"selector": "*"}]'>
   The list of selectors you are interested in.
-  <Expandable title="property">
-    <ResponseField name="selector" type="string">
+  <Expandable title="Element Object">
+    <ParamField body="selector" type="string" required>
       HTML selector you are interested in. e.g `h1`, `p`, `span`, e.t.c
-    </ResponseField>
+    </ParamField>
   </Expandable>
 </ParamField>
 
 <ParamField body="advance_config" type="object">
-  Advance configurations
-  <Expandable title="property">
-    <ResponseField name="console" type="boolean" default="false">
+  Advanced configurations
+  <Expandable title="Properties">
+    <ParamField body="console" type="boolean" default="false">
       Tracks console messages emitted when JavaScript within the page calls one
       of console API methods. E.g `console.log`
-    </ResponseField>
-    <ResponseField name="network" type="boolean" default="false">
+    </ParamField>
+    <ParamField body="network" type="boolean" default="false">
       Tracks network response information such as `url`, `method`, `status`,
       `headers` and `body`.
-    </ResponseField>
-    <ResponseField name="cookies" type="boolean" default="false">
+    </ParamField>
+    <ParamField body="cookies" type="boolean" default="false">
       Tracks cookie information.
-    </ResponseField>
+    </ParamField>
   </Expandable>
 </ParamField>
 
 <ParamField body="http_headers" type="object">
-  This parameter allows you set header properties. e.g Authentication header
+  Custom HTTP headers to send with requests (key-value pairs)
 </ParamField>
 
 <ParamField body="reject_request_pattern" type="array<string>">
-  Intercepting requests
-  <ul>
-    <li>jpg</li>
-    <li>png</li>
-  </ul>
+  Array of patterns to intercept and block requests (e.g., ["jpg", "png"])
 </ParamField>
 
 <ParamField body="goto_options" type="object">
-  This parameter allows you to specify custom page-load behavior.
-  <Expandable title="property">
-    <ResponseField name="timeout" type="number" default="30000">
-      Custom timeout in milliseconds. Maximum value is 40000 (40 seconds)
-    </ResponseField>
-    <ResponseField name="wait_until" type="string" default="load">
+  Custom page-load behavior settings
+  <Expandable title="Properties">
+    <ParamField body="timeout" type="number" default="60000">
+      Custom timeout in milliseconds (maximum: 120000, or 2 minutes)
+    </ParamField>
+    <ParamField body="wait_until" type="string" default="networkidle2">
+      Page load event to wait for:
       <ul>
-        <li>load</li>
-        <li>domcontentloaded</li>
-        <li>networkidle0</li>
-        <li>networkidle2</li>
+        <li>`load` - Wait until the load event is fired</li>
+        <li>`domcontentloaded` - Wait until the DOMContentLoaded event is fired</li>
+        <li>`networkidle0` - Wait until there are no network connections for at least 500ms</li>
+        <li>`networkidle2` - Wait until there are no more than 2 network connections for at least 500ms</li>
       </ul>
-    </ResponseField>
+    </ParamField>
   </Expandable>
 </ParamField>
 
 <ParamField body="wait_for" type="object">
-Wait for.
-<Expandable title="property">
-  <ParamField body="mode" type="string">
-     Supported values:
-    <ul>
-      <li>`timeout`</li>
-      <li>`selector`</li>
-      <li>`function`</li>
-    </ul>
-  </ParamField>
-  <ParamField body="value" type="string|number">
-    This parameter can accept one of three options:
-    <ul>
-      <li>A number indicating the time in milliseconds to wait. Maximum timeout  `40000`</li>
-      <li>A valid selector to wait for. e.g `h2`</li>
-       <li>
-        A function to be ran within the page's context, inside of the browser.
-        e.g `() => document.querySelector('h2')`
-      </li>
-    </ul>
-  </ParamField>
-</Expandable>
-
+  Wait condition before scraping
+  <Expandable title="Properties">
+    <ParamField body="mode" type="string" required>
+      Type of waiting condition:
+      <ul>
+        <li>`timeout` - Wait for a specified time</li>
+        <li>`selector` - Wait for a specified CSS selector to appear</li>
+        <li>`function` - Wait for a specified function to return true</li>
+      </ul>
+    </ParamField>
+    <ParamField body="value" type="string|number" required>
+      The value corresponding to the selected mode:
+      <ul>
+        <li>For `timeout`: Number of milliseconds to wait (maximum: 60000)</li>
+        <li>For `selector`: CSS selector to wait for (e.g., "h2.title")</li>
+        <li>For `function`: JavaScript function as a string (e.g., "() => document.querySelector('h2')")</li>
+      </ul>
+    </ParamField>
+  </Expandable>
 </ParamField>
 
 <ParamField body="cookies" type="array<object>">
-  Set cookie(s)
+  Cookies to set for the page request
+  <Expandable title="Cookie Object Properties">
+    <ParamField body="name" type="string" required>
+      Cookie name
+    </ParamField>
+    <ParamField body="value" type="string" required>
+      Cookie value
+    </ParamField>
+    <ParamField body="url" type="string">
+      The URL to associate with the cookie (either `url` or `domain` is required)
+    </ParamField>
+    <ParamField body="domain" type="string">
+      Cookie domain (either `url` or `domain` is required)
+    </ParamField>
+    <ParamField body="secure" type="boolean">
+      Whether the cookie is secure (HTTPS only)
+    </ParamField>
+    <ParamField body="httpOnly" type="boolean">
+      Whether the cookie is HTTP-only
+    </ParamField>
+    <ParamField body="sameParty" type="boolean">
+      Whether the cookie is same-party
+    </ParamField>
+    <ParamField body="expires" type="number">
+      Cookie expiration timestamp
+    </ParamField>
+    <ParamField body="priority" type="string">
+      Cookie priority: "Low", "Medium", or "High"
+    </ParamField>
+  </Expandable>
 </ParamField>
 
 <ParamField body="size_preset" type="string">
-  The screen size preset to use. Supported values are:
-  <ul>
-    <li>`QVGA`</li>
-    <li>`VGA`</li>
-    <li>`SVGA`</li>
-    <li>`HD`</li>
-    <li>`HD+`</li>
-    <li>`SXGA`</li>
-    <li>`FHD`</li>
-    <li>`2K`</li>
-    <li>`2K QHD`</li>
-    <li>`5K`</li>
-    <li>`4K UHD`</li>
-  </ul>
-  See the full list of screen size presets
+  Predefined screen size preset. See the full list of screen size presets
   [here](/docs/additional-resources/size-preset)
 </ParamField>
 
-<ParamField body="is_mobile" type="boolean">
-  Sets whether the meta viewport tag is taken into account.
+<ParamField body="is_mobile" type="boolean" default="false">
+  Whether to emulate a mobile device viewport
 </ParamField>
 
-<ParamField body="scale" type="number" initialValue="1" default="1">
-  The device scale factor. The default value is 1.
+<ParamField body="scale" type="number" default="1">
+  Device scale factor (minimum: 1)
 </ParamField>
 
 <ParamField body="width" type="number" default="1920">
-  The width of the viewport.
+  Viewport width in pixels
 </ParamField>
 
 <ParamField body="height" type="number" default="1080">
-  The height of the viewport
+  Viewport height in pixels
+</ParamField>
+
+<ParamField body="force_rotate_proxy" type="boolean">
+  Whether to force proxy rotation for each request (incurs additional costs)
+</ParamField>
+
+<ParamField body="byo_proxy" type="object">
+  Bring-your-own-proxy configuration
+  <Expandable title="Properties">
+    <ParamField body="server" type="string" required>
+      Proxy server URL (e.g., "https://username:password@proxy.example.com:8080")
+    </ParamField>
+    <ParamField body="auth" type="object">
+      Authentication credentials (optional if included in server URL)
+      <Expandable title="Properties">
+        <ParamField body="username" type="string" required>
+          Proxy username
+        </ParamField>
+        <ParamField body="password" type="string" required>
+          Proxy password
+        </ParamField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
 </ParamField>
 
 <Snippet file="header.mdx" />
 
-### Response
+## Response Structure
 
 <ResponseField name="success" type="boolean">
-  Indicates whether the call was successful.
+  Indicates whether the call was successful
+</ResponseField>
+
+<ResponseField name="data" type="array<object>">
+  Array of scraped elements
+  <Expandable title="Data Object Structure">
+    <ResponseField name="selector" type="string">
+      The CSS selector used to find this element
+    </ResponseField>
+    <ResponseField name="results" type="array<object>">
+      Array of matched elements with their details
+      <Expandable title="Result Object">
+        <ResponseField name="html" type="string">
+          The HTML content of the matched element
+        </ResponseField>
+        <ResponseField name="text" type="string">
+          The text content of the matched element
+        </ResponseField>
+        <ResponseField name="attributes" type="array<object>">
+          Array of HTML attributes on the matched element
+          <Expandable title="Attribute Object">
+            <ResponseField name="name" type="string">
+              The attribute name
+            </ResponseField>
+            <ResponseField name="value" type="string">
+              The attribute value
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
 </ResponseField>
 
 <RequestExample>
 
-```javascript JavaScript
+```javascript Javascript
 import { JigsawStack } from "jigsawstack";
 
 const jigsawstack = JigsawStack({
@@ -162,6 +231,16 @@ const result = await jigsawstack.web.scrape({
 ```
 
 ```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+# Basic usage - scrape all content
+result = jigsawstack.web.scrape({
+  "url": "https://jigsawstack.com"
+})
+
+# Scrape specific elements
 from jigsawstack import JigsawStack
 
 jigsawstack = JigsawStack(api_key="your-api-key")
