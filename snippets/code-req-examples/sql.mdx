@@ -1,36 +1,35 @@
+
     <RequestExample>
     ```javascript Javascript
-
 import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
 const response = await jigsaw.text_to_sql({
-"database": "postgresql",
-"prompt": "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
-"sql_schema": "\n CREATE TABLE Transactions (\n transaction_id INT PRIMARY KEY, \n user_id INT NOT NULL,\n total_amount DECIMAL(10, 2) NOT NULL, \n transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n status VARCHAR(20) DEFAULT 'pending',\n FOREIGN KEY(user_id) REFERENCES Users(user_id)\n )\n "
+      "database": "postgresql",
+      "prompt": "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
+      "sql_schema": "\n          CREATE TABLE Transactions (\n            transaction_id INT PRIMARY KEY, \n            user_id INT NOT NULL,\n            total_amount DECIMAL(10, 2) NOT NULL, \n            transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n            status VARCHAR(20) DEFAULT 'pending',\n            FOREIGN KEY(user_id) REFERENCES Users(user_id)\n          )\n        "
 })
-`
-    `python Python
+    ```
+    ```python Python
 from jigsawstack import JigsawStack
 
 jigsaw = JigsawStack(api_key="your-api-key")
 
 response = jigsaw.text_to_sql({
-"database": "postgresql",
-"prompt": "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
-"sql_schema": "\n CREATE TABLE Transactions (\n transaction_id INT PRIMARY KEY, \n user_id INT NOT NULL,\n total_amount DECIMAL(10, 2) NOT NULL, \n transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n status VARCHAR(20) DEFAULT 'pending',\n FOREIGN KEY(user_id) REFERENCES Users(user_id)\n )\n "
+      "database": "postgresql",
+      "prompt": "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
+      "sql_schema": "\n          CREATE TABLE Transactions (\n            transaction_id INT PRIMARY KEY, \n            user_id INT NOT NULL,\n            total_amount DECIMAL(10, 2) NOT NULL, \n            transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n            status VARCHAR(20) DEFAULT 'pending',\n            FOREIGN KEY(user_id) REFERENCES Users(user_id)\n          )\n        "
 })
-`
-    `bash Curl
+    ```
+    ```bash Curl
 curl https://api.jigsawstack.com/v1/ai/sql \
  -X POST \
  -H "Content-Type: application/json" \
  -H "x-api-key: your-api-key" \
- -d "{\"database\":\"postgresql\",\"prompt\":\"Find all transactions with amounts exceeding $10,000, sorted by transaction date\",\"sql_schema\":\"\\n CREATE TABLE Transactions (\\n transaction_id INT PRIMARY KEY, \\n user_id INT NOT NULL,\\n total_amount DECIMAL(10, 2) NOT NULL, \\n transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\\n status VARCHAR(20) DEFAULT 'pending',\\n FOREIGN KEY(user_id) REFERENCES Users(user_id)\\n )\\n \"}"
-`
-    `php PHP
-
+ -d "{\"database\":\"postgresql\",\"prompt\":\"Find all transactions with amounts exceeding $10,000, sorted by transaction date\",\"sql_schema\":\"\\n          CREATE TABLE Transactions (\\n            transaction_id INT PRIMARY KEY, \\n            user_id INT NOT NULL,\\n            total_amount DECIMAL(10, 2) NOT NULL, \\n            transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\\n            status VARCHAR(20) DEFAULT 'pending',\\n            FOREIGN KEY(user_id) REFERENCES Users(user_id)\\n          )\\n        \"}"
+    ```
+    ```php PHP
 <?php
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/ai/sql');
@@ -223,4 +222,4 @@ string responseBody = await response.Content.ReadAsStringAsync();
 }
     ```
     </ResponseExample>
-
+    

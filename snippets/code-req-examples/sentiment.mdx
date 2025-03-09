@@ -1,32 +1,31 @@
+
     <RequestExample>
     ```javascript Javascript
-
 import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
 const response = await jigsaw.sentiment({
-"text": "I love this product! It's amazing but the delivery was a bit late."
+      "text": "I love this product! It's amazing but the delivery was a bit late."
 })
-`
-    `python Python
+    ```
+    ```python Python
 from jigsawstack import JigsawStack
 
 jigsaw = JigsawStack(api_key="your-api-key")
 
 response = jigsaw.sentiment({
-"text": "I love this product! It's amazing but the delivery was a bit late."
+      "text": "I love this product! It's amazing but the delivery was a bit late."
 })
-`
-    `bash Curl
+    ```
+    ```bash Curl
 curl https://api.jigsawstack.com/v1/ai/sentiment \
  -X POST \
  -H "Content-Type: application/json" \
  -H "x-api-key: your-api-key" \
  -d "{\"text\":\"I love this product! It's amazing but the delivery was a bit late.\"}"
-`
-    `php PHP
-
+    ```
+    ```php PHP
 <?php
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/ai/sentiment');
@@ -240,4 +239,4 @@ string responseBody = await response.Content.ReadAsStringAsync();
 }
     ```
     </ResponseExample>
-
+    

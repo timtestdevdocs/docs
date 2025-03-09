@@ -1,42 +1,41 @@
+
     <RequestExample>
     ```javascript Javascript
-
 import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
 const response = await jigsaw.translate({
-"text": [
-"Hello",
-"How are you?",
-"Thank you"
-],
-"target_language": "zh"
+      "text": [
+            "Hello",
+            "How are you?",
+            "Thank you"
+      ],
+      "target_language": "zh"
 })
-`
-    `python Python
+    ```
+    ```python Python
 from jigsawstack import JigsawStack
 
 jigsaw = JigsawStack(api_key="your-api-key")
 
 response = jigsaw.translate({
-"text": [
-"Hello",
-"How are you?",
-"Thank you"
-],
-"target_language": "zh"
+      "text": [
+            "Hello",
+            "How are you?",
+            "Thank you"
+      ],
+      "target_language": "zh"
 })
-`
-    `bash Curl
+    ```
+    ```bash Curl
 curl https://api.jigsawstack.com/v1/ai/translate \
  -X POST \
  -H "Content-Type: application/json" \
  -H "x-api-key: your-api-key" \
  -d "{\"text\":[\"Hello\",\"How are you?\",\"Thank you\"],\"target_language\":\"zh\"}"
-`
-    `php PHP
-
+    ```
+    ```php PHP
 <?php
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/ai/translate');
@@ -246,4 +245,4 @@ string responseBody = await response.Content.ReadAsStringAsync();
 }
     ```
     </ResponseExample>
-
+    

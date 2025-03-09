@@ -1,7 +1,7 @@
 {
   "scripts": {
     "gen-examples": "tsx gen-examples.ts",
-    "format": "prettier --write ./**/*.{mdx,js,ts}"
+    "format": "prettier --write ."
   },
   "dependencies": {},
   "devDependencies": {
