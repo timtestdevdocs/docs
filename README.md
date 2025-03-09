@@ -14,12 +14,6 @@ Run the following command at the root of your documentation (where mint.json is)
 mintlify dev
 ```
 
-#### Format Code
-
-```
-prettier --write "./**/*.{mdx,js,ts}"
-```
-
 #### Troubleshooting
 
 - Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.

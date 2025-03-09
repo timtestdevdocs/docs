@@ -4,6 +4,8 @@ api: "POST https://api.jigsawstack.com/v1/ai/sql"
 description: "Generate semantically correct SQL queries from natural language prompts."
 ---
 
+import SqlSnippet from "/snippets/code-req-examples/sql.mdx";
+
 ## Request Parameters
 
 ### Body
@@ -45,78 +47,4 @@ description: "Generate semantically correct SQL queries from natural language pr
   schema.
 </ResponseField>
 
-<RequestExample>
-
-```javascript Javascript
-import { JigsawStack } from "jigsawstack";
-
-const jigsawstack = JigsawStack({
-  apiKey: "your-api-key",
-});
-
-const result = await jigsawstack.text_to_sql({
-  prompt:
-    "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
-  sql_schema: `
-    CREATE TABLE Transactions (
-      transaction_id INT PRIMARY KEY, 
-      user_id INT NOT NULL,
-      total_amount DECIMAL(10, 2) NOT NULL, 
-      transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      status VARCHAR(20) DEFAULT 'pending',
-      FOREIGN KEY(user_id) REFERENCES Users(user_id)
-    )
-  `,
-  database: "postgresql",
-});
-
-console.log(result.sql);
-```
-
-```python Python
-from jigsawstack import JigsawStack
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-
-params = {
-    "prompt": "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
-    "sql_schema": """
-    CREATE TABLE Transactions (
-      transaction_id INT PRIMARY KEY,
-      user_id INT NOT NULL,
-      total_amount DECIMAL(10, 2) NOT NULL,
-      transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      status VARCHAR(20) DEFAULT 'pending',
-      FOREIGN KEY(user_id) REFERENCES Users(user_id)
-    )
-    """,
-    "database": "postgresql"
-}
-
-result = jigsawstack.text_to_sql(params)
-print(result["sql"])
-```
-
-```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/sql' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    "prompt": "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
-    "sql_schema": "CREATE TABLE Transactions (transaction_id INT PRIMARY KEY, user_id INT NOT NULL, total_amount DECIMAL(10, 2) NOT NULL, transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, status VARCHAR(20) DEFAULT '\''pending'\'', FOREIGN KEY(user_id) REFERENCES Users(user_id))",
-    "database": "postgresql"
-}'
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-```json Response
-{
-  "success": true,
-  "sql": "SELECT * FROM Transactions WHERE total_amount > 10000 ORDER BY transaction_date;"
-}
-```
-
-</ResponseExample>
+<SqlSnippet />

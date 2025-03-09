@@ -4,6 +4,8 @@ api: "POST https://api.jigsawstack.com/v1/ai/translate"
 description: "Translate text from one language to another with support for multiple text formats."
 ---
 
+import TranslateSnippet from "/snippets/code-req-examples/translate.mdx";
+
 ## Request Parameters
 
 ### Body
@@ -42,107 +44,4 @@ description: "Translate text from one language to another with support for multi
   strings, you'll receive an array of translated strings
 </ResponseField>
 
-<RequestExample>
-
-```javascript Javascript
-import { JigsawStack } from "jigsawstack";
-
-const jigsawstack = JigsawStack({
-  apiKey: "your-api-key",
-});
-
-// Single string translation
-const result = await jigsawstack.translate({
-  current_language: "en",
-  target_language: "es",
-  text: "Hello, world!",
-});
-
-// Multiple string translation
-const multiResult = await jigsawstack.translate({
-  current_language: "en",
-  target_language: "fr",
-  text: ["Hello", "How are you?", "Thank you"],
-});
-
-// Auto-detect source language
-const autoDetectResult = await jigsawstack.translate({
-  target_language: "de",
-  text: "Hello, world!",
-});
-```
-
-```python Python
-from jigsawstack import JigsawStack
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-
-# Single string translation
-result = jigsawstack.translate({
-  "current_language": "en",
-  "target_language": "es",
-  "text": "Hello, world!"
-})
-
-# Multiple string translation
-multi_result = jigsawstack.translate({
-  "current_language": "en",
-  "target_language": "fr",
-  "text": ["Hello", "How are you?", "Thank you"]
-})
-
-# Auto-detect source language
-auto_detect_result = jigsawstack.translate({
-  "target_language": "de",
-  "text": "Hello, world!"
-})
-```
-
-```bash cURL
-# Single string translation
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/translate' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    "current_language": "en",
-    "target_language": "es",
-    "text": "Hello, world!"
-}'
-
-# Multiple string translation
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/translate' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    "current_language": "en",
-    "target_language": "fr",
-    "text": ["Hello", "How are you?", "Thank you"]
-}'
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-```json Single String Response
-{
-  "success": true,
-  "translated_text": "¡Hola Mundo!"
-}
-```
-
-```json Multiple Strings Response
-{
-  "success": true,
-  "translated_text": ["Bonjour", "Comment allez-vous?", "Merci"]
-}
-```
-
-```json Auto-Detect Language Response
-{
-  "success": true,
-  "translated_text": "Hallo, Welt!"
-}
-```
-
-</ResponseExample>
+<TranslateSnippet />
