@@ -8,7 +8,7 @@ description: "Recognise, describe and retrieve data within an image with great a
 
 <ParamField body="prompt" type="string | Array<string>">
   The prompt used to describe the image. Default prompt is `Describe the image
-          in detail.`
+  in detail.`
 </ParamField>
 
 <ParamField body="url" type="string">
@@ -22,14 +22,19 @@ description: "Recognise, describe and retrieve data within an image with great a
 </ParamField>
 
 <ParamField body="page_range" type="Array<number>">
-  Specifies a range of pages to process with vOCR, provided as a two-element array: \[startPage, endPage]. For example, `[1,10]` processes pages 1 through 10. The range must span 10 or fewer pages. If the specified endPage exceeds the document's total pages, the last available page will be used instead. Both startPage and endPage are inclusive and must be positive integers where startPage ≤ endPage.
+  Specifies a range of pages to process with vOCR, provided as a two-element
+  array: \[startPage, endPage]. For example, `[1,10]` processes pages 1 through
+  10. The range must span 10 or fewer pages. If the specified endPage exceeds
+  the document's total pages, the last available page will be used instead. Both
+  startPage and endPage are inclusive and must be positive integers where
+  startPage ≤ endPage.
 </ParamField>
 
 <Info>Either `url` or `file_store_key` should be provided not both.</Info>
 
 ## Prompt Example
 
-* **`String`**
+- **`String`**
 
 ```javascript
 {
@@ -37,7 +42,7 @@ description: "Recognise, describe and retrieve data within an image with great a
 }
 ```
 
-* **`Array<String>`**
+- **`Array<String>`**
 
 > Use this approach to retrieve specific data from the image file.
 
@@ -64,32 +69,34 @@ description: "Recognise, describe and retrieve data within an image with great a
   ```javascript Javascript
   import { JigsawStack } from "jigsawstack";
 
-  const jigsawstack = JigsawStack({
-    apiKey: "your-api-key",
-  });
+const jigsawstack = JigsawStack({
+apiKey: "your-api-key",
+});
 
-  const result = await jigsaw.vision.vocr({
-      prompt: ["Title", "Description"],
-      url: "https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png",
-    });
-  ```
+const result = await jigsaw.vision.vocr({
+prompt: ["Title", "Description"],
+url: "https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png",
+});
 
-  ```python Python
-  from jigsawstack import JigsawStack
+````
 
-  jigsawstack = JigsawStack(api_key="your-api-key")
+```python Python
+from jigsawstack import JigsawStack
 
-  result = jigsawstack.vision.vocr({"url": "https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png", "prompt" : ["Title", "Description"]})
-  ```
+jigsawstack = JigsawStack(api_key="your-api-key")
 
-  ```bash cURL
-  curl --location --request POST 'https://api.jigsawstack.com/v1/vocr' \
-  --header 'Content-Type: application/json' \
-  --header 'x-api-key: <your-api-key>' \
-  --data '{
-      url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Collabo%201080x842.jpg?t=2024-03-22T09%3A22%3A48.442Z",
-  }'
-  ```
+result = jigsawstack.vision.vocr({"url": "https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png", "prompt" : ["Title", "Description"]})
+````
+
+```bash cURL
+curl --location --request POST 'https://api.jigsawstack.com/v1/vocr' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: <your-api-key>' \
+--data '{
+    url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Collabo%201080x842.jpg?t=2024-03-22T09%3A22%3A48.442Z",
+}'
+```
+
 </RequestExample>
 
 <ResponseExample>

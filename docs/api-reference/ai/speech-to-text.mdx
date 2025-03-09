@@ -5,14 +5,15 @@ description: "Transcribe video and audio files with ease leveraging Whisper larg
 ---
 
 <Info>
-  Speech to Text processing is billed at 1 invocation per 25 seconds of processing time. 
-  This refers to computational time, not audio length - a 1-hour audio file might only 
-  take 20 seconds to process, costing just 1 invocation.
+  Speech to Text processing is billed at 1 invocation per 25 seconds of
+  processing time. This refers to computational time, not audio length - a
+  1-hour audio file might only take 20 seconds to process, costing just 1
+  invocation.
 </Info>
 
 ## Overview
 
-Transform audio and video files into accurate text transcriptions using our powerful Speech to Text API. 
+Transform audio and video files into accurate text transcriptions using our powerful Speech to Text API.
 Built on Whisper large V3, this service provides:
 
 - High-accuracy transcription across multiple languages
@@ -43,24 +44,33 @@ Built on Whisper large V3, this service provides:
 <Info>Either `url` or `file_store_key` should be provided, not both.</Info>
 
 <ParamField body="language" type="string">
-  The language to transcribe or translate the file into. If not specified, the model will
-  automatically detect the language and transcribe accordingly. All supported language codes can be found [here](https://jigsawstack.com/docs/additional-resources/languages).
+  The language to transcribe or translate the file into. If not specified, the
+  model will automatically detect the language and transcribe accordingly. All
+  supported language codes can be found
+  [here](https://jigsawstack.com/docs/additional-resources/languages).
 </ParamField>
 
 <ParamField body="translate" type="boolean" default="false">
-  When set to true, translates the content into English (or the specified language if `language` parameter is provided). All supported language codes can be found [here](https://jigsawstack.com/docs/additional-resources/languages).
+  When set to true, translates the content into English (or the specified
+  language if `language` parameter is provided). All supported language codes
+  can be found
+  [here](https://jigsawstack.com/docs/additional-resources/languages).
 </ParamField>
 
 <ParamField body="by_speaker" type="boolean" default="false">
-  Identifies and separates different speakers in the audio file. When enabled, the response will include a `speakers` array with speaker-segmented transcripts.
+  Identifies and separates different speakers in the audio file. When enabled,
+  the response will include a `speakers` array with speaker-segmented
+  transcripts.
 </ParamField>
 
 <ParamField body="webhook_url" type="string">
-  Webhook URL to send result to. When provided, the API will process asynchronously and send results to this URL when completed.
+  Webhook URL to send result to. When provided, the API will process
+  asynchronously and send results to this URL when completed.
 </ParamField>
 
 <ParamField body="batch_size" type="number" default="30">
-  The batch size to return. Maximum value is 40. This controls how the audio is chunked for processing.
+  The batch size to return. Maximum value is 40. This controls how the audio is
+  chunked for processing.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -90,7 +100,8 @@ Built on Whisper large V3, this service provides:
 </ResponseField>
 
 <ResponseField name="speakers" type="array">
-  Only present when `by_speaker` is set to true. Contains speaker-segmented transcripts.
+  Only present when `by_speaker` is set to true. Contains speaker-segmented
+  transcripts.
   <Expandable title="Speaker Object">
     <ResponseField name="speaker" type="string">
       The speaker identifier (e.g., "Speaker 1").
@@ -134,6 +145,7 @@ Speaker diarization is the process of separating an audio stream into segments a
 4. Return both the standard chunks and a separate `speakers` array with speaker-separated transcriptions
 
 This is particularly useful for:
+
 - Meeting transcriptions
 - Interview transcriptions
 - Podcast transcriptions
@@ -148,6 +160,7 @@ For long audio files, processing might take some time. Instead of keeping the co
 3. Send the complete transcription results to your webhook URL when finished
 
 Make sure your webhook endpoint is set up to:
+
 - Accept POST requests
 - Parse JSON content
 - Handle the same response format as the standard API response

@@ -9,8 +9,8 @@ description: "Execute a prompt using the prompt id."
 ### Body
 
 <ParamField body="input_values" type="object">
-  The input values. This is required if the `inputs` parameter was specified when
-  creating a prompt. Each input value has a `500000` character limit
+  The input values. This is required if the `inputs` parameter was specified
+  when creating a prompt. Each input value has a `500000` character limit
 </ParamField>
 
 <ParamField body="stream" type="boolean" defaultValue="false">
@@ -27,43 +27,45 @@ description: "Execute a prompt using the prompt id."
   ```javascript Node.js
   import { JigsawStack } from "jigsawstack";
 
-  const jigsawstack = JigsawStack({
-    apiKey: "your-api-key",
-  });
+const jigsawstack = JigsawStack({
+apiKey: "your-api-key",
+});
 
-  const result = await jigsawstack.prompt_engine.run({
-    id: "e58d762a-9a00-4907-8cab-5ce6221bb6df",
-    input_values: {
+const result = await jigsawstack.prompt_engine.run({
+id: "e58d762a-9a00-4907-8cab-5ce6221bb6df",
+input_values: {
+about: "Leaning Tower of Pisa",
+},
+});
+
+````
+
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+result = jigsawstack.prompt_engine.run(
+    {
+        "id": "e58d762a-9a00-4907-8cab-5ce6221bb6df",
+        "input_values": {
+            about: "Leaning Tower of Pisa",
+        },
+    }
+)
+````
+
+```bash cURL
+    curl --location --request POST 'https://api.jigsawstack.com/v1/prompt_engine/{id}' \
+    --header 'Content-Type: application/json' \
+    --header "x-api-key: <your-api-here>" \
+    --data '{
+       input_values: {
       about: "Leaning Tower of Pisa",
     },
-  });
-  ```
+    }'
+```
 
-  ```python Python
-  from jigsawstack import JigsawStack
-
-  jigsawstack = JigsawStack(api_key="your-api-key")
-
-  result = jigsawstack.prompt_engine.run(
-      {
-          "id": "e58d762a-9a00-4907-8cab-5ce6221bb6df",
-          "input_values": {
-              about: "Leaning Tower of Pisa",
-          },
-      }
-  )
-  ```
-
-  ```bash cURL
-      curl --location --request POST 'https://api.jigsawstack.com/v1/prompt_engine/{id}' \
-      --header 'Content-Type: application/json' \
-      --header "x-api-key: <your-api-here>" \
-      --data '{
-         input_values: {
-        about: "Leaning Tower of Pisa",
-      },
-      }'
-  ```
 </RequestExample>
 
 <ResponseExample>

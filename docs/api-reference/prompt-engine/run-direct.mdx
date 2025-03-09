@@ -17,8 +17,8 @@ description: "Run a prompt directly."
 ### Body
 
 <ParamField body="prompt" type="string" required>
-  The prompt. Maximum character limit is `500000`. Prompt supports dynamic inputs.
-  See example below.
+  The prompt. Maximum character limit is `500000`. Prompt supports dynamic
+  inputs. See example below.
 </ParamField>
 
 <ParamField body="inputs" type="array<object>">
@@ -45,7 +45,8 @@ description: "Run a prompt directly."
 </ParamField>
 
 <ParamField body="input_values" type="object">
-  Key-value pair for dynamic prompt variables. Each input value has a `500000` character limit
+  Key-value pair for dynamic prompt variables. Each input value has a `500000`
+  character limit
 </ParamField>
 
 <ParamField body="stream" type="boolean" defaultValue="false">
@@ -58,7 +59,7 @@ description: "Run a prompt directly."
 
 ## Sample Prompt Payload
 
-* String `return_prompt`
+- String `return_prompt`
 
 ```javascript
 {
@@ -77,7 +78,7 @@ description: "Run a prompt directly."
   }
 ```
 
-* `Array<object>` `return_prompt`
+- `Array<object>` `return_prompt`
 
 ```javascript
 
@@ -98,7 +99,7 @@ description: "Run a prompt directly."
   }
 ```
 
-* Object `return_prompt`
+- Object `return_prompt`
 
 ```javascript
 {
@@ -128,59 +129,61 @@ description: "Run a prompt directly."
   ```javascript Node.js
   import { JigsawStack } from "jigsawstack";
 
-  const jigsawstack = JigsawStack({
-    apiKey: "your-api-key",
-  });
+const jigsawstack = JigsawStack({
+apiKey: "your-api-key",
+});
 
-  const result = await jigsawstack.prompt_engine.run_prompt_direct({
-    prompt: "Tell me a story about {about}",
-    inputs: [
-      {
-        key: "about",
-        optional: false,
-        initial_value: "Leaning Tower of Pisa",
-      },
+const result = await jigsawstack.prompt_engine.run_prompt_direct({
+prompt: "Tell me a story about {about}",
+inputs: [
+{
+key: "about",
+optional: false,
+initial_value: "Leaning Tower of Pisa",
+},
+],
+return_prompt: "Return the result in a markdown format",
+prompt_guard: ["sexual_content", "defamation"],
+input_values: {
+about: "Santorini",
+},
+});
+
+````
+
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+params = {
+    "prompt": "Tell me a story about {about}",
+    "inputs": [
+        {
+            "key": "about",
+            "optional": False,
+            "initial_value": "Leaning Tower of Pisa",
+        },
     ],
-    return_prompt: "Return the result in a markdown format",
-    prompt_guard: ["sexual_content", "defamation"],
-    input_values: {
-      about: "Santorini",
-    },
-  });
-  ```
+    "return_prompt": "Return the result in a markdown format",
+    "prompt_guard": ["sexual_content", "defamation"],
+    "input_values": {
+      "about": "Santorini",
+    }
+}
+result = jigsawstack.prompt_engine.run_prompt_direct(params)
+````
 
-  ```python Python
-  from jigsawstack import JigsawStack
+```bash cURL
+    curl --location --request POST 'https://api.jigsawstack.com/v1/prompt_engine/{id}' \
+    --header 'Content-Type: application/json' \
+    --header "x-api-key: <your-api-here>" \
+    --data '{
+     prompt: "Tell me a story about {about}",
+     return_prompt: "Return the result in a markdown format",
+    }'
+```
 
-  jigsawstack = JigsawStack(api_key="your-api-key")
-
-  params = {
-      "prompt": "Tell me a story about {about}",
-      "inputs": [
-          {
-              "key": "about",
-              "optional": False,
-              "initial_value": "Leaning Tower of Pisa",
-          },
-      ],
-      "return_prompt": "Return the result in a markdown format",
-      "prompt_guard": ["sexual_content", "defamation"],
-      "input_values": {
-        "about": "Santorini",
-      }
-  }
-  result = jigsawstack.prompt_engine.run_prompt_direct(params)
-  ```
-
-  ```bash cURL
-      curl --location --request POST 'https://api.jigsawstack.com/v1/prompt_engine/{id}' \
-      --header 'Content-Type: application/json' \
-      --header "x-api-key: <your-api-here>" \
-      --data '{
-       prompt: "Tell me a story about {about}",
-       return_prompt: "Return the result in a markdown format",
-      }'
-  ```
 </RequestExample>
 
 <ResponseExample>

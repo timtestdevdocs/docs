@@ -9,13 +9,15 @@ description: "Translate text from one language to another with support for multi
 ### Body
 
 <ParamField body="current_language" type="string">
-  The language code of the source text. If not provided, the API will attempt to auto-detect the language.
-  All supported language codes can be found [here](https://jigsawstack.com/docs/additional-resources/languages).
+  The language code of the source text. If not provided, the API will attempt to
+  auto-detect the language. All supported language codes can be found
+  [here](https://jigsawstack.com/docs/additional-resources/languages).
 </ParamField>
 
 <ParamField body="target_language" type="string" required>
-  The language code of the target language to translate to.
-  All supported language codes can be found [here](https://jigsawstack.com/docs/additional-resources/languages).
+  The language code of the target language to translate to. All supported
+  language codes can be found
+  [here](https://jigsawstack.com/docs/additional-resources/languages).
 </ParamField>
 
 <ParamField body="text" type="string | string[]" required>
@@ -35,12 +37,10 @@ description: "Translate text from one language to another with support for multi
 </ResponseField>
 
 <ResponseField name="translated_text" type="string | string[]">
-  The translated text. The format matches your input:
-  - If you sent a single string, you'll receive a single translated string
-  - If you sent an array of strings, you'll receive an array of translated strings
+  The translated text. The format matches your input: - If you sent a single
+  string, you'll receive a single translated string - If you sent an array of
+  strings, you'll receive an array of translated strings
 </ResponseField>
-
-
 
 <RequestExample>
 
@@ -79,21 +79,21 @@ jigsawstack = JigsawStack(api_key="your-api-key")
 
 # Single string translation
 result = jigsawstack.translate({
-  "current_language": "en", 
-  "target_language": "es", 
+  "current_language": "en",
+  "target_language": "es",
   "text": "Hello, world!"
 })
 
 # Multiple string translation
 multi_result = jigsawstack.translate({
-  "current_language": "en", 
-  "target_language": "fr", 
+  "current_language": "en",
+  "target_language": "fr",
   "text": ["Hello", "How are you?", "Thank you"]
 })
 
 # Auto-detect source language
 auto_detect_result = jigsawstack.translate({
-  "target_language": "de", 
+  "target_language": "de",
   "text": "Hello, world!"
 })
 ```

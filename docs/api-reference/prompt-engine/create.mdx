@@ -7,8 +7,8 @@ description: "Create a prompt for easy reuse."
 ### Body
 
 <ParamField body="prompt" type="string" required>
-  The prompt. Maximum character limit is `500000`. Prompt supports dynamic inputs.
-  See example below.
+  The prompt. Maximum character limit is `500000`. Prompt supports dynamic
+  inputs. See example below.
 </ParamField>
 
 <ParamField body="inputs" type="array<object>">
@@ -44,7 +44,7 @@ description: "Create a prompt for easy reuse."
 
 ## Sample Prompt Payload
 
-* String `return_prompt`
+- String `return_prompt`
 
 ```javascript
 {
@@ -61,7 +61,7 @@ description: "Create a prompt for easy reuse."
   }
 ```
 
-* `Array<object>` `return_prompt`
+- `Array<object>` `return_prompt`
 
 ```javascript
 
@@ -79,7 +79,7 @@ description: "Create a prompt for easy reuse."
   }
 ```
 
-* Object `return_prompt`
+- Object `return_prompt`
 
 ```javascript
 {
@@ -108,60 +108,62 @@ description: "Create a prompt for easy reuse."
   ```javascript Node.js
   import { JigsawStack } from "jigsawstack";
 
-  const jigsawstack = JigsawStack({
-    apiKey: "your-api-key",
-  });
+const jigsawstack = JigsawStack({
+apiKey: "your-api-key",
+});
 
-  const result = await jigsawstack.prompt_engine.create({
-    prompt: "Tell me a story about {about}",
-    inputs: [
-      {
-        key: "about",
-        optional: false,
-        initial_value: "Leaning Tower of Pisa",
-      },
+const result = await jigsawstack.prompt_engine.create({
+prompt: "Tell me a story about {about}",
+inputs: [
+{
+key: "about",
+optional: false,
+initial_value: "Leaning Tower of Pisa",
+},
+],
+return_prompt: "Return the result in a markdown format",
+prompt_guard: ["sexual_content", "defamation"],
+});
+
+````
+
+```python Python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+
+params = {
+    "prompt": "Tell me a story about {about}",
+    "inputs": [
+        {
+            "key": "about",
+            "optional": False,
+            "initial_value": "Leaning Tower of Pisa",
+        },
     ],
-    return_prompt: "Return the result in a markdown format",
-    prompt_guard: ["sexual_content", "defamation"],
-  });
-  ```
+    "return_prompt": "Return the result in a markdown format",
+    "prompt_guard": ["sexual_content", "defamation"]
+}
+result = jigsawstack.prompt_engine.create(params)
+````
 
-  ```python Python
-  from jigsawstack import JigsawStack
-
-  jigsawstack = JigsawStack(api_key="your-api-key")
-
-  params = {
+```bash cURL
+    curl --location --request POST 'https://api.jigsawstack.com/v1/prompt_engine' \
+    --header 'Content-Type: application/json' \
+    --header "x-api-key: <your-api-here>" \
+    --data '{
       "prompt": "Tell me a story about {about}",
       "inputs": [
-          {
-              "key": "about",
-              "optional": False,
-              "initial_value": "Leaning Tower of Pisa",
-          },
+        {
+          "key": "about",
+          "optional": false,
+          "initial_value":"Leaning Tower of Pisa"
+        }
       ],
-      "return_prompt": "Return the result in a markdown format",
-      "prompt_guard": ["sexual_content", "defamation"]
-  }
-  result = jigsawstack.prompt_engine.create(params)
-  ```
+     "return_prompt": "Return the result in a markdown format",
+    }'
+```
 
-  ```bash cURL
-      curl --location --request POST 'https://api.jigsawstack.com/v1/prompt_engine' \
-      --header 'Content-Type: application/json' \
-      --header "x-api-key: <your-api-here>" \
-      --data '{
-        "prompt": "Tell me a story about {about}",
-        "inputs": [
-          {
-            "key": "about",
-            "optional": false,
-            "initial_value":"Leaning Tower of Pisa"
-          }
-        ],
-       "return_prompt": "Return the result in a markdown format",
-      }'
-  ```
 </RequestExample>
 
 <ResponseExample>

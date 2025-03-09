@@ -5,7 +5,8 @@ description: "Generate an image based on the given text by employing AI models l
 ---
 
 <Note>
- The default model used for image generation is `flux`. The best model will be automatically chosen by the image generation model based on the prompt.
+  The default model used for image generation is `flux`. The best model will be
+  automatically chosen by the image generation model based on the prompt.
 </Note>
 
 ## Request Parameters
@@ -17,19 +18,19 @@ description: "Generate an image based on the given text by employing AI models l
 </ParamField>
 
 <ParamField body="aspect_ratio" type="string" default="1:1">
-  The aspect ratio of the generated image. 
+  The aspect ratio of the generated image.
   <ul>
-        <li>`1:1`</li>
-        <li>`16:9`</li>
-        <li>`21:9`</li>
-        <li>`3:2`</li>
-        <li>`2:3`</li>
-        <li>`4:5`</li>
-        <li>`5:4`</li>
-        <li>`3:4`</li>
-        <li>`4:3`</li>
-        <li>`9:16`</li>
-        <li>`9:21`</li>
+    <li>`1:1`</li>
+    <li>`16:9`</li>
+    <li>`21:9`</li>
+    <li>`3:2`</li>
+    <li>`2:3`</li>
+    <li>`4:5`</li>
+    <li>`5:4`</li>
+    <li>`3:4`</li>
+    <li>`4:3`</li>
+    <li>`9:16`</li>
+    <li>`9:21`</li>
   </ul>
 </ParamField>
 
@@ -42,19 +43,22 @@ description: "Generate an image based on the given text by employing AI models l
 </ParamField>
 
 <ParamField body="steps" type="number" default="4">
-  The number of denoising steps. Must be between 1-90. Higher values produce better quality images but take more time to generate.
+  The number of denoising steps. Must be between 1-90. Higher values produce
+  better quality images but take more time to generate.
 </ParamField>
 
 <ParamField body="advance_config" type="object">
   <Expandable title="advance_config" defaultOpen="false">
     <ParamField body="negative_prompt" type="string">
-      Text describing what you don't want in the image. 
+      Text describing what you don't want in the image.
     </ParamField>
     <ParamField body="guidance" type="number">
-     Higher guidance forces the model to better follow the prompt, but may result in lower quality output. Must be between 1-28.
+      Higher guidance forces the model to better follow the prompt, but may
+      result in lower quality output. Must be between 1-28.
     </ParamField>
     <ParamField body="seed" type="number">
-     Makes generation deterministic. Using the same seed and set of parameters will produce identical image each time.
+      Makes generation deterministic. Using the same seed and set of parameters
+      will produce identical image each time.
     </ParamField>
   </Expandable>
 </ParamField>
@@ -80,8 +84,8 @@ const result = await jigsawstack.image_generation({
   steps: 30,
   advance_config: {
     negative_prompt: "blurry, low quality",
-    guidance: 7.5
-  }
+    guidance: 7.5,
+  },
 });
 
 // The result is a Response object containing the image

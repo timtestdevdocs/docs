@@ -14,15 +14,13 @@ description: "Forecast a wide range of time series data in seconds with one simp
   - Minimum: 5 data points
   - Maximum: 1000 data points
 
-  Note: The larger the dataset provided, the more accurate the predictions become. 
-  For best results, provide at least 20-30 data points with consistent intervals.
+Note: The larger the dataset provided, the more accurate the predictions become.
+For best results, provide at least 20-30 data points with consistent intervals.
+
 </ParamField>
 
 <ParamField body="steps" type="number" default="5">
-  The number of predictions to make.
-  
-  - Minimum: 1
-  - Maximum: 500
+  The number of predictions to make. - Minimum: 1 - Maximum: 500
 </ParamField>
 
 ### Sample Dataset
@@ -53,9 +51,8 @@ const dataset: Array<Dataset> = [
 </ResponseField>
 
 <ResponseField name="prediction" type="Array<object>">
-  Array of predicted data points. Each object contains:
-  - `date`: Timestamp for the predicted point
-  - `value`: Predicted value
+  Array of predicted data points. Each object contains: - `date`: Timestamp for
+  the predicted point - `value`: Predicted value
 </ResponseField>
 
 <ResponseField name="steps" type="number">
@@ -77,10 +74,10 @@ const result = await jigsawstack.prediction({
     { date: "2023-01-02", value: 313734 },
     { date: "2023-01-03", value: 333774 },
     { date: "2023-01-04", value: 348636 },
-    { date: "2023-01-05", value: 278903 }
+    { date: "2023-01-05", value: 278903 },
   ],
   steps: 3, // Number of future predictions
-  columns: "date,value"
+  columns: "date,value",
 });
 ```
 
@@ -129,9 +126,9 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/prediction' \
 {
   "success": true,
   "prediction": [
-    {"date": "2023-01-06", "value": "315214.5625"},
-    {"date": "2023-01-07", "value": "320094.7188"},
-    {"date": "2023-01-08", "value": "316329.9375"}
+    { "date": "2023-01-06", "value": "315214.5625" },
+    { "date": "2023-01-07", "value": "320094.7188" },
+    { "date": "2023-01-08", "value": "316329.9375" }
   ],
   "steps": 3
 }

@@ -9,11 +9,13 @@ description: "Capture screenshots of a website, convert HTML to both image and P
 ### Body
 
 <ParamField body="html" type="string">
-  The HTML content to convert to image or PDF. Either `html` or `url` is required, but not both.
+  The HTML content to convert to image or PDF. Either `html` or `url` is
+  required, but not both.
 </ParamField>
 
 <ParamField body="url" type="string">
-  The URL of the webpage to capture. Either `html` or `url` is required, but not both.
+  The URL of the webpage to capture. Either `html` or `url` is required, but not
+  both.
 </ParamField>
 
 <ParamField body="type" type="string" default="png">
@@ -27,11 +29,13 @@ description: "Capture screenshots of a website, convert HTML to both image and P
 </ParamField>
 
 <ParamField body="quality" type="number" default="75">
-  The quality of the output image (1-100). Higher values produce better quality but larger file sizes. Only applies to jpeg and webp formats.
+  The quality of the output image (1-100). Higher values produce better quality
+  but larger file sizes. Only applies to jpeg and webp formats.
 </ParamField>
 
 <ParamField body="full_page" type="boolean" default="false">
-  When set to true, captures the entire scrollable area of the page instead of just the viewport.
+  When set to true, captures the entire scrollable area of the page instead of
+  just the viewport.
 </ParamField>
 
 <ParamField body="omit_background" type="boolean" default="false">
@@ -51,7 +55,8 @@ description: "Capture screenshots of a website, convert HTML to both image and P
 </ParamField>
 
 <ParamField body="size_preset" type="string">
-  Predefined screen size preset to use instead of specifying width and height manually. Supported values include:
+  Predefined screen size preset to use instead of specifying width and height
+  manually. Supported values include:
   <ul>
     <li>`QVGA` - 320×240</li>
     <li>`VGA` - 640×480</li>
@@ -65,20 +70,23 @@ description: "Capture screenshots of a website, convert HTML to both image and P
     <li>`5K` - 5120×2880</li>
     <li>`4K UHD` - 3840×2160</li>
   </ul>
-  
-  See the full list of screen size presets [here](/docs/additional-resources/size-preset)
+  See the full list of screen size presets
+  [here](/docs/additional-resources/size-preset)
 </ParamField>
 
 <ParamField body="is_mobile" type="boolean" default="false">
-  When set to true, emulates a mobile device viewport and takes the meta viewport tag into account.
+  When set to true, emulates a mobile device viewport and takes the meta
+  viewport tag into account.
 </ParamField>
 
 <ParamField body="dark_mode" type="boolean" default="false">
-  When set to true, forces the page to render in dark mode using the CSS prefers-color-scheme media feature.
+  When set to true, forces the page to render in dark mode using the CSS
+  prefers-color-scheme media feature.
 </ParamField>
 
 <ParamField body="use_graphic_renderer" type="boolean" default="false">
-  Enables WebGL, GPU acceleration, and other 3D APIs. Note: This option may impact performance and increase API latency.
+  Enables WebGL, GPU acceleration, and other 3D APIs. Note: This option may
+  impact performance and increase API latency.
 </ParamField>
 
 <ParamField body="goto_options" type="object">
@@ -92,23 +100,32 @@ description: "Capture screenshots of a website, convert HTML to both image and P
       <ul>
         <li>`load` - Wait for the window.load event</li>
         <li>`domcontentloaded` - Wait for the DOMContentLoaded event</li>
-        <li>`networkidle0` - Wait until there are no network connections for at least 500ms</li>
-        <li>`networkidle2` - Wait until there are no more than 2 network connections for at least 500ms</li>
+        <li>
+          `networkidle0` - Wait until there are no network connections for at
+          least 500ms
+        </li>
+        <li>
+          `networkidle2` - Wait until there are no more than 2 network
+          connections for at least 500ms
+        </li>
       </ul>
     </ParamField>
   </Expandable>
 </ParamField>
 
 <ParamField body="pdf_display_header_footer" type="boolean" default="false">
-  When set to true, displays header and footer in PDF output. Only applies when `type` is set to `pdf`.
+  When set to true, displays header and footer in PDF output. Only applies when
+  `type` is set to `pdf`.
 </ParamField>
 
 <ParamField body="pdf_print_background" type="boolean" default="false">
-  When set to true, prints background graphics in PDF output. Only applies when `type` is set to `pdf`.
+  When set to true, prints background graphics in PDF output. Only applies when
+  `type` is set to `pdf`.
 </ParamField>
 
 <ParamField body="pdf_page_range" type="string">
-  Page ranges to print in PDF format (e.g., '1-5, 8, 11-13'). Only applies when `type` is set to `pdf`.
+  Page ranges to print in PDF format (e.g., '1-5, 8, 11-13'). Only applies when
+  `type` is set to `pdf`.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -121,7 +138,7 @@ The API returns the generated file (image or PDF) directly in the response body 
 
 ```javascript Javascript
 import { JigsawStack } from "jigsawstack";
-import fs from 'fs';
+import fs from "fs";
 
 const jigsawstack = JigsawStack({
   apiKey: "your-api-key",
@@ -131,33 +148,33 @@ const jigsawstack = JigsawStack({
 const htmlResult = await jigsawstack.web.html_to_any({
   html: "<div style='width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; font-family: Arial; font-size: 48px;'>Hello World!</div>",
   quality: 100,
-  type: "png"
+  type: "png",
 });
 
 // Save the result to a file
 const htmlBuffer = await htmlResult.arrayBuffer();
-fs.writeFileSync('html_screenshot.png', Buffer.from(htmlBuffer));
+fs.writeFileSync("html_screenshot.png", Buffer.from(htmlBuffer));
 
 // Screenshot from URL
 const urlResult = await jigsawstack.web.html_to_any({
   url: "https://example.com",
   full_page: true,
   type: "jpeg",
-  quality: 90
+  quality: 90,
 });
 
 const urlBuffer = await urlResult.arrayBuffer();
-fs.writeFileSync('website_screenshot.jpg', Buffer.from(urlBuffer));
+fs.writeFileSync("website_screenshot.jpg", Buffer.from(urlBuffer));
 
 // Generate PDF from website
 const pdfResult = await jigsawstack.web.html_to_any({
   url: "https://example.com/article",
   type: "pdf",
-  pdf_print_background: true
+  pdf_print_background: true,
 });
 
 const pdfBuffer = await pdfResult.arrayBuffer();
-fs.writeFileSync('website.pdf', Buffer.from(pdfBuffer));
+fs.writeFileSync("website.pdf", Buffer.from(pdfBuffer));
 
 // Mobile device emulation with dark mode
 const mobileResult = await jigsawstack.web.html_to_any({
@@ -166,11 +183,11 @@ const mobileResult = await jigsawstack.web.html_to_any({
   dark_mode: true,
   size_preset: "HD",
   type: "webp",
-  quality: 85
+  quality: 85,
 });
 
 const mobileBuffer = await mobileResult.arrayBuffer();
-fs.writeFileSync('mobile_dark.webp', Buffer.from(mobileBuffer));
+fs.writeFileSync("mobile_dark.webp", Buffer.from(mobileBuffer));
 ```
 
 ```python Python
@@ -272,6 +289,7 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/web/html_to_any' 
 ### Website Screenshots
 
 Capture screenshots of websites for:
+
 - Monitoring and testing
 - Generating previews or thumbnails
 - Creating social media images
@@ -280,6 +298,7 @@ Capture screenshots of websites for:
 ### HTML to Image Conversion
 
 Convert HTML snippets to images for:
+
 - Email templates
 - Social media posts
 - Dynamic image generation
@@ -288,6 +307,7 @@ Convert HTML snippets to images for:
 ### PDF Generation
 
 Create PDFs from webpages for:
+
 - Generating reports
 - Creating downloadable content
 - Archiving articles or documentation
@@ -296,6 +316,7 @@ Create PDFs from webpages for:
 ### Responsive Design Testing
 
 Test how websites appear on different screen sizes:
+
 - Mobile vs. desktop views
 - Various device dimensions
 - Light vs. dark mode
@@ -303,11 +324,13 @@ Test how websites appear on different screen sizes:
 ## Best Practices
 
 1. **Optimal Quality Settings**:
+
    - For lossless quality, use PNG format with `quality: 100`
    - For smaller file sizes with good quality, use WebP format with `quality: 80-90`
    - For the smallest file sizes (where quality is less critical), use JPEG format with `quality: 70-80`
 
 2. **Page Loading**:
+
    - Use `wait_until: "networkidle0"` for dynamic websites that load content via JavaScript
    - Set appropriate `timeout` values for websites that take longer to load
    - Consider using explicit `width` and `height` to match the content dimensions

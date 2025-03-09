@@ -8,6 +8,36 @@
 		"dark": "#18181A"
 	},
 	"favicon": "/favicon.png",
+	"logo": {
+		"light": "/logo/logo.svg",
+		"dark": "/logo/logo.svg"
+	},
+	"background": {
+		"color": {
+			"dark": "#18181A"
+		}
+	},
+	"navbar": {
+		"links": [
+			{
+				"label": "Support",
+				"href": "https://jigsawstack.com/help"
+			}
+		],
+		"primary": {
+			"type": "button",
+			"label": "Dashboard",
+			"href": "https://jigsawstack.com/dashboard"
+		}
+	},
+	"footer": {
+		"socials": {
+			"twitter": "https://twitter.com/jigsawstack",
+			"github": "https://github.com/jigsawstack",
+			"linkedin": "https://www.linkedin.com/company/jigsawstack",
+			"discord": "https://discord.gg/dj8fMBpnqd"
+		}
+	},
 	"navigation": {
 		"tabs": [
 			{
@@ -185,35 +215,5 @@
 				]
 			}
 		]
-	},
-	"logo": {
-		"light": "/logo/logo.svg",
-		"dark": "/logo/logo.svg"
-	},
-	"background": {
-		"color": {
-			"dark": "#18181A"
-		}
-	},
-	"navbar": {
-		"links": [
-			{
-				"label": "Support",
-				"href": "https://jigsawstack.com/help"
-			}
-		],
-		"primary": {
-			"type": "button",
-			"label": "Dashboard",
-			"href": "https://jigsawstack.com/dashboard"
-		}
-	},
-	"footer": {
-		"socials": {
-			"twitter": "https://twitter.com/jigsawstack",
-			"github": "https://github.com/jigsawstack",
-			"linkedin": "https://www.linkedin.com/company/jigsawstack",
-			"discord": "https://discord.gg/dj8fMBpnqd"
-		}
 	}
 }

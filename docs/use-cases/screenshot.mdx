@@ -32,7 +32,7 @@ const buffer = await result.arrayBuffer();
 
 fs.writeFileSync(
   path.join(__dirname, `/screens/screenshot.jpeg`),
-  Buffer.from(buffer)
+  Buffer.from(buffer),
 );
 ```
 

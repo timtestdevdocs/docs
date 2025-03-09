@@ -9,21 +9,25 @@ description: "Generate semantically correct SQL queries from natural language pr
 ### Body
 
 <ParamField body="prompt" type="string" required>
-  The natural language prompt that will be translated to an SQL query.
-  
-  Minimum length: 10 characters
+  The natural language prompt that will be translated to an SQL query. Minimum
+  length: 10 characters
 </ParamField>
 
 <ParamField body="sql_schema" type="string">
-  The database schema where the query will be run. Not required if `file_store_key` is specified.
+  The database schema where the query will be run. Not required if
+  `file_store_key` is specified.
 </ParamField>
 
 <ParamField body="database" type="string">
-  The database type to generate SQL for. Supported values are `postgresql`, `mysql`, or `sqlite`. Specifying this parameter improves SQL generation accuracy by applying database-specific syntax and optimizations.
+  The database type to generate SQL for. Supported values are `postgresql`,
+  `mysql`, or `sqlite`. Specifying this parameter improves SQL generation
+  accuracy by applying database-specific syntax and optimizations.
 </ParamField>
 
 <ParamField body="file_store_key" type="string">
-  The key used to store the database schema on Jigsawstack file [Storage](/docs/api-reference/store/file/add). Not required if `sql_schema` is specified.
+  The key used to store the database schema on Jigsawstack file
+  [Storage](/docs/api-reference/store/file/add). Not required if `sql_schema` is
+  specified.
 </ParamField>
 
 <Info>Either `file_store_key` or `sql_schema` can be provided not both.</Info>
@@ -37,7 +41,8 @@ description: "Generate semantically correct SQL queries from natural language pr
 </ResponseField>
 
 <ResponseField name="sql" type="string">
-  The generated SQL query based on the natural language prompt and provided schema.
+  The generated SQL query based on the natural language prompt and provided
+  schema.
 </ResponseField>
 
 <RequestExample>
@@ -50,7 +55,8 @@ const jigsawstack = JigsawStack({
 });
 
 const result = await jigsawstack.text_to_sql({
-  prompt: "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
+  prompt:
+    "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
   sql_schema: `
     CREATE TABLE Transactions (
       transaction_id INT PRIMARY KEY, 
@@ -61,7 +67,7 @@ const result = await jigsawstack.text_to_sql({
       FOREIGN KEY(user_id) REFERENCES Users(user_id)
     )
   `,
-  database: "postgresql"
+  database: "postgresql",
 });
 
 console.log(result.sql);
@@ -76,9 +82,9 @@ params = {
     "prompt": "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
     "sql_schema": """
     CREATE TABLE Transactions (
-      transaction_id INT PRIMARY KEY, 
+      transaction_id INT PRIMARY KEY,
       user_id INT NOT NULL,
-      total_amount DECIMAL(10, 2) NOT NULL, 
+      total_amount DECIMAL(10, 2) NOT NULL,
       transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       status VARCHAR(20) DEFAULT 'pending',
       FOREIGN KEY(user_id) REFERENCES Users(user_id)
