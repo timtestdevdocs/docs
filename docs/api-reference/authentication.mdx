@@ -3,85 +3,31 @@ title: "Authentication"
 description: "Secure Access to JigsawStack API & SDK."
 ---
 
-## Base URL
+## Retrieve your API key
 
-The JigsawStack base URL is built on REST principles. We enforce HTTPS in every request to improve data security, integrity, and privacy. The base URL does not support HTTP.
-
-<Info>Base URL `https://api.jigsawstack.com`</Info>
-
-The JigsawStack API uses API keys to authenticate requests. You can view and manage your API keys in the JigsawStack Dashboard.
-
-## Authenticated request
-
-- Attach the header parameter `x-api-key` with the API key obtained from your dashboard.
-
-```js
-const headers = {
-  "x-api-key": "<your-api-key-here>",
-};
-const baseUrl = "https://api.jigsawstack.com";
-
-const result = await fetch(`${baseUrl}/v1/ai/summary`, {
-  method: "POST",
-  body: {
-    text: "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral",
-  },
-  headers,
-});
-```
-
-- You can also add `x-api-key` as query parameter.
-
-```js
-const baseUrl = "https://api.jigsawstack.com";
-await fetch(`${baseUrl}/v1/currency?x-api-key=<your-api-key-here>`);
-```
-
-<Info> `x-api-key` as query parameter only works for public API keys. </Info>
-
-## SDK authentication
-
-- Configure API key as an environment variable
-
-```bash .env
-JIGSAWSTACK_API_KEY='your-api-key'
-```
-
-- Authenticate
-
-<CodeGroup>
-
-```javascript hello.js
-const jigsawstack = JigsawStack(); // API key will be read from environment.
-
-/**
-----------------------------------------------------------------
-To explicitly specify the API key, do the following:
-const jigsawstack = JigsawStack({apiKey: "your-api-key"});
-----------------------------------------------------------------
-*/
-```
-
-```python hello.py
-
-jigsawstack = JigsawStack() # API key will be read from environment.
-
-## To explicitly set the API key, do the following:
-## jigsawstack = JigsawStack(api_key="your-api-key")
-```
-
-</CodeGroup>
-
-## To retrieve your API key
-
-- Log in to your JigsawStack [dashboard](https://jigsawstack.com)
+- Log in to your JigsawStack [dashboard](https://jigsawstack.com/dashboard)
 - Navigate to Keys tab.
-- Click on `Create new key` button to create a new API key.
-- Copy the API key and use it in your requests.
+- Click on `+ Create new key` button to create a new API key.
+- Copy the API key and securely store it in your environment variables.
 
-## Public and Secret API keys
+## Secret and Public keys
 
-The JigsawStack API has two types of API keys: `public` and `secret`.
+The JigsawStack API has two types of API keys: `secret` and `public`.
+
+### Secret keys
+
+- Secret API keys are great for backend services. A secret key can access all APIs without any restrictions.
+
+<img
+  className="block"
+  src="https://res.cloudinary.com/dev-ninja/image/upload/v1724681564/secret_key_rzx8ly.png"
+  alt="Secret Key Setup"
+/>
+
+<Tip>
+  Your `secret` API key should never be public, shared or exposed in a github
+  repository.
+</Tip>
 
 ### Public API keys
 
@@ -100,20 +46,63 @@ The JigsawStack API has two types of API keys: `public` and `secret`.
 
 <Tip>Domain whitelisting is recommended when creating `public` api keys.</Tip>
 
-### Secret API keys
+## Base URL
 
-- Secret API keys are great for backend services. A secret key have unlimited access to your APIs.
+The JigsawStack base URL is built on REST principles. We enforce HTTPS in every request to improve data security, integrity, and privacy. The base URL does not support HTTP.
 
-<img
-  className="block"
-  src="https://res.cloudinary.com/dev-ninja/image/upload/v1724681564/secret_key_rzx8ly.png"
-  alt="Secret Key Setup"
-/>
+<Info>Base URL `https://api.jigsawstack.com`</Info>
 
-<Tip>
-  Your `secret` API key should never be public, shared or exposed in a github
-  repository.
-</Tip>
+The JigsawStack API uses API keys to authenticate requests. You can view and manage your API keys in the JigsawStack Dashboard.
+
+## SDK authentication
+
+- Configure API key as an environment variable
+
+```bash .env
+JIGSAWSTACK_API_KEY='your-api-key'
+```
+
+- Authenticate
+
+<CodeGroup>
+```javascript Javascript/Typescript
+const jigsawstack = JigsawStack({ apiKey: process.env.JIGSAWSTACK_API_KEY });
+```
+
+```python Python
+jigsawstack = JigsawStack(api_key=os.environ["JIGSAWSTACK_API_KEY"])
+```
+
+</CodeGroup>
+
+## API request
+
+- Attach the header parameter `x-api-key` with the API key obtained from your dashboard.
+
+```js
+const headers = {
+  "x-api-key": "<your-api-key-here>",
+};
+
+const baseUrl = "https://api.jigsawstack.com";
+
+const result = await fetch(`${baseUrl}/v1/ai/summary`, {
+  method: "POST",
+  body: {
+    text: "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral",
+  },
+  headers,
+});
+```
+
+- You can also add `x-api-key` as query parameter.
+
+```js
+const baseUrl = "https://api.jigsawstack.com";
+await fetch(`${baseUrl}/v1/ai/summary?x-api-key=<your-api-key-here>`);
+```
+
+<Info> `x-api-key` as query parameter only works for public API keys. </Info>
 
 ## Protecting against key leakage.
 
