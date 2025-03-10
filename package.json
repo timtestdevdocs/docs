@@ -1,7 +1,8 @@
 {
   "scripts": {
     "gen-examples": "tsx gen-examples.ts",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "dev": "mintlify dev"
   },
   "dependencies": {},
   "devDependencies": {

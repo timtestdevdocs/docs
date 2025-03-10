@@ -39,9 +39,10 @@
     }
   },
   "navigation": {
-    "tabs": [
+    "anchors": [
       {
-        "tab": "Documentation",
+        "anchor": "Documentation",
+        "icon": "book-open",
         "groups": [
           {
             "group": "Get Started",
@@ -110,7 +111,8 @@
         ]
       },
       {
-        "tab": "API Reference",
+        "anchor": "API Reference",
+        "icon": "code",
         "groups": [
           {
             "group": "API Documentation",
