@@ -4,6 +4,8 @@ api: "GET https://api.jigsawstack.com/v1/web/search/suggest"
 description: "Get suggestions for a given query in real time."
 ---
 
+import SearchSuggestionSnippet from "/snippets/code-req-examples/search-suggestions.mdx";
+
 ### Query
 
 <ParamField query="query" type="string" required>
@@ -18,60 +20,4 @@ description: "Get suggestions for a given query in real time."
   Indicates whether the call was successful.
 </ResponseField>
 
-<RequestExample>
-
-```javascript JavaScript
-import { JigsawStack } from "jigsawstack";
-
-const jigsawstack = JigsawStack({
-  apiKey: "your-api-key",
-});
-
-const result = await jigsawstack.web.search_suggestion({
-  query: "Time Square New York",
-});
-```
-
-```python Python
-from jigsawstack import JigsawStack
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-
-result = jigsawstack.web.search_suggestion({
-  "query": "Time Square New York",
-})
-```
-
-```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/web/search/suggest?query=Time Square New Yor' \
---header 'x-api-key: <your-api-key>'
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-```json Response
-{
-  "success": true,
-  "suggestions": [
-    "time square new york",
-    "time square new york hotels",
-    "time square new york live",
-    "time square new york city",
-    "time square new york billboard price",
-    "time square new york weather",
-    "time square new york map",
-    "time square new york zip code",
-    "time square new york restaurants",
-    "time square new york today",
-    "time square new york live cam",
-    "time square new york stores",
-    "time square new york parking",
-    "time square new york things to do",
-    "time square new york time now"
-  ]
-}
-```
-
-</ResponseExample>
+<SearchSuggestionSnippet />

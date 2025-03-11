@@ -64,8 +64,7 @@ const APISchemas: {
     method: "POST",
     body: {
       database: "postgresql",
-      prompt:
-        "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
+      prompt: "Find all transactions with amounts exceeding $10,000, sorted by transaction date",
       sql_schema: `
           CREATE TABLE Transactions (
             transaction_id INT PRIMARY KEY, 
@@ -79,6 +78,22 @@ const APISchemas: {
     },
     sdk_key_string: "text_to_sql",
   },
+  "ai-search": {
+    path: "/web/search",
+    method: "POST",
+    body: {
+      query: "What is the capital of France?",
+    },
+    sdk_key_string: "web.search",
+  },
+  "search-suggestions": {
+    path: "/web/search/suggest",
+    method: "GET",
+    query: {
+      query: "What is the capital",
+    },
+    sdk_key_string: "web.search_suggestion",
+  },
 };
 
 const getSDKJSCode = (api: APIType) => {
@@ -88,11 +103,11 @@ const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
 const response = await jigsaw.${api.sdk_key_string}(${JSON.stringify(
     {
-      ...api.body,
-      ...api.query,
+      ...api?.body,
+      ...api?.query,
     },
     null,
-    6,
+    6
   )})`;
 
   return JSSDKCode;
@@ -105,11 +120,11 @@ jigsaw = JigsawStack(api_key="your-api-key")
 
 response = jigsaw.${api.sdk_key_string}(${JSON.stringify(
     {
-      ...api.body,
-      ...api.query,
+      ...api?.body,
+      ...api?.query,
     },
     null,
-    6,
+    6
   )})`;
 
   return pythonCode;
@@ -144,25 +159,18 @@ const gen = async () => {
     const kotlinCode = curlconverter.toKotlin(curlCode);
     const csharpCode = curlconverter.toCSharp(curlCode);
 
-    const response = await fetch(
-      `${url}${api.path}${api.query ? `?${new URLSearchParams(api.query).toString()}` : ""}`,
-      {
-        method: api.method,
-        headers: {
-          ...api.headers,
-          "Content-Type": "application/json",
-          "x-api-key": process.env.JIGSAWSTACK_API_KEY!,
-        },
-        body: api.body ? JSON.stringify(api.body) : undefined,
+    const response = await fetch(`${url}${api.path}${api.query ? `?${new URLSearchParams(api.query).toString()}` : ""}`, {
+      method: api.method,
+      headers: {
+        ...api.headers,
+        "Content-Type": "application/json",
+        "x-api-key": process.env.JIGSAWSTACK_API_KEY!,
       },
-    );
+      body: api.body ? JSON.stringify(api.body) : undefined,
+    });
 
     if (!response.ok) {
-      console.error(
-        `${apiKey}: failed to generate response example`,
-        response.status,
-        await response.text(),
-      );
+      console.error(`${apiKey}: failed to generate response example`, response.status, await response.text());
       return;
     }
 
