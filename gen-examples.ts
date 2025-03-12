@@ -92,7 +92,7 @@ const APISchemas: {
     query: {
       query: "What is the capital",
     },
-    sdk_key_string: "web.search_suggestion",
+    sdk_key_string: "web.search_suggestions",
   },
 };
 

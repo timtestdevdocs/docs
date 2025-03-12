@@ -5,7 +5,7 @@ import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
-const response = await jigsaw.web.search_suggestion({
+const response = await jigsaw.web.search_suggestions({
       "query": "What is the capital"
 })
     ```
@@ -14,7 +14,7 @@ from jigsawstack import JigsawStack
 
 jigsaw = JigsawStack(api_key="your-api-key")
 
-response = jigsaw.web.search_suggestion({
+response = jigsaw.web.search_suggestions({
       "query": "What is the capital"
 })
     ```
