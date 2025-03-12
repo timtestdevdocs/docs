@@ -8,15 +8,15 @@ import SearchSnippet from "/snippets/code-req-examples/ai-search.mdx";
 
 ### Body
 
-<ParamField query="query" type="string" required>
+<ParamField body="query" type="string" required>
   The search value. The maximum query character length is 400.
 </ParamField>
 
-<ParamField query="ai_overview" type="boolean" default="true">
+<ParamField body="ai_overview" type="boolean" default="true">
   Include AI powered overview in the search results
 </ParamField>
 
-<ParamField query="safe_search" type="string" default="moderate">
+<ParamField body="safe_search" type="string" default="moderate">
   Include offensive results in the search results
   <ul>
     <li>`moderate`</li>
@@ -25,11 +25,11 @@ import SearchSnippet from "/snippets/code-req-examples/ai-search.mdx";
   </ul>
 </ParamField>
 
-<ParamField query="spell_check" type="boolean" default="true">
+<ParamField body="spell_check" type="boolean" default="true">
   Spell check the search query.
 </ParamField>
 
-<ParamField query="byo_urls" type="string[]">
+<ParamField body="byo_urls" type="string[]">
   Return results from the specified URLs.
 </ParamField>
 

@@ -129,16 +129,12 @@
             ]
           },
           {
-            "group": "Web",
-            "pages": [
-              {
-                "group": "Search",
-                "pages": ["docs/api-reference/web/ai-search", "docs/api-reference/web/search-suggestion"]
-              },
-              "docs/api-reference/ai/scrape",
-              "docs/api-reference/web/scrape",
-              "docs/api-reference/web/html-to-any"
-            ]
+            "group": "Web Scrape",
+            "pages": ["docs/api-reference/ai/scrape", "docs/api-reference/web/scrape", "docs/api-reference/web/html-to-any"]
+          },
+          {
+            "group": "Web Search",
+            "pages": ["docs/api-reference/web/ai-search", "docs/api-reference/web/search-suggestion"]
           },
           {
             "group": "Prompt Engine",
