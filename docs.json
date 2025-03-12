@@ -46,7 +46,7 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": ["docs/introduction"]
+            "pages": ["docs/introduction", "docs/api-reference/all-models"]
           },
           {
             "group": "Quick Start",
@@ -77,7 +77,7 @@
               "docs/examples/speech-to-text",
               "docs/examples/text-to-speech",
               "docs/examples/image-generation",
-              "docs/use-cases/screenshot"
+              "docs/examples/screenshot"
             ]
           },
           {
@@ -164,15 +164,6 @@
             "pages": ["docs/api-reference/geo/search", "docs/api-reference/geo/geocode"]
           },
           {
-            "group": "Store",
-            "pages": [
-              {
-                "group": "File",
-                "pages": ["docs/api-reference/store/file/add", "docs/api-reference/store/file/get", "docs/api-reference/store/file/delete"]
-              }
-            ]
-          },
-          {
             "group": "Validate",
             "pages": [
               "docs/api-reference/validate/nsfw",
@@ -180,6 +171,10 @@
               "docs/api-reference/validate/spellcheck",
               "docs/api-reference/ai/spam-check"
             ]
+          },
+          {
+            "group": "File Store",
+            "pages": ["docs/api-reference/store/file/add", "docs/api-reference/store/file/get", "docs/api-reference/store/file/delete"]
           }
         ]
       }
