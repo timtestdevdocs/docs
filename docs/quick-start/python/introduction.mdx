@@ -1,21 +1,27 @@
 ---
 title: "Introduction"
-description: "Learn how to use the Python SDK to build AI powered applications."
+description: "Get started with the JigsawStack Python SDK to build powerful AI applications"
 ---
 
 <Card title="Models" href="/docs/api-reference/authentication">
   Explore our complete list of models and API references here.
 </Card>
+
 ## Prerequisites
 
-To get the most out of this guide, you’ll need to:
+Before you begin, you'll need:
 
-- **Set up an** [account](https://jigsawstack.com/dashboard)
-- **Create and retrieve your** [API key](https://jigsawstack.com/dashboard)
+- A [JigsawStack account](https://jigsawstack.com/dashboard)
+- Your [API key](https://jigsawstack.com/dashboard) from the JigsawStack dashboard
+- Python 3.7 or higher installed on your system
 
-<Info>You should have installed Python (version 3.7 or higher).</Info>
+<Info>
+  The SDK is compatible with Python 3.7+ and works on all major operating systems (Windows, macOS, and Linux).
+</Info>
 
 ## Installation
+
+Install the JigsawStack Python SDK using pip:
 
 <CodeGroup>
 
@@ -23,31 +29,148 @@ To get the most out of this guide, you’ll need to:
 pip install jigsawstack
 ```
 
+```bash pipenv
+pipenv install jigsawstack
+```
+
+```bash poetry
+poetry add jigsawstack
+```
+
 </CodeGroup>
 
-## Set the API key as an environment variable
+## Authentication
+
+There are two ways to authenticate with the JigsawStack API:
+
+### Option 1: Environment Variable (Recommended)
+
+Set your API key as an environment variable:
+
+```bash
+# Linux/macOS
+export JIGSAWSTACK_API_KEY='your-api-key'
+
+# Windows (Command Prompt)
+set JIGSAWSTACK_API_KEY=your-api-key
+
+# Windows (PowerShell)
+$env:JIGSAWSTACK_API_KEY = 'your-api-key'
+```
+
+Or in your project's `.env` file:
 
 ```bash .env
 JIGSAWSTACK_API_KEY='your-api-key'
 ```
 
-## Usage
+Then initialize the SDK without explicitly providing the API key:
 
-Let's use AI scrape to scrape an amazon product page.
-
-```py
+```python
 from jigsawstack import JigsawStack
 
-jigsawstack = JigsawStack() # API key will be read from environment.
-
-# jigsawstack = JigsawStack(api_key="your-api-key")
-
-params = {
- "url": "https://www.amazon.com/Cadbury-Mini-Caramel-Eggs-Bulk/dp/B0CWM99G5W",
- "element_prompts": ["prices"]
-}
-
-result = jigsawstack.web.ai_scrape(params)
+jigsawstack = JigsawStack()  # API key will be read from environment
 ```
 
-Kudos, You are set!
+### Option 2: Direct Initialization
+
+Provide your API key directly when initializing the SDK:
+
+```python
+from jigsawstack import JigsawStack
+
+jigsawstack = JigsawStack(api_key="your-api-key")
+```
+
+## Basic Usage
+
+Here's a quick example of using the AI web scraper to extract information from an Amazon product page:
+
+```python
+from jigsawstack import JigsawStack
+
+# Initialize the SDK
+jigsawstack = JigsawStack()  # API key from environment variables
+
+# Define parameters for web scraping
+params = {
+    "url": "https://www.amazon.com/Cadbury-Mini-Caramel-Eggs-Bulk/dp/B0CWM99G5W",
+    "element_prompts": ["prices", "title", "ratings", "product_details"]
+}
+
+# Make the API call
+result = jigsawstack.web.ai_scrape(params)
+
+# Print the results
+print(f"Product Title: {result.get('title')}")
+print(f"Price Information: {result.get('prices')}")
+```
+
+## Response Handling
+
+JigsawStack returns structured data as Python dictionaries. Here's how to handle the response:
+
+```python
+# Example response handling
+try:
+    result = jigsawstack.web.ai_scrape(params)
+    
+    # Access nested data
+    if "prices" in result:
+        current_price = result["prices"].get("current_price")
+        print(f"Current Price: ${current_price}")
+    
+    # Iterate through multiple results
+    if "product_details" in result:
+        print("Product Details:")
+        for key, value in result["product_details"].items():
+            print(f"- {key}: {value}")
+            
+except Exception as e:
+    print(f"Error: {e}")
+```
+
+## More Examples
+
+### Sentiment Analysis
+
+```python
+sentiment_result = jigsawstack.ai.sentiment({
+    "text": "I absolutely love this product! It's amazing!"
+})
+print(f"Sentiment: {sentiment_result.get('sentiment')}")
+print(f"Score: {sentiment_result.get('score')}")
+```
+
+### Text Translation
+
+```python
+translation = jigsawstack.ai.translate({
+    "text": "Hello, world!",
+    "target_lang": "es"  # Spanish
+})
+print(f"Translated text: {translation.get('translated_text')}")
+```
+
+### Text to Speech
+
+```python
+speech = jigsawstack.audio.text_to_speech({
+    "text": "Welcome to JigsawStack Python SDK!",
+    "voice": "en-US-female"
+})
+
+# Save the audio to a file
+with open("welcome_message.mp3", "wb") as audio_file:
+    audio_file.write(speech.content)
+```
+
+## Next Steps
+
+Now that you've set up the JigsawStack Python SDK, you can:
+
+- Explore the [complete API reference](/docs/api-reference/authentication) to discover all available models
+- Try out different AI capabilities like [image generation](https://jigsawstack.com/docs/api-reference/ai/image-generation), [OCR](https://jigsawstack.com/docs/api-reference/ai/vocr), and more
+- Join our [Discord](https://discord.gg/GnvmdZ7z) for help and to share your projects
+
+Start building powerful AI applications with JigsawStack today!

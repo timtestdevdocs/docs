@@ -1,0 +1,101 @@
+---
+title: "Text Summarization"
+description: "Learn how to use JigsawStack's Summarization API to create concise summaries of long-form content"
+---
+
+## Overview
+
+The Summarization API allows you to generate concise, accurate summaries of longer text content. Whether you're working with articles, documents, reports, or any long-form content, our API helps extract the essential information while maintaining context and meaning.
+
+- Transform long content into clear, concise summaries
+- Maintain key points and semantic meaning
+- Support for text, URL, and file inputs
+- Flexible output formats (paragraph or bullet points)
+- Process PDF documents directly from URLs or storage
+
+## API Endpoint
+
+```
+POST /v1/ai/summary
+```
+
+## Quick Start
+
+```javascript JavaScript
+import { JigsawStack } from 'jigsawstack';
+
+const jigsaw = new JigsawStack('your-api-key');
+
+// Text summary example
+const response = await jigsaw.ai.summary({
+  text: "The renewable energy sector saw unprecedented growth in 2022, with solar and wind installation rates exceeding forecasts by 25%. Despite supply chain challenges related to the pandemic, global clean energy investment topped $500 billion for the first time. Notably, several major oil companies increased their renewable investments, with commitments to achieve carbon neutrality by 2050. However, challenges remain, including grid integration issues, regulatory hurdles in developing markets, and the need for advanced energy storage solutions. Experts project continued acceleration through 2023, particularly in utility-scale solar and offshore wind development."
+});
+
+console.log(response);
+
+// Bullet point summary example
+const bulletResponse = await jigsaw.ai.summary({
+  text: "The renewable energy sector saw unprecedented growth in 2022...",
+  type: "points",
+  max_points: 5
+});
+
+console.log(bulletResponse);
+```
+
+## Response
+
+```json Text Summary Response
+{
+  "success": true,
+  "summary": "Renewable energy had record growth in 2022 with solar and wind exceeding forecasts, despite pandemic-related supply chain issues. Global clean energy investment surpassed $500 billion for the first time, with major oil companies investing in renewables to reach carbon neutrality by 2050. Challenges include grid integration, regulatory barriers, and energy storage needs. Growth is expected to continue in 2023, especially in utility-scale solar and offshore wind."
+}
+```
+
+```json Bullet Points Response
+{
+  "success": true,
+  "summary": [
+    "Renewable energy growth exceeded forecasts by 25% in 2022",
+    "Global clean energy investment topped $500 billion",
+    "Major oil companies committed to carbon neutrality by 2050",
+    "Challenges include grid integration, regulations, and energy storage",
+    "Growth expected to continue in utility-scale solar and offshore wind"
+  ]
+}
+```
+
+## Optimizing Summary Quality
+
+For best results with the Summarization API:
+
+1. **Provide sufficient context**: Longer text with complete context generally produces better summaries than short, fragmented content
+2. **Choose the right format**: Use `type: "text"` for narrative content and `type: "points"` for factual or structured information
+3. **Adjust max_points**: When using bullet points, adjust the `max_points` parameter based on content complexity (more complex content may need more points)
+4. **Consider the source**: For PDFs, ensure they're text-based rather than image-based for best results
+
+## Example
+
+```javascript Research Paper Assistant
+// Example: Process research papers from PDFs
+async function createResearchSummaries(paperUrl) {
+  // Generate a text summary from the PDF URL
+  const textSummary = await jigsaw.ai.summary({
+    url: paperUrl,
+    type: "text",
+    max_characters: 1000
+  });
+  
+  // Generate key points from the same PDF
+  const keyPoints = await jigsaw.ai.summary({
+    url: paperUrl,
+    type: "points",
+    max_points: 10
+  });
+  
+  return {
+    fullSummary: textSummary.summary,
+    keyPoints: keyPoints.summary
+  };
+}
+```

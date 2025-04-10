@@ -1,0 +1,65 @@
+---
+title: "Image Generation"
+description: "Learn how use JigsawStack SDK to generate a images"
+---
+
+Generate an image based on the given text by automatically employing AI models like Flux, Stable Diffusion, DALL·E, and other top models.
+
+## Quick Start
+
+```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.imageGeneration({
+  prompt: "A serene mountain landscape at sunset",
+  aspect_ratio: "16:9",
+  steps: 30
+});
+
+console.log(response);
+```
+
+### Specify the image aspect ratio
+
+You can specify different aspect ratios for your generated images. Here are the supported ratios and their common use cases:
+
+| Aspect Ratio | Common Use Cases |
+|-------------|------------------|
+| `1:1`       | Social media posts, profile pictures |
+| `16:9`      | YouTube thumbnails, presentations |
+| `21:9`      | Ultrawide displays, cinematic shots |
+| `3:2`       | Digital photography, postcards |
+| `2:3`       | Mobile phone wallpapers, book covers |
+| `4:5`       | Instagram portraits |
+| `5:4`       | Photo prints, desktop wallpapers |
+| `3:4`       | Digital displays, e-reader content |
+| `4:3`       | Traditional computer displays |
+| `9:16`      | Mobile-first content, stories |
+| `9:21`      | Vertical ultrawide displays |
+
+
+## Writing Effective Prompts
+
+- **Be Specific**: Instead of "a cat", try "a fluffy orange tabby cat sleeping on a windowsill in soft morning light"
+- **Include Details**: Mention style, lighting, perspective, and mood
+- **Use Artistic References**: Include terms like "digital art", "oil painting", or "photography"
+- **Avoid Negatives**: Instead of saying what you don't want, focus on what you do want
+
+
+## Example
+
+```javascript Generate an Artistic Portrait
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.imageGeneration({
+  prompt: "Create an image of a vast, futuristic cathedral-like interior with towering stained glass windows casting vibrant blue and orange light. In the center, a majestic, ethereal whale floats gracefully, its body shimmering with a mosaic of colors reflecting the stained glass. Surrounding the whale are several large, translucent, glowing crystals suspended in mid-air, each reflecting the ambient light. On the ground, a few small human figures stand in awe, emphasizing the scale and grandeur of the scene. The atmosphere is mystical and otherworldly, blending elements of fantasy and science fiction",
+  aspect_ratio: "16:9",
+  steps: 30
+});
+
+console.log(response);
+```

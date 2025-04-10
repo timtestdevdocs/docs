@@ -14,71 +14,63 @@ The vOCR is a robust Object Character Recognition (OCR) API, enhanced with fine-
 - Healthcare Records Management: Extracts patient information, medical history, and treatment details from healthcare records for efficient data management and analysis.
 - Classification Engines: Facilitates accurate categorization and organization of extracted data.
 
-Let's see the vOCR in action by building a simple ID data extractor.
+Let's see the vOCR in action by building a data extractor.
 
 ## Initial requirements
 
 - Setup a JigsawStack account (if you don't have an account already)
 - Get your JigsawStack API key from [here](https://jigsawstack.com/dashboard).
 
-## Example
+### Request 
 
----
+```javascript JavaScript
+import { JigsawStack } from "jigsawstack";
 
-### Request payload
+const jigsawstack = JigsawStack({
+apiKey: "your-api-key",
+});
 
-```javascript
-const params: BodyParams = await request.json();
-
-// payload
-const payload: OCRParams = {
-  url: params.imageUrl,
-  prompt: ["First name", "last name", "dob", "id"], // streamline to the data you need.
-};
+const result = await jigsawstack.vision.vocr({
+  prompt: ["Title", "Description"],
+  url: "https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png"
+});
 ```
 
-### Make request
+### Response
 
-```javascript
-const data = await jigsawstack.vision.vocr(payload);
-```
-
-### Here is the complete code
-
-```javascript api/id-extractor.ts
-export const POST = async (request: Request) => {
-  try {
-    const params: BodyParams = await request.json();
-    const payload: OCRParams = {
-      url: params.imageUrl,
-      prompt: ["First name", "last name", "dob", "id"], // streamline to the data you need.
-    };
-
-    const data = await jigsawstack.vision.vocr(payload);
-
-    // Process and store data however you want to.
-    console.log(data);
-
-    return Response.json(
-      {
-        message: "ID verification successful",
-      },
-      {
-        status: 200,
-      }
-    );
-  } catch (error) {
-    handleError(error);
+```json
+{
+"success": true,
+"context": {
+  "Title": [
+    "Webhook Trigger"
+  ],
+  "Description": [
+    "Select events that will trigger the webhook will listen to. At least one event must be selected.",
+    "Success logs",
+    "Error logs",
+    "Endpoint",
+    "Create"
+  ]
+},
+"width": 2880,
+"height": 1800,
+"tags": [
+  "text",
+  "screenshot",
+  "software",
+  "multimedia software",
+  "graphics software"
+],
+"has_text": true,
+"sections": [
+  {
+    "text": "",
+    "lines": []
   }
-};
+]
+}
 ```
 
-### Curl request
-
-```bash
-curl -X POST http://localhost:3000/api/id-extractor
-   -H 'Content-Type: application/json'
-   -d '{"imageUrl":"<your-image-url>"}'
-```
 
 <Info>Find more information on vOCR API [here](/docs/api-reference/ai/vocr)</Info>

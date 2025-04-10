@@ -1,0 +1,57 @@
+---
+title: "NSFW Detection"
+description: "Learn how to use the JigsawStack NSFW Detection API to identify inappropriate images"
+---
+
+## Overview
+
+The NSFW (Not Safe For Work) Detection API helps you identify potentially inappropriate images, including nudity, violence, and explicit content. This API is essential for applications that need to maintain content standards, protect users from offensive material, or comply with platform guidelines.
+
+- High-accuracy detection of explicit visual content
+- Multiple content categories detection (nudity, gore, etc.)
+- Fast analysis response times
+- Simple integration with any image source
+- Confidence scores for detailed risk assessment
+
+## API Endpoint
+
+```
+POST /v1/validate/nsfw
+```
+
+## Initial requirements
+
+- Setup a JigsawStack account (if you don't have an account already)
+- Get your API key from here.
+- Install the Node.js SDK
+
+## Check a file
+
+
+```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack({
+  apiKey: "your-api-key",
+});
+
+const url = "<the-image-url>";
+const result = await jigsawstack.validate.nsfw(url);
+
+console.log(result);
+```
+
+
+## Sample result
+
+```json
+{
+  "success": true,
+  "nsfw": false,
+  "nudity": false,
+  "gore": false,
+  "nudity_score": 0.005777647718787193,
+  "nsfw_score": 0.004729619482532144,
+  "gore_score": 0.003681591246277094
+}
+```

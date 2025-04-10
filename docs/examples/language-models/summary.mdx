@@ -1,0 +1,36 @@
+## Quick Start
+
+<RequestExample>
+```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.summary({
+  text: "The quick brown fox jumps over the lazy dog. The lazy dog, being lazy, did not move. The fox, being quick, easily cleared the obstacle."
+});
+
+console.log(response);
+```
+
+```python Python
+from jigsawstack import JigsawStack
+
+jigsaw = JigsawStack(api_key="your-api-key")
+
+response = jigsaw.summary({
+  "text": "The quick brown fox jumps over the lazy dog. The lazy dog, being lazy, did not move. The fox, being quick, easily cleared the obstacle."
+})
+
+print(response)
+```
+
+```bash cURL
+curl -X POST https://api.jigsawstack.com/v1/ai/summary \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: your-api-key" \
+  -d '{
+    "text": "The quick brown fox jumps over the lazy dog. The lazy dog, being lazy, did not move. The fox, being quick, easily cleared the obstacle."
+  }'
+```
+</RequestExample> 

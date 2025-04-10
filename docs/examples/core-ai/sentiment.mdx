@@ -1,0 +1,104 @@
+---
+title: "Sentiment Analysis"
+description: "Learn how to use the JigsawStack Sentiment Analysis API to analyze text sentiment and emotions"
+---
+
+## Overview
+
+The Sentiment Analysis API analyzes text to determine the emotional tone, providing detailed sentiment scoring and classification. This powerful tool detects positive, negative, and neutral sentiment along with specific emotions like joy, sadness, anger, and more.
+
+- Instant sentiment scoring and classification
+- Detailed emotion detection with sentence-level analysis
+- Contextual understanding of language
+- Support for multiple languages
+- High accuracy with natural language
+
+## API Endpoint
+
+```
+POST /v1/ai/sentiment
+```
+
+## Quick Start
+
+```javascript Javascript
+import { JigsawStack } from 'jigsawstack';
+
+const jigsaw = new JigsawStack('your-api-key');
+
+const response = await jigsaw.ai.sentiment({
+  text: "The customer service was excellent, and I really enjoyed the product!"
+});
+
+console.log(response);
+```
+
+## Response
+
+```json
+{
+  "success": true,
+  "sentiment": {
+    "emotion": "happiness",
+    "sentiment": "positive",
+    "score": 0.92,
+    "sentences": [
+      {
+        "text": "The customer service was excellent,",
+        "emotion": "satisfaction",
+        "sentiment": "positive",
+        "score": 0.90
+      },
+      {
+        "text": "and I really enjoyed the product!",
+        "emotion": "happiness",
+        "sentiment": "positive",
+        "score": 0.94
+      }
+    ]
+  }
+}
+```
+
+## Optimizing Sentiment Analysis
+
+For best results with the Sentiment Analysis API:
+
+1. **Provide sufficient context**: Longer text with complete context generally produces more accurate sentiment analysis than short, fragmented content
+2. **Consider language nuances**: The API handles various languages and cultural expressions, but providing clear, well-structured text improves accuracy
+3. **Use sentence-level analysis**: The API automatically breaks down text into sentences, allowing you to identify sentiment shifts within a single piece of content
+4. **Optimal length**: Aim for 10-100 words for best results (maximum 5000 characters per request)
+
+## Example
+
+```javascript Customer Feedback Analyzer
+// Example: Analyze customer feedback
+async function analyzeCustomerFeedback(feedbackText) {
+  const response = await jigsaw.ai.sentiment({
+    text: feedbackText
+  });
+  
+  // Find the most negative sentence
+  const mostNegativeSentence = response.sentiment.sentences.reduce(
+    (mostNegative, current) => {
+      if (current.sentiment === "negative" && 
+          (mostNegative === null || current.score < mostNegative.score)) {
+        return current;
+      }
+      return mostNegative;
+    }, 
+    null
+  );
+  
+  return {
+    overallSentiment: response.sentiment.sentiment,
+    overallScore: response.sentiment.score,
+    mostNegativeAspect: mostNegativeSentence ? mostNegativeSentence.text : null
+  };
+}
+
+// Usage
+const feedback = "Overall I liked the product. However, the shipping was delayed by two weeks. The customer service was helpful in resolving the issue.";
+const analysis = await analyzeCustomerFeedback(feedback);
+console.log(analysis);
+```

@@ -1,0 +1,39 @@
+## Quick Start
+
+<RequestExample>
+```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.translate({
+  text: "Hello, how are you?",
+  target_language: "es"
+});
+
+console.log(response);
+```
+
+```python Python
+from jigsawstack import JigsawStack
+
+jigsaw = JigsawStack(api_key="your-api-key")
+
+response = jigsaw.translate({
+  "text": "Hello, how are you?",
+  "target_language": "es"
+})
+
+print(response)
+```
+
+```bash cURL
+curl -X POST https://api.jigsawstack.com/v1/ai/translate \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: your-api-key" \
+  -d '{
+    "text": "Hello, how are you?",
+    "target_language": "es"
+  }'
+```
+</RequestExample> 

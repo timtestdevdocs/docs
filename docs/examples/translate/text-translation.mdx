@@ -1,0 +1,85 @@
+---
+title: "Text Translation"
+description: "Learn how to use the JigsawStack Translation API to translate text between 100+ languages"
+---
+
+## Overview
+
+The Translation API provides fast, accurate translation between more than 100 languages. Designed for developers looking to build multilingual applications without complex setup, our translation service allows you to integrate language capabilities with just a few lines of code.
+
+- Support for 100+ languages
+- High-quality translations with context awareness
+- Automatic language detection
+- Batch translation support (translate multiple strings at once)
+- Specialized vocabulary handling
+
+## API Endpoint
+
+```
+POST /v1/ai/translate
+```
+
+## Quick Start
+
+```javascript JavaScript
+import { JigsawStack } from 'jigsawstack';
+
+const jigsaw = new JigsawStack('your-api-key');
+
+const response = await jigsaw.ai.translate({
+  text: "Hello, how are you today?",
+  target_language: "es"
+});
+
+console.log(response);
+```
+
+## Response Example
+
+```json
+{
+  "success": true,
+  "translated_text": "Hola, ¿cómo estás hoy?",
+  "detected_language": "en"
+}
+```
+
+## Supported Languages
+
+The Translation API supports over 100 languages. Here are some of the most commonly used:
+
+| Code | Language   | Code | Language   | Code | Language  |
+|------|------------|------|------------|------|-----------|
+| ar   | Arabic     | fr   | French     | pt   | Portuguese|
+| bn   | Bengali    | de   | German     | ru   | Russian   |
+| zh   | Chinese    | hi   | Hindi      | es   | Spanish   |
+| en   | English    | ja   | Japanese   | sw   | Swahili   |
+| fi   | Finnish    | ko   | Korean     | tr   | Turkish   |
+
+For a complete list of supported languages, please visit our [Language Codes Reference](https://jigsawstack.com/docs/additional-resources/languages).
+
+## Example
+
+You can translate multiple strings at once by passing an array:
+
+```javascript Batch Translation Example
+const response = await jigsaw.ai.translate({
+  text: [
+    "Hello, how are you?",
+    "What is your name?",
+    "Welcome to our service!"
+  ],
+  target_language: "fr"
+});
+
+console.log(response);
+// {
+//   success: true,
+//   translated_text: [
+//     "Bonjour, comment allez-vous ?",
+//     "Comment vous appelez-vous ?",
+//     "Bienvenue dans notre service !"
+//   ],
+//   detected_language: "en"
+// }
+```

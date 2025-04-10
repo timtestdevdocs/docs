@@ -1,0 +1,36 @@
+## Quick Start
+
+<RequestExample>
+```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.spamcheck({
+  text: "I am happy!"
+});
+
+console.log(response);
+```
+
+```python Python
+from jigsawstack import JigsawStack
+
+jigsaw = JigsawStack(api_key="your-api-key")
+
+response = jigsaw.validate.spamcheck({
+  "text": "I am happy!"
+})
+
+print(response)
+```
+
+```bash cURL
+curl -X POST https://api.jigsawstack.com/v1/validate/spam_check \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: your-api-key" \
+  -d '{
+    "text": "I am happy!"
+  }'
+```
+</RequestExample> 

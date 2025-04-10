@@ -2,16 +2,17 @@
 title: "Secure Webhook"
 description: "Securing your webhook."
 ---
+## Overview
 
 Webhooks are not secured by default. To secure your webhook involve the steps below:
 
-1. Generate a webhook key
-2. Attach it as a parameter in the webhook URL
-3. Verify webhook key on your server.
+- Generate a webhook key
+- Attach it as a parameter in the webhook URL
+- Verify webhook key on your server.
 
-### Example.
+## Example
 
-1. Generate a random secured webhook key.
+Generate a random secured webhook key.
 
 ```javascript
 function generateHmacKey(secret, payload) {
@@ -20,13 +21,13 @@ function generateHmacKey(secret, payload) {
 const webhookKey = generateHmacKey(secretKey, "leaning tower of pisa");
 ```
 
-2. Add the key as a query parameter to your webhook URL
+Add the key as a query parameter to your webhook URL
 
 ```javascript
 const webhookUrl = "https://your-domain.com/webhook?webhookKey=${webhookKey}";
 ```
 
-3. Attach webhook to request payload
+Attach webhook to request payload.
 
 ```javascript
 const endpoint = "https://api.jigsawstack.com/v1/ai/transcribe";
@@ -45,7 +46,7 @@ const result = await fetch(endpoint, options);
 const data = await result.json();
 ```
 
-4. Verify webhook key on your server.
+Verify webhook key on your server.
 
 ```javascript
 app.post("/webhook", (req, res) => {
