@@ -99,14 +99,14 @@
                 ]
               },
               {
-                "group": "Computer Vision",
+                "group": "Vision",
                 "pages": [
                   "docs/examples/computer-vision/vocr",
                   "docs/examples/computer-vision/screenshot"
                 ]
               },
               {
-                "group": "Audio Processing",
+                "group": "Audio",
                 "pages": [
                   "docs/examples/audio-processing/speech-to-text",
                   "docs/examples/audio-processing/text-to-speech"
