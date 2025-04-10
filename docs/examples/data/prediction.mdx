@@ -1,0 +1,110 @@
+---
+title: "Prediction"
+description: "Learn how to use JigsawStack's Prediction API to forecast time series data"
+---
+
+## Overview
+
+The Prediction API allows you to forecast time series data with minimal effort. Unlike traditional machine learning approaches that require model training and parameter tuning, our API automatically analyzes your data patterns and generates accurate predictions in seconds.
+
+- No model training required
+- Single API call for instant predictions
+- Works with any time-based numerical data
+- Automatically detects seasonality and trends
+- Supports business forecasting, IoT analytics, and market analysis
+- Ideal for resource planning and demand forecasting
+
+## API Endpoint
+
+```
+POST /v1/ai/prediction
+```
+
+## Quick Start
+
+```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.prediction({
+  dataset: [
+    { date: "2023-01-01", value: 353459 },
+    { date: "2023-01-02", value: 313734 },
+    { date: "2023-01-03", value: 333774 },
+    { date: "2023-01-04", value: 348636 },
+    { date: "2023-01-05", value: 278903 }
+  ],
+  steps: 3
+});
+
+console.log(response);
+```
+
+## Response 
+
+```json
+{
+  "success": true,
+  "prediction": [
+    {
+      "date": "2023-01-06 00:00:00",
+      "value": 316329.9375
+    },
+    {
+      "date": "2023-01-07 00:00:00",
+      "value": 320094.71875
+    },
+    {
+      "date": "2023-01-08 00:00:00",
+      "value": 315214.5625
+    }
+  ],
+  "steps": 3
+}
+```
+
+
+## Data Requirements
+
+For optimal prediction accuracy, follow these guidelines:
+
+- **Consistent intervals**: Data points should follow a regular pattern (daily, hourly, etc.)
+- **Clean data**: Remove outliers or abnormal values that could skew predictions
+- **Sufficient history**: More historical data generally leads to better predictions
+- **Complete series**: Avoid gaps in your time series when possible
+
+
+## Best Practices
+
+- **Start small and iterate**: Begin with a small dataset to test your integration before scaling up
+- **Validate predictions**: Compare API predictions with actual outcomes to calibrate expectations
+- **Combine with domain knowledge**: Enhance predictions by incorporating business context and external factors
+- **Update regularly**: Periodically refresh your models with new data to maintain accuracy
+
+## Limitations
+
+- The prediction model works best with time series data that exhibits patterns or seasonality
+- Extreme events or disruptions in patterns may reduce prediction accuracy
+- Maximum forecast is limited to 500 steps ahead
+
+## Sample Dataset
+
+A dataset must be an array of objects containing keys `date` and `value`.
+
+```javascript
+type Dataset = {
+  date: string,
+  value: number | string,
+};
+
+const dataset: Array<Dataset> = [
+  { date: "2023-01-01", value: 353459 },
+  { date: "2023-01-02", value: 313734 },
+  { date: "2023-01-03", value: 333774 },
+  { date: "2023-01-04", value: 348636 },
+  { date: "2023-01-05", value: 278903 },
+];
+```
+
+For personalized assistance, contact our support team at support@jigsawstack.com.

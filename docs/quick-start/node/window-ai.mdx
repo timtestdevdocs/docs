@@ -1,49 +1,75 @@
 ---
-title: "window.ai"
-description: "Learn how to use the JigsawStack Javascript SDK on your browser."
+title: "Window.ai"
+description: "How to integrate JigsawStack with the window.ai API for browser-based AI capabilities"
 ---
 
 <Card title="Models" href="/docs/api-reference/authentication">
   Explore our complete list of models and API references here.
 </Card>
 
-The new `window.ai` Chrome API (currently available only in Chrome Canary) introduces native AI models that run locally and completely offline within the web environment.
+## Overview
 
-However, it's not yet widely available or compatible across different devices and browsers, and it currently supports only a small language model, which limits its use cases. Despite these limitations, the potential for this technology is significant.
+The `window.ai` Chrome API introduces native AI capabilities that run locally within the browser environment. While Chrome's native implementation is still in its early stages (available in Chrome Canary) with limited capabilities, **JigsawStack extends this concept** by providing a comprehensive suite of powerful AI utilities through the same familiar interface.
 
-JigsawStack enhances this by integrating a suite of powerful AI utilities into the `window.ai` object. Here's how you can use it:
+By integrating JigsawStack with the `window.ai` object, you can:
+
+- Provide consistent AI capabilities across all browsers
+- Access advanced AI features beyond what's natively available
+- Create seamless browser-based AI experiences for your users
 
 ## Prerequisites
 
-To get the most out of this guide, you’ll need to:
+Before integrating JigsawStack with window.ai, you'll need:
 
-- **Set up an** [account](https://jigsawstack.com/dashboard)
-- **Create and retrieve your** [Public key](https://jigsawstack.com/dashboard)
+- A [JigsawStack account](https://jigsawstack.com/dashboard)
+- Your JigsawStack [Public API key](https://jigsawstack.com/dashboard)
 
 <Info>
-  We recommend using your `public key` for client-side access. To enhance
-  security and control, you can further restrict the `public key` to specific
-  APIs. For more information,
-  [visit](/docs/api-reference/authentication#public-and-secret-api-keys)
+  For client-side browser integration, always use your `public key` instead of your secret key. 
+  You can enhance security by restricting the `public key` to specific APIs or domains.
+  Learn more about [public vs. secret API keys](/docs/api-reference/authentication#public-and-secret-api-keys).
 </Info>
 
-## Installation
+## Integration
 
-```javascript script.js
-const jigsawstack = JigsawStack({ apiKey: "pk_fecc....92je9" });
+### Basic Setup
+
+Add JigsawStack to your browser application and assign it to the window.ai object:
+
+```javascript
+// Import JigsawStack in a module environment
+import { JigsawStack } from "jigsawstack";
+
+// Initialize with your public key
+const jigsawstack = JigsawStack({ 
+  apiKey: "pk_fecc....92je9"  // Use your public key here
+});
+
+// Assign to window.ai
 window.ai = jigsawstack;
 ```
 
-## Usage
+For script tag inclusion:
 
-```javascript
-window.ai.sentiment("I love how easy it is to get started");
+```html
+<script src="https://cdn.jigsawstack.com/jigsawstack.min.js"></script>
+<script>
+  // Initialize JigsawStack
+  const jigsawstack = JigsawStack({ 
+    apiKey: "pk_fecc....92je9"  // Your public key
+  });
+  
+  // Assign to window.ai
+  window.ai = jigsawstack;
+</script>
 ```
 
-- For typescript projects, you can add JigsawStack types to `window.ai` by doing the following:
+### TypeScript Support
 
-```javascript
-//index.d.ts
+For TypeScript projects, add proper typing for the window.ai object:
+
+```typescript
+// index.d.ts or types.d.ts
 import type { JigsawStack } from "jigsawstack";
 
 declare global {
@@ -54,3 +80,118 @@ declare global {
 
 export {};
 ```
+
+## Using window.ai
+
+Once integrated, you can access all JigsawStack capabilities through the window.ai object:
+
+### Sentiment Analysis
+
+```javascript
+// Analyze sentiment with a simple call
+const sentiment = await window.ai.sentiment("I love how easy it is to get started");
+console.log(sentiment); // { sentiment: "positive", score: 0.92 }
+```
+
+### Text Translation
+
+```javascript
+// Translate text between languages
+const translation = await window.ai.translate({
+  text: "Hello, world!",
+  targetLang: "es"
+});
+console.log(translation); // "¡Hola, mundo!"
+```
+
+### Text Summarization
+
+```javascript
+// Generate a summary of longer text
+const summary = await window.ai.summary({
+  text: "Long article or document content here...",
+  maxLength: 100
+});
+console.log(summary); // Concise summary of the text
+```
+
+### Image Generation
+
+```javascript
+// Generate an image from a text prompt
+const image = await window.ai.image_generation({
+  prompt: "A serene mountain landscape with a lake"
+});
+document.getElementById('generatedImage').src = image.url;
+```
+
+## Complete Example
+
+Here's a complete example showing how to integrate JigsawStack with window.ai in a web application:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JigsawStack window.ai Demo</title>
+  <script src="https://cdn.jigsawstack.com/jigsawstack.min.js"></script>
+</head>
+<body>
+  <h1>JigsawStack window.ai Demo</h1>
+  
+  <div>
+    <h2>Sentiment Analysis</h2>
+    <input type="text" id="sentimentText" placeholder="Enter text for sentiment analysis">
+    <button id="analyzeSentiment">Analyze</button>
+    <div id="sentimentResult"></div>
+  </div>
+  
+  <script>
+    // Initialize JigsawStack and assign to window.ai
+    const jigsawstack = JigsawStack({ 
+      apiKey: "pk_fecc....92je9" // Your public key
+    });
+    window.ai = jigsawstack;
+    
+    // Set up event listeners
+    document.getElementById('analyzeSentiment').addEventListener('click', async () => {
+      const text = document.getElementById('sentimentText').value;
+      const result = await window.ai.sentiment(text);
+      
+      document.getElementById('sentimentResult').textContent = 
+        `Sentiment: ${result.sentiment} (Score: ${result.score})`;
+    });
+  </script>
+</body>
+</html>
+```
+
+## Fallback Strategy
+
+To create a resilient application that works with both native window.ai (when available) and JigsawStack:
+
+```javascript
+// Check if native window.ai exists, otherwise use JigsawStack
+if (!window.ai) {
+  const jigsawstack = JigsawStack({ apiKey: "pk_fecc....92je9" });
+  window.ai = jigsawstack;
+}
+
+// Now you can use window.ai safely
+const result = await window.ai.sentiment("Your text here");
+```
+
+## Browser Compatibility
+
+JigsawStack's window.ai integration works across all major browsers:
+
+- Chrome
+- Firefox
+- Safari
+- Edge
+- Opera
+
+This provides consistent AI capabilities regardless of native browser AI support.
+

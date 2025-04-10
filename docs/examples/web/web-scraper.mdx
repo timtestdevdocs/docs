@@ -1,0 +1,100 @@
+---
+title: "AI Web Scraper"
+description: "Learn how to use JigsawStack's AI Web Scraper to intelligently extract specific information from any website"
+---
+
+## Overview
+
+The AI Web Scraper API allows you to extract specific information from any website using natural language prompts. Unlike traditional web scrapers that require complex CSS selectors or XPath expressions, our AI-powered scraper lets you describe what data you want in plain English, then intelligently extracts it from the page.
+
+- Extract data using simple natural language prompts
+- No need for complex selectors, XPath, or DOM knowledge
+- Works with dynamic websites and JavaScript-rendered content
+- Handles various data structures (text, lists, tables)
+- Adapts to changing website layouts
+
+## API Endpoint
+
+```
+POST /v1/ai/scrape
+```
+
+## Quick Start
+
+```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.scrape({
+  url: "https://example.com",
+  element_prompts: [
+    {
+      name: "title",
+      selector: "h1"
+    },
+    {
+      name: "description",
+      selector: "meta[name='description']",
+      attribute: "content"
+    }
+  ]
+});
+
+console.log(response);
+```
+
+## Response 
+
+```json
+{
+  "success": true,
+  "data": {
+    "product name": "UltraPhone Pro X5",
+    "current price": "$899.99",
+    "average rating": "4.7/5",
+    "available colors": ["Midnight Black", "Ocean Blue", "Silver", "Rose Gold"],
+    "key specifications": {
+      "processor": "OctoCore X3 4.5GHz",
+      "memory": "12GB RAM",
+      "storage": "256GB",
+      "display": "6.7-inch AMOLED",
+      "camera": "108MP quad camera system",
+      "battery": "5000mAh"
+    }
+  },
+  "page_position": 1,
+  "status_code": 200
+}
+```
+
+## Writing Effective Prompts
+
+The quality of your element prompts significantly affects extraction accuracy. Follow these guidelines:
+
+1. **Be specific**: Instead of "price", use "current sale price" or "subscription price per month"
+2. **Provide context**: Use "number of rooms available" instead of just "number"
+3. **Specify format when needed**: "Release date in YYYY-MM-DD format" or "price in USD"
+4. **Clarify structure**: "List of ingredients" indicates you expect an array return
+
+
+## Example
+
+```javascript Handling Dynamic Content
+// Example: Scraping a page that loads content dynamically
+const response = await jigsaw.ai.scrape({
+  url: "https://example.com/dynamic-content",
+  // Wait for a specific element that indicates content is loaded
+  wait_for: {
+    mode: "selector",
+    value: ".content-loaded"
+  },
+  element_prompts: [
+    "main article title",
+    "article publication date",
+    "author name",
+    "full article text"
+  ]
+});
+```
+

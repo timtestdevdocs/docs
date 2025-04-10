@@ -3,7 +3,7 @@ title: "Webhook Intro"
 description: "Webhooks on JigsawStack."
 ---
 
-## What is a webhook
+## Overview
 
 Webhooks are used to push real-time data to you about changes(updates) to certain API requests. All webhooks use HTTPS and deliver a JSON payload that can be used by your application. You can use webhook feeds to do things like:
 
@@ -11,10 +11,11 @@ Webhooks are used to push real-time data to you about changes(updates) to certai
 - Store all payload events in your own database for custom reporting/retention
 - Update the status of an async request in your application.
 
-# Steps to receive webhooks results on specific APIs
+## Getting Started
 
-- Create a webhook endpoint to receive requests on your server. E.g `https://your-domain.com/api/webhook`
-- Attach your webhook endpoint to the body parameters of an API that supports webhooks. See example below:
+Create a webhook endpoint to receive requests on your server. E.g `https://your-domain.com/api/webhook`
+
+Attach your webhook endpoint to the body parameters of an API that supports webhooks. See example below:
 
 ```javascript
 const endpoint = "https://api.jigsawstack.com/v1/ai/transcribe";
@@ -33,7 +34,7 @@ const result = await fetch(endpoint, options);
 const data = await result.json();
 ```
 
-#### Sample Webhook Result
+#### Response
 
 ```json
 {

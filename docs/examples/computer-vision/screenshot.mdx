@@ -1,0 +1,90 @@
+---
+title: "HTML To Any"
+description: "Learn how to capture website screenshots and generate images or PDFs using JigsawStack's HTML To Any API"
+---
+
+## Overview
+
+The HTML To Any API allows you to capture high-quality screenshots of any webpage or HTML content. This powerful tool enables you to generate images in various formats (PNG, JPEG, WebP) or PDF documents with extensive customization options for different use cases.
+
+- High-quality website captures with customizable resolution
+- Support for multiple output formats (PNG, JPEG, WebP, PDF)
+- Full-page screenshots that capture entire scrollable content
+- Dark mode rendering support
+- Advanced options for PDF generation
+
+## API Endpoint
+
+```
+POST /v1/web/html_to_any
+```
+
+## Quick Start
+
+```javascript JavaScript
+import { JigsawStack } from 'jigsawstack';
+import fs from 'fs';
+import path from 'path';
+
+const jigsaw = new JigsawStack('your-api-key');
+
+const params = {
+  url: "https://jigsawstack.com",
+  quality: 80,
+  full_page: true,
+  type: "jpeg",
+  dark_mode: true
+};
+
+const result = await jigsaw.web.html_to_any(params);
+const buffer = await result.arrayBuffer();
+
+fs.writeFileSync(
+  path.join(__dirname, 'screenshot.jpeg'),
+  Buffer.from(buffer)
+);
+```
+
+## Optimizing Performance
+
+For faster screenshot generation:
+
+```javascript
+// Optimize load time by only waiting for essential elements
+const result = await jigsaw.web.html_to_any({
+  url: "https://example.com",
+  goto_options: {
+    wait_until: "domcontentloaded", // Faster than waiting for full load
+    timeout: 5000 // Shorter timeout for quicker response
+  },
+  quality: 70, // Lower quality for faster processing
+  type: "jpeg" // Usually processes faster than PNG
+});
+```
+
+### Capturing Single-Page Applications
+
+For SPAs or dynamic content that requires extra time to load:
+
+```javascript
+// Give more time for JavaScript-heavy pages to render
+const result = await jigsaw.web.html_to_any({
+  url: "https://dynamic-spa-example.com",
+  goto_options: {
+    wait_until: "networkidle0", // Wait until network is idle
+    timeout: 15000 // Extended timeout for dynamic content
+  },
+  full_page: true
+});
+```
+
+## Common Questions
+
+### What's the difference between capturing by URL vs. HTML?
+
+When you provide a URL, the API loads the complete webpage including all external resources like JavaScript, CSS, and images. When you provide HTML directly, you need to ensure all resources are either embedded or accessible via absolute URLs.
+
+### How long does the API wait for a page to load?
+
+By default, the API waits for the window.load event with a timeout of 15 seconds. You can customize this behavior using the goto_options parameter to wait for different events like domcontentloaded or networkidle0.
+

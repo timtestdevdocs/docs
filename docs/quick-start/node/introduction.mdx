@@ -1,21 +1,23 @@
 ---
 title: "Introduction"
-description: "Learn how to use the JigsawStack Node.js SDK to build AI powered applications."
+description: "Getting started with JigsawStack Node.js SDK to build AI-powered applications"
 ---
 
 <Card title="Models" href="/docs/api-reference/authentication">
   Explore our complete list of models and API references here.
 </Card>
+
 ## Prerequisites
 
-To get the most out of this guide, you’ll need to:
+Before you begin, make sure you have:
 
-- **Set up an** [account](https://jigsawstack.com/dashboard)
-- **Create and retrieve your** [API key](https://jigsawstack.com/dashboard)
-
-<Info>You should have installed Node.js (version 18.10.0 or higher).</Info>
+- Created a [JigsawStack account](https://jigsawstack.com/dashboard)
+- Retrieved your [API key](https://jigsawstack.com/dashboard)
+- Installed Node.js (version 18.10.0 or higher)
 
 ## Installation
+
+Choose your preferred package manager to install the JigsawStack SDK:
 
 <CodeGroup>
 
@@ -37,27 +39,79 @@ bun add jigsawstack
 
 </CodeGroup>
 
-## Set the API key as an environment variable
+## Configuration
+
+There are two ways to configure your JigsawStack SDK:
+
+### Option 1: Using environment variables (recommended)
+
+Create a `.env` file in your project root:
 
 ```bash .env
-JIGSAWSTACK_API_KEY='your-api-key'
+JIGSAWSTACK_API_KEY=your-api-key
 ```
 
-## Usage
+### Option 2: Direct configuration
 
-Let's use AI scrape to scrape an amazon product page.
+Initialize the SDK with your API key:
 
 ```javascript
 import { JigsawStack } from "jigsawstack";
 
 const jigsawstack = JigsawStack({
-  apiKey: "your-api-key", // This is not required if API key is set as an environment variable.
-});
-
-const resp = await jigsawstack.web.ai_scrape({
-  url: "https://www.amazon.com/Cadbury-Mini-Caramel-Eggs-Bulk/dp/B0CWM99G5W",
-  element_prompts: ["prices"],
+  apiKey: "your-api-key",
 });
 ```
 
-Kudos, You are set!
+## Quick Example
+
+Here's how to use JigsawStack's AI Web Scraper to extract product information:
+
+```javascript
+import { JigsawStack } from "jigsawstack";
+
+// Initialize the SDK (API key from environment variables)
+const jigsawstack = JigsawStack();
+
+// Basic usage - extract pricing information
+const result = await jigsawstack.web.ai_scrape({
+  url: "https://supabase.com/pricing",
+  element_prompts: ["Plan title", "Plan price"],
+});
+```
+
+## Response Format
+
+The AI scraper returns structured data based on your prompts:
+
+```json
+{
+  "page_position": 1,
+  "page_position_length": 3,
+  "context": {
+    "Plan title": ["Free", "Pro", "Team", "Enterprise"],
+    "Plan price": ["$0", "$25", "$599", "Custom"]
+  },
+  "selectors": {
+    "Plan title": [
+      "h3.text-foreground.text-2xl.font-normal.uppercase.flex.items-center.gap-4.font-mono"
+    ],
+    "Plan price": [
+      "div.text-foreground.flex.items-baseline.text-5xl.font-normal.lg\\:text-4xl.xl\\:text-4xl.border-b.border-default.lg\\:min-h-\\[175px\\].py-8.lg\\:pb-0.lg\\:pt-10 p.mt-2.pb-1.font-mono.text-5xl",
+      "div.text-foreground.flex.items-baseline.text-5xl.font-normal.lg\\:text-4xl.xl\\:text-4xl.border-b.border-default.lg\\:min-h-\\[175px\\].py-6.lg\\:pb-0.pt-6 p.mt-2.pb-1.font-mono.text-5xl",
+      "div.text-foreground.flex.items-baseline.text-5xl.font-normal.lg\\:text-4xl.xl\\:text-4xl.border-b.border-default.lg\\:min-h-\\[175px\\].py-8.lg\\:pb-0.lg\\:pt-10 p.mt-2.pb-1.font-mono.text-4xl"
+    ]
+ },
+ ...
+}
+```
+
+## What's Next?
+
+Now that you've set up JigsawStack, you can:
+
+- Explore our [API reference](/docs/api-reference/authentication) for all available models
+- Check out our [examples](https://jigsawstack.com/docs/examples/ai/vocr) for common use cases
+- Join our [Discord](https://discord.gg/GnvmdZ7z) for support
+
+Kuddos! You're ready to build powerful AI applications with JigsawStack.

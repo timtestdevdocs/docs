@@ -1,0 +1,36 @@
+## Quick Start
+
+<RequestExample>
+```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.sentiment({
+  text: "I absolutely love this product! It's amazing."
+});
+
+console.log(response);
+```
+
+```python Python
+from jigsawstack import JigsawStack
+
+jigsaw = JigsawStack(api_key="your-api-key")
+
+response = jigsaw.sentiment({
+  "text": "I absolutely love this product! It's amazing."
+})
+
+print(response)
+```
+
+```bash cURL
+curl -X POST https://api.jigsawstack.com/v1/ai/sentiment \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: your-api-key" \
+  -d '{
+    "text": "I absolutely love this product! It'\''s amazing."
+  }'
+```
+</RequestExample> 

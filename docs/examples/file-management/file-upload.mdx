@@ -1,0 +1,87 @@
+---
+title: "File Upload"
+description: "Learn how to upload files to JigsawStack File Storage and use them across different APIs"
+---
+
+## Overview
+
+The JigsawStack File Storage API allows you to easily upload, manage, and serve files for your applications. Files are stored securely and can be accessed via URL, making it an ideal solution for image uploads, document storage, or any file-handling needs in your applications.
+
+> **Note**: The file upload method is ideal for files up to 100MB in size.
+
+- Secure file storage with fine-grained access control
+- Simple integration with other JigsawStack APIs
+- Automatic content-type detection
+- Support for overwriting existing files
+- Customizable file accessibility
+
+## API Endpoint
+
+The File Storage API is accessed through the SDK's `store.upload` method.
+
+## Quick Start
+
+```javascript  JavaScript
+import { JigsawStack } from 'jigsawstack';
+import fs from 'fs';
+
+const jigsaw = new JigsawStack('your-api-key');
+
+// Your public key for making files accessible
+const publicKey = "your-public-key";
+
+// Read file data
+const imageFile = fs.readFileSync("./beach_house.png");
+
+// Upload the file
+const result = await jigsaw.store.upload(imageFile, {
+  filename: "beach_house.png",
+});
+
+// Create a publicly accessible URL
+const publicFileUrl = `${result.url}?x-api-key=${publicKey}`;
+
+console.log("Upload result:", result);
+console.log("Public URL:", publicFileUrl);
+```
+
+## Advanced Usage
+
+By default, trying to upload a file with a name that already exists will return an error. To replace an existing file, use the `overwrite` parameter:
+
+```javascript Overwriting Existing Files
+const result = await jigsaw.store.upload(imageFile, {
+  filename: "beach_house.png",
+  overwrite: true
+});
+```
+
+While the API automatically detects the content type of uploaded files, you can explicitly set it with the `content_type` parameter:
+
+```javascript Specifying Content Type
+const result = await jigsaw.store.upload(imageFile, {
+  filename: "beach_house.png",
+  content_type: "image/png"
+});
+```
+
+Uploaded files are private by default. To make a file accessible without authentication, append your public key to the URL:
+
+```javascript Making Files Publicly Accessible
+const publicFileUrl = `${result.url}?x-api-key=${publicKey}`;
+```
+
+You can use an uploaded file with other JigsawStack APIs by referencing its `key` in the `file_store_key` parameter:
+
+```javascript Using Uploaded Files with Other JigsawStack APIs
+// JavaScript example: Upload an image and use it with Vision OCR
+const uploadResult = await jigsaw.store.upload(imageFile, {
+  filename: "receipt.jpg"
+});
+
+// Use the uploaded image with the Vision OCR API
+const ocrResult = await jigsaw.vision.vocr({
+  prompt: "Extract all text from this receipt",
+  file_store_key: uploadResult.key
+});
+```

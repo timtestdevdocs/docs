@@ -1,6 +1,6 @@
 ---
 title: "Next.js"
-description: "Learn how to use the JigsawStack Javascript SDK to build AI powered applications."
+description: "Learn how to integrate JigsawStack with Next.js to build AI-powered applications"
 ---
 
 <Card title="Models" href="/docs/api-reference/authentication">
@@ -9,14 +9,16 @@ description: "Learn how to use the JigsawStack Javascript SDK to build AI powere
 
 ## Prerequisites
 
-To get the most out of this guide, you’ll need to:
+Before you begin, make sure you have:
 
-- **Set up an** [account](https://jigsawstack.com/dashboard)
-- **Create and retrieve your** [API key](https://jigsawstack.com/dashboard)
-
-<Info>You should have installed Node.js (version 18.10.0 or higher).</Info>
+- Created a [JigsawStack account](https://jigsawstack.com/dashboard)
+- Retrieved your [API key](https://jigsawstack.com/dashboard)
+- Installed Node.js (version 18.10.0 or higher)
+- Set up a Next.js project
 
 ## Installation
+
+Add the JigsawStack SDK to your Next.js project:
 
 <CodeGroup>
 
@@ -34,15 +36,21 @@ pnpm add jigsawstack
 
 </CodeGroup>
 
-## Set the API key as an environment variable
+## Configuration
 
-```bash .env
+### Setting up environment variables
+
+1. Create or modify your `.env.local` file in the root of your Next.js project:
+
+```bash .env.local
 JIGSAWSTACK_API_KEY='your-api-key'
 ```
 
-## Usage
+2. For production, make sure to add the environment variable to your deployment platform (Vercel, Netlify, etc.)
 
-Let's use AI scrape to scrape an amazon product page.
+## API Route Implementation
+
+JigsawStack can be easily integrated into Next.js API routes. Here's an example of a text-to-speech API endpoint:
 
 ```javascript pages/api/tts.ts
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -66,3 +74,72 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 ```
+
+## Client-Side Implementation
+
+For client components that need to use JigsawStack, you should make requests through your API routes rather than directly from the client to protect your API key.
+
+```javascript components/TextToSpeechButton.jsx
+"use client";
+import { useState } from "react";
+
+export default function TextToSpeechButton() {
+  const [loading, setLoading] = useState(false);
+
+  const handleTextToSpeech = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("/api/tts");
+      const data = await response.json();
+      
+      if (data.success) {
+        // Handle successful response
+        console.log("Text-to-speech generated successfully");
+      }
+    } catch (error) {
+      console.error("Error generating speech:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <button 
+      onClick={handleTextToSpeech}
+      disabled={loading}
+      className="px-4 py-2 bg-blue-500 text-white rounded"
+    >
+      {loading ? "Generating..." : "Convert to Speech"}
+    </button>
+  );
+}
+```
+
+## App Router Support
+
+If you're using Next.js App Router, you can create a route handler:
+
+```javascript app/api/tts/route.ts
+import { NextResponse } from "next/server";
+import { JigsawStack } from "jigsawstack";
+
+const jigsawstack = JigsawStack();
+
+export async function POST(request) {
+  try {
+    const { text } = await request.json();
+    
+    const result = await jigsawstack.audio.text_to_speech({
+      text: text || "Hello, how are you doing?",
+    });
+
+    const data = result.blob();
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 400 });
+  }
+}
+```
+
+JigsawStack seamlessly integrates with Next.js to provide powerful AI capabilities while maintaining best practices for security and performance.

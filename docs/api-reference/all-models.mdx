@@ -1,53 +1,91 @@
 ---
 title: "All Models & APIs"
-description: "A list of all models/apis available in JigsawStack"
+description: "Complete reference guide to all models and APIs"
 ---
+
 
 ## Core AI
 
-- [Sentiment Analysis](/docs/api-reference/ai/sentiment)
-- [Translation](/docs/api-reference/ai/translate)
-- [Summary](/docs/api-reference/ai/summary)
-- [Time Series Prediction](/docs/api-reference/ai/prediction)
-- [Text to SQL](/docs/api-reference/ai/text-to-sql)
-- [Image Generation](/docs/api-reference/ai/image-generation)
+| API | Description |
+|-----|-------------|
+| [Sentiment Analysis](/docs/api-reference/ai/sentiment) | Analyze text sentiment (positive, negative, neutral) |
+| [Translation](/docs/api-reference/ai/translate) | Translate text between languages |
+| [Summary](/docs/api-reference/ai/summary) | Generate concise text summaries |
+| [Time Series Prediction](/docs/api-reference/ai/prediction) | Forecast future values based on historical data |
+| [Text to SQL](/docs/api-reference/ai/text-to-sql) | Convert natural language to SQL queries |
+| [Image Generation](/docs/api-reference/ai/image-generation) | Create images from text prompts |
 
-## Web Scraping
+## Web & Search
 
-- [AI Web Scraper](/docs/api-reference/ai/scrape)
-- [Web Scraper](/docs/api-reference/web/scrape)
-- [HTML to Any](/docs/api-reference/web/html-to-any)
+| API | Description |
+|-----|-------------|
+| [AI Web Scraper](/docs/api-reference/ai/scrape) | Intelligent web scraping with AI extraction |
+| [Web Scraper](/docs/api-reference/web/scrape) | Standard web scraping for structured data |
+| [HTML to Any](/docs/api-reference/web/html-to-any) | Convert HTML to various formats |
+| [Web Search](/docs/api-reference/web/ai-search) | AI-powered web search functionality |
 
-## Web Search
+## Language Models
 
-- [Web Search](/docs/api-reference/web/ai-search)
-
-## LLM
-
-- [Prompt Engine](/docs/api-reference/prompt-engine)
+| API | Description |
+|-----|-------------|
+| [Prompt Engine](/docs/api-reference/prompt-engine) | Build and optimize LLM prompts efficiently |
 
 ## Computer Vision
 
-- [vOCR](/docs/api-reference/ai/vocr)
-- [Object Detection](/docs/api-reference/ai/object-detection)
+| API | Description |
+|-----|-------------|
+| [vOCR](/docs/api-reference/ai/vocr) | Extract text from images |
+| [Object Detection](/docs/api-reference/ai/object-detection) | Identify and locate objects in images |
 
-## Audio
+## Audio Processing
 
-- [Speech to Text](/docs/api-reference/ai/speech-to-text)
-- [Text to Speech](/docs/api-reference/ai/text-to-speech)
+| API | Description |
+|-----|-------------|
+| [Speech to Text](/docs/api-reference/ai/speech-to-text) | Convert spoken language to written text |
+| [Text to Speech](/docs/api-reference/ai/text-to-speech) | Convert text to natural-sounding speech |
 
-## Geo
+## Geolocation
 
-- [Geo Search](/docs/api-reference/geo/search)
-- [Geocode](/docs/api-reference/geo/geocode)
+| API | Description |
+|-----|-------------|
+| [Geo Search](/docs/api-reference/geo/search) | Search for locations and points of interest |
+| [Geocode](/docs/api-reference/geo/geocode) | Convert addresses to coordinates and vice versa |
 
-## Validation
+## Content Validation
 
-- [NSFW Detection](/docs/api-reference/validate/nsfw)
-- [Profanity Check](/docs/api-reference/validate/profanity)
-- [Spell Check](/docs/api-reference/validate/spellcheck)
-- [Spam Check](/docs/api-reference/ai/spam-check)
+| API | Description |
+|-----|-------------|
+| [NSFW Detection](/docs/api-reference/validate/nsfw) | Detect not safe for work content |
+| [Profanity Check](/docs/api-reference/validate/profanity) | Filter inappropriate language |
+| [Spell Check](/docs/api-reference/validate/spellcheck) | Detect and correct spelling errors |
+| [Spam Check](/docs/api-reference/ai/spam-check) | Identify spam content |
 
 ## File Management
 
-- [File Storage](/docs/api-reference/store/file)
+| API | Description |
+|-----|-------------|
+| [File Storage](/docs/api-reference/store/file) | Store and manage files in the cloud |
+
+## Getting Started
+
+```javascript
+// Example: Using the Sentiment Analysis API
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.sentiment({
+  "text": "I love this product!"
+})
+
+console.log(result);
+// Output: { sentiment: "positive", score: 0.92 }
+```
+
+For detailed usage instructions, code examples, and response formats, click on any API link above.
+
+## Need Help?
+
+- Check our [quickstart guide](/docs/quick-start/node/introduction)
+- View an [example project](https://github.com/JigsawStack/prediction-api-example)
+- Join our [Discord](https://discord.gg/GnvmdZ7z)
