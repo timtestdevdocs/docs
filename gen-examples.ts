@@ -3,7 +3,7 @@ import fs from "fs";
 import { CurlGenerator } from "curl-generator";
 import * as curlconverter from "curlconverter";
 
-const url = "https://api.jigsawstack.com/v1";
+const url = "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1";
 
 interface APIType {
   path: string;
@@ -18,6 +18,15 @@ interface APIType {
 const APISchemas: {
   [key: string]: APIType;
 } = {
+  "ai-scrape": {
+    path: "/ai/scrape",
+    method: "POST",
+    body: {
+      url: "https://news.ycombinator.com/news",
+      element_prompts: ["titles", "points"],
+    },
+    sdk_key_string: "web.ai_scrape",
+  },
   sentiment: {
     path: "/ai/sentiment",
     method: "POST",
@@ -116,19 +125,10 @@ const APISchemas: {
     path: "/vocr",
     method: "POST",
     body: {
-      prompt: ["Title", "Description"],
-      url: "https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png",
+      prompt: ["total_price", "tax"],
+      url: "https://media.snopes.com/2021/08/239918331_10228097135359041_3825446756894757753_n.jpg",
     },
     sdk_key_string: "vision.vocr",
-  },
-  scrape: {
-    path: "/web/scrape",
-    method: "POST",
-    body: {
-      url: "https://news.ycombinator.com/show",
-      element_prompts: ["Plan title", "Plan price"],
-    },
-    sdk_key_string: "web.scrape",
   },
   "speech-to-text": {
     path: "/ai/transcribe",
@@ -170,18 +170,18 @@ const APISchemas: {
     },
     sdk_key_string: "validate.spellcheck",
   },
-  "file-add": {
-    path: "/store/file/",
-    method: "POST",
-    body: {
-      file: "base64encodedfilecontentorurl",
-      metadata: {
-        filename: "sample.pdf",
-        contentType: "application/pdf",
-      },
-    },
-    sdk_key_string: "store.file.add",
-  },
+  // "file-add": {
+  //   path: "/store/file/",
+  //   method: "POST",
+  //   body: {
+  //     file: "base64encodedfilecontentorurl",
+  //     metadata: {
+  //       filename: "sample.pdf",
+  //       contentType: "application/pdf",
+  //     },
+  //   },
+  //   sdk_key_string: "store.file.add",
+  // },
   "file-get": {
     path: "/store/file/read/image-123.png",
     method: "GET",
@@ -281,18 +281,33 @@ const APISchemas: {
       prompt: "A beautiful sunset over a calm ocean",
     },
     sdk_key_string: "image_generation",
-    skip_request: true,
   },
   "image-translate": {
-    path: "/ai/image_translate",
+    path: "/ai/translate/image",
     method: "POST",
     body: {
-      url: "",
+      url: "https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      target_language: "hi",
     },
-    sdk_key_string: "image_translate",
-    skip_request: true,
+    sdk_key_string: "translate.image",
   },
-
+  "text-to-speech": {
+    path: "/ai/tts",
+    method: "POST",
+    body: {
+      text: "Hello, world!",
+      accent: "en-US-female-27",
+    },
+    sdk_key_string: "audio.text_to_speech",
+  },
+  "html-to-any": {
+    path: "/web/html_to_any",
+    method: "POST",
+    body: {
+      url: "https://news.ycombinator.com/",
+    },
+    sdk_key_string: "web.html_to_any",
+  },
 };
 
 const getSDKJSCode = (api: APIType) => {
@@ -377,6 +392,8 @@ const gen = async () => {
           return;
         }
 
+        console.log(apiKey, response.headers.get("content-type"));
+
         responseBody = response.headers.get("content-type")?.includes("application/json") ? await response.json() : null;
       }
 
@@ -424,7 +441,7 @@ ${JSON.stringify(responseBody, null, 6)}
     \`\`\`
     </ResponseExample>
     `
-        : ""
+        : "\n\n<ResponseExample></ResponseExample>"
     }
     `;
 
@@ -435,6 +452,8 @@ ${JSON.stringify(responseBody, null, 6)}
   });
 
   await Promise.all(promises);
+
+  console.log("done");
 };
 
 gen();

@@ -4,7 +4,7 @@ api: "POST https://api.jigsawstack.com/v1/ai/scrape"
 description: "Scrape any website instantly and get consistent structured data in seconds without writing any css selector code"
 ---
 
-import ScrapeSnippet from "/snippets/code-req-examples/scrape.mdx";
+import AIScrapeSnippet from "/snippets/code-req-examples/ai-scrape.mdx";
 
 ## Request Parameters
 
@@ -23,8 +23,7 @@ import ScrapeSnippet from "/snippets/code-req-examples/scrape.mdx";
 </ParamField>
 
 <ParamField body="root_element_selector" type="string" default="main">
-  CSS selector to limit the scope of scraping to a specific element and its
-  children
+  CSS selector to limit the scope of scraping to a specific element and its children
 </ParamField>
 
 <ParamField body="page_position" type="number" default="1">
@@ -35,12 +34,10 @@ import ScrapeSnippet from "/snippets/code-req-examples/scrape.mdx";
   Advanced configurations
   <Expandable title="Properties">
     <ParamField body="console" type="boolean">
-      Tracks console messages emitted when JavaScript within the page calls
-      console API methods
+      Tracks console messages emitted when JavaScript within the page calls console API methods
     </ParamField>
     <ParamField body="network" type="boolean">
-      Tracks network response information such as URL, method, status, headers,
-      and body
+      Tracks network response information such as URL, method, status, headers, and body
     </ParamField>
     <ParamField body="cookies" type="boolean">
       Tracks cookie information
@@ -66,17 +63,9 @@ import ScrapeSnippet from "/snippets/code-req-examples/scrape.mdx";
       Page load event to wait for:
       <ul>
         <li>`load` - Wait until the load event is fired</li>
-        <li>
-          `domcontentloaded` - Wait until the DOMContentLoaded event is fired
-        </li>
-        <li>
-          `networkidle0` - Wait until there are no network connections for at
-          least 500ms
-        </li>
-        <li>
-          `networkidle2` - Wait until there are no more than 2 network
-          connections for at least 500ms
-        </li>
+        <li>`domcontentloaded` - Wait until the DOMContentLoaded event is fired</li>
+        <li>`networkidle0` - Wait until there are no network connections for at least 500ms</li>
+        <li>`networkidle2` - Wait until there are no more than 2 network connections for at least 500ms</li>
       </ul>
     </ParamField>
   </Expandable>
@@ -98,10 +87,7 @@ import ScrapeSnippet from "/snippets/code-req-examples/scrape.mdx";
       <ul>
         <li>For `timeout`: Number of milliseconds to wait (maximum: 60000)</li>
         <li>For `selector`: CSS selector to wait for (e.g., "h2.title")</li>
-        <li>
-          For `function`: JavaScript function as a string (e.g., "() =>
-          document.querySelector('h2')")
-        </li>
+        <li>For `function`: JavaScript function as a string (e.g., "() => document.querySelector('h2')")</li>
       </ul>
     </ParamField>
   </Expandable>
@@ -117,8 +103,7 @@ import ScrapeSnippet from "/snippets/code-req-examples/scrape.mdx";
       Cookie value
     </ParamField>
     <ParamField body="url" type="string">
-      The URL to associate with the cookie (either `url` or `domain` is
-      required)
+      The URL to associate with the cookie (either `url` or `domain` is required)
     </ParamField>
     <ParamField body="domain" type="string">
       Cookie domain (either `url` or `domain` is required)
@@ -169,8 +154,7 @@ import ScrapeSnippet from "/snippets/code-req-examples/scrape.mdx";
   Bring-your-own-proxy configuration
   <Expandable title="Properties">
     <ParamField body="server" type="string" required>
-      Proxy server URL (e.g.,
-      "https://username:password@proxy.example.com:8080")
+      Proxy server URL (e.g., "https://username:password@proxy.example.com:8080")
     </ParamField>
     <ParamField body="auth" type="object">
       Authentication credentials (optional if included in server URL)
@@ -203,13 +187,11 @@ import ScrapeSnippet from "/snippets/code-req-examples/scrape.mdx";
 </ResponseField>
 
 <ResponseField name="context" type="record<string, array<string>>">
-  A map of element prompt keys to arrays of extracted text content from matched
-  elements
+  A map of element prompt keys to arrays of extracted text content from matched elements
 </ResponseField>
 
 <ResponseField name="selectors" type="record<string, array<string>>">
-  A map of element prompt keys to arrays of CSS selectors that were used to find
-  matching elements
+  A map of element prompt keys to arrays of CSS selectors that were used to find matching elements
 </ResponseField>
 
 <ResponseField name="data" type="array<object>">
@@ -276,4 +258,4 @@ import ScrapeSnippet from "/snippets/code-req-examples/scrape.mdx";
   </Expandable>
 </ResponseField>
 
-<ScrapeSnippet />
+<AIScrapeSnippet />

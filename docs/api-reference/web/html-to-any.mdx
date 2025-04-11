@@ -11,13 +11,11 @@ import HtmlToAnySnippet from "/snippets/code-req-examples/html-to-any.mdx";
 ### Body
 
 <ParamField body="html" type="string">
-  The HTML content to convert to image or PDF. Either `html` or `url` is
-  required, but not both.
+  The HTML content to convert to image or PDF. Either `html` or `url` is required, but not both.
 </ParamField>
 
 <ParamField body="url" type="string">
-  The URL of the webpage to capture. Either `html` or `url` is required, but not
-  both.
+  The URL of the webpage to capture. Either `html` or `url` is required, but not both.
 </ParamField>
 
 <ParamField body="type" type="string" default="png">
@@ -31,13 +29,11 @@ import HtmlToAnySnippet from "/snippets/code-req-examples/html-to-any.mdx";
 </ParamField>
 
 <ParamField body="quality" type="number" default="75">
-  The quality of the output image (1-100). Higher values produce better quality
-  but larger file sizes. Only applies to jpeg and webp formats.
+  The quality of the output image (1-100). Higher values produce better quality but larger file sizes. Only applies to jpeg and webp formats.
 </ParamField>
 
 <ParamField body="full_page" type="boolean" default="false">
-  When set to true, captures the entire scrollable area of the page instead of
-  just the viewport.
+  When set to true, captures the entire scrollable area of the page instead of just the viewport.
 </ParamField>
 
 <ParamField body="omit_background" type="boolean" default="false">
@@ -57,8 +53,7 @@ import HtmlToAnySnippet from "/snippets/code-req-examples/html-to-any.mdx";
 </ParamField>
 
 <ParamField body="size_preset" type="string">
-  Predefined screen size preset to use instead of specifying width and height
-  manually. Supported values include:
+  Predefined screen size preset to use instead of specifying width and height manually. Supported values include:
   <ul>
     <li>`QVGA` - 320×240</li>
     <li>`VGA` - 640×480</li>
@@ -72,23 +67,19 @@ import HtmlToAnySnippet from "/snippets/code-req-examples/html-to-any.mdx";
     <li>`5K` - 5120×2880</li>
     <li>`4K UHD` - 3840×2160</li>
   </ul>
-  See the full list of screen size presets
-  [here](/docs/additional-resources/size-preset)
+  See the full list of screen size presets [here](/docs/additional-resources/size-preset)
 </ParamField>
 
 <ParamField body="is_mobile" type="boolean" default="false">
-  When set to true, emulates a mobile device viewport and takes the meta
-  viewport tag into account.
+  When set to true, emulates a mobile device viewport and takes the meta viewport tag into account.
 </ParamField>
 
 <ParamField body="dark_mode" type="boolean" default="false">
-  When set to true, forces the page to render in dark mode using the CSS
-  prefers-color-scheme media feature.
+  When set to true, forces the page to render in dark mode using the CSS prefers-color-scheme media feature.
 </ParamField>
 
 <ParamField body="use_graphic_renderer" type="boolean" default="false">
-  Enables WebGL, GPU acceleration, and other 3D APIs. Note: This option may
-  impact performance and increase API latency.
+  Enables WebGL, GPU acceleration, and other 3D APIs. Note: This option may impact performance and increase API latency.
 </ParamField>
 
 <ParamField body="goto_options" type="object">
@@ -102,32 +93,23 @@ import HtmlToAnySnippet from "/snippets/code-req-examples/html-to-any.mdx";
       <ul>
         <li>`load` - Wait for the window.load event</li>
         <li>`domcontentloaded` - Wait for the DOMContentLoaded event</li>
-        <li>
-          `networkidle0` - Wait until there are no network connections for at
-          least 500ms
-        </li>
-        <li>
-          `networkidle2` - Wait until there are no more than 2 network
-          connections for at least 500ms
-        </li>
+        <li>`networkidle0` - Wait until there are no network connections for at least 500ms</li>
+        <li>`networkidle2` - Wait until there are no more than 2 network connections for at least 500ms</li>
       </ul>
     </ParamField>
   </Expandable>
 </ParamField>
 
 <ParamField body="pdf_display_header_footer" type="boolean" default="false">
-  When set to true, displays header and footer in PDF output. Only applies when
-  `type` is set to `pdf`.
+  When set to true, displays header and footer in PDF output. Only applies when `type` is set to `pdf`.
 </ParamField>
 
 <ParamField body="pdf_print_background" type="boolean" default="false">
-  When set to true, prints background graphics in PDF output. Only applies when
-  `type` is set to `pdf`.
+  When set to true, prints background graphics in PDF output. Only applies when `type` is set to `pdf`.
 </ParamField>
 
 <ParamField body="pdf_page_range" type="string">
-  Page ranges to print in PDF format (e.g., '1-5, 8, 11-13'). Only applies when
-  `type` is set to `pdf`.
+  Page ranges to print in PDF format (e.g., '1-5, 8, 11-13'). Only applies when `type` is set to `pdf`.
 </ParamField>
 
 <Snippet file="header.mdx" />

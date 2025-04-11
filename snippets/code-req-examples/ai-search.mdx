@@ -19,7 +19,7 @@ response = jigsaw.web.search({
 })
     ```
     ```bash Curl
-curl https://api.jigsawstack.com/v1/web/search \
+curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search \
  -X POST \
  -H "Content-Type: application/json" \
  -H "x-api-key: your-api-key" \
@@ -28,7 +28,7 @@ curl https://api.jigsawstack.com/v1/web/search \
     ```php PHP
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/web/search');
+curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -46,7 +46,7 @@ curl_close($ch);
 require 'net/http'
 require 'json'
 
-uri = URI('https://api.jigsawstack.com/v1/web/search')
+uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search')
 req = Net::HTTP::Post.new(uri)
 req.content_type = 'application/json'
 req['x-api-key'] = 'your-api-key'
@@ -77,7 +77,7 @@ import (
 func main() {
 	client := &http.Client{}
 	var data = strings.NewReader(`{"query":"What is the capital of France?"}`)
-	req, err := http.NewRequest("POST", "https://api.jigsawstack.com/v1/web/search", data)
+	req, err := http.NewRequest("POST", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search", data)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -107,7 +107,7 @@ import java.net.http.HttpResponse;
 HttpClient client = HttpClient.newHttpClient();
 
 HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create("https://api.jigsawstack.com/v1/web/search"))
+    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search"))
     .POST(BodyPublishers.ofString("{\"query\":\"What is the capital of France?\"}"))
     .setHeader("Content-Type", "application/json")
     .setHeader("x-api-key", "your-api-key")
@@ -124,7 +124,7 @@ let jsonData = [
 ] as [String : Any]
 let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
 
-let url = URL(string: "https://api.jigsawstack.com/v1/web/search")!
+let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search")!
 let headers = [
     "Content-Type": "application/json",
     "x-api-key": "your-api-key"
@@ -158,7 +158,7 @@ void main() async {
 
   final data = '{"query":"What is the capital of France?"}';
 
-  final url = Uri.parse('https://api.jigsawstack.com/v1/web/search');
+  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search');
 
   final res = await http.post(url, headers: headers, body: data);
   final status = res.statusCode;
@@ -182,7 +182,7 @@ val MEDIA_TYPE = "application/json".toMediaType()
 val requestBody = "{\"query\":\"What is the capital of France?\"}"
 
 val request = Request.Builder()
-  .url("https://api.jigsawstack.com/v1/web/search")
+  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search")
   .post(requestBody.toRequestBody(MEDIA_TYPE))
   .header("Content-Type", "application/json")
   .header("x-api-key", "your-api-key")
@@ -200,7 +200,7 @@ using System.Net.Http.Headers;
 
 HttpClient client = new HttpClient();
 
-HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://api.jigsawstack.com/v1/web/search");
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search");
 
 request.Headers.Add("x-api-key", "your-api-key");
 
@@ -218,7 +218,7 @@ string responseBody = await response.Content.ReadAsStringAsync();
 {
       "success": true,
       "query": "What is the capital of France?",
-      "ai_overview": "Paris is the capital of France. Here are some key points about Paris:\n\n*   **Largest City:** Paris is the largest city in France.\n*   **Population (January 2025 estimate):** 2,048,472 residents.\n*   **Area:** More than 105 km2 (41 sq mi).\n*   **Location:** Paris is in northern central France.\n*   **Historical Significance:** Paris first became the capital of France in 508 under King Clovis.\n*   **Government Seat:** As the capital, Paris is the seat of France's national government. The President resides at the Élysée Palace, and the Prime Minister's seat is at the Hôtel Matignon.",
+      "ai_overview": "Paris is the capital of France. It has been the capital since its liberation in 1944, with a few interruptions throughout history:\n\n*   **508:** Paris first became the capital under King Clovis.\n*   **1180-1223:** Paris retrieved its capital status under King Philippe Auguste.\n*   **1940-1944:** During German occupation in World War II, the capital was Vichy.\n\nParis is the largest city in France. With an estimated population of 2,048,472 residents as of January 2025, it is the fourth-most populous city in the European Union.",
       "is_safe": true,
       "results": [
             {
@@ -283,13 +283,13 @@ string responseBody = await response.Content.ReadAsStringAsync();
                         "https://cdn.britannica.com/70/135170-131-5C16D2CF/People-Times-Square-New-York-City-May-8-1945.jpg?w=200&h=200&c=crop",
                         "https://cdn.britannica.com/91/231191-131-3141F51C/infographic-landing-craft-World-War-II-Normandy-invasion.jpg?w=200&h=200&c=crop",
                         "https://cdn.britannica.com/97/181997-131-A483688A/view-Asakusa-World-War-II-Tokyo-fire-bombing-March-1945.jpg?w=200&h=200&c=crop",
-                        "https://cdn.britannica.com/51/212551-131-CCA62CB1/Shadow-man-spooky-building-knife.jpg?w=200&h=200&c=crop",
-                        "https://cdn.britannica.com/20/188220-131-06AC643E/Lyndon-B-Johnson-Vietnam-War-Marty-A-October-26-1966.jpg?w=200&h=200&c=crop",
-                        "https://cdn.britannica.com/41/166941-131-E27FD3A6/Yingxiu-school-China-Sichuan-earthquake-May-2008.jpg?w=200&h=200&c=crop",
-                        "https://cdn.britannica.com/63/231263-131-B9CECC7B/Bristlecone-pine-Mount-Washington-Great-Basin-National-Park-Nevada.jpg?w=200&h=200&c=crop",
                         "https://cdn.britannica.com/13/134913-131-D9520745/Ice-Sledge-Hockey-Canada-Cup-USA-ice-2010.jpg?w=200&h=200&c=crop",
-                        "https://cdn.britannica.com/38/130238-131-FCDA1F30/Taenia-solium-Scolex-hooks-scolex-wall-tapeworm.jpg?w=200&h=200&c=crop",
-                        "https://cdn.britannica.com/45/197245-131-26E0911C/Depositors-American-Union-Bank-New-York-York-1932.jpg?w=200&h=200&c=crop",
+                        "https://cdn.britannica.com/55/164555-131-D8A6E6C8/rat-glass-table.jpg?w=200&h=200&c=crop",
+                        "https://cdn.britannica.com/06/200006-131-ABB681CF/Leonardo-da-Vinci-Italian-Renaissance-Florence-Engraving-1500.jpg?w=200&h=200&c=crop",
+                        "https://cdn.britannica.com/45/195145-131-784B0AED/hammer-sickle-star-Ukraine-Pavilion-All-Russia.jpg?w=200&h=200&c=crop",
+                        "https://cdn.britannica.com/57/203257-131-48B2BCA1/Martin-Luther-King-Jr-marchers-speech-I-August-28th-1963.jpg?w=200&h=200&c=crop",
+                        "https://cdn.britannica.com/91/186691-131-9053898D/Snowshoe-hare-Summer-coat-side-right-winter.jpg?w=200&h=200&c=crop",
+                        "https://cdn.britannica.com/70/146770-131-8A2F36CC/Bust-emperor-Roman-Nero.jpg?w=200&h=200&c=crop",
                         "https://cdn.britannica.com/42/183642-050-C7D21FE8/World-Data-Locator-Map-France.jpg?w=300",
                         "https://cdn.britannica.com/82/682-050-8AA3D6A6/Flag-France.jpg",
                         "https://cdn.britannica.com/68/94468-050-BD29E775/Paris-skyline.jpg?w=300",
@@ -314,9 +314,7 @@ string responseBody = await response.Content.ReadAsStringAsync();
                   "site_long_name": "en.wikipedia.org",
                   "age": "2025-04-06T01:50:16.000Z",
                   "language": "en",
-                  "image_urls": [
-                        "https://maps.wikimedia.org/img/osm-intl,10,a,a,270x200.png?lang=en&domain=en.wikipedia.org&title=Paris&revid=1284178717&groups=_7db7e2f3cf6bfb1f0bc5fadc1f5b339b712de126"
-                  ],
+                  "image_urls": [],
                   "is_safe": true,
                   "favicon": "https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://en.wikipedia.org&size=96",
                   "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg",
@@ -355,7 +353,7 @@ string responseBody = await response.Content.ReadAsStringAsync();
                   "content": null,
                   "site_name": "Wikipedia",
                   "site_long_name": "en.wikipedia.org",
-                  "age": "2025-04-10T09:10:27.000Z",
+                  "age": "2025-04-11T22:02:24.000Z",
                   "language": "en",
                   "image_urls": [],
                   "is_safe": true,
@@ -610,18 +608,17 @@ string responseBody = await response.Content.ReadAsStringAsync();
             "https://cdn.britannica.com/70/135170-131-5C16D2CF/People-Times-Square-New-York-City-May-8-1945.jpg?w=200&h=200&c=crop",
             "https://cdn.britannica.com/91/231191-131-3141F51C/infographic-landing-craft-World-War-II-Normandy-invasion.jpg?w=200&h=200&c=crop",
             "https://cdn.britannica.com/97/181997-131-A483688A/view-Asakusa-World-War-II-Tokyo-fire-bombing-March-1945.jpg?w=200&h=200&c=crop",
-            "https://cdn.britannica.com/51/212551-131-CCA62CB1/Shadow-man-spooky-building-knife.jpg?w=200&h=200&c=crop",
-            "https://cdn.britannica.com/20/188220-131-06AC643E/Lyndon-B-Johnson-Vietnam-War-Marty-A-October-26-1966.jpg?w=200&h=200&c=crop",
-            "https://cdn.britannica.com/41/166941-131-E27FD3A6/Yingxiu-school-China-Sichuan-earthquake-May-2008.jpg?w=200&h=200&c=crop",
-            "https://cdn.britannica.com/63/231263-131-B9CECC7B/Bristlecone-pine-Mount-Washington-Great-Basin-National-Park-Nevada.jpg?w=200&h=200&c=crop",
             "https://cdn.britannica.com/13/134913-131-D9520745/Ice-Sledge-Hockey-Canada-Cup-USA-ice-2010.jpg?w=200&h=200&c=crop",
-            "https://cdn.britannica.com/38/130238-131-FCDA1F30/Taenia-solium-Scolex-hooks-scolex-wall-tapeworm.jpg?w=200&h=200&c=crop",
-            "https://cdn.britannica.com/45/197245-131-26E0911C/Depositors-American-Union-Bank-New-York-York-1932.jpg?w=200&h=200&c=crop",
+            "https://cdn.britannica.com/55/164555-131-D8A6E6C8/rat-glass-table.jpg?w=200&h=200&c=crop",
+            "https://cdn.britannica.com/06/200006-131-ABB681CF/Leonardo-da-Vinci-Italian-Renaissance-Florence-Engraving-1500.jpg?w=200&h=200&c=crop",
+            "https://cdn.britannica.com/45/195145-131-784B0AED/hammer-sickle-star-Ukraine-Pavilion-All-Russia.jpg?w=200&h=200&c=crop",
+            "https://cdn.britannica.com/57/203257-131-48B2BCA1/Martin-Luther-King-Jr-marchers-speech-I-August-28th-1963.jpg?w=200&h=200&c=crop",
+            "https://cdn.britannica.com/91/186691-131-9053898D/Snowshoe-hare-Summer-coat-side-right-winter.jpg?w=200&h=200&c=crop",
+            "https://cdn.britannica.com/70/146770-131-8A2F36CC/Bust-emperor-Roman-Nero.jpg?w=200&h=200&c=crop",
             "https://cdn.britannica.com/42/183642-050-C7D21FE8/World-Data-Locator-Map-France.jpg?w=300",
             "https://cdn.britannica.com/82/682-050-8AA3D6A6/Flag-France.jpg",
             "https://cdn.britannica.com/68/94468-050-BD29E775/Paris-skyline.jpg?w=300",
             "https://cdn.britannica.com/marketing/BlueThistle.webp",
-            "https://maps.wikimedia.org/img/osm-intl,10,a,a,270x200.png?lang=en&domain=en.wikipedia.org&title=Paris&revid=1284178717&groups=_7db7e2f3cf6bfb1f0bc5fadc1f5b339b712de126",
             "https://cdn.britannica.com/82/682-050-8AA3D6A6/Flag-France.jpg",
             "https://upload.wikimedia.org/wikipedia/commons/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg",
             "https://cdn.britannica.com/36/135436-050-ED1D0FCE/skyline-Eiffel-Tower-France-Paris.jpg",
@@ -636,7 +633,13 @@ string responseBody = await response.Content.ReadAsStringAsync();
             "https://www.vocabulary.com/images/icons/facebook-75x75.gif",
             "https://cdn.britannica.com/74/72774-138-22122F77/video-production-overview-city-Paris-Encyclopaedia-Britannica-1994.jpg",
             "https://styleguide.brainly.com/images/favicons/brainly/favicon200x200-dc867a5866.png"
-      ]
+      ],
+      "_usage": {
+            "input_tokens": 11,
+            "output_tokens": 34937,
+            "inference_time_tokens": 3469,
+            "total_tokens": 38417
+      }
 }
     ```
     </ResponseExample>

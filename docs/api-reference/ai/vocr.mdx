@@ -9,8 +9,7 @@ import VocrSnippet from "/snippets/code-req-examples/vocr.mdx";
 ### Body
 
 <ParamField body="prompt" type="string | Array<string>">
-  The prompt used to describe the image. Default prompt is `Describe the image
-  in detail.`
+  The prompt used to describe the image. Default prompt is `Describe the image in detail.`
 </ParamField>
 
 <ParamField body="url" type="string">
@@ -18,18 +17,13 @@ import VocrSnippet from "/snippets/code-req-examples/vocr.mdx";
 </ParamField>
 
 <ParamField body="file_store_key" type="string">
-  The key used to store the image on Jigsawstack File
-  [Storage](/docs/api-reference/store/file/add). Not required if `url` is
-  specified.
+  The key used to store the image on Jigsawstack File [Storage](/docs/api-reference/store/file/add). Not required if `url` is specified.
 </ParamField>
 
 <ParamField body="page_range" type="Array<number>">
-  Specifies a range of pages to process with vOCR, provided as a two-element
-  array: \[startPage, endPage]. For example, `[1,10]` processes pages 1 through
-  10. The range must span 10 or fewer pages. If the specified endPage exceeds
-  the document's total pages, the last available page will be used instead. Both
-  startPage and endPage are inclusive and must be positive integers where
-  startPage ≤ endPage.
+  Specifies a range of pages to process with vOCR, provided as a two-element array: \[startPage, endPage]. For example, `[1,10]` processes pages 1
+  through 10. The range must span 10 or fewer pages. If the specified endPage exceeds the document's total pages, the last available page will be used
+  instead. Both startPage and endPage are inclusive and must be positive integers where startPage ≤ endPage.
 </ParamField>
 
 <Info>Either `url` or `file_store_key` should be provided not both.</Info>
@@ -62,9 +56,6 @@ import VocrSnippet from "/snippets/code-req-examples/vocr.mdx";
   Indicates whether the call was successful.
 </ResponseField>
 
-<Info>
-  Supported file types: - **Images**: JPEG, JPG, PNG - **Documents**: Multi-page
-  PDFs (up to 10 pages per API request)
-</Info>
+<Info>Supported file types: - **Images**: JPEG, JPG, PNG - **Documents**: Multi-page PDFs (up to 10 pages per API request)</Info>
 
 <VocrSnippet />

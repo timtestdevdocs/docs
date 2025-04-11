@@ -5,8 +5,8 @@ import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
-const response = await jigsaw.prompt_engine.delete({
-      "promptId": "dc578c69-6eb5-4c5b-82ab-9f74077cfdd5"
+const response = await jigsaw.web.html_to_any({
+      "url": "https://news.ycombinator.com/"
 })
     ```
     ```python Python
@@ -14,26 +14,28 @@ from jigsawstack import JigsawStack
 
 jigsaw = JigsawStack(api_key="your-api-key")
 
-response = jigsaw.prompt_engine.delete({
-      "promptId": "dc578c69-6eb5-4c5b-82ab-9f74077cfdd5"
+response = jigsaw.web.html_to_any({
+      "url": "https://news.ycombinator.com/"
 })
     ```
     ```bash Curl
-curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/${id}?promptId=dc578c69-6eb5-4c5b-82ab-9f74077cfdd5 \
- -X DELETE \
+curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/html_to_any \
+ -X POST \
  -H "Content-Type: application/json" \
- -H "x-api-key: your-api-key"
+ -H "x-api-key: your-api-key" \
+ -d "{\"url\":\"https://news.ycombinator.com/\"}"
     ```
     ```php PHP
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/' . getenv('id') ?? '' . '?promptId=dc578c69-6eb5-4c5b-82ab-9f74077cfdd5');
+curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/html_to_any');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
     'x-api-key: your-api-key',
 ]);
+curl_setopt($ch, CURLOPT_POSTFIELDS, '{"url":"https://news.ycombinator.com/"}');
 
 $response = curl_exec($ch);
 
@@ -42,16 +44,16 @@ curl_close($ch);
     ```
     ```ruby Ruby
 require 'net/http'
+require 'json'
 
-uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/' + ENV['id'])
-params = {
-  :promptId => 'dc578c69-6eb5-4c5b-82ab-9f74077cfdd5',
-}
-uri.query = URI.encode_www_form(params)
-
-req = Net::HTTP::Delete.new(uri)
+uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/html_to_any')
+req = Net::HTTP::Post.new(uri)
 req.content_type = 'application/json'
 req['x-api-key'] = 'your-api-key'
+
+req.body = {
+  'url' => 'https://news.ycombinator.com/'
+}.to_json
 
 req_options = {
   use_ssl: uri.scheme == 'https'
@@ -69,12 +71,13 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"os"
+	"strings"
 )
 
 func main() {
 	client := &http.Client{}
-	req, err := http.NewRequest("DELETE", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/" + os.Getenv("id") + "?promptId=dc578c69-6eb5-4c5b-82ab-9f74077cfdd5", nil)
+	var data = strings.NewReader(`{"url":"https://news.ycombinator.com/"}`)
+	req, err := http.NewRequest("POST", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/html_to_any", data)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -95,17 +98,17 @@ func main() {
     ```
     ```java Java
 import java.io.IOException;
-import java.lang.System;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 
 HttpClient client = HttpClient.newHttpClient();
 
 HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/" + System.getenv("id") + "?promptId=dc578c69-6eb5-4c5b-82ab-9f74077cfdd5"))
-    .DELETE()
+    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/html_to_any"))
+    .POST(BodyPublishers.ofString("{\"url\":\"https://news.ycombinator.com/\"}"))
     .setHeader("Content-Type", "application/json")
     .setHeader("x-api-key", "your-api-key")
     .build();
@@ -116,15 +119,21 @@ HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.o
     ```swift Swift
 import Foundation
 
-let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/" + (ProcessInfo.processInfo.environment["id"] ?? "") + "?promptId=dc578c69-6eb5-4c5b-82ab-9f74077cfdd5")!
+let jsonData = [
+    "url": "https://news.ycombinator.com/"
+] as [String : Any]
+let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
+
+let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/html_to_any")!
 let headers = [
     "Content-Type": "application/json",
     "x-api-key": "your-api-key"
 ]
 
 var request = URLRequest(url: url)
-request.httpMethod = "DELETE"
+request.httpMethod = "POST"
 request.allHTTPHeaderFields = headers
+request.httpBody = data as Data
 
 let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
     if let error = error {
@@ -139,7 +148,6 @@ task.resume()
 
     ```
     ```dart Dart
-import 'dart:io';
 import 'package:http/http.dart' as http;
 
 void main() async {
@@ -148,16 +156,13 @@ void main() async {
     'x-api-key': 'your-api-key',
   };
 
-  final params = {
-    'promptId': 'dc578c69-6eb5-4c5b-82ab-9f74077cfdd5',
-  };
+  final data = '{"url":"https://news.ycombinator.com/"}';
 
-  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/' + (Platform.environment['id'] ?? ''))
-      .replace(queryParameters: params);
+  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/html_to_any');
 
-  final res = await http.delete(url, headers: headers);
+  final res = await http.post(url, headers: headers, body: data);
   final status = res.statusCode;
-  if (status != 200) throw Exception('http.delete error: statusCode= $status');
+  if (status != 200) throw Exception('http.post error: statusCode= $status');
 
   print(res.body);
 }
@@ -165,16 +170,20 @@ void main() async {
     ```
     ```kotlin Kotlin
 import java.io.IOException
-import java.lang.System
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 
 val client = OkHttpClient()
 
+val MEDIA_TYPE = "application/json".toMediaType()
+
+val requestBody = "{\"url\":\"https://news.ycombinator.com/\"}"
+
 val request = Request.Builder()
-  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/" + System.getenv("id") ?: "" + "?promptId=dc578c69-6eb5-4c5b-82ab-9f74077cfdd5")
-  .delete("".toRequestBody())
+  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/html_to_any")
+  .post(requestBody.toRequestBody(MEDIA_TYPE))
   .header("Content-Type", "application/json")
   .header("x-api-key", "your-api-key")
   .build()
@@ -186,17 +195,16 @@ client.newCall(request).execute().use { response ->
 
     ```
     ```csharp C#
-using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
 HttpClient client = new HttpClient();
 
-HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/" + Environment.GetEnvironmentVariable("id") + "?promptId=dc578c69-6eb5-4c5b-82ab-9f74077cfdd5");
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/html_to_any");
 
 request.Headers.Add("x-api-key", "your-api-key");
 
-request.Content = new StringContent("");
+request.Content = new StringContent("{\"url\":\"https://news.ycombinator.com/\"}");
 request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
 HttpResponseMessage response = await client.SendAsync(request);

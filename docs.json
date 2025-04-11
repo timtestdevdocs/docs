@@ -38,6 +38,11 @@
       "discord": "https://discord.gg/K57X2yzj"
     }
   },
+  "api": {
+    "playground": {
+      "display": "simple"
+    }
+  },
   "navigation": {
     "anchors": [
       {
@@ -63,62 +68,51 @@
           },
           {
             "group": "Integration",
-            "pages": ["docs/integration/postman","docs/integration/groq", "docs/integration/langchain", "docs/integration/zapier", "docs/integration/aries"]
+            "pages": [
+              "docs/integration/postman",
+              "docs/integration/groq",
+              "docs/integration/langchain",
+              "docs/integration/zapier",
+              "docs/integration/aries"
+            ]
           },
-              {
-                "group": "Core AI",
-                "pages": [
-                  "docs/examples/core-ai/prompt-engine",
-                  "docs/examples/core-ai/image-generation",
-                  "docs/examples/core-ai/summary",
-                  "docs/examples/core-ai/sentiment"
-                ]
-              },
-              {
-                "group": "Web",
-                "pages": [
-                  "docs/examples/web/web-scraper"
-                ]
-              },
-              {
-                "group": "Data",
-                "pages": [
-                  "docs/examples/data/prediction",
-                  "docs/examples/data/text-to-sql"
-                ]
-              },
-              {
-                "group": "Translate",
-                "pages": [
-                  "docs/examples/translate/text-translation"
-                ]
-              },
-              {
-                "group": "Vision",
-                "pages": [
-                  "docs/examples/computer-vision/vocr",
-                  "docs/examples/computer-vision/screenshot"
-                ]
-              },
-              {
-                "group": "Audio",
-                "pages": [
-                  "docs/examples/audio-processing/speech-to-text",
-                  "docs/examples/audio-processing/text-to-speech"
-                ]
-              },
-              {
-                "group": "Content Validation",
-                "pages": [
-                  "docs/examples/content-validation/nsfw"
-                ]
-              },
-              {
-                "group": "File Management",
-                "pages": [
-                  "docs/examples/file-management/file-upload"
-                ]
-              },
+          {
+            "group": "Core AI",
+            "pages": [
+              "docs/examples/core-ai/prompt-engine",
+              "docs/examples/core-ai/image-generation",
+              "docs/examples/core-ai/summary",
+              "docs/examples/core-ai/sentiment"
+            ]
+          },
+          {
+            "group": "Web",
+            "pages": ["docs/examples/web/web-scraper"]
+          },
+          {
+            "group": "Data",
+            "pages": ["docs/examples/data/prediction", "docs/examples/data/text-to-sql"]
+          },
+          {
+            "group": "Translate",
+            "pages": ["docs/examples/translate/text-translation"]
+          },
+          {
+            "group": "Vision",
+            "pages": ["docs/examples/computer-vision/vocr", "docs/examples/computer-vision/screenshot"]
+          },
+          {
+            "group": "Audio",
+            "pages": ["docs/examples/audio-processing/speech-to-text", "docs/examples/audio-processing/text-to-speech"]
+          },
+          {
+            "group": "Content Validation",
+            "pages": ["docs/examples/content-validation/nsfw"]
+          },
+          {
+            "group": "File Management",
+            "pages": ["docs/examples/file-management/file-upload"]
+          },
           {
             "group": "Resources",
             "pages": [
@@ -144,26 +138,15 @@
           },
           {
             "group": "Core AI",
-            "pages": [
-              "docs/api-reference/ai/sentiment",
-              "docs/api-reference/ai/summary",
-              "docs/api-reference/ai/image-generation"
-            ]
+            "pages": ["docs/api-reference/ai/sentiment", "docs/api-reference/ai/summary", "docs/api-reference/ai/image-generation"]
           },
           {
             "group": "Translate",
-            "pages": [
-              "docs/api-reference/ai/translate",
-              "docs/api-reference/ai/image-translate"
-            ]
+            "pages": ["docs/api-reference/ai/translate", "docs/api-reference/ai/image-translate"]
           },
           {
             "group": "Data",
-            "pages": [
-              "docs/api-reference/ai/embedding",
-              "docs/api-reference/ai/prediction",
-              "docs/api-reference/ai/text-to-sql"
-            ]
+            "pages": ["docs/api-reference/ai/embedding", "docs/api-reference/ai/prediction", "docs/api-reference/ai/text-to-sql"]
           },
           {
             "group": "Web Scrape",
@@ -190,10 +173,7 @@
           },
           {
             "group": "Audio",
-            "pages": [
-              "docs/api-reference/ai/speech-to-text",
-              "docs/api-reference/ai/text-to-speech"
-            ]
+            "pages": ["docs/api-reference/ai/speech-to-text", "docs/api-reference/ai/text-to-speech"]
           },
           {
             "group": "Validate",
