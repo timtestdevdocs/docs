@@ -4,6 +4,8 @@ api: "DELETE https://api.jigsawstack.com/v1/prompt_engine/{id}"
 description: "Deletes a prompt engine."
 ---
 
+import PromptEngineDeleteSnippet from "/snippets/code-req-examples/prompt-engine-delete.mdx";
+
 ### Path Params
 
 <ParamField path="id" type="string" required>
@@ -18,44 +20,4 @@ description: "Deletes a prompt engine."
   Indicates whether the call was successful.
 </ResponseField>
 
-<RequestExample>
-
-```javascript Node.js
-import { JigsawStack } from "jigsawstack";
-
-const jigsawstack = JigsawStack({
-  apiKey: "your-api-key",
-});
-
-const result = await jigsawstack.prompt_engine.delete(
-  "e58d762a-9a00-4907-8cab-5ce6221bb6df",
-);
-```
-
-```python Python
-from jigsawstack import JigsawStack
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-
-result = jigsawstack.prompt_engine.delete("e58d762a-9a00-4907-8cab-5ce6221bb6df")
-
-```
-
-```bash cURL
-curl --location --request DELETE 'https://api.jigsawstack.com/v1/prompt_engine/{id}' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>'
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-```json Response
-{
-  "success": true,
-  "prompt_engine_id": "e58d762a-9a00-4907-8cab-5ce6221bb6df"
-}
-```
-
-</ResponseExample>
+<PromptEngineDeleteSnippet />

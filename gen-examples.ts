@@ -94,6 +94,197 @@ const APISchemas: {
     },
     sdk_key_string: "web.search_suggestions",
   },
+  embedding: {
+    path: "/embedding",
+    method: "POST",
+    body: {
+      text: "hey what is this?, hello world!",
+      type: "text",
+    },
+    sdk_key_string: "embedding",
+  },
+  "object-detection": {
+    path: "/ai/object_detection",
+    method: "POST",
+    body: {
+      prompt: ["Title", "Description"],
+      url: "https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png",
+    },
+    sdk_key_string: "vision.object_detection",
+  },
+  vocr: {
+    path: "/ai/vocr",
+    method: "POST",
+    body: {
+      image: "https://jigsawstack-2yy94lf5z-jigsaw-stack.vercel.app/preview/vocr-example.jpg",
+    },
+    sdk_key_string: "vision.vocr",
+  },
+  scrape: {
+    path: "/web/scrape",
+    method: "POST",
+    body: {
+      url: "https://example.com",
+    },
+    sdk_key_string: "web.scrape",
+  },
+  "html-to-any": {
+    path: "/web/html_to_any",
+    method: "POST",
+    body: {
+      url: "https://example.com",
+    },
+    sdk_key_string: "web.html_to_any",
+  },
+  "speech-to-text": {
+    path: "/ai/speech_to_text",
+    method: "POST",
+    body: {
+      audio: "https://example.com/audio.mp3",
+      language: "en-US",
+    },
+    sdk_key_string: "audio.speech_to_text",
+  },
+  "text-to-speech": {
+    path: "/ai/text_to_speech",
+    method: "POST",
+    body: {
+      text: "Hello world! This is a sample text to be converted to speech.",
+      voice: "en-US-Neural2-F",
+      speed: "1.0",
+    },
+    sdk_key_string: "audio.text_to_speech",
+  },
+  "spam-check": {
+    path: "/ai/spam_check",
+    method: "POST",
+    body: {
+      text: "Congratulations! You've won a free iPhone! Click here to claim now!",
+    },
+    sdk_key_string: "ai.spam_check",
+  },
+  "nsfw": {
+    path: "/validate/nsfw",
+    method: "POST",
+    body: {
+      url: "https://example.com/image.jpg",
+    },
+    sdk_key_string: "validate.nsfw",
+  },
+  "profanity": {
+    path: "/validate/profanity",
+    method: "POST",
+    body: {
+      text: "This is a sample text that might contain inappropriate language.",
+    },
+    sdk_key_string: "validate.profanity",
+  },
+  "spellcheck": {
+    path: "/validate/spellcheck",
+    method: "POST",
+    body: {
+      text: "This sentense has a speling mistake.",
+    },
+    sdk_key_string: "validate.spellcheck",
+  },
+  "file-add": {
+    path: "/store/file/add",
+    method: "POST",
+    body: {
+      file: "base64encodedfilecontentorurl",
+      metadata: {
+        filename: "sample.pdf",
+        contentType: "application/pdf"
+      }
+    },
+    sdk_key_string: "store.file.add",
+  },
+  "file-get": {
+    path: "/store/file/get",
+    method: "GET",
+    query: {
+      id: "file_12345abcde",
+    },
+    sdk_key_string: "store.file.get",
+  },
+  "file-delete": {
+    path: "/store/file/delete",
+    method: "DELETE",
+    query: {
+      id: "file_12345abcde",
+    },
+    sdk_key_string: "store.file.delete",
+  },
+  "geo-search": {
+    path: "/geo/search",
+    method: "GET",
+    query: {
+      query: "coffee shops in San Francisco",
+      limit: "5",
+    },
+    sdk_key_string: "geo.search",
+  },
+  "geo-geocode": {
+    path: "/geo/geocode",
+    method: "GET",
+    query: {
+      address: "1600 Amphitheatre Parkway, Mountain View, CA",
+    },
+    sdk_key_string: "geo.geocode",
+  },
+  "prompt-engine-create": {
+    path: "/prompt-engine/create",
+    method: "POST",
+    body: {
+      name: "Customer Support Assistant",
+      content: "You are a helpful customer support assistant for JigsawStack.",
+      model: "gpt-4",
+    },
+    sdk_key_string: "prompt_engine.create",
+  },
+  "prompt-engine-run": {
+    path: "/prompt-engine/run",
+    method: "POST",
+    body: {
+      promptId: "prompt_12345abcde",
+      input: "How do I integrate JigsawStack with my Next.js application?",
+    },
+    sdk_key_string: "prompt_engine.run",
+  },
+  "prompt-engine-retrieve": {
+    path: "/prompt-engine/retrieve",
+    method: "GET",
+    query: {
+      promptId: "prompt_12345abcde",
+    },
+    sdk_key_string: "prompt_engine.retrieve",
+  },
+  "prompt-engine-list": {
+    path: "/prompt-engine/list",
+    method: "GET",
+    query: {
+      limit: "10",
+      offset: "0",
+    },
+    sdk_key_string: "prompt_engine.list",
+  },
+  "prompt-engine-delete": {
+    path: "/prompt-engine/delete",
+    method: "DELETE",
+    query: {
+      promptId: "prompt_12345abcde",
+    },
+    sdk_key_string: "prompt_engine.delete",
+  },
+  "prompt-engine-run-direct": {
+    path: "/prompt-engine/run-direct",
+    method: "POST",
+    body: {
+      prompt: "Create a landing page headline for a new AI-powered data analytics platform.",
+      model: "gpt-4",
+    },
+    sdk_key_string: "prompt_engine.run_direct",
+  },
 };
 
 const getSDKJSCode = (api: APIType) => {

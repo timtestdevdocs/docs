@@ -4,6 +4,8 @@ api: "POST https://api.jigsawstack.com/v1/ai/transcribe"
 description: "Transcribe video and audio files with ease leveraging Whisper large V3 AI model."
 ---
 
+import SpeechToTextSnippet from "/snippets/code-req-examples/speech-to-text.mdx";
+
 ## Supported Formats and Limitations
 
 - **Supported formats:** MP3, WAV, M4A, FLAC, AAC, OGG, WEBM
@@ -262,59 +264,5 @@ curl --location --request POST 'https://api.jigsawstack.com/v1/ai/transcribe' \
 
 </RequestExample>
 
-<ResponseExample>
 
-```json Standard Response
-{
-  "success": true,
-  "text": "Hey guys, I'm pretty excited to talk about a new API that we're going to be releasing in Jigsaw Stack...",
-  "chunks": [
-    {
-      "timestamp": [0.96, 7.2],
-      "text": "Hey guys, I'm pretty excited to talk about a new API that we're going to be releasing in Jigsaw"
-    },
-    {
-      "timestamp": [7.2, 14.56],
-      "text": "Stack. It's our AI Scrape API, which can basically scrape any website by just prompting and giving"
-    }
-    // Additional chunks...
-  ]
-}
-```
-
-```json Speaker Diarization Response
-{
-  "success": true,
-  "text": "Hey guys, I'm pretty excited to talk about a new API that we're going to be releasing in Jigsaw Stack...",
-  "chunks": [
-    {
-      "timestamp": [0.96, 7.2],
-      "text": "Hey guys, I'm pretty excited to talk about a new API that we're going to be releasing in Jigsaw"
-    }
-    // Additional chunks...
-  ],
-  "speakers": [
-    {
-      "speaker": "Speaker 1",
-      "timestamp": [0.96, 7.2],
-      "text": "Hey guys, I'm pretty excited to talk about a new API that we're going to be releasing in Jigsaw"
-    },
-    {
-      "speaker": "Speaker 2",
-      "timestamp": [7.2, 14.56],
-      "text": "That sounds great! What can it do?"
-    }
-    // Additional speaker segments...
-  ]
-}
-```
-
-```json Webhook Initial Response
-{
-  "success": true,
-  "status": "processing",
-  "id": "trans_8f72hd93jf83h2f8"
-}
-```
-
-</ResponseExample>
+<SpeechToTextSnippet />

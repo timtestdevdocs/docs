@@ -35,7 +35,7 @@
       "twitter": "https://twitter.com/jigsawstack",
       "github": "https://github.com/jigsawstack",
       "linkedin": "https://www.linkedin.com/company/jigsawstack",
-      "discord": "https://discord.gg/dj8fMBpnqd"
+      "discord": "https://discord.gg/K57X2yzj"
     }
   },
   "navigation": {
@@ -65,9 +65,6 @@
             "group": "Integration",
             "pages": ["docs/integration/postman","docs/integration/groq", "docs/integration/langchain", "docs/integration/zapier", "docs/integration/aries"]
           },
-          {
-            "group": "Examples",
-            "pages": [
               {
                 "group": "Core AI",
                 "pages": [
@@ -80,9 +77,7 @@
               {
                 "group": "Web",
                 "pages": [
-                  "docs/examples/web/web-scraper",
-                  "docs/examples/web/introduction",
-                  "docs/examples/web/secure"
+                  "docs/examples/web/web-scraper"
                 ]
               },
               {
@@ -123,13 +118,13 @@
                 "pages": [
                   "docs/examples/file-management/file-upload"
                 ]
-              }
-            ]
-          },
+              },
           {
             "group": "Resources",
             "pages": [
               "docs/additional-resources/security",
+              "docs/examples/web/introduction",
+              "docs/examples/web/secure",
               "docs/additional-resources/jigsawstack-badge",
               "docs/additional-resources/size-preset",
               "docs/additional-resources/selector",
@@ -148,19 +143,31 @@
             "pages": ["docs/api-reference/authentication", "docs/api-reference/error"]
           },
           {
-            "group": " ",
+            "group": "Core AI",
             "pages": [
               "docs/api-reference/ai/sentiment",
-              "docs/api-reference/ai/translate",
               "docs/api-reference/ai/summary",
-              "docs/api-reference/ai/prediction",
-              "docs/api-reference/ai/text-to-sql",
               "docs/api-reference/ai/image-generation"
             ]
           },
           {
+            "group": "Translate",
+            "pages": [
+              "docs/api-reference/ai/translate",
+              "docs/api-reference/ai/image-translate"
+            ]
+          },
+          {
+            "group": "Data",
+            "pages": [
+              "docs/api-reference/ai/embedding",
+              "docs/api-reference/ai/prediction",
+              "docs/api-reference/ai/text-to-sql"
+            ]
+          },
+          {
             "group": "Web Scrape",
-            "pages": ["docs/api-reference/ai/scrape", "docs/api-reference/web/scrape", "docs/api-reference/web/html-to-any"]
+            "pages": ["docs/api-reference/ai/scrape", "docs/api-reference/web/html-to-any"]
           },
           {
             "group": "Web Search",
@@ -187,10 +194,6 @@
               "docs/api-reference/ai/speech-to-text",
               "docs/api-reference/ai/text-to-speech"
             ]
-          },
-          {
-            "group": "Geo",
-            "pages": ["docs/api-reference/geo/search", "docs/api-reference/geo/geocode"]
           },
           {
             "group": "Validate",

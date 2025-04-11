@@ -4,6 +4,8 @@ api: "POST https://api.jigsawstack.com/v1/vocr"
 description: "Recognise, describe and retrieve data within an image with great accuracy."
 ---
 
+import VocrSnippet from "/snippets/code-req-examples/vocr.mdx";
+
 ### Body
 
 <ParamField body="prompt" type="string | Array<string>">
@@ -65,72 +67,4 @@ description: "Recognise, describe and retrieve data within an image with great a
   PDFs (up to 10 pages per API request)
 </Info>
 
-<RequestExample>
-  ```javascript Javascript
-  import { JigsawStack } from "jigsawstack";
-
-const jigsawstack = JigsawStack({
-apiKey: "your-api-key",
-});
-
-const result = await jigsaw.vision.vocr({
-prompt: ["Title", "Description"],
-url: "https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png",
-});
-
-````
-
-```python Python
-from jigsawstack import JigsawStack
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-
-result = jigsawstack.vision.vocr({"url": "https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png", "prompt" : ["Title", "Description"]})
-````
-
-```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/vocr' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Collabo%201080x842.jpg?t=2024-03-22T09%3A22%3A48.442Z",
-}'
-```
-
-</RequestExample>
-
-<ResponseExample>
-  ```json Response
-{
-  "success": true,
-  "context": {
-    "Title": [
-      "Webhook Trigger"
-    ],
-    "Description": [
-      "Select events that will trigger the webhook will listen to. At least one event must be selected.",
-      "Success logs",
-      "Error logs",
-      "Endpoint",
-      "Create"
-    ]
-  },
-  "width": 2880,
-  "height": 1800,
-  "tags": [
-    "text",
-    "screenshot",
-    "software",
-    "multimedia software",
-    "graphics software"
-  ],
-  "has_text": true,
-  "sections": [
-    {
-      "text": "",
-      "lines": []
-    }
-  ]
-}
-  ```
-</ResponseExample>
+<VocrSnippet />

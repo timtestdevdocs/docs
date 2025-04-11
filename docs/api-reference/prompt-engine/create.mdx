@@ -4,6 +4,8 @@ api: "POST https://api.jigsawstack.com/v1/prompt_engine"
 description: "Create a prompt for easy reuse."
 ---
 
+import PromptEngineCreateSnippet from "/snippets/code-req-examples/prompt-engine-create.mdx";
+
 ### Body
 
 <ParamField body="prompt" type="string" required>
@@ -104,73 +106,4 @@ description: "Create a prompt for easy reuse."
   Indicates whether the call was successful.
 </ResponseField>
 
-<RequestExample>
-  ```javascript Node.js
-  import { JigsawStack } from "jigsawstack";
-
-const jigsawstack = JigsawStack({
-apiKey: "your-api-key",
-});
-
-const result = await jigsawstack.prompt_engine.create({
-prompt: "Tell me a story about {about}",
-inputs: [
-{
-key: "about",
-optional: false,
-initial_value: "Leaning Tower of Pisa",
-},
-],
-return_prompt: "Return the result in a markdown format",
-prompt_guard: ["sexual_content", "defamation"],
-});
-
-````
-
-```python Python
-from jigsawstack import JigsawStack
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-
-params = {
-    "prompt": "Tell me a story about {about}",
-    "inputs": [
-        {
-            "key": "about",
-            "optional": False,
-            "initial_value": "Leaning Tower of Pisa",
-        },
-    ],
-    "return_prompt": "Return the result in a markdown format",
-    "prompt_guard": ["sexual_content", "defamation"]
-}
-result = jigsawstack.prompt_engine.create(params)
-````
-
-```bash cURL
-    curl --location --request POST 'https://api.jigsawstack.com/v1/prompt_engine' \
-    --header 'Content-Type: application/json' \
-    --header "x-api-key: <your-api-here>" \
-    --data '{
-      "prompt": "Tell me a story about {about}",
-      "inputs": [
-        {
-          "key": "about",
-          "optional": false,
-          "initial_value":"Leaning Tower of Pisa"
-        }
-      ],
-     "return_prompt": "Return the result in a markdown format",
-    }'
-```
-
-</RequestExample>
-
-<ResponseExample>
-  ```json Response
-  {
-    "success": true,
-    "prompt_engine_id": "9100b51f-9c27-4b19-81ce-6845c9c74220"
-  }
-  ```
-</ResponseExample>
+<PromptEngineCreateSnippet />

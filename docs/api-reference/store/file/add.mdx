@@ -4,6 +4,8 @@ api: "POST https://api.jigsawstack.com/v1/store/file"
 description: "Upload images, videos and documents effortlessly."
 ---
 
+import FileAddSnippet from "/snippets/code-req-examples/file-add.mdx";
+
 <Info>Maximum file size is 100MB.</Info>
 
 <Snippet file="header.mdx" />
@@ -47,59 +49,4 @@ description: "Upload images, videos and documents effortlessly."
   Url used in accessing the file.
 </ResponseField>
 
-<RequestExample>
-
-```javascript Node.js
-import { JigsawStack } from "jigsawstack";
-
-const jigsawstack = JigsawStack({
-  apiKey: "your-api-key",
-});
-
-const imageFile = fs.readFileSync("./src/seed/file.png");
-
-const result = await jigsawstack.store.upload(imageFile, {
-  overwrite: true,
-  filename: "file.png",
-});
-
-const publicFileUrl = `${result.url}?x-api-key=${publicKey}`;
-```
-
-```python Python
-from jigsawstack import JigsawStack
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-
-try:
-    with open("beach_house.jpg", "rb") as image_file:
-        image_data = image_file.read()
-        result = jigsawstack.store.upload(
-            image_data, {"filename": "beach_house.jpg", "overwrite": True}
-        )
-    print("Image uploaded successfully:", result)
-
-except JigsawStackError as err:
-    print(f"An error occurred: {err}")
-```
-
-```bash cURL
-curl -X POST 'https://api.jigsawstack.com/v1/store/file?key=jigsaw-logo' \
-  -H "Content-Type: multipart/form-data" \
-  -H "x-api-key: <your-api-key>" \
-  -F "key=@fileToSend"
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-```json Response
-{
-  "success": true,
-  "url": "",
-  "key": ""
-}
-```
-
-</ResponseExample>
+<FileAddSnippet />

@@ -4,6 +4,8 @@ api: "DELETE https://api.jigsawstack.com/v1/store/file/read/{key}"
 description: "Delete a file."
 ---
 
+import FileDeleteSnippet from "/snippets/code-req-examples/file-delete.mdx";
+
 ### Path
 
 <ParamField path="key" type="string" required>
@@ -17,41 +19,5 @@ description: "Delete a file."
 <ResponseField name="success" type="boolean">
   Indicates whether the call was successful.
 </ResponseField>
-<RequestExample>
 
-```javascript Node.js
-import { JigsawStack } from "jigsawstack";
-
-const key = "file.png";
-
-const jigsawstack = JigsawStack({
-  apiKey: "your-api-key",
-});
-const result = await jigsawstack.store.delete(key);
-```
-
-```python Python
-from jigsawstack import JigsawStack
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-
-result = jigsawstack.store.delete("jigsaw")
-```
-
-```bash cURL
-curl --location --request DELETE 'https://api.jigsawstack.com/v1/store/file/read/{key}' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>'
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-```json Response
-{
-  "success": true
-}
-```
-
-</ResponseExample>
+<FileDeleteSnippet />
