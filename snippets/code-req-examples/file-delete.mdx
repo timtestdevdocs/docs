@@ -5,8 +5,8 @@ import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
-const response = await jigsaw.sentiment({
-      "text": "I love this product! It's amazing but the delivery was a bit late."
+const response = await jigsaw.store.file.delete({
+      "key": "image-123.png"
 })
     ```
     ```python Python
@@ -14,28 +14,26 @@ from jigsawstack import JigsawStack
 
 jigsaw = JigsawStack(api_key="your-api-key")
 
-response = jigsaw.sentiment({
-      "text": "I love this product! It's amazing but the delivery was a bit late."
+response = jigsaw.store.file.delete({
+      "key": "image-123.png"
 })
     ```
     ```bash Curl
-curl https://api.jigsawstack.com/v1/ai/sentiment \
- -X POST \
+curl https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.png \
+ -X DELETE \
  -H "Content-Type: application/json" \
- -H "x-api-key: your-api-key" \
- -d "{\"text\":\"I love this product! It's amazing but the delivery was a bit late.\"}"
+ -H "x-api-key: your-api-key"
     ```
     ```php PHP
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/ai/sentiment');
+curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.png');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
     'x-api-key: your-api-key',
 ]);
-curl_setopt($ch, CURLOPT_POSTFIELDS, '{"text":"I love this product! It\'s amazing but the delivery was a bit late."}');
 
 $response = curl_exec($ch);
 
@@ -44,16 +42,16 @@ curl_close($ch);
     ```
     ```ruby Ruby
 require 'net/http'
-require 'json'
 
-uri = URI('https://api.jigsawstack.com/v1/ai/sentiment')
-req = Net::HTTP::Post.new(uri)
+uri = URI('https://api.jigsawstack.com/v1/store/file/read/image-123.png')
+params = {
+  :key => 'image-123.png',
+}
+uri.query = URI.encode_www_form(params)
+
+req = Net::HTTP::Delete.new(uri)
 req.content_type = 'application/json'
 req['x-api-key'] = 'your-api-key'
-
-req.body = {
-  'text' => "I love this product! It's amazing but the delivery was a bit late."
-}.to_json
 
 req_options = {
   use_ssl: uri.scheme == 'https'
@@ -71,13 +69,11 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"strings"
 )
 
 func main() {
 	client := &http.Client{}
-	var data = strings.NewReader(`{"text":"I love this product! It's amazing but the delivery was a bit late."}`)
-	req, err := http.NewRequest("POST", "https://api.jigsawstack.com/v1/ai/sentiment", data)
+	req, err := http.NewRequest("DELETE", "https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.png", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -101,14 +97,13 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 
 HttpClient client = HttpClient.newHttpClient();
 
 HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create("https://api.jigsawstack.com/v1/ai/sentiment"))
-    .POST(BodyPublishers.ofString("{\"text\":\"I love this product! It's amazing but the delivery was a bit late.\"}"))
+    .uri(URI.create("https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.png"))
+    .DELETE()
     .setHeader("Content-Type", "application/json")
     .setHeader("x-api-key", "your-api-key")
     .build();
@@ -119,21 +114,15 @@ HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.o
     ```swift Swift
 import Foundation
 
-let jsonData = [
-    "text": "I love this product! It's amazing but the delivery was a bit late."
-] as [String : Any]
-let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
-
-let url = URL(string: "https://api.jigsawstack.com/v1/ai/sentiment")!
+let url = URL(string: "https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.png")!
 let headers = [
     "Content-Type": "application/json",
     "x-api-key": "your-api-key"
 ]
 
 var request = URLRequest(url: url)
-request.httpMethod = "POST"
+request.httpMethod = "DELETE"
 request.allHTTPHeaderFields = headers
-request.httpBody = data as Data
 
 let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
     if let error = error {
@@ -156,13 +145,16 @@ void main() async {
     'x-api-key': 'your-api-key',
   };
 
-  final data = '{"text":"I love this product! It\'s amazing but the delivery was a bit late."}';
+  final params = {
+    'key': 'image-123.png',
+  };
 
-  final url = Uri.parse('https://api.jigsawstack.com/v1/ai/sentiment');
+  final url = Uri.parse('https://api.jigsawstack.com/v1/store/file/read/image-123.png')
+      .replace(queryParameters: params);
 
-  final res = await http.post(url, headers: headers, body: data);
+  final res = await http.delete(url, headers: headers);
   final status = res.statusCode;
-  if (status != 200) throw Exception('http.post error: statusCode= $status');
+  if (status != 200) throw Exception('http.delete error: statusCode= $status');
 
   print(res.body);
 }
@@ -170,20 +162,15 @@ void main() async {
     ```
     ```kotlin Kotlin
 import java.io.IOException
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 
 val client = OkHttpClient()
 
-val MEDIA_TYPE = "application/json".toMediaType()
-
-val requestBody = "{\"text\":\"I love this product! It's amazing but the delivery was a bit late.\"}"
-
 val request = Request.Builder()
-  .url("https://api.jigsawstack.com/v1/ai/sentiment")
-  .post(requestBody.toRequestBody(MEDIA_TYPE))
+  .url("https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.png")
+  .delete("".toRequestBody())
   .header("Content-Type", "application/json")
   .header("x-api-key", "your-api-key")
   .build()
@@ -200,11 +187,11 @@ using System.Net.Http.Headers;
 
 HttpClient client = new HttpClient();
 
-HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://api.jigsawstack.com/v1/ai/sentiment");
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, "https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.png");
 
 request.Headers.Add("x-api-key", "your-api-key");
 
-request.Content = new StringContent("{\"text\":\"I love this product! It's amazing but the delivery was a bit late.\"}");
+request.Content = new StringContent("");
 request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
 HttpResponseMessage response = await client.SendAsync(request);
@@ -213,31 +200,5 @@ string responseBody = await response.Content.ReadAsStringAsync();
 
     ```
     </RequestExample>
-    <ResponseExample>
-    ```json Response
-{
-      "success": true,
-      "sentiment": {
-            "emotion": "love",
-            "sentiment": "positive",
-            "score": 0.85,
-            "sentences": [
-                  {
-                        "text": "I love this product!",
-                        "emotion": "love",
-                        "sentiment": "positive",
-                        "score": 0.9
-                  },
-                  {
-                        "text": "It's amazing but the delivery was a bit late.",
-                        "emotion": "neutral",
-                        "sentiment": "positive",
-                        "score": 0.8
-                  }
-            ]
-      }
-}
-    ```
-    </ResponseExample>
     
     

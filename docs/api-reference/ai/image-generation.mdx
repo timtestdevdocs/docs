@@ -4,6 +4,8 @@ api: "POST https://api.jigsawstack.com/v1/ai/image_generation"
 description: "Generate an image based on the given text by employing AI models like Flux, Stable Diffusion, and other top models."
 ---
 
+import ImageGenerationSnippet from "/snippets/code-req-examples/image-generation.mdx";
+
 ## Request Parameters
 
 ### Body
@@ -38,8 +40,7 @@ description: "Generate an image based on the given text by employing AI models l
 </ParamField>
 
 <ParamField body="steps" type="number" default="4">
-  The number of denoising steps. Must be between 1-90. Higher values produce
-  better quality images but take more time to generate.
+  The number of denoising steps. Must be between 1-90. Higher values produce better quality images but take more time to generate.
 </ParamField>
 
 <ParamField body="advance_config" type="object">
@@ -48,12 +49,10 @@ description: "Generate an image based on the given text by employing AI models l
       Text describing what you don't want in the image.
     </ParamField>
     <ParamField body="guidance" type="number">
-      Higher guidance forces the model to better follow the prompt, but may
-      result in lower quality output. Must be between 1-28.
+      Higher guidance forces the model to better follow the prompt, but may result in lower quality output. Must be between 1-28.
     </ParamField>
     <ParamField body="seed" type="number">
-      Makes generation deterministic. Using the same seed and set of parameters
-      will produce identical image each time.
+      Makes generation deterministic. Using the same seed and set of parameters will produce identical image each time.
     </ParamField>
   </Expandable>
 </ParamField>
@@ -64,78 +63,4 @@ description: "Generate an image based on the given text by employing AI models l
 
 The API returns the generated image directly in the response body as binary data.
 
-<RequestExample>
-
-```javascript Javascript
-import { JigsawStack } from "jigsawstack";
-
-const jigsawstack = JigsawStack({
-  apiKey: "your-api-key",
-});
-
-const result = await jigsawstack.image_generation({
-  prompt: "A serene mountain landscape with a lake reflecting the sunset",
-  aspect_ratio: "16:9",
-  steps: 30,
-  advance_config: {
-    negative_prompt: "blurry, low quality",
-    guidance: 7.5,
-  },
-});
-
-// The result is a Response object containing the image
-const imageData = await result.blob();
-// Use the imageData in your application
-```
-
-```python Python
-from jigsawstack import JigsawStack
-import requests
-from PIL import Image
-from io import BytesIO
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-
-params = {
-    "prompt": "A serene mountain landscape with a lake reflecting the sunset",
-    "aspect_ratio": "16:9",
-    "steps": 30,
-    "advance_config": {
-        "negative_prompt": "blurry, low quality",
-        "guidance": 7.5
-    }
-}
-
-response = requests.post(
-    "https://api.jigsawstack.com/v1/ai/image_generation",
-    headers={"x-api-key": "your-api-key"},
-    json=params
-)
-
-# Save the image
-if response.status_code == 200:
-    image = Image.open(BytesIO(response.content))
-    image.save("landscape.jpg")
-```
-
-```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/image_generation' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    "prompt": "A serene mountain landscape with a lake reflecting the sunset",
-    "aspect_ratio": "16:9",
-    "steps": 30,
-    "advance_config": {
-      "negative_prompt": "blurry, low quality",
-      "guidance": 7.5
-    }
-}' \
---output landscape.jpg
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-</ResponseExample>
+<ImageGenerationSnippet />

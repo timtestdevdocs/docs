@@ -12,6 +12,7 @@ interface APIType {
   body?: any;
   query?: Record<string, string>;
   sdk_key_string: string;
+  skip_request?: boolean;
 }
 
 const APISchemas: {
@@ -130,10 +131,10 @@ const APISchemas: {
     sdk_key_string: "web.scrape",
   },
   "speech-to-text": {
-    path: "/ai/speech_to_text",
+    path: "/ai/transcribe",
     method: "POST",
     body: {
-      audio: "https://jigsawstack.com/preview/stt-example.wav",
+      url: "https://jigsawstack.com/preview/stt-example.wav",
     },
     sdk_key_string: "audio.speech_to_text",
   },
@@ -162,7 +163,7 @@ const APISchemas: {
     sdk_key_string: "validate.profanity",
   },
   spellcheck: {
-    path: "/validate/spellcheck",
+    path: "/validate/spell_check",
     method: "POST",
     body: {
       text: "This sentense has a speling mistake.",
@@ -176,26 +177,27 @@ const APISchemas: {
       file: "base64encodedfilecontentorurl",
       metadata: {
         filename: "sample.pdf",
-        contentType: "application/pdf"
-      }
+        contentType: "application/pdf",
+      },
     },
     sdk_key_string: "store.file.add",
   },
   "file-get": {
-    path: "/store/file/read/{key}",
+    path: "/store/file/read/image-123.png",
     method: "GET",
     query: {
-      id: "file_12345abcde",
+      key: "image-123.png",
     },
     sdk_key_string: "store.file.get",
   },
   "file-delete": {
-    path: "/store/file/read/{key}",
+    path: "/store/file/read/image-123.png",
     method: "DELETE",
     query: {
-      id: "file_12345abcde",
+      key: "image-123.png",
     },
     sdk_key_string: "store.file.delete",
+    skip_request: true,
   },
   "prompt-engine-create": {
     path: "/prompt_engine",
@@ -215,27 +217,31 @@ const APISchemas: {
     sdk_key_string: "prompt_engine.create",
   },
   "prompt-engine-run": {
-    path: "/prompt_engine/run",
+    path: "/prompt_engine/0073d008-da9b-4c27-90a8-0240f3ecd4f5",
     method: "POST",
+    query: {
+      id: "0073d008-da9b-4c27-90a8-0240f3ecd4f5",
+    },
     body: {
-      id: "prompt_12345abcde",
-      input: "How do I integrate JigsawStack with my Next.js application?",
+      input_values: {
+        text: "How to get started with JigsawStack?",
+      },
     },
     sdk_key_string: "prompt_engine.run",
   },
   "prompt-engine-retrieve": {
-  path: "/prompt_engine/${id}",
-  method: "GET",
-  query: {
-    id: "e58d762a-9a00-4907-8cab-5ce6221bb6df"
+    path: "/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43",
+    method: "GET",
+    query: {
+      id: "14d675d5-b309-463d-8906-1be65af74c43",
+    },
+    sdk_key_string: "prompt_engine.get",
   },
-  sdk_key_string: "prompt_engine.get"
-},
   "prompt-engine-list": {
     path: "/prompt_engine",
     method: "GET",
     query: {
-      limit: "10"
+      limit: "10",
     },
     sdk_key_string: "prompt_engine.list",
   },
@@ -246,15 +252,35 @@ const APISchemas: {
       promptId: "dc578c69-6eb5-4c5b-82ab-9f74077cfdd5",
     },
     sdk_key_string: "prompt_engine.delete",
+    skip_request: true,
   },
   "prompt-engine-run-direct": {
-    path: "/prompt_engine/${params.id}",
+    path: "/prompt_engine/run",
     method: "POST",
     body: {
-      prompt: "Create a landing page headline for a new AI-powered data analytics platform.",
-      model: "gpt-4",
+      prompt: "Tell me a story about {about}",
+      inputs: [
+        {
+          key: "about",
+          optional: false,
+          initial_value: "Leaning Tower of Pisa",
+        },
+      ],
+      return_prompt: "Return the result in a markdown format",
+      prompt_guard: ["sexual_content", "defamation"],
+      input_values: {
+        about: "Santorini",
+      },
     },
     sdk_key_string: "prompt_engine.run_direct",
+  },
+  "image-generation": {
+    path: "/ai/image_generation",
+    method: "POST",
+    body: {
+      prompt: "A beautiful sunset over a calm ocean",
+    },
+    sdk_key_string: "image_generation",
   },
 };
 
@@ -299,49 +325,51 @@ const gen = async () => {
 
   const promises = apiKeys.map(async (apiKey) => {
     try {
-      
-   
-    const api = APISchemas[apiKey];
-    const JSSDKCode = getSDKJSCode(api);
-    const pythonCode = getSDKPythonCode(api);
-    const curlCode = CurlGenerator({
-      url: `${url}${api.path}${api.query ? `?${new URLSearchParams(api.query).toString()}` : ""}`,
-      method: api.method as any,
-      headers: {
-        ...api.headers,
-        "Content-Type": "application/json",
-        "x-api-key": "your-api-key",
-      },
-      body: api.body,
-    });
+      const api = APISchemas[apiKey];
+      const JSSDKCode = getSDKJSCode(api);
+      const pythonCode = getSDKPythonCode(api);
+      const curlCode = CurlGenerator({
+        url: `${url}${api.path}${api.query ? `?${new URLSearchParams(api.query).toString()}` : ""}`,
+        method: api.method as any,
+        headers: {
+          ...api.headers,
+          "Content-Type": "application/json",
+          "x-api-key": "your-api-key",
+        },
+        body: api.body,
+      });
 
-    const phpCode = curlconverter.toPhp(curlCode);
-    const rubyCode = curlconverter.toRuby(curlCode);
-    const goCode = curlconverter.toGo(curlCode);
-    const javaCode = curlconverter.toJava(curlCode);
-    const swiftCode = curlconverter.toSwift(curlCode);
-    const dartCode = curlconverter.toDart(curlCode);
-    const kotlinCode = curlconverter.toKotlin(curlCode);
-    const csharpCode = curlconverter.toCSharp(curlCode);
+      const phpCode = curlconverter.toPhp(curlCode);
+      const rubyCode = curlconverter.toRuby(curlCode);
+      const goCode = curlconverter.toGo(curlCode);
+      const javaCode = curlconverter.toJava(curlCode);
+      const swiftCode = curlconverter.toSwift(curlCode);
+      const dartCode = curlconverter.toDart(curlCode);
+      const kotlinCode = curlconverter.toKotlin(curlCode);
+      const csharpCode = curlconverter.toCSharp(curlCode);
 
-    const response = await fetch(`${url}${api.path}${api.query ? `?${new URLSearchParams(api.query).toString()}` : ""}`, {
-      method: api.method,
-      headers: {
-        ...api.headers,
-        "Content-Type": "application/json",
-        "x-api-key": process.env.JIGSAWSTACK_API_KEY!,
-      },
-      body: api.body ? JSON.stringify(api.body) : undefined,
-    });
+      let responseBody = null;
 
-    if (!response.ok) {
-      console.error(`${apiKey}: failed to generate response example`, response.status);
-      return;
-    }
+      if (!api.skip_request) {
+        const response = await fetch(`${url}${api.path}${api.query ? `?${new URLSearchParams(api.query).toString()}` : ""}`, {
+          method: api.method,
+          headers: {
+            ...api.headers,
+            "Content-Type": "application/json",
+            "x-api-key": process.env.JIGSAWSTACK_API_KEY!,
+          },
+          body: api.body ? JSON.stringify(api.body) : undefined,
+        });
 
-    const responseBody = response.headers.get("content-type")?.includes("application/json") ? await response.json() :null;
+        if (!response.ok) {
+          console.error(`${apiKey}: failed to generate response example`, response.status);
+          return;
+        }
 
-    const doc = `
+        responseBody = response.headers.get("content-type")?.includes("application/json") ? await response.json() : null;
+      }
+
+      const doc = `
     <RequestExample>
     \`\`\`javascript Javascript
 ${JSSDKCode}
@@ -377,15 +405,19 @@ ${kotlinCode}
 ${csharpCode}
     \`\`\`
     </RequestExample>
-    ${responseBody ? `<ResponseExample>
+    ${
+      responseBody
+        ? `<ResponseExample>
     \`\`\`json Response
 ${JSON.stringify(responseBody, null, 6)}
     \`\`\`
     </ResponseExample>
-    ` : ""}
+    `
+        : ""
+    }
     `;
 
-    fs.writeFileSync(`./snippets/code-req-examples/${apiKey}.mdx`, doc);
+      fs.writeFileSync(`./snippets/code-req-examples/${apiKey}.mdx`, doc);
     } catch (error) {
       console.error(`${apiKey}: failed to generate response example`, error);
     }
