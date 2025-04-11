@@ -281,7 +281,18 @@ const APISchemas: {
       prompt: "A beautiful sunset over a calm ocean",
     },
     sdk_key_string: "image_generation",
+    skip_request: true,
   },
+  "image-translate": {
+    path: "/ai/image_translate",
+    method: "POST",
+    body: {
+      url: "",
+    },
+    sdk_key_string: "image_translate",
+    skip_request: true,
+  },
+
 };
 
 const getSDKJSCode = (api: APIType) => {
