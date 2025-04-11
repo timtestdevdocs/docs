@@ -5,8 +5,8 @@ import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
-const response = await jigsaw.web.search_suggestions({
-      "query": "What is the capital"
+const response = await jigsaw.prompt_engine.delete({
+      "promptId": "dc578c69-6eb5-4c5b-82ab-9f74077cfdd5"
 })
     ```
     ```python Python
@@ -14,22 +14,22 @@ from jigsawstack import JigsawStack
 
 jigsaw = JigsawStack(api_key="your-api-key")
 
-response = jigsaw.web.search_suggestions({
-      "query": "What is the capital"
+response = jigsaw.prompt_engine.delete({
+      "promptId": "dc578c69-6eb5-4c5b-82ab-9f74077cfdd5"
 })
     ```
     ```bash Curl
-curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest?query=What+is+the+capital \
- -X GET \
+curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/${id}?promptId=dc578c69-6eb5-4c5b-82ab-9f74077cfdd5 \
+ -X DELETE \
  -H "Content-Type: application/json" \
  -H "x-api-key: your-api-key"
     ```
     ```php PHP
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest?query=What+is+the+capital');
+curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/' . getenv('id') ?? '' . '?promptId=dc578c69-6eb5-4c5b-82ab-9f74077cfdd5');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
     'x-api-key: your-api-key',
@@ -43,13 +43,13 @@ curl_close($ch);
     ```ruby Ruby
 require 'net/http'
 
-uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest')
+uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/' + ENV['id'])
 params = {
-  :query => 'What is the capital',
+  :promptId => 'dc578c69-6eb5-4c5b-82ab-9f74077cfdd5',
 }
 uri.query = URI.encode_www_form(params)
 
-req = Net::HTTP::Get.new(uri)
+req = Net::HTTP::Delete.new(uri)
 req.content_type = 'application/json'
 req['x-api-key'] = 'your-api-key'
 
@@ -69,11 +69,12 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest?query=What+is+the+capital", nil)
+	req, err := http.NewRequest("DELETE", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/" + os.Getenv("id") + "?promptId=dc578c69-6eb5-4c5b-82ab-9f74077cfdd5", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -94,6 +95,7 @@ func main() {
     ```
     ```java Java
 import java.io.IOException;
+import java.lang.System;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -102,8 +104,8 @@ import java.net.http.HttpResponse;
 HttpClient client = HttpClient.newHttpClient();
 
 HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest?query=What+is+the+capital"))
-    .GET()
+    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/" + System.getenv("id") + "?promptId=dc578c69-6eb5-4c5b-82ab-9f74077cfdd5"))
+    .DELETE()
     .setHeader("Content-Type", "application/json")
     .setHeader("x-api-key", "your-api-key")
     .build();
@@ -114,13 +116,14 @@ HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.o
     ```swift Swift
 import Foundation
 
-let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest?query=What+is+the+capital")!
+let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/" + (ProcessInfo.processInfo.environment["id"] ?? "") + "?promptId=dc578c69-6eb5-4c5b-82ab-9f74077cfdd5")!
 let headers = [
     "Content-Type": "application/json",
     "x-api-key": "your-api-key"
 ]
 
 var request = URLRequest(url: url)
+request.httpMethod = "DELETE"
 request.allHTTPHeaderFields = headers
 
 let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -136,6 +139,7 @@ task.resume()
 
     ```
     ```dart Dart
+import 'dart:io';
 import 'package:http/http.dart' as http;
 
 void main() async {
@@ -145,15 +149,15 @@ void main() async {
   };
 
   final params = {
-    'query': 'What is the capital',
+    'promptId': 'dc578c69-6eb5-4c5b-82ab-9f74077cfdd5',
   };
 
-  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest')
+  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/' + (Platform.environment['id'] ?? ''))
       .replace(queryParameters: params);
 
-  final res = await http.get(url, headers: headers);
+  final res = await http.delete(url, headers: headers);
   final status = res.statusCode;
-  if (status != 200) throw Exception('http.get error: statusCode= $status');
+  if (status != 200) throw Exception('http.delete error: statusCode= $status');
 
   print(res.body);
 }
@@ -161,13 +165,16 @@ void main() async {
     ```
     ```kotlin Kotlin
 import java.io.IOException
+import java.lang.System
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 
 val client = OkHttpClient()
 
 val request = Request.Builder()
-  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest?query=What+is+the+capital")
+  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/" + System.getenv("id") ?: "" + "?promptId=dc578c69-6eb5-4c5b-82ab-9f74077cfdd5")
+  .delete("".toRequestBody())
   .header("Content-Type", "application/json")
   .header("x-api-key", "your-api-key")
   .build()
@@ -179,12 +186,13 @@ client.newCall(request).execute().use { response ->
 
     ```
     ```csharp C#
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
 HttpClient client = new HttpClient();
 
-HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest?query=What+is+the+capital");
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/" + Environment.GetEnvironmentVariable("id") + "?promptId=dc578c69-6eb5-4c5b-82ab-9f74077cfdd5");
 
 request.Headers.Add("x-api-key", "your-api-key");
 
@@ -197,35 +205,7 @@ string responseBody = await response.Content.ReadAsStringAsync();
 
     ```
     </RequestExample>
-    <ResponseExample>
-    ```json Response
-{
-      "success": true,
-      "suggestions": [
-            "what is the capital of california",
-            "what is the capital of australia",
-            "what is the capital of canada",
-            "what is the capital of the united states",
-            "what is the capital of france",
-            "what is the capital of texas",
-            "what is the capital of new york",
-            "what is the capital of florida",
-            "what is the capital of italy",
-            "what is the capital of china",
-            "what is the capital of alaska",
-            "what is the capital of pennsylvania",
-            "what is the capital of georgia",
-            "what is the capital of montana",
-            "what is the capital of japan"
-      ],
-      "_usage": {
-            "input_tokens": 8,
-            "output_tokens": 135,
-            "inference_time_tokens": 332,
-            "total_tokens": 475
-      }
-}
-    ```
-    </ResponseExample>
     
+
+<ResponseExample></ResponseExample>
     

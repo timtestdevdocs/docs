@@ -4,6 +4,8 @@ api: "POST https://api.jigsawstack.com/v1/ai/transcribe"
 description: "Transcribe video and audio files with ease leveraging Whisper large V3 AI model."
 ---
 
+import SpeechToTextSnippet from "/snippets/code-req-examples/speech-to-text.mdx";
+
 ## Supported Formats and Limitations
 
 - **Supported formats:** MP3, WAV, M4A, FLAC, AAC, OGG, WEBM
@@ -19,41 +21,32 @@ description: "Transcribe video and audio files with ease leveraging Whisper larg
 </ParamField>
 
 <ParamField body="file_store_key" type="string">
-  The key used to store the video/audio file on Jigsawstack File
-  [Storage](/docs/api-reference/store/file/add). Not required if `url` is
-  specified.
+  The key used to store the video/audio file on Jigsawstack File [Storage](/docs/api-reference/store/file/add). Not required if `url` is specified.
 </ParamField>
 
 <Info>Either `url` or `file_store_key` should be provided, not both.</Info>
 
 <ParamField body="language" type="string">
-  The language to transcribe or translate the file into. If not specified, the
-  model will automatically detect the language and transcribe accordingly. All
-  supported language codes can be found
-  [here](https://jigsawstack.com/docs/additional-resources/languages).
+  The language to transcribe or translate the file into. If not specified, the model will automatically detect the language and transcribe
+  accordingly. All supported language codes can be found [here](https://jigsawstack.com/docs/additional-resources/languages).
 </ParamField>
 
 <ParamField body="translate" type="boolean" default="false">
-  When set to true, translates the content into English (or the specified
-  language if `language` parameter is provided). All supported language codes
-  can be found
-  [here](https://jigsawstack.com/docs/additional-resources/languages).
+  When set to true, translates the content into English (or the specified language if `language` parameter is provided). All supported language codes
+  can be found [here](https://jigsawstack.com/docs/additional-resources/languages).
 </ParamField>
 
 <ParamField body="by_speaker" type="boolean" default="false">
-  Identifies and separates different speakers in the audio file. When enabled,
-  the response will include a `speakers` array with speaker-segmented
+  Identifies and separates different speakers in the audio file. When enabled, the response will include a `speakers` array with speaker-segmented
   transcripts.
 </ParamField>
 
 <ParamField body="webhook_url" type="string">
-  Webhook URL to send result to. When provided, the API will process
-  asynchronously and send results to this URL when completed.
+  Webhook URL to send result to. When provided, the API will process asynchronously and send results to this URL when completed.
 </ParamField>
 
 <ParamField body="batch_size" type="number" default="30">
-  The batch size to return. Maximum value is 40. This controls how the audio is
-  chunked for processing.
+  The batch size to return. Maximum value is 40. This controls how the audio is chunked for processing.
 </ParamField>
 
 <Snippet file="header.mdx" />
@@ -83,8 +76,7 @@ description: "Transcribe video and audio files with ease leveraging Whisper larg
 </ResponseField>
 
 <ResponseField name="speakers" type="array">
-  Only present when `by_speaker` is set to true. Contains speaker-segmented
-  transcripts.
+  Only present when `by_speaker` is set to true. Contains speaker-segmented transcripts.
   <Expandable title="Speaker Object">
     <ResponseField name="speaker" type="string">
       The speaker identifier (e.g., "Speaker 1").
@@ -148,173 +140,4 @@ Make sure your webhook endpoint is set up to:
 - Parse JSON content
 - Handle the same response format as the standard API response
 
-<RequestExample>
-
-```javascript Javascript
-import { JigsawStack } from "jigsawstack";
-
-const jigsawstack = JigsawStack({
-  apiKey: "your-api-key",
-});
-
-// Basic transcription
-const result = await jigsawstack.audio.speech_to_text({
-  url: "https://example.com/path/to/audio.mp4",
-});
-
-// With speaker diarization
-const resultWithSpeakers = await jigsawstack.audio.speech_to_text({
-  url: "https://example.com/path/to/audio.mp4",
-  by_speaker: true,
-});
-
-// With a webhook for asynchronous processing
-const asyncResult = await jigsawstack.audio.speech_to_text({
-  url: "https://example.com/path/to/audio.mp4",
-  webhook_url: "https://your-server.com/webhooks/transcription",
-});
-
-// Translating to English
-const translationResult = await jigsawstack.audio.speech_to_text({
-  url: "https://example.com/path/to/audio.mp4",
-  translate: true,
-});
-
-// Using a specific language
-const specificLanguageResult = await jigsawstack.audio.speech_to_text({
-  url: "https://example.com/path/to/audio.mp4",
-  language: "es-ES", // Spanish
-});
-
-// Using a file from storage
-const fileStoreResult = await jigsawstack.audio.speech_to_text({
-  file_store_key: "uploads/recording.mp3",
-});
-```
-
-```python Python
-from jigsawstack import JigsawStack
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-
-# Basic transcription
-result = jigsawstack.audio.speech_to_text({
-  "url": "https://example.com/path/to/audio.mp4"
-})
-
-# With speaker diarization
-result_with_speakers = jigsawstack.audio.speech_to_text({
-  "url": "https://example.com/path/to/audio.mp4",
-  "by_speaker": True
-})
-
-# With a webhook for asynchronous processing
-async_result = jigsawstack.audio.speech_to_text({
-  "url": "https://example.com/path/to/audio.mp4",
-  "webhook_url": "https://your-server.com/webhooks/transcription"
-})
-
-# Translating to English
-translation_result = jigsawstack.audio.speech_to_text({
-  "url": "https://example.com/path/to/audio.mp4",
-  "translate": True
-})
-
-# Using a specific language
-specific_language_result = jigsawstack.audio.speech_to_text({
-  "url": "https://example.com/path/to/audio.mp4",
-  "language": "es-ES"  # Spanish
-})
-
-# Using a file from storage
-file_store_result = jigsawstack.audio.speech_to_text({
-  "file_store_key": "uploads/recording.mp3"
-})
-```
-
-```bash cURL
-# Basic transcription
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/transcribe' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    "url": "https://example.com/path/to/audio.mp4"
-}'
-
-# With speaker diarization
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/transcribe' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    "url": "https://example.com/path/to/audio.mp4",
-    "by_speaker": true
-}'
-
-# With webhook for asynchronous processing
-curl --location --request POST 'https://api.jigsawstack.com/v1/ai/transcribe' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    "url": "https://example.com/path/to/audio.mp4",
-    "webhook_url": "https://your-server.com/webhooks/transcription"
-}'
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-```json Standard Response
-{
-  "success": true,
-  "text": "Hey guys, I'm pretty excited to talk about a new API that we're going to be releasing in Jigsaw Stack...",
-  "chunks": [
-    {
-      "timestamp": [0.96, 7.2],
-      "text": "Hey guys, I'm pretty excited to talk about a new API that we're going to be releasing in Jigsaw"
-    },
-    {
-      "timestamp": [7.2, 14.56],
-      "text": "Stack. It's our AI Scrape API, which can basically scrape any website by just prompting and giving"
-    }
-    // Additional chunks...
-  ]
-}
-```
-
-```json Speaker Diarization Response
-{
-  "success": true,
-  "text": "Hey guys, I'm pretty excited to talk about a new API that we're going to be releasing in Jigsaw Stack...",
-  "chunks": [
-    {
-      "timestamp": [0.96, 7.2],
-      "text": "Hey guys, I'm pretty excited to talk about a new API that we're going to be releasing in Jigsaw"
-    }
-    // Additional chunks...
-  ],
-  "speakers": [
-    {
-      "speaker": "Speaker 1",
-      "timestamp": [0.96, 7.2],
-      "text": "Hey guys, I'm pretty excited to talk about a new API that we're going to be releasing in Jigsaw"
-    },
-    {
-      "speaker": "Speaker 2",
-      "timestamp": [7.2, 14.56],
-      "text": "That sounds great! What can it do?"
-    }
-    // Additional speaker segments...
-  ]
-}
-```
-
-```json Webhook Initial Response
-{
-  "success": true,
-  "status": "processing",
-  "id": "trans_8f72hd93jf83h2f8"
-}
-```
-
-</ResponseExample>
+<SpeechToTextSnippet />

@@ -1,5 +1,5 @@
 ---
-title: "Translate"
+title: "Text Translate"
 api: "POST https://api.jigsawstack.com/v1/ai/translate"
 description: "Translate text from one language to another with support for multiple text formats."
 ---
@@ -22,7 +22,7 @@ import TranslateSnippet from "/snippets/code-req-examples/translate.mdx";
   [here](https://jigsawstack.com/docs/additional-resources/languages).
 </ParamField>
 
-<ParamField body="text" type="string | string[]" required>
+<ParamField body="text" type="string[]" required>
   The text to translate. Supports two formats:
   - Single string: `{"text": "Hello, how are you doing"}`
   - Array of strings: `{"text": ["Hello", "How are you doing"]}`

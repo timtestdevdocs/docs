@@ -1,0 +1,8 @@
+File,Has Import,Has Component
+docs/api-reference/web/ai-search.mdx,Yes,
+docs/api-reference/ai/embedding.mdx,Yes,
+docs/api-reference/ai/prediction.mdx,Yes,
+docs/api-reference/ai/sentiment.mdx,Yes,
+docs/api-reference/ai/text-to-sql.mdx,Yes,
+docs/api-reference/ai/summary.mdx,Yes,
+docs/api-reference/ai/image-translate.mdx,No,

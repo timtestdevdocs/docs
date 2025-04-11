@@ -1,0 +1,292 @@
+
+    <RequestExample>
+    ```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.prompt_engine.run_direct({
+      "prompt": "Tell me a story about {about}",
+      "inputs": [
+            {
+                  "key": "about",
+                  "optional": false,
+                  "initial_value": "Leaning Tower of Pisa"
+            }
+      ],
+      "return_prompt": "Return the result in a markdown format",
+      "prompt_guard": [
+            "sexual_content",
+            "defamation"
+      ],
+      "input_values": {
+            "about": "Santorini"
+      }
+})
+    ```
+    ```python Python
+from jigsawstack import JigsawStack
+
+jigsaw = JigsawStack(api_key="your-api-key")
+
+response = jigsaw.prompt_engine.run_direct({
+      "prompt": "Tell me a story about {about}",
+      "inputs": [
+            {
+                  "key": "about",
+                  "optional": false,
+                  "initial_value": "Leaning Tower of Pisa"
+            }
+      ],
+      "return_prompt": "Return the result in a markdown format",
+      "prompt_guard": [
+            "sexual_content",
+            "defamation"
+      ],
+      "input_values": {
+            "about": "Santorini"
+      }
+})
+    ```
+    ```bash Curl
+curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -H "x-api-key: your-api-key" \
+ -d "{\"prompt\":\"Tell me a story about {about}\",\"inputs\":[{\"key\":\"about\",\"optional\":false,\"initial_value\":\"Leaning Tower of Pisa\"}],\"return_prompt\":\"Return the result in a markdown format\",\"prompt_guard\":[\"sexual_content\",\"defamation\"],\"input_values\":{\"about\":\"Santorini\"}}"
+    ```
+    ```php PHP
+<?php
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Content-Type: application/json',
+    'x-api-key: your-api-key',
+]);
+curl_setopt($ch, CURLOPT_POSTFIELDS, '{"prompt":"Tell me a story about {about}","inputs":[{"key":"about","optional":false,"initial_value":"Leaning Tower of Pisa"}],"return_prompt":"Return the result in a markdown format","prompt_guard":["sexual_content","defamation"],"input_values":{"about":"Santorini"}}');
+
+$response = curl_exec($ch);
+
+curl_close($ch);
+
+    ```
+    ```ruby Ruby
+require 'net/http'
+require 'json'
+
+uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run')
+req = Net::HTTP::Post.new(uri)
+req.content_type = 'application/json'
+req['x-api-key'] = 'your-api-key'
+
+req.body = {
+  'prompt' => 'Tell me a story about {about}',
+  'inputs' => [
+    {
+      'key' => 'about',
+      'optional' => false,
+      'initial_value' => 'Leaning Tower of Pisa'
+    }
+  ],
+  'return_prompt' => 'Return the result in a markdown format',
+  'prompt_guard' => [
+    'sexual_content',
+    'defamation'
+  ],
+  'input_values' => {
+    'about' => 'Santorini'
+  }
+}.to_json
+
+req_options = {
+  use_ssl: uri.scheme == 'https'
+}
+res = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+  http.request(req)
+end
+
+    ```
+    ```go Go
+package main
+
+import (
+	"fmt"
+	"io"
+	"log"
+	"net/http"
+	"strings"
+)
+
+func main() {
+	client := &http.Client{}
+	var data = strings.NewReader(`{"prompt":"Tell me a story about {about}","inputs":[{"key":"about","optional":false,"initial_value":"Leaning Tower of Pisa"}],"return_prompt":"Return the result in a markdown format","prompt_guard":["sexual_content","defamation"],"input_values":{"about":"Santorini"}}`)
+	req, err := http.NewRequest("POST", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run", data)
+	if err != nil {
+		log.Fatal(err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("x-api-key", "your-api-key")
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
+	bodyText, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s\n", bodyText)
+}
+
+    ```
+    ```java Java
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublishers;
+import java.net.http.HttpResponse;
+
+HttpClient client = HttpClient.newHttpClient();
+
+HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run"))
+    .POST(BodyPublishers.ofString("{\"prompt\":\"Tell me a story about {about}\",\"inputs\":[{\"key\":\"about\",\"optional\":false,\"initial_value\":\"Leaning Tower of Pisa\"}],\"return_prompt\":\"Return the result in a markdown format\",\"prompt_guard\":[\"sexual_content\",\"defamation\"],\"input_values\":{\"about\":\"Santorini\"}}"))
+    .setHeader("Content-Type", "application/json")
+    .setHeader("x-api-key", "your-api-key")
+    .build();
+
+HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+    ```
+    ```swift Swift
+import Foundation
+
+let jsonData = [
+    "prompt": "Tell me a story about {about}",
+    "inputs": [
+        [
+            "key": "about",
+            "optional": false,
+            "initial_value": "Leaning Tower of Pisa"
+        ]
+    ],
+    "return_prompt": "Return the result in a markdown format",
+    "prompt_guard": [
+        "sexual_content",
+        "defamation"
+    ],
+    "input_values": [
+        "about": "Santorini"
+    ]
+] as [String : Any]
+let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
+
+let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run")!
+let headers = [
+    "Content-Type": "application/json",
+    "x-api-key": "your-api-key"
+]
+
+var request = URLRequest(url: url)
+request.httpMethod = "POST"
+request.allHTTPHeaderFields = headers
+request.httpBody = data as Data
+
+let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+    if let error = error {
+        print(error)
+    } else if let data = data {
+        let str = String(data: data, encoding: .utf8)
+        print(str ?? "")
+    }
+}
+
+task.resume()
+
+    ```
+    ```dart Dart
+import 'package:http/http.dart' as http;
+
+void main() async {
+  final headers = {
+    'Content-Type': 'application/json',
+    'x-api-key': 'your-api-key',
+  };
+
+  final data = '{"prompt":"Tell me a story about {about}","inputs":[{"key":"about","optional":false,"initial_value":"Leaning Tower of Pisa"}],"return_prompt":"Return the result in a markdown format","prompt_guard":["sexual_content","defamation"],"input_values":{"about":"Santorini"}}';
+
+  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run');
+
+  final res = await http.post(url, headers: headers, body: data);
+  final status = res.statusCode;
+  if (status != 200) throw Exception('http.post error: statusCode= $status');
+
+  print(res.body);
+}
+
+    ```
+    ```kotlin Kotlin
+import java.io.IOException
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+
+val client = OkHttpClient()
+
+val MEDIA_TYPE = "application/json".toMediaType()
+
+val requestBody = "{\"prompt\":\"Tell me a story about {about}\",\"inputs\":[{\"key\":\"about\",\"optional\":false,\"initial_value\":\"Leaning Tower of Pisa\"}],\"return_prompt\":\"Return the result in a markdown format\",\"prompt_guard\":[\"sexual_content\",\"defamation\"],\"input_values\":{\"about\":\"Santorini\"}}"
+
+val request = Request.Builder()
+  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run")
+  .post(requestBody.toRequestBody(MEDIA_TYPE))
+  .header("Content-Type", "application/json")
+  .header("x-api-key", "your-api-key")
+  .build()
+
+client.newCall(request).execute().use { response ->
+  if (!response.isSuccessful) throw IOException("Unexpected code $response")
+  response.body!!.string()
+}
+
+    ```
+    ```csharp C#
+using System.Net.Http;
+using System.Net.Http.Headers;
+
+HttpClient client = new HttpClient();
+
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run");
+
+request.Headers.Add("x-api-key", "your-api-key");
+
+request.Content = new StringContent("{\"prompt\":\"Tell me a story about {about}\",\"inputs\":[{\"key\":\"about\",\"optional\":false,\"initial_value\":\"Leaning Tower of Pisa\"}],\"return_prompt\":\"Return the result in a markdown format\",\"prompt_guard\":[\"sexual_content\",\"defamation\"],\"input_values\":{\"about\":\"Santorini\"}}");
+request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+HttpResponseMessage response = await client.SendAsync(request);
+response.EnsureSuccessStatusCode();
+string responseBody = await response.Content.ReadAsStringAsync();
+
+    ```
+    </RequestExample>
+    <ResponseExample>
+    ```json Response
+{
+      "success": true,
+      "result": "Okay, here's a story about Santorini, formatted in Markdown:\n\n# The Whispers of Oia\n\nThe Aegean Sea, a shimmering sapphire under the relentless Grecian sun, lapped gently against the black volcanic sand of Perissa beach. Eleni, a young woman with eyes the color of the deep sea and hair like spun moonlight, traced patterns in the sand with her bare toes. She wasn't a tourist, though she could easily pass for one. Eleni was a daughter of Santorini, her roots intertwined with the island's volcanic soil and its ancient, whispered secrets.\n\nHer grandmother, Yaya Irini, lived in Oia, the village perched precariously on the caldera's edge, a cascade of whitewashed houses clinging to the cliff face. Yaya Irini was a keeper of stories, tales passed down through generations, tales of the Minoan eruption that shaped the island, tales of gods and heroes, and tales of the island's enduring spirit.\n\nEleni visited Yaya Irini every week. Today, she carried a basket filled with fresh figs and a bottle of local Vinsanto wine. The climb to Oia was arduous, a winding path that snaked upwards, past vibrant bougainvillea and the ever-present scent of thyme. But the view, oh, the view! It was a panorama of breathtaking beauty, a constant reminder of the island's dramatic past and its vibrant present.\n\nReaching Yaya Irini's house, Eleni found her grandmother sitting on her small balcony, overlooking the caldera. Her face, etched with wrinkles like the ancient maps of the island, was turned towards the setting sun.\n\n\"Yaya,\" Eleni greeted, kissing her cheek.\n\nYaya Irini smiled, her eyes twinkling. \"Eleni mou, you are here. Come, sit. The sun is painting the sky with fire.\"\n\nThey sat in comfortable silence, watching the sun dip below the horizon, painting the whitewashed houses in hues of orange, pink, and purple. As the first stars began to appear, Eleni asked, \"Yaya, tell me a story. Tell me about the whispers of Oia.\"\n\nYaya Irini took a sip of her Vinsanto. \"Oia,\" she began, her voice raspy but strong, \"is a place where the past and present dance together. The stones themselves remember the eruption, the Minoan civilization swallowed by the sea. Sometimes, if you listen closely, you can hear their whispers on the wind.\"\n\nShe continued, \"They say that after the eruption, the survivors clung to the highest point of the island, seeking refuge. They rebuilt their lives, brick by brick, dream by dream. They learned to live with the volcano, to respect its power, and to draw strength from its resilience.\"\n\n\"And the whispers?\" Eleni prompted.\n\n\"The whispers are the echoes of their lives,\" Yaya Irini said, her gaze fixed on the darkening caldera. \"They are the laughter of children playing in the narrow streets, the songs of fishermen returning with their catch, the prayers of women hoping for safe passage for their loved ones. They are the stories of love and loss, of joy and sorrow, woven into the very fabric of Oia.\"\n\nShe paused, then added, \"But the whispers also carry a warning. A reminder that the volcano sleeps, but it never forgets. We must always be mindful of its power, and we must always cherish the beauty and fragility of this island.\"\n\nAs the night deepened, Eleni listened to her grandmother's stories, feeling a deep connection to her ancestors and to the island that had shaped them. She understood that the whispers of Oia were not just echoes of the past, but also a guide for the future. They were a reminder to live with passion, to embrace beauty, and to never forget the power of the earth beneath their feet.\n\nLeaving Yaya Irini's house, Eleni walked through the silent streets of Oia, the stars her only companions. She listened closely, and for a moment, she thought she could hear the faintest of whispers, carried on the wind, a chorus of voices telling the story of Santorini, a story of resilience, beauty, and the enduring power of the human spirit. The whispers of Oia, she knew, would stay with her forever.\n",
+      "message": "It is recommended to store the prompt engine and execute it using the ID rather than running it directly for the best performance and reliability. Learn more: https://jigsawstack.com/docs/api-reference/prompt-engine/create",
+      "_usage": {
+            "input_tokens": 68,
+            "output_tokens": 1070,
+            "inference_time_tokens": 5935,
+            "total_tokens": 7073
+      }
+}
+    ```
+    </ResponseExample>
+    
+    

@@ -5,8 +5,9 @@ import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
-const response = await jigsaw.sentiment({
-      "text": "I love this product! It's amazing but the delivery was a bit late."
+const response = await jigsaw.translate.image({
+      "url": "https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "target_language": "hi"
 })
     ```
     ```python Python
@@ -14,28 +15,29 @@ from jigsawstack import JigsawStack
 
 jigsaw = JigsawStack(api_key="your-api-key")
 
-response = jigsaw.sentiment({
-      "text": "I love this product! It's amazing but the delivery was a bit late."
+response = jigsaw.translate.image({
+      "url": "https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "target_language": "hi"
 })
     ```
     ```bash Curl
-curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment \
+curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image \
  -X POST \
  -H "Content-Type: application/json" \
  -H "x-api-key: your-api-key" \
- -d "{\"text\":\"I love this product! It's amazing but the delivery was a bit late.\"}"
+ -d "{\"url\":\"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"target_language\":\"hi\"}"
     ```
     ```php PHP
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment');
+curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
     'x-api-key: your-api-key',
 ]);
-curl_setopt($ch, CURLOPT_POSTFIELDS, '{"text":"I love this product! It\'s amazing but the delivery was a bit late."}');
+curl_setopt($ch, CURLOPT_POSTFIELDS, '{"url":"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","target_language":"hi"}');
 
 $response = curl_exec($ch);
 
@@ -46,13 +48,14 @@ curl_close($ch);
 require 'net/http'
 require 'json'
 
-uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment')
+uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image')
 req = Net::HTTP::Post.new(uri)
 req.content_type = 'application/json'
 req['x-api-key'] = 'your-api-key'
 
 req.body = {
-  'text' => "I love this product! It's amazing but the delivery was a bit late."
+  'url' => 'https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  'target_language' => 'hi'
 }.to_json
 
 req_options = {
@@ -76,8 +79,8 @@ import (
 
 func main() {
 	client := &http.Client{}
-	var data = strings.NewReader(`{"text":"I love this product! It's amazing but the delivery was a bit late."}`)
-	req, err := http.NewRequest("POST", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment", data)
+	var data = strings.NewReader(`{"url":"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","target_language":"hi"}`)
+	req, err := http.NewRequest("POST", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image", data)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -107,8 +110,8 @@ import java.net.http.HttpResponse;
 HttpClient client = HttpClient.newHttpClient();
 
 HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment"))
-    .POST(BodyPublishers.ofString("{\"text\":\"I love this product! It's amazing but the delivery was a bit late.\"}"))
+    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image"))
+    .POST(BodyPublishers.ofString("{\"url\":\"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"target_language\":\"hi\"}"))
     .setHeader("Content-Type", "application/json")
     .setHeader("x-api-key", "your-api-key")
     .build();
@@ -120,11 +123,12 @@ HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.o
 import Foundation
 
 let jsonData = [
-    "text": "I love this product! It's amazing but the delivery was a bit late."
+    "url": "https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "target_language": "hi"
 ] as [String : Any]
 let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
 
-let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment")!
+let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image")!
 let headers = [
     "Content-Type": "application/json",
     "x-api-key": "your-api-key"
@@ -156,9 +160,9 @@ void main() async {
     'x-api-key': 'your-api-key',
   };
 
-  final data = '{"text":"I love this product! It\'s amazing but the delivery was a bit late."}';
+  final data = '{"url":"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","target_language":"hi"}';
 
-  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment');
+  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image');
 
   final res = await http.post(url, headers: headers, body: data);
   final status = res.statusCode;
@@ -179,10 +183,10 @@ val client = OkHttpClient()
 
 val MEDIA_TYPE = "application/json".toMediaType()
 
-val requestBody = "{\"text\":\"I love this product! It's amazing but the delivery was a bit late.\"}"
+val requestBody = "{\"url\":\"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"target_language\":\"hi\"}"
 
 val request = Request.Builder()
-  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment")
+  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image")
   .post(requestBody.toRequestBody(MEDIA_TYPE))
   .header("Content-Type", "application/json")
   .header("x-api-key", "your-api-key")
@@ -200,11 +204,11 @@ using System.Net.Http.Headers;
 
 HttpClient client = new HttpClient();
 
-HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment");
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image");
 
 request.Headers.Add("x-api-key", "your-api-key");
 
-request.Content = new StringContent("{\"text\":\"I love this product! It's amazing but the delivery was a bit late.\"}");
+request.Content = new StringContent("{\"url\":\"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"target_language\":\"hi\"}");
 request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
 HttpResponseMessage response = await client.SendAsync(request);
@@ -213,37 +217,7 @@ string responseBody = await response.Content.ReadAsStringAsync();
 
     ```
     </RequestExample>
-    <ResponseExample>
-    ```json Response
-{
-      "success": true,
-      "sentiment": {
-            "emotion": "love",
-            "sentiment": "positive",
-            "score": 0.85,
-            "sentences": [
-                  {
-                        "text": "I love this product!",
-                        "emotion": "love",
-                        "sentiment": "positive",
-                        "score": 0.9
-                  },
-                  {
-                        "text": "It's amazing but the delivery was a bit late.",
-                        "emotion": "satisfaction",
-                        "sentiment": "positive",
-                        "score": 0.8
-                  }
-            ]
-      },
-      "_usage": {
-            "input_tokens": 20,
-            "output_tokens": 75,
-            "inference_time_tokens": 1898,
-            "total_tokens": 1993
-      }
-}
-    ```
-    </ResponseExample>
     
+
+<ResponseExample></ResponseExample>
     

@@ -1,0 +1,349 @@
+
+    <RequestExample>
+    ```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.prompt_engine.list({
+      "limit": "10"
+})
+    ```
+    ```python Python
+from jigsawstack import JigsawStack
+
+jigsaw = JigsawStack(api_key="your-api-key")
+
+response = jigsaw.prompt_engine.list({
+      "limit": "10"
+})
+    ```
+    ```bash Curl
+curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine?limit=10 \
+ -X GET \
+ -H "Content-Type: application/json" \
+ -H "x-api-key: your-api-key"
+    ```
+    ```php PHP
+<?php
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine?limit=10');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Content-Type: application/json',
+    'x-api-key: your-api-key',
+]);
+
+$response = curl_exec($ch);
+
+curl_close($ch);
+
+    ```
+    ```ruby Ruby
+require 'net/http'
+
+uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine')
+params = {
+  :limit => '10',
+}
+uri.query = URI.encode_www_form(params)
+
+req = Net::HTTP::Get.new(uri)
+req.content_type = 'application/json'
+req['x-api-key'] = 'your-api-key'
+
+req_options = {
+  use_ssl: uri.scheme == 'https'
+}
+res = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+  http.request(req)
+end
+
+    ```
+    ```go Go
+package main
+
+import (
+	"fmt"
+	"io"
+	"log"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+	req, err := http.NewRequest("GET", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine?limit=10", nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("x-api-key", "your-api-key")
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
+	bodyText, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s\n", bodyText)
+}
+
+    ```
+    ```java Java
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+HttpClient client = HttpClient.newHttpClient();
+
+HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine?limit=10"))
+    .GET()
+    .setHeader("Content-Type", "application/json")
+    .setHeader("x-api-key", "your-api-key")
+    .build();
+
+HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+    ```
+    ```swift Swift
+import Foundation
+
+let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine?limit=10")!
+let headers = [
+    "Content-Type": "application/json",
+    "x-api-key": "your-api-key"
+]
+
+var request = URLRequest(url: url)
+request.allHTTPHeaderFields = headers
+
+let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+    if let error = error {
+        print(error)
+    } else if let data = data {
+        let str = String(data: data, encoding: .utf8)
+        print(str ?? "")
+    }
+}
+
+task.resume()
+
+    ```
+    ```dart Dart
+import 'package:http/http.dart' as http;
+
+void main() async {
+  final headers = {
+    'Content-Type': 'application/json',
+    'x-api-key': 'your-api-key',
+  };
+
+  final params = {
+    'limit': '10',
+  };
+
+  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine')
+      .replace(queryParameters: params);
+
+  final res = await http.get(url, headers: headers);
+  final status = res.statusCode;
+  if (status != 200) throw Exception('http.get error: statusCode= $status');
+
+  print(res.body);
+}
+
+    ```
+    ```kotlin Kotlin
+import java.io.IOException
+import okhttp3.OkHttpClient
+import okhttp3.Request
+
+val client = OkHttpClient()
+
+val request = Request.Builder()
+  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine?limit=10")
+  .header("Content-Type", "application/json")
+  .header("x-api-key", "your-api-key")
+  .build()
+
+client.newCall(request).execute().use { response ->
+  if (!response.isSuccessful) throw IOException("Unexpected code $response")
+  response.body!!.string()
+}
+
+    ```
+    ```csharp C#
+using System.Net.Http;
+using System.Net.Http.Headers;
+
+HttpClient client = new HttpClient();
+
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine?limit=10");
+
+request.Headers.Add("x-api-key", "your-api-key");
+
+request.Content = new StringContent("");
+request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+HttpResponseMessage response = await client.SendAsync(request);
+response.EnsureSuccessStatusCode();
+string responseBody = await response.Content.ReadAsStringAsync();
+
+    ```
+    </RequestExample>
+    <ResponseExample>
+    ```json Response
+{
+      "success": true,
+      "prompt_engines": [
+            {
+                  "id": "3ab0c989-8014-4866-bc80-c7b8bb2b87e5",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-04-11T23:04:55.939149+00:00"
+            },
+            {
+                  "id": "f57c3e5e-4a6c-40a9-8fa1-3da7a59bcc32",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-04-11T22:59:04.544596+00:00"
+            },
+            {
+                  "id": "79b59c65-e881-474a-b5cf-e7acc4b34738",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-04-11T22:56:39.649579+00:00"
+            },
+            {
+                  "id": "d10d1a34-74cf-44c2-b561-c610b18e1b5c",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-04-11T22:54:42.478877+00:00"
+            },
+            {
+                  "id": "edff1200-ba51-429d-90da-e4157928ba29",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-04-11T22:52:24.551779+00:00"
+            },
+            {
+                  "id": "77046ab9-37f1-443e-8554-443533bd78b7",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-04-11T22:50:51.287729+00:00"
+            },
+            {
+                  "id": "eca537ae-3f7a-43a6-8cfc-e3e72e65d34a",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-04-11T22:49:40.608235+00:00"
+            },
+            {
+                  "id": "748d1d70-114e-4476-976f-0d2b1023e6b3",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-04-11T22:49:06.908142+00:00"
+            },
+            {
+                  "id": "e13b4499-6552-428c-8571-c0f058b689a7",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-04-11T22:46:03.530141+00:00"
+            },
+            {
+                  "id": "0f6695eb-0e3c-4605-9589-1cbeecca8269",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-04-11T22:42:18.845621+00:00"
+            }
+      ],
+      "page": 0,
+      "limit": 10,
+      "has_more": true,
+      "_usage": {
+            "input_tokens": 4,
+            "output_tokens": 683,
+            "inference_time_tokens": 750,
+            "total_tokens": 1437
+      }
+}
+    ```
+    </ResponseExample>
+    
+    

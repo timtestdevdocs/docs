@@ -5,8 +5,8 @@ import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
-const response = await jigsaw.web.search_suggestions({
-      "query": "What is the capital"
+const response = await jigsaw.prompt_engine.get({
+      "id": "14d675d5-b309-463d-8906-1be65af74c43"
 })
     ```
     ```python Python
@@ -14,12 +14,12 @@ from jigsawstack import JigsawStack
 
 jigsaw = JigsawStack(api_key="your-api-key")
 
-response = jigsaw.web.search_suggestions({
-      "query": "What is the capital"
+response = jigsaw.prompt_engine.get({
+      "id": "14d675d5-b309-463d-8906-1be65af74c43"
 })
     ```
     ```bash Curl
-curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest?query=What+is+the+capital \
+curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43?id=14d675d5-b309-463d-8906-1be65af74c43 \
  -X GET \
  -H "Content-Type: application/json" \
  -H "x-api-key: your-api-key"
@@ -27,7 +27,7 @@ curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/su
     ```php PHP
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest?query=What+is+the+capital');
+curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43?id=14d675d5-b309-463d-8906-1be65af74c43');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -43,9 +43,9 @@ curl_close($ch);
     ```ruby Ruby
 require 'net/http'
 
-uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest')
+uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43')
 params = {
-  :query => 'What is the capital',
+  :id => '14d675d5-b309-463d-8906-1be65af74c43',
 }
 uri.query = URI.encode_www_form(params)
 
@@ -73,7 +73,7 @@ import (
 
 func main() {
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest?query=What+is+the+capital", nil)
+	req, err := http.NewRequest("GET", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43?id=14d675d5-b309-463d-8906-1be65af74c43", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -102,7 +102,7 @@ import java.net.http.HttpResponse;
 HttpClient client = HttpClient.newHttpClient();
 
 HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest?query=What+is+the+capital"))
+    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43?id=14d675d5-b309-463d-8906-1be65af74c43"))
     .GET()
     .setHeader("Content-Type", "application/json")
     .setHeader("x-api-key", "your-api-key")
@@ -114,7 +114,7 @@ HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.o
     ```swift Swift
 import Foundation
 
-let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest?query=What+is+the+capital")!
+let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43?id=14d675d5-b309-463d-8906-1be65af74c43")!
 let headers = [
     "Content-Type": "application/json",
     "x-api-key": "your-api-key"
@@ -145,10 +145,10 @@ void main() async {
   };
 
   final params = {
-    'query': 'What is the capital',
+    'id': '14d675d5-b309-463d-8906-1be65af74c43',
   };
 
-  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest')
+  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43')
       .replace(queryParameters: params);
 
   final res = await http.get(url, headers: headers);
@@ -167,7 +167,7 @@ import okhttp3.Request
 val client = OkHttpClient()
 
 val request = Request.Builder()
-  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest?query=What+is+the+capital")
+  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43?id=14d675d5-b309-463d-8906-1be65af74c43")
   .header("Content-Type", "application/json")
   .header("x-api-key", "your-api-key")
   .build()
@@ -184,7 +184,7 @@ using System.Net.Http.Headers;
 
 HttpClient client = new HttpClient();
 
-HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/web/search/suggest?query=What+is+the+capital");
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43?id=14d675d5-b309-463d-8906-1be65af74c43");
 
 request.Headers.Add("x-api-key", "your-api-key");
 
@@ -201,28 +201,32 @@ string responseBody = await response.Content.ReadAsStringAsync();
     ```json Response
 {
       "success": true,
-      "suggestions": [
-            "what is the capital of california",
-            "what is the capital of australia",
-            "what is the capital of canada",
-            "what is the capital of the united states",
-            "what is the capital of france",
-            "what is the capital of texas",
-            "what is the capital of new york",
-            "what is the capital of florida",
-            "what is the capital of italy",
-            "what is the capital of china",
-            "what is the capital of alaska",
-            "what is the capital of pennsylvania",
-            "what is the capital of georgia",
-            "what is the capital of montana",
-            "what is the capital of japan"
+      "id": "14d675d5-b309-463d-8906-1be65af74c43",
+      "inputs": [
+            {
+                  "key": "about",
+                  "optional": false
+            }
       ],
+      "prompt": "Tell me a story about {about}",
+      "return_prompt": "Return the result in a markdown format",
+      "created_at": "2025-04-11T21:34:29.434339+00:00",
+      "prompt_guard": [
+            "sexual_content",
+            "defamation"
+      ],
+      "optimized_prompt": "Create a captivating story centered around the theme of {about}, incorporating vivid characters and an engaging plot.",
+      "use_internet": false,
+      "public": false,
+      "name": null,
+      "user_id": null,
+      "public_status": null,
+      "updated_at": "2025-04-11T21:34:29.434339+00:00",
       "_usage": {
-            "input_tokens": 8,
-            "output_tokens": 135,
-            "inference_time_tokens": 332,
-            "total_tokens": 475
+            "input_tokens": 12,
+            "output_tokens": 142,
+            "inference_time_tokens": 774,
+            "total_tokens": 928
       }
 }
     ```

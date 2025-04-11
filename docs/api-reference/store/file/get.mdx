@@ -4,6 +4,8 @@ api: "GET https://api.jigsawstack.com/v1/store/file/read/{key}"
 description: "Retrieve a file."
 ---
 
+import FileGetSnippet from "/snippets/code-req-examples/file-get.mdx";
+
 ### Path
 
 <ParamField path="key" type="string" required>
@@ -30,41 +32,4 @@ description: "Retrieve a file."
   The key of the file.
 </ResponseField>
 
-<RequestExample>
-
-```javascript Node.js
-import { JigsawStack } from "jigsawstack";
-
-const jigsawstack = JigsawStack({ apiKey: "your-api-key" });
-
-const key = "file.png";
-
-const result = await jigsawstack.store.retrieve(key);
-const data = result.blob();
-```
-
-```python Python
-from jigsawstack import JigsawStack
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-
-try:
-    response = jigsawstack.store.get("file.png")
-    with open("downloaded_image.jpeg", "wb") as image_file:
-        image_file.write(response.content)
-    print("Image downloaded and saved successfully.")
-except JigsawStackError as err:
-    print(f"An error occurred: {err}")
-
-```
-
-```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/store/file/read/{key}' \
---header 'x-api-key: <your-api-key>'
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-</ResponseExample>
+<FileGetSnippet />

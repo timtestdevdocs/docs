@@ -4,6 +4,8 @@ api: "POST https://api.jigsawstack.com/v1/validate/spam_check"
 description: "Perform spam check analysis on a given text in seconds."
 ---
 
+import SpamCheckSnippet from "/snippets/code-req-examples/spam-check.mdx";
+
 ### Body
 
 <ParamField body="text" type="string" required>
@@ -44,45 +46,4 @@ The `text` parameter supports two types:
 
 </ResponseField>
 
-<RequestExample>
-
-```javascript Javascript
-import { JigsawStack } from "jigsawstack";
-
-const jigsawstack = JigsawStack({
-  apiKey: "your-api-key",
-});
-const result = await jigsawstack.spamcheck({ text: "I am happy!" });
-```
-
-```python Python
-from jigsawstack import JigsawStack
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-result = jigsawstack.validate.spamcheck({"text": "I am happy!"})
-```
-
-```bash cURL
-curl --location --request POST 'https://api.jigsawstack.com/v1/validate/spam_check' \
---header 'Content-Type: application/json' \
---header 'x-api-key: <your-api-key>' \
---data '{
-    "text": "I am happy!"
-}'
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-```json Response
-{
-  "success": true,
-  "check": {
-    "is_spam": false,
-    "score": 0.2
-  }
-}
-```
-
-</ResponseExample>
+<SpamCheckSnippet />

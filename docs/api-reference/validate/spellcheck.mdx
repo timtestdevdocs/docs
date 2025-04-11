@@ -4,6 +4,8 @@ api: "POST https://api.jigsawstack.com/v1/validate/spell_check"
 description: "Check and correct spelling errors in a text."
 ---
 
+import SpellcheckSnippet from "/snippets/code-req-examples/spellcheck.mdx";
+
 ### Params
 
 <ParamField query="text" type="string" required>
@@ -37,48 +39,5 @@ If no misspellings were found, the original text is returned.
 
 </ResponseField>
 
-<RequestExample>
 
-```javascript Node.js
-import { JigsawStack } from "jigsawstack";
-
-const jigsawstack = JigsawStack({
-  apiKey: "your-api-key",
-});
-
-const result = await jigsawstack.validate.spellcheck({
-  text: "All the world's a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts.",
-  language_code: "en",
-});
-```
-
-```python Python
-from jigsawstack import JigsawStack
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-
-result = jigsawstack.validate.spellcheck({
-  "text": "All the world's a stage, and all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts.",
-  "language_code": "en",
-})
-```
-
-```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/validate/spell_check' \
---header 'x-api-key: <your-api-key>'
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-```json Response
-{
-  "success": true,
-  "message": "Validated successfully",
-  "misspellings_found": 0,
-  "auto_correct_text": ""
-}
-```
-
-</ResponseExample>
+<SpellcheckSnippet />

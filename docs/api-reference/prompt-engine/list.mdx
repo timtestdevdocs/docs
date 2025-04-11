@@ -4,6 +4,8 @@ api: "GET https://api.jigsawstack.com/v1/prompt_engine"
 description: "List all prompts in your project."
 ---
 
+import PromptEngineListSnippet from "/snippets/code-req-examples/prompt-engine-list.mdx";
+
 ### Query
 
 <ParamField query="limit" default="30" type="string">
@@ -22,75 +24,4 @@ description: "List all prompts in your project."
   Indicates whether the call was successful.
 </ResponseField>
 
-<RequestExample>
-
-```javascript Node.js
-import { JigsawStack } from "jigsawstack";
-
-const jigsawstack = JigsawStack({
-  apiKey: "your-api-key",
-});
-
-const result = await jigsawstack.prompt_engine.list({ limit: 10 });
-```
-
-```python Python
-from jigsawstack import JigsawStack
-
-jigsawstack = JigsawStack(api_key="your-api-key")
-
-result = jigsawstack.prompt_engine.list({"limit": 10})
-```
-
-```bash cURL
-curl --location --request GET 'https://api.jigsawstack.com/v1/prompt_engine' \
---header 'x-api-key: <your-api-key>'
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-```json Response
-{
-  "success": true,
-  "prompt_engines": [
-    {
-      "id": "fb83ec59-4ec2-4978-b1a6-6fbc1c4496f0",
-      "prompt": "Outline the historic facts about the leaning tower of pisa",
-      "inputs": null,
-      "return_prompt": null,
-      "created_at": "2024-02-08T22:16:35.862634+00:00"
-    },
-    {
-      "id": "988db8c6-2e17-4ab3-9059-15e5cbc1bab1",
-      "prompt": "Tell me a story about {about}",
-      "inputs": [
-        {
-          "key": "about",
-          "optional": false
-        }
-      ],
-      "return_prompt": "Return the result in a markdown format",
-      "created_at": "2024-02-07T09:28:36.566848+00:00"
-    },
-    {
-      "id": "e58d762a-9a00-4907-8cab-5ce6221bb6df",
-      "prompt": "Tell me a story about {about}",
-      "inputs": [
-        {
-          "key": "about",
-          "optional": false
-        }
-      ],
-      "return_prompt": "{\"story\":\"short story text\",\"summary\":\"summary of story\"}",
-      "created_at": "2024-02-07T09:15:35.857187+00:00"
-    }
-  ],
-  "page": 0,
-  "limit": 10,
-  "has_more": true
-}
-```
-
-</ResponseExample>
+<PromptEngineListSnippet />

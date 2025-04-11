@@ -1,0 +1,57 @@
+---
+title: "Embeddings"
+api: "POST https://api.jigsawstack.com/v1/embeddings"
+description: "Generate vector embeddings from various content types including text, images, audio, and PDF files."
+playground: 'hidden'
+---
+import EmbeddingSnippet from "/snippets/code-req-examples/embedding.mdx";
+
+
+## Request Parameters
+
+### Body
+
+<ParamField body="text" type="string">
+  The text content to generate embeddings for. Optional if providing content through another method.
+</ParamField>
+
+<ParamField body="url" type="string">
+  A URL pointing to the resource to generate embeddings for. Optional if providing content through another method.
+</ParamField>
+
+<ParamField body="file_store_key" type="string">
+  A key referencing a previously uploaded file in storage. Optional if providing content through another method.
+</ParamField>
+
+<ParamField body="file_content" type="any">
+  The direct content of a file to generate embeddings for. Optional if providing content through another method.
+</ParamField>
+
+<ParamField body="type" type="string" required>
+  The type of content being processed. Must be one of the following values:
+  - `text`: Plain text input
+  - `text-other`: Other text format
+  - `image`: Image content
+  - `audio`: Audio content
+  - `pdf`: PDF document
+</ParamField>
+
+<ParamField body="token_overflow_mode" type="string" default="error">
+  Determines behavior when input exceeds token limits:
+  - `error`: Return an error (default)
+  - `truncate`: Truncate the input to fit within token limits
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+## Response Structure
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful.
+</ResponseField>
+
+<ResponseField name="embedding" type="number[]">
+  The vector embedding representation of the input content. This is an array of floating-point numbers.
+</ResponseField>
+
+<EmbeddingSnippet />
