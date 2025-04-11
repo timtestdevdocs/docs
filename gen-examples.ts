@@ -98,7 +98,7 @@ const APISchemas: {
     path: "/embedding",
     method: "POST",
     body: {
-      text: "hey what is this?, hello world!",
+      text: "Caption: Secluded Tiki Bar on a serene lake, perfect for a refreshing drink and a relaxing getaway",
       type: "text",
     },
     sdk_key_string: "embedding",
@@ -107,16 +107,16 @@ const APISchemas: {
     path: "/ai/object_detection",
     method: "POST",
     body: {
-      prompt: ["Title", "Description"],
-      url: "https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png",
+      url: "https://rogilvkqloanxtvjfrkm.supabase.co/storage/v1/object/public/demo/Collabo%201080x842.jpg?t=2024-03-22T09%3A22%3A48.442Z",
     },
     sdk_key_string: "vision.object_detection",
   },
   vocr: {
-    path: "/ai/vocr",
+    path: "/vocr",
     method: "POST",
     body: {
-      image: "https://jigsawstack-2yy94lf5z-jigsaw-stack.vercel.app/preview/vocr-example.jpg",
+      prompt: ["Title", "Description"],
+      url: "https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png",
     },
     sdk_key_string: "vision.vocr",
   },
@@ -124,54 +124,36 @@ const APISchemas: {
     path: "/web/scrape",
     method: "POST",
     body: {
-      url: "https://example.com",
+      url: "https://news.ycombinator.com/show",
+      element_prompts: ["Plan title", "Plan price"],
     },
     sdk_key_string: "web.scrape",
-  },
-  "html-to-any": {
-    path: "/web/html_to_any",
-    method: "POST",
-    body: {
-      url: "https://example.com",
-    },
-    sdk_key_string: "web.html_to_any",
   },
   "speech-to-text": {
     path: "/ai/speech_to_text",
     method: "POST",
     body: {
-      audio: "https://example.com/audio.mp3",
-      language: "en-US",
+      audio: "https://jigsawstack.com/preview/stt-example.wav",
     },
     sdk_key_string: "audio.speech_to_text",
   },
-  "text-to-speech": {
-    path: "/ai/text_to_speech",
-    method: "POST",
-    body: {
-      text: "Hello world! This is a sample text to be converted to speech.",
-      voice: "en-US-Neural2-F",
-      speed: "1.0",
-    },
-    sdk_key_string: "audio.text_to_speech",
-  },
   "spam-check": {
-    path: "/ai/spam_check",
+    path: "/validate/spam_check",
     method: "POST",
     body: {
       text: "Congratulations! You've won a free iPhone! Click here to claim now!",
     },
-    sdk_key_string: "ai.spam_check",
+    sdk_key_string: "validate.spam_check",
   },
-  "nsfw": {
+  nsfw: {
     path: "/validate/nsfw",
     method: "POST",
     body: {
-      url: "https://example.com/image.jpg",
+      url: "https://images.unsplash.com/photo-1633998979521-11ca9d0e6e38?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     sdk_key_string: "validate.nsfw",
   },
-  "profanity": {
+  profanity: {
     path: "/validate/profanity",
     method: "POST",
     body: {
@@ -179,7 +161,7 @@ const APISchemas: {
     },
     sdk_key_string: "validate.profanity",
   },
-  "spellcheck": {
+  spellcheck: {
     path: "/validate/spellcheck",
     method: "POST",
     body: {
@@ -188,7 +170,7 @@ const APISchemas: {
     sdk_key_string: "validate.spellcheck",
   },
   "file-add": {
-    path: "/store/file/add",
+    path: "/store/file/",
     method: "POST",
     body: {
       file: "base64encodedfilecontentorurl",
@@ -200,7 +182,7 @@ const APISchemas: {
     sdk_key_string: "store.file.add",
   },
   "file-get": {
-    path: "/store/file/get",
+    path: "/store/file/read/{key}",
     method: "GET",
     query: {
       id: "file_12345abcde",
@@ -208,76 +190,65 @@ const APISchemas: {
     sdk_key_string: "store.file.get",
   },
   "file-delete": {
-    path: "/store/file/delete",
+    path: "/store/file/read/{key}",
     method: "DELETE",
     query: {
       id: "file_12345abcde",
     },
     sdk_key_string: "store.file.delete",
   },
-  "geo-search": {
-    path: "/geo/search",
-    method: "GET",
-    query: {
-      query: "coffee shops in San Francisco",
-      limit: "5",
-    },
-    sdk_key_string: "geo.search",
-  },
-  "geo-geocode": {
-    path: "/geo/geocode",
-    method: "GET",
-    query: {
-      address: "1600 Amphitheatre Parkway, Mountain View, CA",
-    },
-    sdk_key_string: "geo.geocode",
-  },
   "prompt-engine-create": {
-    path: "/prompt-engine/create",
+    path: "/prompt_engine",
     method: "POST",
     body: {
-      name: "Customer Support Assistant",
-      content: "You are a helpful customer support assistant for JigsawStack.",
-      model: "gpt-4",
+      prompt: "Tell me a story about {about}",
+      inputs: [
+        {
+          key: "about",
+          optional: false,
+          initial_value: "Leaning Tower of Pisa",
+        },
+      ],
+      return_prompt: "Return the result in a markdown format",
+      prompt_guard: ["sexual_content", "defamation"],
     },
     sdk_key_string: "prompt_engine.create",
   },
   "prompt-engine-run": {
-    path: "/prompt-engine/run",
+    path: "/prompt_engine/run",
     method: "POST",
     body: {
-      promptId: "prompt_12345abcde",
+      id: "prompt_12345abcde",
       input: "How do I integrate JigsawStack with my Next.js application?",
     },
     sdk_key_string: "prompt_engine.run",
   },
   "prompt-engine-retrieve": {
-    path: "/prompt-engine/retrieve",
-    method: "GET",
-    query: {
-      promptId: "prompt_12345abcde",
-    },
-    sdk_key_string: "prompt_engine.retrieve",
+  path: "/prompt_engine/${id}",
+  method: "GET",
+  query: {
+    id: "e58d762a-9a00-4907-8cab-5ce6221bb6df"
   },
+  sdk_key_string: "prompt_engine.get"
+},
   "prompt-engine-list": {
-    path: "/prompt-engine/list",
+    path: "/prompt_engine",
     method: "GET",
     query: {
-      limit: "10",
-      offset: "0",
+      limit: "10"
     },
     sdk_key_string: "prompt_engine.list",
   },
   "prompt-engine-delete": {
-    path: "/prompt-engine/delete",
+    path: "/prompt_engine/${id}",
     method: "DELETE",
     query: {
-      promptId: "prompt_12345abcde",
+      promptId: "dc578c69-6eb5-4c5b-82ab-9f74077cfdd5",
     },
     sdk_key_string: "prompt_engine.delete",
   },
   "prompt-engine-run-direct": {
-    path: "/prompt-engine/run-direct",
+    path: "/prompt_engine/${params.id}",
     method: "POST",
     body: {
       prompt: "Create a landing page headline for a new AI-powered data analytics platform.",
@@ -327,6 +298,9 @@ const gen = async () => {
   const apiKeys = Object.keys(APISchemas);
 
   const promises = apiKeys.map(async (apiKey) => {
+    try {
+      
+   
     const api = APISchemas[apiKey];
     const JSSDKCode = getSDKJSCode(api);
     const pythonCode = getSDKPythonCode(api);
@@ -361,11 +335,11 @@ const gen = async () => {
     });
 
     if (!response.ok) {
-      console.error(`${apiKey}: failed to generate response example`, response.status, await response.text());
+      console.error(`${apiKey}: failed to generate response example`, response.status);
       return;
     }
 
-    const responseBody = await response.json();
+    const responseBody = response.headers.get("content-type")?.includes("application/json") ? await response.json() :null;
 
     const doc = `
     <RequestExample>
@@ -403,14 +377,18 @@ ${kotlinCode}
 ${csharpCode}
     \`\`\`
     </RequestExample>
-    <ResponseExample>
+    ${responseBody ? `<ResponseExample>
     \`\`\`json Response
 ${JSON.stringify(responseBody, null, 6)}
     \`\`\`
     </ResponseExample>
+    ` : ""}
     `;
 
     fs.writeFileSync(`./snippets/code-req-examples/${apiKey}.mdx`, doc);
+    } catch (error) {
+      console.error(`${apiKey}: failed to generate response example`, error);
+    }
   });
 
   await Promise.all(promises);

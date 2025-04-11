@@ -1,0 +1,814 @@
+
+    <RequestExample>
+    ```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.vision.vocr({
+      "prompt": [
+            "Title",
+            "Description"
+      ],
+      "url": "https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png"
+})
+    ```
+    ```python Python
+from jigsawstack import JigsawStack
+
+jigsaw = JigsawStack(api_key="your-api-key")
+
+response = jigsaw.vision.vocr({
+      "prompt": [
+            "Title",
+            "Description"
+      ],
+      "url": "https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png"
+})
+    ```
+    ```bash Curl
+curl https://api.jigsawstack.com/v1/vocr \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -H "x-api-key: your-api-key" \
+ -d "{\"prompt\":[\"Title\",\"Description\"],\"url\":\"https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png\"}"
+    ```
+    ```php PHP
+<?php
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/vocr');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Content-Type: application/json',
+    'x-api-key: your-api-key',
+]);
+curl_setopt($ch, CURLOPT_POSTFIELDS, '{"prompt":["Title","Description"],"url":"https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png"}');
+
+$response = curl_exec($ch);
+
+curl_close($ch);
+
+    ```
+    ```ruby Ruby
+require 'net/http'
+require 'json'
+
+uri = URI('https://api.jigsawstack.com/v1/vocr')
+req = Net::HTTP::Post.new(uri)
+req.content_type = 'application/json'
+req['x-api-key'] = 'your-api-key'
+
+req.body = {
+  'prompt' => [
+    'Title',
+    'Description'
+  ],
+  'url' => 'https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png'
+}.to_json
+
+req_options = {
+  use_ssl: uri.scheme == 'https'
+}
+res = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+  http.request(req)
+end
+
+    ```
+    ```go Go
+package main
+
+import (
+	"fmt"
+	"io"
+	"log"
+	"net/http"
+	"strings"
+)
+
+func main() {
+	client := &http.Client{}
+	var data = strings.NewReader(`{"prompt":["Title","Description"],"url":"https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png"}`)
+	req, err := http.NewRequest("POST", "https://api.jigsawstack.com/v1/vocr", data)
+	if err != nil {
+		log.Fatal(err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("x-api-key", "your-api-key")
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
+	bodyText, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s\n", bodyText)
+}
+
+    ```
+    ```java Java
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublishers;
+import java.net.http.HttpResponse;
+
+HttpClient client = HttpClient.newHttpClient();
+
+HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create("https://api.jigsawstack.com/v1/vocr"))
+    .POST(BodyPublishers.ofString("{\"prompt\":[\"Title\",\"Description\"],\"url\":\"https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png\"}"))
+    .setHeader("Content-Type", "application/json")
+    .setHeader("x-api-key", "your-api-key")
+    .build();
+
+HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+    ```
+    ```swift Swift
+import Foundation
+
+let jsonData = [
+    "prompt": [
+        "Title",
+        "Description"
+    ],
+    "url": "https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png"
+] as [String : Any]
+let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
+
+let url = URL(string: "https://api.jigsawstack.com/v1/vocr")!
+let headers = [
+    "Content-Type": "application/json",
+    "x-api-key": "your-api-key"
+]
+
+var request = URLRequest(url: url)
+request.httpMethod = "POST"
+request.allHTTPHeaderFields = headers
+request.httpBody = data as Data
+
+let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+    if let error = error {
+        print(error)
+    } else if let data = data {
+        let str = String(data: data, encoding: .utf8)
+        print(str ?? "")
+    }
+}
+
+task.resume()
+
+    ```
+    ```dart Dart
+import 'package:http/http.dart' as http;
+
+void main() async {
+  final headers = {
+    'Content-Type': 'application/json',
+    'x-api-key': 'your-api-key',
+  };
+
+  final data = '{"prompt":["Title","Description"],"url":"https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png"}';
+
+  final url = Uri.parse('https://api.jigsawstack.com/v1/vocr');
+
+  final res = await http.post(url, headers: headers, body: data);
+  final status = res.statusCode;
+  if (status != 200) throw Exception('http.post error: statusCode= $status');
+
+  print(res.body);
+}
+
+    ```
+    ```kotlin Kotlin
+import java.io.IOException
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+
+val client = OkHttpClient()
+
+val MEDIA_TYPE = "application/json".toMediaType()
+
+val requestBody = "{\"prompt\":[\"Title\",\"Description\"],\"url\":\"https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png\"}"
+
+val request = Request.Builder()
+  .url("https://api.jigsawstack.com/v1/vocr")
+  .post(requestBody.toRequestBody(MEDIA_TYPE))
+  .header("Content-Type", "application/json")
+  .header("x-api-key", "your-api-key")
+  .build()
+
+client.newCall(request).execute().use { response ->
+  if (!response.isSuccessful) throw IOException("Unexpected code $response")
+  response.body!!.string()
+}
+
+    ```
+    ```csharp C#
+using System.Net.Http;
+using System.Net.Http.Headers;
+
+HttpClient client = new HttpClient();
+
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://api.jigsawstack.com/v1/vocr");
+
+request.Headers.Add("x-api-key", "your-api-key");
+
+request.Content = new StringContent("{\"prompt\":[\"Title\",\"Description\"],\"url\":\"https://res.cloudinary.com/dev-ninja/image/upload/v1712567895/webhooks_qaaslj.png\"}");
+request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+HttpResponseMessage response = await client.SendAsync(request);
+response.EnsureSuccessStatusCode();
+string responseBody = await response.Content.ReadAsStringAsync();
+
+    ```
+    </RequestExample>
+    <ResponseExample>
+    ```json Response
+{
+      "success": true,
+      "context": {
+            "Title": [
+                  "Webhook Trigger"
+            ],
+            "Description": [
+                  "Select events that will trigger the webhook will listen to. At least one event must be selected."
+            ]
+      },
+      "width": 2880,
+      "height": 1800,
+      "tags": [
+            "text",
+            "screenshot",
+            "software",
+            "multimedia software",
+            "graphics software"
+      ],
+      "has_text": true,
+      "sections": [
+            {
+                  "text": "default V Feedback Help Docs\nOverview APIs Keys Logs Team Billing Settings\nGeneral\nWebhook Trigger\nWebhook Select events that will trigger the webhook will listen to. At least one event must be selected.\nDomains\nSuccess logs Error logs\nEndpoint @\nhttps://\nCreate",
+                  "lines": [
+                        {
+                              "text": "default V Feedback Help Docs",
+                              "bounds": {
+                                    "top_left": {
+                                          "x": 237,
+                                          "y": 58
+                                    },
+                                    "top_right": {
+                                          "x": 334,
+                                          "y": 60
+                                    },
+                                    "bottom_right": {
+                                          "x": 334,
+                                          "y": 86
+                                    },
+                                    "bottom_left": {
+                                          "x": 237,
+                                          "y": 84
+                                    },
+                                    "width": 97,
+                                    "height": 26
+                              },
+                              "words": [
+                                    {
+                                          "text": "default",
+                                          "bounds": {
+                                                "top_left": {
+                                                      "x": 237,
+                                                      "y": 58
+                                                },
+                                                "top_right": {
+                                                      "x": 335,
+                                                      "y": 62
+                                                },
+                                                "bottom_right": {
+                                                      "x": 334,
+                                                      "y": 86
+                                                },
+                                                "bottom_left": {
+                                                      "x": 237,
+                                                      "y": 85
+                                                },
+                                                "width": 97.5,
+                                                "height": 25.5
+                                          }
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "Overview APIs Keys Logs Team Billing Settings",
+                              "bounds": {
+                                    "top_left": {
+                                          "x": 62,
+                                          "y": 162
+                                    },
+                                    "top_right": {
+                                          "x": 211,
+                                          "y": 163
+                                    },
+                                    "bottom_right": {
+                                          "x": 211,
+                                          "y": 192
+                                    },
+                                    "bottom_left": {
+                                          "x": 62,
+                                          "y": 192
+                                    },
+                                    "width": 149,
+                                    "height": 29.5
+                              },
+                              "words": [
+                                    {
+                                          "text": "Overview",
+                                          "bounds": {
+                                                "top_left": {
+                                                      "x": 63,
+                                                      "y": 163
+                                                },
+                                                "top_right": {
+                                                      "x": 195,
+                                                      "y": 165
+                                                },
+                                                "bottom_right": {
+                                                      "x": 194,
+                                                      "y": 192
+                                                },
+                                                "bottom_left": {
+                                                      "x": 63,
+                                                      "y": 193
+                                                },
+                                                "width": 131.5,
+                                                "height": 28.5
+                                          }
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "General",
+                              "bounds": {
+                                    "top_left": {
+                                          "x": 304,
+                                          "y": 299
+                                    },
+                                    "top_right": {
+                                          "x": 408,
+                                          "y": 298
+                                    },
+                                    "bottom_right": {
+                                          "x": 408,
+                                          "y": 325
+                                    },
+                                    "bottom_left": {
+                                          "x": 304,
+                                          "y": 326
+                                    },
+                                    "width": 104,
+                                    "height": 27
+                              },
+                              "words": [
+                                    {
+                                          "text": "General",
+                                          "bounds": {
+                                                "top_left": {
+                                                      "x": 306,
+                                                      "y": 300
+                                                },
+                                                "top_right": {
+                                                      "x": 407,
+                                                      "y": 300
+                                                },
+                                                "bottom_right": {
+                                                      "x": 406,
+                                                      "y": 326
+                                                },
+                                                "bottom_left": {
+                                                      "x": 304,
+                                                      "y": 326
+                                                },
+                                                "width": 101.5,
+                                                "height": 26
+                                          }
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "Webhook Trigger",
+                              "bounds": {
+                                    "top_left": {
+                                          "x": 702,
+                                          "y": 317
+                                    },
+                                    "top_right": {
+                                          "x": 1011,
+                                          "y": 319
+                                    },
+                                    "bottom_right": {
+                                          "x": 1011,
+                                          "y": 359
+                                    },
+                                    "bottom_left": {
+                                          "x": 702,
+                                          "y": 356
+                                    },
+                                    "width": 309,
+                                    "height": 39.5
+                              },
+                              "words": [
+                                    {
+                                          "text": "Webhook",
+                                          "bounds": {
+                                                "top_left": {
+                                                      "x": 703,
+                                                      "y": 317
+                                                },
+                                                "top_right": {
+                                                      "x": 871,
+                                                      "y": 319
+                                                },
+                                                "bottom_right": {
+                                                      "x": 871,
+                                                      "y": 359
+                                                },
+                                                "bottom_left": {
+                                                      "x": 703,
+                                                      "y": 357
+                                                },
+                                                "width": 168,
+                                                "height": 40
+                                          }
+                                    },
+                                    {
+                                          "text": "Trigger",
+                                          "bounds": {
+                                                "top_left": {
+                                                      "x": 884,
+                                                      "y": 319
+                                                },
+                                                "top_right": {
+                                                      "x": 1012,
+                                                      "y": 321
+                                                },
+                                                "bottom_right": {
+                                                      "x": 1012,
+                                                      "y": 358
+                                                },
+                                                "bottom_left": {
+                                                      "x": 884,
+                                                      "y": 359
+                                                },
+                                                "width": 128,
+                                                "height": 38.5
+                                          }
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "Webhook Select events that will trigger the webhook will listen to. At least one event must be selected.",
+                              "bounds": {
+                                    "top_left": {
+                                          "x": 301,
+                                          "y": 389
+                                    },
+                                    "top_right": {
+                                          "x": 431,
+                                          "y": 389
+                                    },
+                                    "bottom_right": {
+                                          "x": 431,
+                                          "y": 416
+                                    },
+                                    "bottom_left": {
+                                          "x": 301,
+                                          "y": 416
+                                    },
+                                    "width": 130,
+                                    "height": 27
+                              },
+                              "words": [
+                                    {
+                                          "text": "Webhook",
+                                          "bounds": {
+                                                "top_left": {
+                                                      "x": 302,
+                                                      "y": 389
+                                                },
+                                                "top_right": {
+                                                      "x": 425,
+                                                      "y": 391
+                                                },
+                                                "bottom_right": {
+                                                      "x": 425,
+                                                      "y": 416
+                                                },
+                                                "bottom_left": {
+                                                      "x": 302,
+                                                      "y": 417
+                                                },
+                                                "width": 123,
+                                                "height": 26.5
+                                          }
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "Domains",
+                              "bounds": {
+                                    "top_left": {
+                                          "x": 301,
+                                          "y": 479
+                                    },
+                                    "top_right": {
+                                          "x": 423,
+                                          "y": 479
+                                    },
+                                    "bottom_right": {
+                                          "x": 423,
+                                          "y": 507
+                                    },
+                                    "bottom_left": {
+                                          "x": 301,
+                                          "y": 507
+                                    },
+                                    "width": 122,
+                                    "height": 28
+                              },
+                              "words": [
+                                    {
+                                          "text": "Domains",
+                                          "bounds": {
+                                                "top_left": {
+                                                      "x": 303,
+                                                      "y": 479
+                                                },
+                                                "top_right": {
+                                                      "x": 421,
+                                                      "y": 482
+                                                },
+                                                "bottom_right": {
+                                                      "x": 418,
+                                                      "y": 507
+                                                },
+                                                "bottom_left": {
+                                                      "x": 303,
+                                                      "y": 508
+                                                },
+                                                "width": 116.5,
+                                                "height": 27
+                                          }
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "Success logs Error logs",
+                              "bounds": {
+                                    "top_left": {
+                                          "x": 706,
+                                          "y": 459
+                                    },
+                                    "top_right": {
+                                          "x": 888,
+                                          "y": 463
+                                    },
+                                    "bottom_right": {
+                                          "x": 888,
+                                          "y": 492
+                                    },
+                                    "bottom_left": {
+                                          "x": 705,
+                                          "y": 488
+                                    },
+                                    "width": 182.5,
+                                    "height": 29
+                              },
+                              "words": [
+                                    {
+                                          "text": "Success",
+                                          "bounds": {
+                                                "top_left": {
+                                                      "x": 707,
+                                                      "y": 460
+                                                },
+                                                "top_right": {
+                                                      "x": 818,
+                                                      "y": 462
+                                                },
+                                                "bottom_right": {
+                                                      "x": 815,
+                                                      "y": 492
+                                                },
+                                                "bottom_left": {
+                                                      "x": 706,
+                                                      "y": 487
+                                                },
+                                                "width": 110,
+                                                "height": 28.5
+                                          }
+                                    },
+                                    {
+                                          "text": "logs",
+                                          "bounds": {
+                                                "top_left": {
+                                                      "x": 824,
+                                                      "y": 462
+                                                },
+                                                "top_right": {
+                                                      "x": 884,
+                                                      "y": 463
+                                                },
+                                                "bottom_right": {
+                                                      "x": 881,
+                                                      "y": 493
+                                                },
+                                                "bottom_left": {
+                                                      "x": 821,
+                                                      "y": 492
+                                                },
+                                                "width": 60,
+                                                "height": 30
+                                          }
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "Endpoint @",
+                              "bounds": {
+                                    "top_left": {
+                                          "x": 703,
+                                          "y": 621
+                                    },
+                                    "top_right": {
+                                          "x": 864,
+                                          "y": 618
+                                    },
+                                    "bottom_right": {
+                                          "x": 864,
+                                          "y": 649
+                                    },
+                                    "bottom_left": {
+                                          "x": 703,
+                                          "y": 652
+                                    },
+                                    "width": 161,
+                                    "height": 31
+                              },
+                              "words": [
+                                    {
+                                          "text": "Endpoint",
+                                          "bounds": {
+                                                "top_left": {
+                                                      "x": 705,
+                                                      "y": 621
+                                                },
+                                                "top_right": {
+                                                      "x": 828,
+                                                      "y": 621
+                                                },
+                                                "bottom_right": {
+                                                      "x": 826,
+                                                      "y": 651
+                                                },
+                                                "bottom_left": {
+                                                      "x": 703,
+                                                      "y": 652
+                                                },
+                                                "width": 123,
+                                                "height": 30.5
+                                          }
+                                    },
+                                    {
+                                          "text": "@",
+                                          "bounds": {
+                                                "top_left": {
+                                                      "x": 834,
+                                                      "y": 620
+                                                },
+                                                "top_right": {
+                                                      "x": 849,
+                                                      "y": 620
+                                                },
+                                                "bottom_right": {
+                                                      "x": 848,
+                                                      "y": 651
+                                                },
+                                                "bottom_left": {
+                                                      "x": 832,
+                                                      "y": 651
+                                                },
+                                                "width": 15.5,
+                                                "height": 31
+                                          }
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "https://",
+                              "bounds": {
+                                    "top_left": {
+                                          "x": 730,
+                                          "y": 699
+                                    },
+                                    "top_right": {
+                                          "x": 828,
+                                          "y": 698
+                                    },
+                                    "bottom_right": {
+                                          "x": 828,
+                                          "y": 728
+                                    },
+                                    "bottom_left": {
+                                          "x": 730,
+                                          "y": 729
+                                    },
+                                    "width": 98,
+                                    "height": 30
+                              },
+                              "words": [
+                                    {
+                                          "text": "https://",
+                                          "bounds": {
+                                                "top_left": {
+                                                      "x": 730,
+                                                      "y": 699
+                                                },
+                                                "top_right": {
+                                                      "x": 827,
+                                                      "y": 699
+                                                },
+                                                "bottom_right": {
+                                                      "x": 827,
+                                                      "y": 729
+                                                },
+                                                "bottom_left": {
+                                                      "x": 730,
+                                                      "y": 730
+                                                },
+                                                "width": 97,
+                                                "height": 30.5
+                                          }
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "Create",
+                              "bounds": {
+                                    "top_left": {
+                                          "x": 2446,
+                                          "y": 835
+                                    },
+                                    "top_right": {
+                                          "x": 2534,
+                                          "y": 835
+                                    },
+                                    "bottom_right": {
+                                          "x": 2534,
+                                          "y": 863
+                                    },
+                                    "bottom_left": {
+                                          "x": 2446,
+                                          "y": 862
+                                    },
+                                    "width": 88,
+                                    "height": 27.5
+                              },
+                              "words": [
+                                    {
+                                          "text": "Create",
+                                          "bounds": {
+                                                "top_left": {
+                                                      "x": 2448,
+                                                      "y": 835
+                                                },
+                                                "top_right": {
+                                                      "x": 2530,
+                                                      "y": 838
+                                                },
+                                                "bottom_right": {
+                                                      "x": 2530,
+                                                      "y": 862
+                                                },
+                                                "bottom_left": {
+                                                      "x": 2447,
+                                                      "y": 863
+                                                },
+                                                "width": 82.5,
+                                                "height": 26
+                                          }
+                                    }
+                              ]
+                        }
+                  ]
+            }
+      ]
+}
+    ```
+    </ResponseExample>
+    
+    
