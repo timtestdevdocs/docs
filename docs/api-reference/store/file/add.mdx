@@ -4,8 +4,6 @@ api: "POST https://api.jigsawstack.com/v1/store/file"
 description: "Upload images, videos and documents effortlessly."
 ---
 
-import FileAddSnippet from "/snippets/code-req-examples/file-add.mdx";
-
 <Info>Maximum file size is 100MB.</Info>
 
 <Snippet file="header.mdx" />
@@ -49,4 +47,46 @@ import FileAddSnippet from "/snippets/code-req-examples/file-add.mdx";
   Url used in accessing the file.
 </ResponseField>
 
-<FileAddSnippet />
+    <RequestExample>
+        ```javascript Javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const file = /* Your file Blob or Buffer */;
+
+const response = await jigsaw.store.upload(file, {
+  key: filename.txt,
+  overwrite: true,
+});
+
+ ```
+        ```python Python
+from jigsawstack import JigsawStack
+
+jigsaw = JigsawStack(api_key="your-api-key")
+
+with open("filename.txt", "rb") as file:
+          response= jigsaw.store.upload(
+            file,{
+              "key": "filename.txt",
+              "overwrite": true
+            }
+          )
+        ```
+        ```bash cURL 
+curl --location 'https://api.jigsawstack.com/v1/store/file?key=filename.txt&overwrite=true' \
+--header 'x-api-key: your-api-key' \
+--data '@path/to/your/file'
+
+```
+    </RequestExample>
+    <ResponseExample>
+    ```json Response
+{
+      "success": true,
+      "key": "<string>",
+      "url": "<string>"
+}
+    ```
+    </ResponseExample>
