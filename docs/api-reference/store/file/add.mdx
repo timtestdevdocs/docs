@@ -53,26 +53,34 @@ import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
-const file = /* Your file Blob or Buffer */;
+const file = await fetch("https://jigsawstack.com/preview/vocr-example.jpg");
+const blob = await file.blob();
 
-const response = await jigsaw.store.upload(file, {
-  key: filename.txt,
+const response = await jigsaw.store.upload(blob, {
+  key: "new-image.jpg",
   overwrite: true,
 });
-
  ```
         ```python Python
 from jigsawstack import JigsawStack
+import requests
 
+# Initialize the JigsawStack client
 jigsaw = JigsawStack(api_key="your-api-key")
 
-with open("filename.txt", "rb") as file:
-          response= jigsaw.store.upload(
-            file,{
-              "key": "filename.txt",
-              "overwrite": true
-            }
-          )
+# Fetch the image
+response = requests.get("https://jigsawstack.com/preview/vocr-example.jpg")
+blob = response.content
+
+# Upload the file
+upload_response = jigsaw.store.upload(
+    blob,
+    {
+        "key": "new-image.jpg",
+        "overwrite": True
+    }
+)
+
         ```
         ```bash cURL 
 curl --location 'https://api.jigsawstack.com/v1/store/file?key=filename.txt&overwrite=true' \
@@ -84,9 +92,9 @@ curl --location 'https://api.jigsawstack.com/v1/store/file?key=filename.txt&over
     <ResponseExample>
     ```json Response
 {
-      "success": true,
-      "key": "<string>",
-      "url": "<string>"
+  "key": "new-image.jpg",
+  "url": "https://api.jigsawstack.com/v1/store/file/read/new-image.jpg",
+  "size": 75078
 }
     ```
     </ResponseExample>
