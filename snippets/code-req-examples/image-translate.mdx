@@ -21,16 +21,16 @@ response = jigsaw.translate.image({
 })
     ```
     ```bash Curl
-curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image \
+curl https://api.jigsawstack.com/v1/ai/translate/image \
  -X POST \
- -H "Content-Type: application/json" \
- -H "x-api-key: your-api-key" \
- -d "{\"url\":\"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"target_language\":\"hi\"}"
+ -H 'Content-Type: application/json' \
+ -H 'x-api-key: your-api-key' \
+ -d '{"url":"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","target_language":"hi"}'
     ```
     ```php PHP
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image');
+curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/ai/translate/image');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -48,7 +48,7 @@ curl_close($ch);
 require 'net/http'
 require 'json'
 
-uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image')
+uri = URI('https://api.jigsawstack.com/v1/ai/translate/image')
 req = Net::HTTP::Post.new(uri)
 req.content_type = 'application/json'
 req['x-api-key'] = 'your-api-key'
@@ -80,7 +80,7 @@ import (
 func main() {
 	client := &http.Client{}
 	var data = strings.NewReader(`{"url":"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","target_language":"hi"}`)
-	req, err := http.NewRequest("POST", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image", data)
+	req, err := http.NewRequest("POST", "https://api.jigsawstack.com/v1/ai/translate/image", data)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -110,7 +110,7 @@ import java.net.http.HttpResponse;
 HttpClient client = HttpClient.newHttpClient();
 
 HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image"))
+    .uri(URI.create("https://api.jigsawstack.com/v1/ai/translate/image"))
     .POST(BodyPublishers.ofString("{\"url\":\"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"target_language\":\"hi\"}"))
     .setHeader("Content-Type", "application/json")
     .setHeader("x-api-key", "your-api-key")
@@ -128,7 +128,7 @@ let jsonData = [
 ] as [String : Any]
 let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
 
-let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image")!
+let url = URL(string: "https://api.jigsawstack.com/v1/ai/translate/image")!
 let headers = [
     "Content-Type": "application/json",
     "x-api-key": "your-api-key"
@@ -162,7 +162,7 @@ void main() async {
 
   final data = '{"url":"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","target_language":"hi"}';
 
-  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image');
+  final url = Uri.parse('https://api.jigsawstack.com/v1/ai/translate/image');
 
   final res = await http.post(url, headers: headers, body: data);
   final status = res.statusCode;
@@ -186,7 +186,7 @@ val MEDIA_TYPE = "application/json".toMediaType()
 val requestBody = "{\"url\":\"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"target_language\":\"hi\"}"
 
 val request = Request.Builder()
-  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image")
+  .url("https://api.jigsawstack.com/v1/ai/translate/image")
   .post(requestBody.toRequestBody(MEDIA_TYPE))
   .header("Content-Type", "application/json")
   .header("x-api-key", "your-api-key")
@@ -204,7 +204,7 @@ using System.Net.Http.Headers;
 
 HttpClient client = new HttpClient();
 
-HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/translate/image");
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://api.jigsawstack.com/v1/ai/translate/image");
 
 request.Headers.Add("x-api-key", "your-api-key");
 

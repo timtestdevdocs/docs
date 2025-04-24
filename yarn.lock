@@ -159,7 +159,7 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
 
-curl-generator@^0.4.1:
+curl-generator@^0.4.2:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/curl-generator/-/curl-generator-0.4.2.tgz#e75196ed1de476ff673e11adf6f4ff58e71357c6"
   integrity sha512-YD74vaPyL46XYNbyRCJV91EhYGDrE/EBiW0X/NUIrNZ23jD0Uwr/6vMrCmobYi5KrjtrqN4SnmMhQNYh3qaULw==

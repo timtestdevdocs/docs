@@ -19,23 +19,23 @@ response = jigsaw.sentiment({
 })
     ```
     ```bash Curl
-curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment \
+curl https://api.jigsawstack.com/v1/ai/sentiment \
  -X POST \
- -H "Content-Type: application/json" \
- -H "x-api-key: your-api-key" \
- -d "{\"text\":\"I love this product! It's amazing but the delivery was a bit late.\"}"
+ -H 'Content-Type: application/json' \
+ -H 'x-api-key: your-api-key' \
+ -d '{"text":"I love this product! It\'s amazing but the delivery was a bit late."}'
     ```
     ```php PHP
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment');
+curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/ai/sentiment');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
     'x-api-key: your-api-key',
 ]);
-curl_setopt($ch, CURLOPT_POSTFIELDS, '{"text":"I love this product! It\'s amazing but the delivery was a bit late."}');
+curl_setopt($ch, CURLOPT_POSTFIELDS, '{"text":"I love this product! It\\s');
 
 $response = curl_exec($ch);
 
@@ -44,16 +44,13 @@ curl_close($ch);
     ```
     ```ruby Ruby
 require 'net/http'
-require 'json'
 
-uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment')
+uri = URI('https://api.jigsawstack.com/v1/ai/sentiment')
 req = Net::HTTP::Post.new(uri)
 req.content_type = 'application/json'
 req['x-api-key'] = 'your-api-key'
 
-req.body = {
-  'text' => "I love this product! It's amazing but the delivery was a bit late."
-}.to_json
+req.body = '{"text":"I love this product! It\\s'
 
 req_options = {
   use_ssl: uri.scheme == 'https'
@@ -76,8 +73,8 @@ import (
 
 func main() {
 	client := &http.Client{}
-	var data = strings.NewReader(`{"text":"I love this product! It's amazing but the delivery was a bit late."}`)
-	req, err := http.NewRequest("POST", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment", data)
+	var data = strings.NewReader(`{"text":"I love this product! It\s`)
+	req, err := http.NewRequest("POST", "https://api.jigsawstack.com/v1/ai/sentiment", data)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -107,8 +104,8 @@ import java.net.http.HttpResponse;
 HttpClient client = HttpClient.newHttpClient();
 
 HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment"))
-    .POST(BodyPublishers.ofString("{\"text\":\"I love this product! It's amazing but the delivery was a bit late.\"}"))
+    .uri(URI.create("https://api.jigsawstack.com/v1/ai/sentiment"))
+    .POST(BodyPublishers.ofString("{\"text\":\"I love this product! It\\s"))
     .setHeader("Content-Type", "application/json")
     .setHeader("x-api-key", "your-api-key")
     .build();
@@ -119,12 +116,7 @@ HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.o
     ```swift Swift
 import Foundation
 
-let jsonData = [
-    "text": "I love this product! It's amazing but the delivery was a bit late."
-] as [String : Any]
-let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
-
-let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment")!
+let url = URL(string: "https://api.jigsawstack.com/v1/ai/sentiment")!
 let headers = [
     "Content-Type": "application/json",
     "x-api-key": "your-api-key"
@@ -133,7 +125,7 @@ let headers = [
 var request = URLRequest(url: url)
 request.httpMethod = "POST"
 request.allHTTPHeaderFields = headers
-request.httpBody = data as Data
+request.httpBody = "{\"text\":\"I love this product! It\\s".data(using: .utf8)
 
 let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
     if let error = error {
@@ -156,9 +148,9 @@ void main() async {
     'x-api-key': 'your-api-key',
   };
 
-  final data = '{"text":"I love this product! It\'s amazing but the delivery was a bit late."}';
+  final data = '{"text":"I love this product! It\\s';
 
-  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment');
+  final url = Uri.parse('https://api.jigsawstack.com/v1/ai/sentiment');
 
   final res = await http.post(url, headers: headers, body: data);
   final status = res.statusCode;
@@ -179,10 +171,10 @@ val client = OkHttpClient()
 
 val MEDIA_TYPE = "application/json".toMediaType()
 
-val requestBody = "{\"text\":\"I love this product! It's amazing but the delivery was a bit late.\"}"
+val requestBody = "{\"text\":\"I love this product! It\\s"
 
 val request = Request.Builder()
-  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment")
+  .url("https://api.jigsawstack.com/v1/ai/sentiment")
   .post(requestBody.toRequestBody(MEDIA_TYPE))
   .header("Content-Type", "application/json")
   .header("x-api-key", "your-api-key")
@@ -200,11 +192,11 @@ using System.Net.Http.Headers;
 
 HttpClient client = new HttpClient();
 
-HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/sentiment");
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://api.jigsawstack.com/v1/ai/sentiment");
 
 request.Headers.Add("x-api-key", "your-api-key");
 
-request.Content = new StringContent("{\"text\":\"I love this product! It's amazing but the delivery was a bit late.\"}");
+request.Content = new StringContent("{\"text\":\"I love this product! It\\s");
 request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
 HttpResponseMessage response = await client.SendAsync(request);
@@ -239,8 +231,8 @@ string responseBody = await response.Content.ReadAsStringAsync();
       "_usage": {
             "input_tokens": 20,
             "output_tokens": 75,
-            "inference_time_tokens": 1898,
-            "total_tokens": 1993
+            "inference_time_tokens": 2390,
+            "total_tokens": 2485
       }
 }
     ```

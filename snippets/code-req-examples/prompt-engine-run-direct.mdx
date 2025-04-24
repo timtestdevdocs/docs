@@ -49,16 +49,16 @@ response = jigsaw.prompt_engine.run_direct({
 })
     ```
     ```bash Curl
-curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run \
+curl https://api.jigsawstack.com/v1/prompt_engine/run \
  -X POST \
- -H "Content-Type: application/json" \
- -H "x-api-key: your-api-key" \
- -d "{\"prompt\":\"Tell me a story about {about}\",\"inputs\":[{\"key\":\"about\",\"optional\":false,\"initial_value\":\"Leaning Tower of Pisa\"}],\"return_prompt\":\"Return the result in a markdown format\",\"prompt_guard\":[\"sexual_content\",\"defamation\"],\"input_values\":{\"about\":\"Santorini\"}}"
+ -H 'Content-Type: application/json' \
+ -H 'x-api-key: your-api-key' \
+ -d '{"prompt":"Tell me a story about {about}","inputs":[{"key":"about","optional":false,"initial_value":"Leaning Tower of Pisa"}],"return_prompt":"Return the result in a markdown format","prompt_guard":["sexual_content","defamation"],"input_values":{"about":"Santorini"}}'
     ```
     ```php PHP
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run');
+curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/prompt_engine/run');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -76,7 +76,7 @@ curl_close($ch);
 require 'net/http'
 require 'json'
 
-uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run')
+uri = URI('https://api.jigsawstack.com/v1/prompt_engine/run')
 req = Net::HTTP::Post.new(uri)
 req.content_type = 'application/json'
 req['x-api-key'] = 'your-api-key'
@@ -122,7 +122,7 @@ import (
 func main() {
 	client := &http.Client{}
 	var data = strings.NewReader(`{"prompt":"Tell me a story about {about}","inputs":[{"key":"about","optional":false,"initial_value":"Leaning Tower of Pisa"}],"return_prompt":"Return the result in a markdown format","prompt_guard":["sexual_content","defamation"],"input_values":{"about":"Santorini"}}`)
-	req, err := http.NewRequest("POST", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run", data)
+	req, err := http.NewRequest("POST", "https://api.jigsawstack.com/v1/prompt_engine/run", data)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -152,7 +152,7 @@ import java.net.http.HttpResponse;
 HttpClient client = HttpClient.newHttpClient();
 
 HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run"))
+    .uri(URI.create("https://api.jigsawstack.com/v1/prompt_engine/run"))
     .POST(BodyPublishers.ofString("{\"prompt\":\"Tell me a story about {about}\",\"inputs\":[{\"key\":\"about\",\"optional\":false,\"initial_value\":\"Leaning Tower of Pisa\"}],\"return_prompt\":\"Return the result in a markdown format\",\"prompt_guard\":[\"sexual_content\",\"defamation\"],\"input_values\":{\"about\":\"Santorini\"}}"))
     .setHeader("Content-Type", "application/json")
     .setHeader("x-api-key", "your-api-key")
@@ -184,7 +184,7 @@ let jsonData = [
 ] as [String : Any]
 let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
 
-let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run")!
+let url = URL(string: "https://api.jigsawstack.com/v1/prompt_engine/run")!
 let headers = [
     "Content-Type": "application/json",
     "x-api-key": "your-api-key"
@@ -218,7 +218,7 @@ void main() async {
 
   final data = '{"prompt":"Tell me a story about {about}","inputs":[{"key":"about","optional":false,"initial_value":"Leaning Tower of Pisa"}],"return_prompt":"Return the result in a markdown format","prompt_guard":["sexual_content","defamation"],"input_values":{"about":"Santorini"}}';
 
-  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run');
+  final url = Uri.parse('https://api.jigsawstack.com/v1/prompt_engine/run');
 
   final res = await http.post(url, headers: headers, body: data);
   final status = res.statusCode;
@@ -242,7 +242,7 @@ val MEDIA_TYPE = "application/json".toMediaType()
 val requestBody = "{\"prompt\":\"Tell me a story about {about}\",\"inputs\":[{\"key\":\"about\",\"optional\":false,\"initial_value\":\"Leaning Tower of Pisa\"}],\"return_prompt\":\"Return the result in a markdown format\",\"prompt_guard\":[\"sexual_content\",\"defamation\"],\"input_values\":{\"about\":\"Santorini\"}}"
 
 val request = Request.Builder()
-  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run")
+  .url("https://api.jigsawstack.com/v1/prompt_engine/run")
   .post(requestBody.toRequestBody(MEDIA_TYPE))
   .header("Content-Type", "application/json")
   .header("x-api-key", "your-api-key")
@@ -260,7 +260,7 @@ using System.Net.Http.Headers;
 
 HttpClient client = new HttpClient();
 
-HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/prompt_engine/run");
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://api.jigsawstack.com/v1/prompt_engine/run");
 
 request.Headers.Add("x-api-key", "your-api-key");
 
@@ -277,13 +277,13 @@ string responseBody = await response.Content.ReadAsStringAsync();
     ```json Response
 {
       "success": true,
-      "result": "Okay, here's a story about Santorini, formatted in Markdown:\n\n# The Whispers of Oia\n\nThe Aegean Sea, a shimmering sapphire under the relentless Grecian sun, lapped gently against the black volcanic sand of Perissa beach. Eleni, a young woman with eyes the color of the deep sea and hair like spun moonlight, traced patterns in the sand with her bare toes. She wasn't a tourist, though she could easily pass for one. Eleni was a daughter of Santorini, her roots intertwined with the island's volcanic soil and its ancient, whispered secrets.\n\nHer grandmother, Yaya Irini, lived in Oia, the village perched precariously on the caldera's edge, a cascade of whitewashed houses clinging to the cliff face. Yaya Irini was a keeper of stories, tales passed down through generations, tales of the Minoan eruption that shaped the island, tales of gods and heroes, and tales of the island's enduring spirit.\n\nEleni visited Yaya Irini every week. Today, she carried a basket filled with fresh figs and a bottle of local Vinsanto wine. The climb to Oia was arduous, a winding path that snaked upwards, past vibrant bougainvillea and the ever-present scent of thyme. But the view, oh, the view! It was a panorama of breathtaking beauty, a constant reminder of the island's dramatic past and its vibrant present.\n\nReaching Yaya Irini's house, Eleni found her grandmother sitting on her small balcony, overlooking the caldera. Her face, etched with wrinkles like the ancient maps of the island, was turned towards the setting sun.\n\n\"Yaya,\" Eleni greeted, kissing her cheek.\n\nYaya Irini smiled, her eyes twinkling. \"Eleni mou, you are here. Come, sit. The sun is painting the sky with fire.\"\n\nThey sat in comfortable silence, watching the sun dip below the horizon, painting the whitewashed houses in hues of orange, pink, and purple. As the first stars began to appear, Eleni asked, \"Yaya, tell me a story. Tell me about the whispers of Oia.\"\n\nYaya Irini took a sip of her Vinsanto. \"Oia,\" she began, her voice raspy but strong, \"is a place where the past and present dance together. The stones themselves remember the eruption, the Minoan civilization swallowed by the sea. Sometimes, if you listen closely, you can hear their whispers on the wind.\"\n\nShe continued, \"They say that after the eruption, the survivors clung to the highest point of the island, seeking refuge. They rebuilt their lives, brick by brick, dream by dream. They learned to live with the volcano, to respect its power, and to draw strength from its resilience.\"\n\n\"And the whispers?\" Eleni prompted.\n\n\"The whispers are the echoes of their lives,\" Yaya Irini said, her gaze fixed on the darkening caldera. \"They are the laughter of children playing in the narrow streets, the songs of fishermen returning with their catch, the prayers of women hoping for safe passage for their loved ones. They are the stories of love and loss, of joy and sorrow, woven into the very fabric of Oia.\"\n\nShe paused, then added, \"But the whispers also carry a warning. A reminder that the volcano sleeps, but it never forgets. We must always be mindful of its power, and we must always cherish the beauty and fragility of this island.\"\n\nAs the night deepened, Eleni listened to her grandmother's stories, feeling a deep connection to her ancestors and to the island that had shaped them. She understood that the whispers of Oia were not just echoes of the past, but also a guide for the future. They were a reminder to live with passion, to embrace beauty, and to never forget the power of the earth beneath their feet.\n\nLeaving Yaya Irini's house, Eleni walked through the silent streets of Oia, the stars her only companions. She listened closely, and for a moment, she thought she could hear the faintest of whispers, carried on the wind, a chorus of voices telling the story of Santorini, a story of resilience, beauty, and the enduring power of the human spirit. The whispers of Oia, she knew, would stay with her forever.\n",
+      "result": "Okay, here's a story about Santorini, formatted in Markdown:\n\n# The Whispers of Oia\n\nThe caldera wind, a salty, persistent breath, whipped Eleni's hair across her face as she stood on the edge of Oia. Below, the Aegean Sea shimmered, a sapphire canvas dotted with the white brushstrokes of distant sailboats. The year was 2045, and Santorini, despite the ever-present hum of electric scooters and the drone of delivery bots, still held its magic.\n\nEleni wasn't a tourist. She was a descendant of the islanders, her family tracing back generations to the fishermen and farmers who had carved a life out of the volcanic rock. But even she, born and raised amidst the iconic blue-domed churches and whitewashed houses, felt the pull of the island's ancient heart.\n\nHer grandmother, Yaya Sofia, had always told her stories. Stories of the Minoan eruption, the cataclysm that shaped the island and birthed the caldera. Stories of the hidden springs that whispered secrets to those who listened. Stories of the *efimerides*, the fleeting moments of perfect light that painted the sky in impossible hues.\n\nYaya Sofia had passed away last year, leaving Eleni with a small, leather-bound journal filled with her grandmother's observations and sketches. It was in this journal that Eleni found the clue that brought her to this specific spot in Oia, overlooking the caldera.\n\n\"When the sun kisses the sea at the hour of the setting star,\" Yaya Sofia had written, \"listen for the whispers of the old ones. They speak of a hidden spring, a source of life that remembers the island's pain and its resilience.\"\n\nEleni checked her chronometer. The sun was indeed beginning its descent, painting the sky in shades of orange and rose. The \"setting star,\" as Yaya Sofia called it, was Venus, blazing brightly in the twilight.\n\nShe closed her eyes, focusing on the wind, the waves, the distant cries of the gulls. At first, there was only the familiar cacophony of the modern world. But then, beneath it all, she heard it. A faint, almost imperceptible murmur. It wasn't a sound she could identify, but a feeling, a vibration that resonated deep within her bones.\n\nFollowing the feeling, she carefully descended a narrow, overgrown path, hidden from the main tourist thoroughfare. The path led to a small, secluded cove, where the waves crashed against the black volcanic rock.\n\nAnd there it was. Tucked away in a crevice, almost hidden by a curtain of ivy, a small spring trickled down the rock face. The water was cool and clear, and as Eleni cupped her hands and drank, she felt a surge of energy, a connection to the island's past.\n\nIt wasn't just water. It was a memory. A memory of the eruption, the devastation, the slow, arduous process of rebuilding. A memory of the resilience of the islanders, their unwavering spirit in the face of adversity.\n\nAs the last rays of sunlight faded, Eleni understood. The whispers weren't just about a hidden spring. They were about the island's soul, its enduring spirit. And it was her responsibility, as a descendant of Santorini, to listen to those whispers and to protect the island's heritage for generations to come.\n\nShe left the cove, the whispers still echoing in her heart. The electric scooters and delivery bots still hummed, the tourists still flocked to the sunset viewpoints. But Eleni knew that beneath the surface, the ancient magic of Santorini still lived, waiting to be discovered by those who were willing to listen. The *efimerides* would continue to paint the sky, and the whispers of the old ones would continue to guide those who sought them. The island, scarred but beautiful, would endure.\n",
       "message": "It is recommended to store the prompt engine and execute it using the ID rather than running it directly for the best performance and reliability. Learn more: https://jigsawstack.com/docs/api-reference/prompt-engine/create",
       "_usage": {
             "input_tokens": 68,
-            "output_tokens": 1070,
-            "inference_time_tokens": 5935,
-            "total_tokens": 7073
+            "output_tokens": 985,
+            "inference_time_tokens": 5824,
+            "total_tokens": 6877
       }
 }
     ```

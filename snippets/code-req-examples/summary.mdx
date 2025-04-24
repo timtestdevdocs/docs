@@ -23,23 +23,23 @@ response = jigsaw.summary({
 })
     ```
     ```bash Curl
-curl https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/summary \
+curl https://api.jigsawstack.com/v1/ai/summary \
  -X POST \
- -H "Content-Type: application/json" \
- -H "x-api-key: your-api-key" \
- -d "{\"text\":\"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city's Cathedral Square, after the Cathedral and the Baptistry. The tower's tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure's weight. The tilt increased in the decades before the structure was completed in the 14th century. It gradually increased until the structure was stabilized by efforts in the late 20th and early 21st centuries. The height of the tower is 55.86 metres (183.27 feet) from the ground on the low side and 56.67 metres (185.93 feet) on the high side. The width of the walls at the base is 2.44 m (8 ft 0.06 in). Its weight is estimated at 14,500 tonnes. The tower has 296 or 294 steps; the seventh floor has two fewer steps on the north-facing staircase.\",\"type\":\"points\",\"max_points\":3}"
+ -H 'Content-Type: application/json' \
+ -H 'x-api-key: your-api-key' \
+ -d '{"text":"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city\'s Cathedral Square, after the Cathedral and the Baptistry. The tower\'s tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure\'s weight. The tilt increased in the decades before the structure was completed in the 14th century. It gradually increased until the structure was stabilized by efforts in the late 20th and early 21st centuries. The height of the tower is 55.86 metres \(183.27 feet\) from the ground on the low side and 56.67 metres \(185.93 feet\) on the high side. The width of the walls at the base is 2.44 m \(8 ft 0.06 in\). Its weight is estimated at 14,500 tonnes. The tower has 296 or 294 steps\; the seventh floor has two fewer steps on the north-facing staircase.","type":"points","max_points":3}'
     ```
     ```php PHP
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/summary');
+curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/ai/summary');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
     'x-api-key: your-api-key',
 ]);
-curl_setopt($ch, CURLOPT_POSTFIELDS, '{"text":"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city\'s Cathedral Square, after the Cathedral and the Baptistry. The tower\'s tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure\'s weight. The tilt increased in the decades before the structure was completed in the 14th century. It gradually increased until the structure was stabilized by efforts in the late 20th and early 21st centuries. The height of the tower is 55.86 metres (183.27 feet) from the ground on the low side and 56.67 metres (185.93 feet) on the high side. The width of the walls at the base is 2.44 m (8 ft 0.06 in). Its weight is estimated at 14,500 tonnes. The tower has 296 or 294 steps; the seventh floor has two fewer steps on the north-facing staircase.","type":"points","max_points":3}');
+curl_setopt($ch, CURLOPT_POSTFIELDS, '{"text":"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city\\s');
 
 $response = curl_exec($ch);
 
@@ -48,18 +48,13 @@ curl_close($ch);
     ```
     ```ruby Ruby
 require 'net/http'
-require 'json'
 
-uri = URI('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/summary')
+uri = URI('https://api.jigsawstack.com/v1/ai/summary')
 req = Net::HTTP::Post.new(uri)
 req.content_type = 'application/json'
 req['x-api-key'] = 'your-api-key'
 
-req.body = {
-  'text' => "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city's Cathedral Square, after the Cathedral and the Baptistry. The tower's tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure's weight. The tilt increased in the decades before the structure was completed in the 14th century. It gradually increased until the structure was stabilized by efforts in the late 20th and early 21st centuries. The height of the tower is 55.86 metres (183.27 feet) from the ground on the low side and 56.67 metres (185.93 feet) on the high side. The width of the walls at the base is 2.44 m (8 ft 0.06 in). Its weight is estimated at 14,500 tonnes. The tower has 296 or 294 steps; the seventh floor has two fewer steps on the north-facing staircase.",
-  'type' => 'points',
-  'max_points' => 3
-}.to_json
+req.body = '{"text":"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city\\s'
 
 req_options = {
   use_ssl: uri.scheme == 'https'
@@ -82,8 +77,8 @@ import (
 
 func main() {
 	client := &http.Client{}
-	var data = strings.NewReader(`{"text":"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city's Cathedral Square, after the Cathedral and the Baptistry. The tower's tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure's weight. The tilt increased in the decades before the structure was completed in the 14th century. It gradually increased until the structure was stabilized by efforts in the late 20th and early 21st centuries. The height of the tower is 55.86 metres (183.27 feet) from the ground on the low side and 56.67 metres (185.93 feet) on the high side. The width of the walls at the base is 2.44 m (8 ft 0.06 in). Its weight is estimated at 14,500 tonnes. The tower has 296 or 294 steps; the seventh floor has two fewer steps on the north-facing staircase.","type":"points","max_points":3}`)
-	req, err := http.NewRequest("POST", "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/summary", data)
+	var data = strings.NewReader(`{"text":"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city\s`)
+	req, err := http.NewRequest("POST", "https://api.jigsawstack.com/v1/ai/summary", data)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -113,8 +108,8 @@ import java.net.http.HttpResponse;
 HttpClient client = HttpClient.newHttpClient();
 
 HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/summary"))
-    .POST(BodyPublishers.ofString("{\"text\":\"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city's Cathedral Square, after the Cathedral and the Baptistry. The tower's tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure's weight. The tilt increased in the decades before the structure was completed in the 14th century. It gradually increased until the structure was stabilized by efforts in the late 20th and early 21st centuries. The height of the tower is 55.86 metres (183.27 feet) from the ground on the low side and 56.67 metres (185.93 feet) on the high side. The width of the walls at the base is 2.44 m (8 ft 0.06 in). Its weight is estimated at 14,500 tonnes. The tower has 296 or 294 steps; the seventh floor has two fewer steps on the north-facing staircase.\",\"type\":\"points\",\"max_points\":3}"))
+    .uri(URI.create("https://api.jigsawstack.com/v1/ai/summary"))
+    .POST(BodyPublishers.ofString("{\"text\":\"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city\\s"))
     .setHeader("Content-Type", "application/json")
     .setHeader("x-api-key", "your-api-key")
     .build();
@@ -125,14 +120,7 @@ HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.o
     ```swift Swift
 import Foundation
 
-let jsonData = [
-    "text": "The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city's Cathedral Square, after the Cathedral and the Baptistry. The tower's tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure's weight. The tilt increased in the decades before the structure was completed in the 14th century. It gradually increased until the structure was stabilized by efforts in the late 20th and early 21st centuries. The height of the tower is 55.86 metres (183.27 feet) from the ground on the low side and 56.67 metres (185.93 feet) on the high side. The width of the walls at the base is 2.44 m (8 ft 0.06 in). Its weight is estimated at 14,500 tonnes. The tower has 296 or 294 steps; the seventh floor has two fewer steps on the north-facing staircase.",
-    "type": "points",
-    "max_points": 3
-] as [String : Any]
-let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
-
-let url = URL(string: "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/summary")!
+let url = URL(string: "https://api.jigsawstack.com/v1/ai/summary")!
 let headers = [
     "Content-Type": "application/json",
     "x-api-key": "your-api-key"
@@ -141,7 +129,7 @@ let headers = [
 var request = URLRequest(url: url)
 request.httpMethod = "POST"
 request.allHTTPHeaderFields = headers
-request.httpBody = data as Data
+request.httpBody = "{\"text\":\"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city\\s".data(using: .utf8)
 
 let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
     if let error = error {
@@ -164,9 +152,9 @@ void main() async {
     'x-api-key': 'your-api-key',
   };
 
-  final data = '{"text":"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city\'s Cathedral Square, after the Cathedral and the Baptistry. The tower\'s tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure\'s weight. The tilt increased in the decades before the structure was completed in the 14th century. It gradually increased until the structure was stabilized by efforts in the late 20th and early 21st centuries. The height of the tower is 55.86 metres (183.27 feet) from the ground on the low side and 56.67 metres (185.93 feet) on the high side. The width of the walls at the base is 2.44 m (8 ft 0.06 in). Its weight is estimated at 14,500 tonnes. The tower has 296 or 294 steps; the seventh floor has two fewer steps on the north-facing staircase.","type":"points","max_points":3}';
+  final data = '{"text":"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city\\s';
 
-  final url = Uri.parse('https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/summary');
+  final url = Uri.parse('https://api.jigsawstack.com/v1/ai/summary');
 
   final res = await http.post(url, headers: headers, body: data);
   final status = res.statusCode;
@@ -187,10 +175,10 @@ val client = OkHttpClient()
 
 val MEDIA_TYPE = "application/json".toMediaType()
 
-val requestBody = "{\"text\":\"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city's Cathedral Square, after the Cathedral and the Baptistry. The tower's tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure's weight. The tilt increased in the decades before the structure was completed in the 14th century. It gradually increased until the structure was stabilized by efforts in the late 20th and early 21st centuries. The height of the tower is 55.86 metres (183.27 feet) from the ground on the low side and 56.67 metres (185.93 feet) on the high side. The width of the walls at the base is 2.44 m (8 ft 0.06 in). Its weight is estimated at 14,500 tonnes. The tower has 296 or 294 steps; the seventh floor has two fewer steps on the north-facing staircase.\",\"type\":\"points\",\"max_points\":3}"
+val requestBody = "{\"text\":\"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city\\s"
 
 val request = Request.Builder()
-  .url("https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/summary")
+  .url("https://api.jigsawstack.com/v1/ai/summary")
   .post(requestBody.toRequestBody(MEDIA_TYPE))
   .header("Content-Type", "application/json")
   .header("x-api-key", "your-api-key")
@@ -208,11 +196,11 @@ using System.Net.Http.Headers;
 
 HttpClient client = new HttpClient();
 
-HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://jigsawstack-git-new-ui-jigsaw-stack.vercel.app/api/v1/ai/summary");
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://api.jigsawstack.com/v1/ai/summary");
 
 request.Headers.Add("x-api-key", "your-api-key");
 
-request.Content = new StringContent("{\"text\":\"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city's Cathedral Square, after the Cathedral and the Baptistry. The tower's tilt began during construction in the 12th century, caused by an inadequate foundation on ground too soft on one side to properly support the structure's weight. The tilt increased in the decades before the structure was completed in the 14th century. It gradually increased until the structure was stabilized by efforts in the late 20th and early 21st centuries. The height of the tower is 55.86 metres (183.27 feet) from the ground on the low side and 56.67 metres (185.93 feet) on the high side. The width of the walls at the base is 2.44 m (8 ft 0.06 in). Its weight is estimated at 14,500 tonnes. The tower has 296 or 294 steps; the seventh floor has two fewer steps on the north-facing staircase.\",\"type\":\"points\",\"max_points\":3}");
+request.Content = new StringContent("{\"text\":\"The Leaning Tower of Pisa, or simply, the Tower of Pisa, is the campanile, or freestanding bell tower, of Pisa Cathedral. It is situated behind the Cathedral and is the third-oldest structure in the city\\s");
 request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
 HttpResponseMessage response = await client.SendAsync(request);
@@ -226,15 +214,15 @@ string responseBody = await response.Content.ReadAsStringAsync();
 {
       "success": true,
       "summary": [
-            "The Leaning Tower of Pisa is the bell tower of Pisa Cathedral.",
-            "Its tilt began during construction due to an unstable foundation.",
-            "The tower's tilt worsened over time until stabilization efforts in modern times."
+            "The Leaning Tower of Pisa is the bell tower of Pisa Cathedral, and is situated in the city's Cathedral Square.",
+            "Its tilt, which began during construction, was caused by an inadequate foundation on unstable ground.",
+            "The tower's height varies between 55.86 and 56.67 meters, and its stability was addressed in recent centuries."
       ],
       "_usage": {
             "input_tokens": 256,
-            "output_tokens": 61,
-            "inference_time_tokens": 890,
-            "total_tokens": 1207
+            "output_tokens": 90,
+            "inference_time_tokens": 975,
+            "total_tokens": 1321
       }
 }
     ```
