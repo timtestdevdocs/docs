@@ -78,7 +78,7 @@ upload_response = jigsaw.store.upload(blob, {"key": "new-image.jpg", "overwrite"
 ```bash Curl 
 curl --location 'https://api.jigsawstack.com/v1/store/file?key=filename.txt&overwrite=true' \
 --header 'x-api-key: your-api-key' \
---data '@path/to/your/file'
+--data-binary '@path/to/your/file'
 ```
 </RequestExample>
 
