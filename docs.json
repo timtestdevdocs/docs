@@ -123,6 +123,7 @@
           {
             "group": "Resources",
             "pages": [
+              "docs/additional-resources/ai-dev-tools",
               "docs/additional-resources/security",
               "docs/additional-resources/jigsawstack-badge",
               "docs/additional-resources/size-preset",
@@ -164,7 +165,6 @@
           {
             "group": "Prompt Engine",
             "pages": [
-              "docs/additional-resources/ai-dev-tools",
               "docs/api-reference/prompt-engine/create",
               "docs/api-reference/prompt-engine/run",
               "docs/api-reference/prompt-engine/retrieve",
