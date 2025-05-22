@@ -1,0 +1,104 @@
+---
+title: From Prompt to Production
+---
+
+### What is JigsawStack? 🧩
+
+**Purpose-built AI models for your tech stack.**
+
+JigsawStack provides custom small models trained for specialized use cases. Whether you’re building with speech, text, vision, or workflow automation, JigsawStack gives you the APIs to move fast and stay in control.
+
+## Build a JigsawStack-Powered App
+
+This guide will walk you through integrating JigsawStack with your favorite AI tools.
+
+### Initial requirements
+
+- Setup a JigsawStack account 
+- Create your [JigsawStack API key](https://jigsawstack.com/dashboard/)
+
+### Supported Tools Overview
+
+- **v0.dev** – UI prototyping with ShadCN-style components and Figma integration
+- **Lovable.dev** – AI-assisted full-stack app builder with database and email support
+- **Bolt.new** – Transforms Figma designs into working frontends rapidly
+- **Windsurf** – AI-enhanced IDE for intuitive dev workflows
+- **Cursor** – VS Code-based AI code editor with advanced multi-file editing
+
+## Using the OpenAPI 3.0 Spec for Development
+
+To improve accuracy and reduce hallucinations when generating code or API integrations in tools like Lovable.dev, v0.dev, Bolt.new, Cursor, or Windsurf, upload or reference the [JigsawStack OpenAPI 3.0 spec](https://github.com/JigsawStack/OpenAPI-spec/blob/main/jigsawstack-openai-spec.json) directly in your editor. 
+
+This provides the AI with a structured source of truth for endpoints, parameters, and request/response formats. Enabling smarter autocompletions, fewer integration errors, and more predictable results.
+
+This allows the AI assistant to:
+- Autocomplete accurate endpoint paths and request formats
+- Avoid guessing parameter names or response structures
+- Align with required field validation and security headers
+
+> Tip: Many AI IDEs support uploading OpenAPI files or linking to hosted API specs. Use this to enhance autocomplete and schema-aware generation.
+
+## Step-by-Step Integration Guide
+
+### 1. Define Your Application
+Before starting, define the core features:
+- Do you need transcription, translation, OCR, or sentiment analysis?
+- Will you generate UIs or workflows from text?
+- Do you need user uploads or file storage?
+
+### 2. Choose Your Low-Code Tool
+| Tool        | Best For                 |
+|-------------|---------------------------|
+| v0.dev      | UI-first apps & prototypes |
+| Lovable.dev | Full-stack web apps       |
+| Bolt.new    | Quick frontend dev        |
+| Windsurf    | Beginner-friendly code    |
+| Cursor      | Power-user code editing   |
+
+### 3. Set Up Your Backend
+Make API requests to `https://api.jigsawstack.com/v1` with your `x-api-key` header.
+
+Here's an example for **vOCR**:
+
+```javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.vision.vocr({
+  "prompt": [
+        "total_price",
+        "tax"
+  ],
+  "url": "https://media.snopes.com/2021/08/239918331_10228097135359041_3825446756894757753_n.jpg"
+})
+```
+
+### 4. Build the Frontend
+Use your chosen low-code tool to:
+- Design UI components 
+- Configure user flows and backend calls 
+- Code advanced logic or custom workflows 
+
+### 5. Connect to JigsawStack
+- Use HTTP `POST` calls with your API key
+- You can also wrap calls in custom SDK logic if your low-code tool supports serverless functions or API integrations
+
+### 6. Test and Deploy
+- Test endpoints using mock data or production URLs
+- Deploy to platforms like Vercel, Netlify, Railway, or Render
+- Tools like Luvable, Bolt and v0 have streamlined the deployment process
+
+## Tool Comparison
+
+| Tool        | Strengths                                | Limitations                        |
+|-------------|--------------------------------------------|-------------------------------------|
+| v0.dev      | Beautiful UI generation, fast prototyping | Only supports React                |
+| Lovable.dev | End-to-end stack, intuitive AI builder    | Less control for custom logic      |
+| Bolt.new    | Fastest Figma-to-code translation         | Struggles with complex projects    |
+| Windsurf    | Beginner-friendly coding with AI          | Less powerful than full IDEs       |
+| Cursor      | Multi-file, AI-rich context               | Higher barrier for new developers  |
+
+
+
+Ready to build? Pick your tool, plug into JigsawStack, and go from prototype to product fast.
