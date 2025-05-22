@@ -164,6 +164,7 @@
           {
             "group": "Prompt Engine",
             "pages": [
+              "docs/additional-resources/ai-dev-tools",
               "docs/api-reference/prompt-engine/create",
               "docs/api-reference/prompt-engine/run",
               "docs/api-reference/prompt-engine/retrieve",
