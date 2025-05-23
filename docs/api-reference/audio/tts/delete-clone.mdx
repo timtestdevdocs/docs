@@ -1,0 +1,17 @@
+---
+title: "Delete Voice Clone"
+api: "DELETE https://api.jigsawstack.com/v1/ai/tts/clone/${voice_id}"
+description: "Delete a voice clone from the list of clones"
+---
+
+import TextToSpeechDeleteCloneSnippet from "/snippets/code-req-examples/text-to-speech-delete-clone.mdx";
+
+### Body
+
+<ParamField body="voice_id" type="string" required>
+  A descriptive name for the voice clone. This helps you identify the voice in your account.
+</ParamField>
+
+<Snippet file="header.mdx" />
+
+<TextToSpeechDeleteCloneSnippet />

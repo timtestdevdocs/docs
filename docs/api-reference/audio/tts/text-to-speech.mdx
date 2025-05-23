@@ -19,35 +19,21 @@ The Text to Speech API converts written text into lifelike speech with options f
 ### Body
 
 <ParamField body="text" type="string" required>
-  The text to generate speech from. Character Limits: - Standard TTS: 5-1,500
-  characters - Voice Cloning TTS: 5-500 characters
+  The text to generate speech from. Character Limits: - Standard TTS: 5-1,500 characters - Voice Cloning TTS: 5-500 characters
 </ParamField>
 
 <ParamField body="accent" type="string" default="en-US-female-27">
-  Speaker voice accent. Not required if using voice cloning. Over 700 different
-  voices across multiple languages are available. See the [Speaker Voice Accents
-  documentation](https://docs.jigsawstack.com/additional-resources/speaker-voices)
-  for the complete list.
+  Speaker voice accent. Not required if using voice cloning. Over 700 different voices across multiple languages are available. See the [Speaker Voice
+  Accents documentation](https://docs.jigsawstack.com/additional-resources/speaker-voices) for the complete list.
 </ParamField>
 
-<ParamField body="speaker_clone_url" type="string">
-  URL to an audio file for voice cloning. The API will analyze this sample and
-  generate speech that mimics the voice characteristics. Not required if
-  `speaker_clone_file_store_key` is specified. When using voice cloning, the
-  text is limited to 500 characters maximum.
-</ParamField>
-
-<ParamField body="speaker_clone_file_store_key" type="string">
-  The key of an audio file stored in Jigsawstack File
-  [Storage](/docs/api-reference/store/file/add) to use for voice cloning. Not
-  required if `speaker_clone_url` is specified. When using voice cloning, the
-  text is limited to 500 characters maximum.
+<ParamField body="voice_clone_id" type="string">
+  The unique identifier for a previously cloned voice. When provided, the API will generate speech using this pre-cloned voice profile instead of
+  creating a new one.
 </ParamField>
 
 <Info>
-  Only one voice source is needed. You can either specify an `accent` for
-  built-in voices, or provide a voice sample via `speaker_clone_url` or
-  `speaker_clone_file_store_key` for voice cloning.
+  Only one voice source is needed. You can either specify an `accent` for built-in voices, or provide a `voice_clone_id` for the voice that has been previously cloned. 
 </Info>
 
 <Snippet file="header.mdx" />

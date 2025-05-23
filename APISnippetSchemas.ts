@@ -283,6 +283,26 @@ export const APISchemas: {
     },
     sdk_key_string: "audio.text_to_speech",
   },
+  "text-to-speech-create-clone": {
+    path: "/ai/tts/clone",
+    method: "POST",
+    body: {
+      url: "https://jigsawstack.com/preview/tts-clone-example.mp3",
+      name: "Elon Musk",
+    },
+    sdk_key_string: "audio.create_clone",
+  },
+  "text-to-speech-get-clones": {
+    path: "/ai/tts/clone",
+    method: "GET",
+    sdk_key_string: "audio.get_clones",
+  },
+  "text-to-speech-delete-clone": {
+    path: "/ai/tts/clone/${voice_id}",
+    method: "DELETE",
+    sdk_key_string: "audio.delete_clone",
+    skip_request: true,
+  },
   "html-to-any": {
     path: "/web/html_to_any",
     method: "POST",

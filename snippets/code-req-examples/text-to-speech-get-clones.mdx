@@ -5,21 +5,17 @@ import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
-const response = await jigsaw.store.get({
-      "key": "image-123.png"
-})
+const response = await jigsaw.audio.get_clones({})
     ```
     ```python Python
 from jigsawstack import JigsawStack
 
 jigsaw = JigsawStack(api_key="your-api-key")
 
-response = jigsaw.store.get({
-      "key": "image-123.png"
-})
+response = jigsaw.audio.get_clones({})
     ```
     ```bash Curl
-curl https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.png \
+curl https://api.jigsawstack.com/v1/ai/tts/clone \
  -X GET \
  -H 'Content-Type: application/json' \
  -H 'x-api-key: your-api-key'
@@ -27,7 +23,7 @@ curl https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.
     ```php PHP
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.png');
+curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/ai/tts/clone');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -43,12 +39,7 @@ curl_close($ch);
     ```ruby Ruby
 require 'net/http'
 
-uri = URI('https://api.jigsawstack.com/v1/store/file/read/image-123.png')
-params = {
-  :key => 'image-123.png',
-}
-uri.query = URI.encode_www_form(params)
-
+uri = URI('https://api.jigsawstack.com/v1/ai/tts/clone')
 req = Net::HTTP::Get.new(uri)
 req.content_type = 'application/json'
 req['x-api-key'] = 'your-api-key'
@@ -73,7 +64,7 @@ import (
 
 func main() {
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", "https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.png", nil)
+	req, err := http.NewRequest("GET", "https://api.jigsawstack.com/v1/ai/tts/clone", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -102,7 +93,7 @@ import java.net.http.HttpResponse;
 HttpClient client = HttpClient.newHttpClient();
 
 HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create("https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.png"))
+    .uri(URI.create("https://api.jigsawstack.com/v1/ai/tts/clone"))
     .GET()
     .setHeader("Content-Type", "application/json")
     .setHeader("x-api-key", "your-api-key")
@@ -114,7 +105,7 @@ HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.o
     ```swift Swift
 import Foundation
 
-let url = URL(string: "https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.png")!
+let url = URL(string: "https://api.jigsawstack.com/v1/ai/tts/clone")!
 let headers = [
     "Content-Type": "application/json",
     "x-api-key": "your-api-key"
@@ -144,12 +135,7 @@ void main() async {
     'x-api-key': 'your-api-key',
   };
 
-  final params = {
-    'key': 'image-123.png',
-  };
-
-  final url = Uri.parse('https://api.jigsawstack.com/v1/store/file/read/image-123.png')
-      .replace(queryParameters: params);
+  final url = Uri.parse('https://api.jigsawstack.com/v1/ai/tts/clone');
 
   final res = await http.get(url, headers: headers);
   final status = res.statusCode;
@@ -167,7 +153,7 @@ import okhttp3.Request
 val client = OkHttpClient()
 
 val request = Request.Builder()
-  .url("https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.png")
+  .url("https://api.jigsawstack.com/v1/ai/tts/clone")
   .header("Content-Type", "application/json")
   .header("x-api-key", "your-api-key")
   .build()
@@ -184,7 +170,7 @@ using System.Net.Http.Headers;
 
 HttpClient client = new HttpClient();
 
-HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "https://api.jigsawstack.com/v1/store/file/read/image-123.png?key=image-123.png");
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "https://api.jigsawstack.com/v1/ai/tts/clone");
 
 request.Headers.Add("x-api-key", "your-api-key");
 
@@ -197,7 +183,52 @@ string responseBody = await response.Content.ReadAsStringAsync();
 
     ```
     </RequestExample>
+    <ResponseExample>
+    ```json Response
+{
+      "voice_clones": [
+            {
+                  "id": "2c57465d-1ffb-42f7-909a-d587bc9f977e",
+                  "name": "test url voice",
+                  "created_at": "2025-05-22T20:49:05.03065+00:00"
+            },
+            {
+                  "id": "3687606c-b57b-428b-afc1-dadba390a831",
+                  "name": "Test Voice Clone URL",
+                  "created_at": "2025-05-22T17:47:00.16744+00:00"
+            },
+            {
+                  "id": "85c17d9e-9b0d-43d0-be7a-9006b55fafd0",
+                  "name": "Test Voice Clone URL",
+                  "created_at": "2025-05-22T07:13:08.975841+00:00"
+            },
+            {
+                  "id": "11c1a895-38df-4a1b-ae93-308262700a9a",
+                  "name": "test",
+                  "created_at": "2025-05-22T00:59:05.551564+00:00"
+            },
+            {
+                  "id": "7cb69b7e-6015-47c4-aa43-e8715bbe99bc",
+                  "name": "test",
+                  "created_at": "2025-05-22T00:58:48.740324+00:00"
+            },
+            {
+                  "id": "734a767d-35a3-474a-99fe-1f10a9bfb867",
+                  "name": "test",
+                  "created_at": "2025-05-22T00:30:18.967723+00:00"
+            }
+      ],
+      "page": 0,
+      "limit": 10,
+      "has_more": false,
+      "_usage": {
+            "input_tokens": 1,
+            "output_tokens": 56,
+            "inference_time_tokens": 272,
+            "total_tokens": 329
+      }
+}
+    ```
+    </ResponseExample>
     
-
-<ResponseExample></ResponseExample>
     
