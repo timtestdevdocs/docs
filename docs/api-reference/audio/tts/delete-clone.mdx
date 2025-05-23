@@ -6,10 +6,10 @@ description: "Delete a voice clone from the list of clones"
 
 import TextToSpeechDeleteCloneSnippet from "/snippets/code-req-examples/text-to-speech-delete-clone.mdx";
 
-### Body
+### Query
 
-<ParamField body="voice_id" type="string" required>
-  A descriptive name for the voice clone. This helps you identify the voice in your account.
+<ParamField query="voice_id" type="string">
+  The voice id of the clone you want to delete.
 </ParamField>
 
 <Snippet file="header.mdx" />

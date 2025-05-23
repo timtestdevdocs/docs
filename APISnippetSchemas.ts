@@ -292,10 +292,10 @@ export const APISchemas: {
     },
     sdk_key_string: "audio.create_clone",
   },
-  "text-to-speech-get-clones": {
+  "text-to-speech-list-clones": {
     path: "/ai/tts/clone",
     method: "GET",
-    sdk_key_string: "audio.get_clones",
+    sdk_key_string: "audio.list_clones",
   },
   "text-to-speech-delete-clone": {
     path: "/ai/tts/clone/${voice_id}",

@@ -203,6 +203,32 @@ string responseBody = await response.Content.ReadAsStringAsync();
       "success": true,
       "prompt_engines": [
             {
+                  "id": "0739572e-a0e2-4e7c-972c-3352b697fc91",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-05-23T17:43:27.641541+00:00"
+            },
+            {
+                  "id": "f1951057-9de3-48de-9e26-9ce270d1b38b",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-05-22T23:02:56.066965+00:00"
+            },
+            {
                   "id": "b3cfc6ee-13f8-4e94-b6b3-d55009810b3d",
                   "prompt": "Tell me a story about {about}",
                   "inputs": [
@@ -295,32 +321,6 @@ string responseBody = await response.Content.ReadAsStringAsync();
                   "return_prompt": "{\"letter\":\"the letter\"}",
                   "return_prompt_type": "json",
                   "created_at": "2025-04-24T16:26:25.527387+00:00"
-            },
-            {
-                  "id": "db0d9638-0b5a-4609-9f91-376ffbd8fe8a",
-                  "prompt": "generate a long intro letter to {name} based on information you find of them what they likes",
-                  "inputs": [
-                        {
-                              "key": "name",
-                              "optional": false
-                        }
-                  ],
-                  "return_prompt": "{\"letter\":\"the letter\"}",
-                  "return_prompt_type": "json",
-                  "created_at": "2025-04-24T16:26:18.106347+00:00"
-            },
-            {
-                  "id": "b6b26184-d97a-4cb6-bda8-6c18dc4b3cfa",
-                  "prompt": "Tell me a story about {about}",
-                  "inputs": [
-                        {
-                              "key": "about",
-                              "optional": false
-                        }
-                  ],
-                  "return_prompt": "Return the result in a markdown format",
-                  "return_prompt_type": "string",
-                  "created_at": "2025-04-14T18:55:04.993314+00:00"
             }
       ],
       "page": 0,
@@ -328,9 +328,9 @@ string responseBody = await response.Content.ReadAsStringAsync();
       "has_more": true,
       "_usage": {
             "input_tokens": 4,
-            "output_tokens": 765,
-            "inference_time_tokens": 271,
-            "total_tokens": 1040
+            "output_tokens": 753,
+            "inference_time_tokens": 217,
+            "total_tokens": 974
       }
 }
     ```

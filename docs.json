@@ -186,7 +186,7 @@
             "pages": [
               "docs/api-reference/audio/tts/text-to-speech", 
               "docs/api-reference/audio/tts/create-clone", 
-              "docs/api-reference/audio/tts/get-clones", 
+              "docs/api-reference/audio/tts/list-clones", 
               "docs/api-reference/audio/tts/delete-clone"
             ]
           },
