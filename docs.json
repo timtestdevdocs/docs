@@ -103,7 +103,7 @@
           },
           {
             "group": "Audio",
-            "pages": ["docs/examples/audio-processing/speech-to-text", "docs/examples/audio-processing/text-to-speech"]
+            "pages": ["docs/examples/audio/speech-to-text", "docs/examples/audio/text-to-speech"]
           },
           {
             "group": "Content Validation",
@@ -177,8 +177,8 @@
             "pages": ["docs/api-reference/ai/vocr", "docs/api-reference/ai/object-detection"]
           },
           {
-            "group": "Audio",
-            "pages": ["docs/api-reference/ai/speech-to-text", "docs/api-reference/audio/text-to-speech"]
+            "group": "Speech to Text",
+            "pages": ["docs/api-reference/ai/speech-to-text"]
           },
           {
             "group": "Text to Speech",
