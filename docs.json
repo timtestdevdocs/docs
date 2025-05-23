@@ -123,6 +123,7 @@
           {
             "group": "Resources",
             "pages": [
+              "docs/additional-resources/ai-dev-tools",
               "docs/additional-resources/security",
               "docs/additional-resources/jigsawstack-badge",
               "docs/additional-resources/size-preset",
