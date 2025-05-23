@@ -5,47 +5,31 @@ import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
-const response = await jigsaw.translate({
-      "text": [
-            "Hello",
-            "How are you?",
-            "Thank you"
-      ],
-      "target_language": "zh"
-})
+const response = await jigsaw.audio.delete_clone({})
     ```
     ```python Python
 from jigsawstack import JigsawStack
 
 jigsaw = JigsawStack(api_key="your-api-key")
 
-response = jigsaw.translate({
-      "text": [
-            "Hello",
-            "How are you?",
-            "Thank you"
-      ],
-      "target_language": "zh"
-})
+response = jigsaw.audio.delete_clone({})
     ```
     ```bash Curl
-curl https://api.jigsawstack.com/v1/ai/translate \
- -X POST \
+curl https://api.jigsawstack.com/v1/ai/tts/clone/${voice_id} \
+ -X DELETE \
  -H 'Content-Type: application/json' \
- -H 'x-api-key: your-api-key' \
- -d '{"text":["Hello","How are you?","Thank you"],"target_language":"zh"}'
+ -H 'x-api-key: your-api-key'
     ```
     ```php PHP
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/ai/translate');
+curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/ai/tts/clone/' . getenv('voice_id') ?? '');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
     'x-api-key: your-api-key',
 ]);
-curl_setopt($ch, CURLOPT_POSTFIELDS, '{"text":["Hello","How are you?","Thank you"],"target_language":"zh"}');
 
 $response = curl_exec($ch);
 
@@ -54,21 +38,11 @@ curl_close($ch);
     ```
     ```ruby Ruby
 require 'net/http'
-require 'json'
 
-uri = URI('https://api.jigsawstack.com/v1/ai/translate')
-req = Net::HTTP::Post.new(uri)
+uri = URI('https://api.jigsawstack.com/v1/ai/tts/clone/' + ENV['voice_id'])
+req = Net::HTTP::Delete.new(uri)
 req.content_type = 'application/json'
 req['x-api-key'] = 'your-api-key'
-
-req.body = {
-  'text' => [
-    'Hello',
-    'How are you?',
-    'Thank you'
-  ],
-  'target_language' => 'zh'
-}.to_json
 
 req_options = {
   use_ssl: uri.scheme == 'https'
@@ -86,13 +60,12 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"strings"
+	"os"
 )
 
 func main() {
 	client := &http.Client{}
-	var data = strings.NewReader(`{"text":["Hello","How are you?","Thank you"],"target_language":"zh"}`)
-	req, err := http.NewRequest("POST", "https://api.jigsawstack.com/v1/ai/translate", data)
+	req, err := http.NewRequest("DELETE", "https://api.jigsawstack.com/v1/ai/tts/clone/" + os.Getenv("voice_id"), nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -113,17 +86,17 @@ func main() {
     ```
     ```java Java
 import java.io.IOException;
+import java.lang.System;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 
 HttpClient client = HttpClient.newHttpClient();
 
 HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create("https://api.jigsawstack.com/v1/ai/translate"))
-    .POST(BodyPublishers.ofString("{\"text\":[\"Hello\",\"How are you?\",\"Thank you\"],\"target_language\":\"zh\"}"))
+    .uri(URI.create("https://api.jigsawstack.com/v1/ai/tts/clone/" + System.getenv("voice_id")))
+    .DELETE()
     .setHeader("Content-Type", "application/json")
     .setHeader("x-api-key", "your-api-key")
     .build();
@@ -134,26 +107,15 @@ HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.o
     ```swift Swift
 import Foundation
 
-let jsonData = [
-    "text": [
-        "Hello",
-        "How are you?",
-        "Thank you"
-    ],
-    "target_language": "zh"
-] as [String : Any]
-let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
-
-let url = URL(string: "https://api.jigsawstack.com/v1/ai/translate")!
+let url = URL(string: "https://api.jigsawstack.com/v1/ai/tts/clone/" + (ProcessInfo.processInfo.environment["voice_id"] ?? ""))!
 let headers = [
     "Content-Type": "application/json",
     "x-api-key": "your-api-key"
 ]
 
 var request = URLRequest(url: url)
-request.httpMethod = "POST"
+request.httpMethod = "DELETE"
 request.allHTTPHeaderFields = headers
-request.httpBody = data as Data
 
 let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
     if let error = error {
@@ -168,6 +130,7 @@ task.resume()
 
     ```
     ```dart Dart
+import 'dart:io';
 import 'package:http/http.dart' as http;
 
 void main() async {
@@ -176,13 +139,11 @@ void main() async {
     'x-api-key': 'your-api-key',
   };
 
-  final data = '{"text":["Hello","How are you?","Thank you"],"target_language":"zh"}';
+  final url = Uri.parse('https://api.jigsawstack.com/v1/ai/tts/clone/' + (Platform.environment['voice_id'] ?? ''));
 
-  final url = Uri.parse('https://api.jigsawstack.com/v1/ai/translate');
-
-  final res = await http.post(url, headers: headers, body: data);
+  final res = await http.delete(url, headers: headers);
   final status = res.statusCode;
-  if (status != 200) throw Exception('http.post error: statusCode= $status');
+  if (status != 200) throw Exception('http.delete error: statusCode= $status');
 
   print(res.body);
 }
@@ -190,20 +151,16 @@ void main() async {
     ```
     ```kotlin Kotlin
 import java.io.IOException
-import okhttp3.MediaType.Companion.toMediaType
+import java.lang.System
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 
 val client = OkHttpClient()
 
-val MEDIA_TYPE = "application/json".toMediaType()
-
-val requestBody = "{\"text\":[\"Hello\",\"How are you?\",\"Thank you\"],\"target_language\":\"zh\"}"
-
 val request = Request.Builder()
-  .url("https://api.jigsawstack.com/v1/ai/translate")
-  .post(requestBody.toRequestBody(MEDIA_TYPE))
+  .url("https://api.jigsawstack.com/v1/ai/tts/clone/" + System.getenv("voice_id") ?: "")
+  .delete("".toRequestBody())
   .header("Content-Type", "application/json")
   .header("x-api-key", "your-api-key")
   .build()
@@ -215,16 +172,17 @@ client.newCall(request).execute().use { response ->
 
     ```
     ```csharp C#
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
 HttpClient client = new HttpClient();
 
-HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://api.jigsawstack.com/v1/ai/translate");
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, "https://api.jigsawstack.com/v1/ai/tts/clone/" + Environment.GetEnvironmentVariable("voice_id"));
 
 request.Headers.Add("x-api-key", "your-api-key");
 
-request.Content = new StringContent("{\"text\":[\"Hello\",\"How are you?\",\"Thank you\"],\"target_language\":\"zh\"}");
+request.Content = new StringContent("");
 request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
 HttpResponseMessage response = await client.SendAsync(request);
@@ -233,23 +191,7 @@ string responseBody = await response.Content.ReadAsStringAsync();
 
     ```
     </RequestExample>
-    <ResponseExample>
-    ```json Response
-{
-      "success": true,
-      "translated_text": [
-            "你好",
-            "你好吗？",
-            "谢谢"
-      ],
-      "_usage": {
-            "input_tokens": 18,
-            "output_tokens": 18,
-            "inference_time_tokens": 609,
-            "total_tokens": 645
-      }
-}
-    ```
-    </ResponseExample>
     
+
+<ResponseExample></ResponseExample>
     

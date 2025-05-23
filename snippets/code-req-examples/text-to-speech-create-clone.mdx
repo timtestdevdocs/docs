@@ -5,8 +5,9 @@ import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
-const response = await jigsaw.prompt_engine.get({
-      "id": "14d675d5-b309-463d-8906-1be65af74c43"
+const response = await jigsaw.audio.create_clone({
+      "url": "https://jigsawstack.com/preview/tts-clone-example.mp3",
+      "name": "Elon Musk"
 })
     ```
     ```python Python
@@ -14,26 +15,29 @@ from jigsawstack import JigsawStack
 
 jigsaw = JigsawStack(api_key="your-api-key")
 
-response = jigsaw.prompt_engine.get({
-      "id": "14d675d5-b309-463d-8906-1be65af74c43"
+response = jigsaw.audio.create_clone({
+      "url": "https://jigsawstack.com/preview/tts-clone-example.mp3",
+      "name": "Elon Musk"
 })
     ```
     ```bash Curl
-curl https://api.jigsawstack.com/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43?id=14d675d5-b309-463d-8906-1be65af74c43 \
- -X GET \
+curl https://api.jigsawstack.com/v1/ai/tts/clone \
+ -X POST \
  -H 'Content-Type: application/json' \
- -H 'x-api-key: your-api-key'
+ -H 'x-api-key: your-api-key' \
+ -d '{"url":"https://jigsawstack.com/preview/tts-clone-example.mp3","name":"Elon Musk"}'
     ```
     ```php PHP
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43?id=14d675d5-b309-463d-8906-1be65af74c43');
+curl_setopt($ch, CURLOPT_URL, 'https://api.jigsawstack.com/v1/ai/tts/clone');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
     'x-api-key: your-api-key',
 ]);
+curl_setopt($ch, CURLOPT_POSTFIELDS, '{"url":"https://jigsawstack.com/preview/tts-clone-example.mp3","name":"Elon Musk"}');
 
 $response = curl_exec($ch);
 
@@ -42,16 +46,17 @@ curl_close($ch);
     ```
     ```ruby Ruby
 require 'net/http'
+require 'json'
 
-uri = URI('https://api.jigsawstack.com/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43')
-params = {
-  :id => '14d675d5-b309-463d-8906-1be65af74c43',
-}
-uri.query = URI.encode_www_form(params)
-
-req = Net::HTTP::Get.new(uri)
+uri = URI('https://api.jigsawstack.com/v1/ai/tts/clone')
+req = Net::HTTP::Post.new(uri)
 req.content_type = 'application/json'
 req['x-api-key'] = 'your-api-key'
+
+req.body = {
+  'url' => 'https://jigsawstack.com/preview/tts-clone-example.mp3',
+  'name' => 'Elon Musk'
+}.to_json
 
 req_options = {
   use_ssl: uri.scheme == 'https'
@@ -69,11 +74,13 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strings"
 )
 
 func main() {
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", "https://api.jigsawstack.com/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43?id=14d675d5-b309-463d-8906-1be65af74c43", nil)
+	var data = strings.NewReader(`{"url":"https://jigsawstack.com/preview/tts-clone-example.mp3","name":"Elon Musk"}`)
+	req, err := http.NewRequest("POST", "https://api.jigsawstack.com/v1/ai/tts/clone", data)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -97,13 +104,14 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 
 HttpClient client = HttpClient.newHttpClient();
 
 HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create("https://api.jigsawstack.com/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43?id=14d675d5-b309-463d-8906-1be65af74c43"))
-    .GET()
+    .uri(URI.create("https://api.jigsawstack.com/v1/ai/tts/clone"))
+    .POST(BodyPublishers.ofString("{\"url\":\"https://jigsawstack.com/preview/tts-clone-example.mp3\",\"name\":\"Elon Musk\"}"))
     .setHeader("Content-Type", "application/json")
     .setHeader("x-api-key", "your-api-key")
     .build();
@@ -114,14 +122,22 @@ HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.o
     ```swift Swift
 import Foundation
 
-let url = URL(string: "https://api.jigsawstack.com/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43?id=14d675d5-b309-463d-8906-1be65af74c43")!
+let jsonData = [
+    "url": "https://jigsawstack.com/preview/tts-clone-example.mp3",
+    "name": "Elon Musk"
+] as [String : Any]
+let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
+
+let url = URL(string: "https://api.jigsawstack.com/v1/ai/tts/clone")!
 let headers = [
     "Content-Type": "application/json",
     "x-api-key": "your-api-key"
 ]
 
 var request = URLRequest(url: url)
+request.httpMethod = "POST"
 request.allHTTPHeaderFields = headers
+request.httpBody = data as Data
 
 let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
     if let error = error {
@@ -144,16 +160,13 @@ void main() async {
     'x-api-key': 'your-api-key',
   };
 
-  final params = {
-    'id': '14d675d5-b309-463d-8906-1be65af74c43',
-  };
+  final data = '{"url":"https://jigsawstack.com/preview/tts-clone-example.mp3","name":"Elon Musk"}';
 
-  final url = Uri.parse('https://api.jigsawstack.com/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43')
-      .replace(queryParameters: params);
+  final url = Uri.parse('https://api.jigsawstack.com/v1/ai/tts/clone');
 
-  final res = await http.get(url, headers: headers);
+  final res = await http.post(url, headers: headers, body: data);
   final status = res.statusCode;
-  if (status != 200) throw Exception('http.get error: statusCode= $status');
+  if (status != 200) throw Exception('http.post error: statusCode= $status');
 
   print(res.body);
 }
@@ -161,13 +174,20 @@ void main() async {
     ```
     ```kotlin Kotlin
 import java.io.IOException
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 
 val client = OkHttpClient()
 
+val MEDIA_TYPE = "application/json".toMediaType()
+
+val requestBody = "{\"url\":\"https://jigsawstack.com/preview/tts-clone-example.mp3\",\"name\":\"Elon Musk\"}"
+
 val request = Request.Builder()
-  .url("https://api.jigsawstack.com/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43?id=14d675d5-b309-463d-8906-1be65af74c43")
+  .url("https://api.jigsawstack.com/v1/ai/tts/clone")
+  .post(requestBody.toRequestBody(MEDIA_TYPE))
   .header("Content-Type", "application/json")
   .header("x-api-key", "your-api-key")
   .build()
@@ -184,11 +204,11 @@ using System.Net.Http.Headers;
 
 HttpClient client = new HttpClient();
 
-HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "https://api.jigsawstack.com/v1/prompt_engine/14d675d5-b309-463d-8906-1be65af74c43?id=14d675d5-b309-463d-8906-1be65af74c43");
+HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://api.jigsawstack.com/v1/ai/tts/clone");
 
 request.Headers.Add("x-api-key", "your-api-key");
 
-request.Content = new StringContent("");
+request.Content = new StringContent("{\"url\":\"https://jigsawstack.com/preview/tts-clone-example.mp3\",\"name\":\"Elon Musk\"}");
 request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
 HttpResponseMessage response = await client.SendAsync(request);
@@ -200,33 +220,12 @@ string responseBody = await response.Content.ReadAsStringAsync();
     <ResponseExample>
     ```json Response
 {
-      "success": true,
-      "id": "14d675d5-b309-463d-8906-1be65af74c43",
-      "inputs": [
-            {
-                  "key": "about",
-                  "optional": false
-            }
-      ],
-      "prompt": "Tell me a story about {about}",
-      "return_prompt": "Return the result in a markdown format",
-      "created_at": "2025-04-11T21:34:29.434339+00:00",
-      "prompt_guard": [
-            "sexual_content",
-            "defamation"
-      ],
-      "optimized_prompt": "Create a captivating story centered around the theme of {about}, incorporating vivid characters and an engaging plot.",
-      "use_internet": false,
-      "public": false,
-      "name": null,
-      "user_id": null,
-      "public_status": null,
-      "updated_at": "2025-04-11T21:34:29.434339+00:00",
+      "voice_id": "5566dc83-5a20-47b5-8030-baac32af5887",
       "_usage": {
-            "input_tokens": 12,
-            "output_tokens": 142,
-            "inference_time_tokens": 279,
-            "total_tokens": 433
+            "input_tokens": 7,
+            "output_tokens": 4,
+            "inference_time_tokens": 303,
+            "total_tokens": 314
       }
 }
     ```

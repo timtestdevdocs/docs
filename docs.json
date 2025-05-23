@@ -178,7 +178,16 @@
           },
           {
             "group": "Audio",
-            "pages": ["docs/api-reference/ai/speech-to-text", "docs/api-reference/ai/text-to-speech"]
+            "pages": ["docs/api-reference/ai/speech-to-text", "docs/api-reference/audio/text-to-speech"]
+          },
+          {
+            "group": "Text to Speech",
+            "pages": [
+              "docs/api-reference/audio/tts/text-to-speech", 
+              "docs/api-reference/audio/tts/create-clone", 
+              "docs/api-reference/audio/tts/get-clones", 
+              "docs/api-reference/audio/tts/delete-clone"
+            ]
           },
           {
             "group": "Validate",
