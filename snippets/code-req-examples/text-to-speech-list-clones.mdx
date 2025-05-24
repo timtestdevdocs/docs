@@ -5,14 +5,14 @@ import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
-const response = await jigsaw.audio.get_clones({})
+const response = await jigsaw.audio.list_clones({})
     ```
     ```python Python
 from jigsawstack import JigsawStack
 
 jigsaw = JigsawStack(api_key="your-api-key")
 
-response = jigsaw.audio.get_clones({})
+response = jigsaw.audio.list_clones({})
     ```
     ```bash Curl
 curl https://api.jigsawstack.com/v1/ai/tts/clone \
@@ -188,6 +188,21 @@ string responseBody = await response.Content.ReadAsStringAsync();
 {
       "voice_clones": [
             {
+                  "id": "35539d10-c2d8-42c2-a83a-813f4a6e3eda",
+                  "name": "Test Voice",
+                  "created_at": "2025-05-23T18:10:18.350056+00:00"
+            },
+            {
+                  "id": "20090c35-3fc1-4607-8988-8c541b3ddc57",
+                  "name": "Test Voice Clone URL",
+                  "created_at": "2025-05-23T18:00:44.538923+00:00"
+            },
+            {
+                  "id": "5566dc83-5a20-47b5-8030-baac32af5887",
+                  "name": "Elon Musk",
+                  "created_at": "2025-05-22T23:02:55.159355+00:00"
+            },
+            {
                   "id": "2c57465d-1ffb-42f7-909a-d587bc9f977e",
                   "name": "test url voice",
                   "created_at": "2025-05-22T20:49:05.03065+00:00"
@@ -223,9 +238,9 @@ string responseBody = await response.Content.ReadAsStringAsync();
       "has_more": false,
       "_usage": {
             "input_tokens": 1,
-            "output_tokens": 56,
-            "inference_time_tokens": 272,
-            "total_tokens": 329
+            "output_tokens": 83,
+            "inference_time_tokens": 238,
+            "total_tokens": 322
       }
 }
     ```

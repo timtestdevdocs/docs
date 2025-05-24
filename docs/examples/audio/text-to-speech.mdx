@@ -141,10 +141,10 @@ const jigsaw = JigsawStack({
 });
 
 // Get all voice clones (default pagination)
-const response = await jigsaw.audio.get_clones();
+const response = await jigsaw.audio.list_clones();
 
 // With pagination
-const response = await jigsaw.audio.get_clones({
+const response = await jigsaw.audio.list_clones({
   limit: 10, // Number of items per page
   page: 1, // Page number (starting from 1)
 });
