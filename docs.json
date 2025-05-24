@@ -123,8 +123,8 @@
           {
             "group": "Resources",
             "pages": [
-              "https://jigsawstack.com/docs/llms.txt",
-              "https://jigsawstack.com/docs/llms-full.txt",
+              "docs/llms.txt",
+              "docs/llms-full.txt",
               "docs/additional-resources/ai-dev-tools",
               "docs/additional-resources/security",
               "docs/additional-resources/jigsawstack-badge",
