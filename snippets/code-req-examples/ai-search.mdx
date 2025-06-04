@@ -218,7 +218,8 @@ string responseBody = await response.Content.ReadAsStringAsync();
 {
       "success": true,
       "query": "capital of France",
-      "ai_overview": "Paris is the capital of France. It has been the capital since its liberation in 1944. Here are some key points about Paris:\n\n*   **Population**: The estimated population in January 2025 was 2,048,472.\n*   **Area:** The city covers an area of more than 105 km2 (41 sq mi).\n*   **Density**: Paris is the fourth-most populous city in the European Union and the 30th most densely populated city in the world in 2022.\n*   **Historical Significance**: Paris became the political, economic, religious, and cultural capital of France by the end of the 12th century.\n*   **Past Capitals**: Before Paris, Lyon was the capital under the Romans.\n*   **Brief Interruption**: There was a four-year interruption during German occupation in World War II when Vichy was the capital.",
+      "ai_overview": "Since 1944, the capital of France has been Paris. Other cities have served as the capital at various times throughout history:\n\n*   Tournai (before 486)\n*   Soissons (486–936)\n*   Laon (936–987)\n*   Orléans (1108)\n*   Troyes (1419–1422)\n*   Bourges (1422–1444)\n*   Tours (1444–1527)\n*   Vichy (1940–1944)\n*    Bordeaux (September 1914 and June 1940)\n*   Clermont-Ferrand (June 29, 1940)\n*   Brazzaville (1940–1943)\n*   Algiers (1943–1944)",
+      "spell_fixed": false,
       "is_safe": true,
       "results": [
             {
@@ -230,9 +231,7 @@ string responseBody = await response.Content.ReadAsStringAsync();
                   "site_long_name": "en.wikipedia.org",
                   "age": "2025-05-15T12:46:40.000Z",
                   "language": "en",
-                  "image_urls": [
-                        "https://maps.wikimedia.org/img/osm-intl,10,a,a,270x200.png?lang=en&domain=en.wikipedia.org&title=Paris&revid=1290542898&groups=_7db7e2f3cf6bfb1f0bc5fadc1f5b339b712de126"
-                  ],
+                  "image_urls": [],
                   "links": [
                         "https://en.wikipedia.org/#bodyContent",
                         "https://en.wikipedia.org/wiki/Main_Page",
@@ -4634,7 +4633,6 @@ string responseBody = await response.Content.ReadAsStringAsync();
             }
       ],
       "image_urls": [
-            "https://maps.wikimedia.org/img/osm-intl,10,a,a,270x200.png?lang=en&domain=en.wikipedia.org&title=Paris&revid=1290542898&groups=_7db7e2f3cf6bfb1f0bc5fadc1f5b339b712de126",
             "https://cdn.britannica.com/36/135436-050-ED1D0FCE/skyline-Eiffel-Tower-France-Paris.jpg",
             "https://cdn.britannica.com/82/682-050-8AA3D6A6/Flag-France.jpg",
             "https://api.multimedia.europarl.europa.eu/documents/20125/77824196/1724427949176_I199003_mobile.jpg",
@@ -8649,9 +8647,9 @@ string responseBody = await response.Content.ReadAsStringAsync();
       ],
       "_usage": {
             "input_tokens": 11,
-            "output_tokens": 201774,
-            "inference_time_tokens": 6486,
-            "total_tokens": 208271
+            "output_tokens": 201618,
+            "inference_time_tokens": 6415,
+            "total_tokens": 208044
       }
 }
     ```
