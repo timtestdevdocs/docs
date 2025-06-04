@@ -43,6 +43,22 @@ import ImageGenerationSnippet from "/snippets/code-req-examples/image-generation
   The number of denoising steps. Must be between 1-90. Higher values produce better quality images but take more time to generate.
 </ParamField>
 
+<ParamField body="output_format" type="string" default="png">
+  The output format of the generated image.
+  <ul>
+    <li>`png`</li>
+    <li>`svg`</li>
+  </ul>
+</ParamField>
+
+<ParamField body="url" type="string">
+  A valid URL where the generated image will be sent.
+</ParamField>
+
+<ParamField body="file_store_key" type="string">
+  Key to store the generated image in file storage.
+</ParamField>
+
 <ParamField body="advance_config" type="object">
   <Expandable title="advance_config" defaultOpen="false">
     <ParamField body="negative_prompt" type="string">
