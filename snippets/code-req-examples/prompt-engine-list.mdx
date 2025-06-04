@@ -203,6 +203,32 @@ string responseBody = await response.Content.ReadAsStringAsync();
       "success": true,
       "prompt_engines": [
             {
+                  "id": "5c69bbd1-02a3-44ad-8804-6a798a95d2e8",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-06-04T05:01:09.530531+00:00"
+            },
+            {
+                  "id": "b2a69f1f-e5d7-4645-9ab3-cc79b495e161",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-05-23T18:19:04.07942+00:00"
+            },
+            {
                   "id": "0739572e-a0e2-4e7c-972c-3352b697fc91",
                   "prompt": "Tell me a story about {about}",
                   "inputs": [
@@ -300,27 +326,6 @@ string responseBody = await response.Content.ReadAsStringAsync();
                   "return_prompt": "{\"letter\":\"the letter\"}",
                   "return_prompt_type": "json",
                   "created_at": "2025-04-24T16:27:41.157664+00:00"
-            },
-            {
-                  "id": "85cfd7f8-9ee0-4006-b5ce-372f1f02a12a",
-                  "prompt": "Hey there! I was just wondering if you might be able to suggest some cool places to visit in Japan ? I'm thinking of going g sometime next year, and I'd love your input if that's alright!",
-                  "inputs": null,
-                  "return_prompt": "{\"letter\":\"the letter\"}",
-                  "return_prompt_type": "json",
-                  "created_at": "2025-04-24T16:27:10.271574+00:00"
-            },
-            {
-                  "id": "ee21f4a4-b2dc-4aa8-99f7-eb16b72693a0",
-                  "prompt": "generate a long intro letter to {name} based on information you find of them what they likes",
-                  "inputs": [
-                        {
-                              "key": "name",
-                              "optional": false
-                        }
-                  ],
-                  "return_prompt": "{\"letter\":\"the letter\"}",
-                  "return_prompt_type": "json",
-                  "created_at": "2025-04-24T16:26:25.527387+00:00"
             }
       ],
       "page": 0,
@@ -328,9 +333,9 @@ string responseBody = await response.Content.ReadAsStringAsync();
       "has_more": true,
       "_usage": {
             "input_tokens": 4,
-            "output_tokens": 753,
-            "inference_time_tokens": 217,
-            "total_tokens": 974
+            "output_tokens": 711,
+            "inference_time_tokens": 485,
+            "total_tokens": 1200
       }
 }
     ```

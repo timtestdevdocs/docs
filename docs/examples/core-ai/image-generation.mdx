@@ -15,7 +15,10 @@ const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 const response = await jigsaw.image_generation({
   prompt: "A serene mountain landscape at sunset",
   aspect_ratio: "16:9",
-  steps: 30
+  width: 1280,
+  height: 720,
+  steps: 30,
+  output_format: "png",
 });
 
 console.log(response);
@@ -58,7 +61,10 @@ const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 const response = await jigsaw.image_generation({
   prompt: "Create an image of a vast, futuristic cathedral-like interior with towering stained glass windows casting vibrant blue and orange light. In the center, a majestic, ethereal whale floats gracefully, its body shimmering with a mosaic of colors reflecting the stained glass. Surrounding the whale are several large, translucent, glowing crystals suspended in mid-air, each reflecting the ambient light. On the ground, a few small human figures stand in awe, emphasizing the scale and grandeur of the scene. The atmosphere is mystical and otherworldly, blending elements of fantasy and science fiction",
   aspect_ratio: "16:9",
-  steps: 30
+  steps: 30,
+  advance_config: {
+    negative_prompt: "blurry, distorted, low quality, cartoon, anime"
+  }
 });
 
 console.log(response);

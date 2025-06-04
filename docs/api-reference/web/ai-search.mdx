@@ -33,6 +33,32 @@ import SearchSnippet from "/snippets/code-req-examples/ai-search.mdx";
   Return results from the specified URLs.
 </ParamField>
 
+<ParamField body="deep_research" type="boolean">
+  Toggle deep research mode.
+</ParamField>
+
+<ResponseField name="deep_research_config" type="object">
+  The deep research configuration.
+  <Expandable title="Deep Research Config Object Structure" defaultOpen>
+    <ResponseField name="max_depth" type="number" default="3">
+      Specifies the depth of research by controlling the number of recursive iterations the framework performs. A higher value enables more thorough but longer searches.
+    </ResponseField>
+
+    <ResponseField name="max_breadth" type="number" default="3">
+      Determines the breadth of research by limiting the number of parallel subqueries generated at each depth level. A higher value provides wider coverage of related topics.
+    </ResponseField>
+
+    <ResponseField name="max_output_tokens" type="number" default="32000">
+      The maximum number of tokens in the generated output report.
+    </ResponseField>
+
+    <ResponseField name="target_output_tokens" type="number">
+      The target number of tokens for the generated output report.
+    </ResponseField>
+
+  </Expandable>
+</ResponseField>
+
 <Snippet file="header.mdx" />
 
 ### Response
