@@ -150,7 +150,7 @@
           },
           {
             "group": "Translate",
-            "pages": ["docs/api-reference/ai/translate", "docs/api-reference/ai/image-translate"]
+            "pages": ["docs/api-reference/ai/translate/translate", "docs/api-reference/ai/translate/image-translate"]
           },
           {
             "group": "Data",
