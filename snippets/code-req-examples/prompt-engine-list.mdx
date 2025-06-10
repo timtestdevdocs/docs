@@ -203,6 +203,19 @@ string responseBody = await response.Content.ReadAsStringAsync();
       "success": true,
       "prompt_engines": [
             {
+                  "id": "e583dd90-69b7-4895-a1f9-eff6ce939e14",
+                  "prompt": "Tell me a story about {about}",
+                  "inputs": [
+                        {
+                              "key": "about",
+                              "optional": false
+                        }
+                  ],
+                  "return_prompt": "Return the result in a markdown format",
+                  "return_prompt_type": "string",
+                  "created_at": "2025-06-04T05:55:44.003902+00:00"
+            },
+            {
                   "id": "5c69bbd1-02a3-44ad-8804-6a798a95d2e8",
                   "prompt": "Tell me a story about {about}",
                   "inputs": [
@@ -318,14 +331,6 @@ string responseBody = await response.Content.ReadAsStringAsync();
                   "return_prompt": "Return the result in a markdown format",
                   "return_prompt_type": "string",
                   "created_at": "2025-05-01T18:50:44.693271+00:00"
-            },
-            {
-                  "id": "a323a9c0-cb9b-4495-8ed0-166b73d04231",
-                  "prompt": "Hey there! I was just wondering if you might be able to suggest some cool places to visit in Japan? I'm thinking of going g sometime next year, and I'd love your input if that's alright!",
-                  "inputs": null,
-                  "return_prompt": "{\"letter\":\"the letter\"}",
-                  "return_prompt_type": "json",
-                  "created_at": "2025-04-24T16:27:41.157664+00:00"
             }
       ],
       "page": 0,
@@ -333,9 +338,9 @@ string responseBody = await response.Content.ReadAsStringAsync();
       "has_more": true,
       "_usage": {
             "input_tokens": 4,
-            "output_tokens": 711,
-            "inference_time_tokens": 485,
-            "total_tokens": 1200
+            "output_tokens": 683,
+            "inference_time_tokens": 253,
+            "total_tokens": 940
       }
 }
     ```
