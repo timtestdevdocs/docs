@@ -270,7 +270,7 @@ export const APISchemas: {
     path: "/ai/translate/image",
     method: "POST",
     body: {
-      url: "https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      url: "https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       target_language: "hi",
     },
     sdk_key_string: "translate.image",

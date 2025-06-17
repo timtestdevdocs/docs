@@ -6,7 +6,7 @@ import { JigsawStack } from "jigsawstack";
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
 const response = await jigsaw.translate.image({
-      "url": "https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "url": "https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "target_language": "hi"
 })
     ```
@@ -16,7 +16,7 @@ from jigsawstack import JigsawStack
 jigsaw = JigsawStack(api_key="your-api-key")
 
 response = jigsaw.translate.image({
-      "url": "https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "url": "https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "target_language": "hi"
 })
     ```
@@ -25,7 +25,7 @@ curl https://api.jigsawstack.com/v1/ai/translate/image \
  -X POST \
  -H 'Content-Type: application/json' \
  -H 'x-api-key: your-api-key' \
- -d '{"url":"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","target_language":"hi"}'
+ -d '{"url":"https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","target_language":"hi"}'
     ```
     ```php PHP
 <?php
@@ -37,7 +37,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
     'x-api-key: your-api-key',
 ]);
-curl_setopt($ch, CURLOPT_POSTFIELDS, '{"url":"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","target_language":"hi"}');
+curl_setopt($ch, CURLOPT_POSTFIELDS, '{"url":"https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","target_language":"hi"}');
 
 $response = curl_exec($ch);
 
@@ -54,7 +54,7 @@ req.content_type = 'application/json'
 req['x-api-key'] = 'your-api-key'
 
 req.body = {
-  'url' => 'https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  'url' => 'https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   'target_language' => 'hi'
 }.to_json
 
@@ -79,7 +79,7 @@ import (
 
 func main() {
 	client := &http.Client{}
-	var data = strings.NewReader(`{"url":"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","target_language":"hi"}`)
+	var data = strings.NewReader(`{"url":"https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","target_language":"hi"}`)
 	req, err := http.NewRequest("POST", "https://api.jigsawstack.com/v1/ai/translate/image", data)
 	if err != nil {
 		log.Fatal(err)
@@ -111,7 +111,7 @@ HttpClient client = HttpClient.newHttpClient();
 
 HttpRequest request = HttpRequest.newBuilder()
     .uri(URI.create("https://api.jigsawstack.com/v1/ai/translate/image"))
-    .POST(BodyPublishers.ofString("{\"url\":\"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"target_language\":\"hi\"}"))
+    .POST(BodyPublishers.ofString("{\"url\":\"https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"target_language\":\"hi\"}"))
     .setHeader("Content-Type", "application/json")
     .setHeader("x-api-key", "your-api-key")
     .build();
@@ -123,7 +123,7 @@ HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.o
 import Foundation
 
 let jsonData = [
-    "url": "https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "url": "https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "target_language": "hi"
 ] as [String : Any]
 let data = try! JSONSerialization.data(withJSONObject: jsonData, options: [])
@@ -160,7 +160,7 @@ void main() async {
     'x-api-key': 'your-api-key',
   };
 
-  final data = '{"url":"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","target_language":"hi"}';
+  final data = '{"url":"https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","target_language":"hi"}';
 
   final url = Uri.parse('https://api.jigsawstack.com/v1/ai/translate/image');
 
@@ -183,7 +183,7 @@ val client = OkHttpClient()
 
 val MEDIA_TYPE = "application/json".toMediaType()
 
-val requestBody = "{\"url\":\"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"target_language\":\"hi\"}"
+val requestBody = "{\"url\":\"https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"target_language\":\"hi\"}"
 
 val request = Request.Builder()
   .url("https://api.jigsawstack.com/v1/ai/translate/image")
@@ -208,7 +208,7 @@ HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://ap
 
 request.Headers.Add("x-api-key", "your-api-key");
 
-request.Content = new StringContent("{\"url\":\"https://images.unsplash.com/photo-1566657817181-c69e4a8eeb1e?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"target_language\":\"hi\"}");
+request.Content = new StringContent("{\"url\":\"https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"target_language\":\"hi\"}");
 request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
 HttpResponseMessage response = await client.SendAsync(request);
