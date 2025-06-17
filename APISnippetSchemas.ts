@@ -172,6 +172,7 @@ export const APISchemas: {
       key: "image-123.png",
     },
     sdk_key_string: "store.get",
+    skip_request: true,
   },
   "file-delete": {
     path: "/store/file/read/image-123.png",
