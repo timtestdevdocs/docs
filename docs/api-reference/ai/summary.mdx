@@ -10,12 +10,9 @@ import SummarySnippet from "/snippets/code-req-examples/summary.mdx";
 
 ### Body
 
-<ParamField body="text" type="string | string[]">
+<ParamField body="text" type="string">
   The text content to summarize. Maximum 300,000 characters.
   Not required if `url` or `file_store_key` is specified.
-  The `text` parameter supports two formats:
-  - Single string: `{"text":"Your long text here"}`
-  - Array of strings: `{"text":["Long text 1", "Long text 2"]}`
 </ParamField>
 
 <ParamField body="url" type="string">
@@ -51,19 +48,11 @@ The response structure varies based on the `type` parameter:
 
 ### When `type` is "text" (default)
 
-<ResponseField name="success" type="boolean">
-  Indicates whether the call was successful.
-</ResponseField>
-
 <ResponseField name="summary" type="string">
   The generated summary as a continuous paragraph.
 </ResponseField>
 
 ### When `type` is "points"
-
-<ResponseField name="success" type="boolean">
-  Indicates whether the call was successful.
-</ResponseField>
 
 <ResponseField name="summary" type="string[]">
   An array of strings, where each string represents a bullet point in the
