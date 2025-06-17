@@ -34,15 +34,15 @@ Packed with a range of built-in features, Prompt Engine makes working with LLMs 
 
 The JigsawStack Prompt Engine is based on a Mixture-of-Agents (MoA) approach. Each time a prompt is executed, it is run across 5 LLMs under the hood, including LLMs powered by Groq for lightning-fast inference speed and performance, such as:
 
-- `llama-3.1-70b-versatile`
+- `llama-3.3-70b-versatile`
 - `llama-3.1-8b-instant`
-- `mixtral-8x7b-32768`
+- other latest models from Groq
 
 The output of each LLM is then ranked by a smaller model based on similarity and quality before being merged into a single output.
 
 The JigsawStack Prompt Engine especially works well if you run the same base prompt repeatedly to allow the engine to self-tune for running the best model every single time with the built-in prompt caching feature.
 
-Optionally each prompt execution is first ran through `llama-guard-3-8b` to detect and filter for common abuse such as prompt injection, crimes, sexual content and more. Prompt guard is a feature that’s built into every step of the Prompt Engine and is configurable to allow or block specific content types.
+Optionally each prompt execution is first ran through `llama-guard-4-12b` to detect and filter for common abuse such as prompt injection, crimes, sexual content and more. Prompt guard is a feature that’s built into every step of the Prompt Engine and is configurable to allow or block specific content types.
 
 <Info>
   Learn more about [how prompt engine works
@@ -182,7 +182,7 @@ result = jigsaw.prompt_engine.run_prompt_direct(params)
   docs](/docs/api-reference/prompt-engine/create)
 </Info>
 
-## Llama Guard 3 by Groq
+## Llama Guard 4 by Groq
 
 The prompt engine comes with prompt guards to prevent prompt injection from user inputs and a wide range of unsafe use cases. This can be turned on automatically using the `prompt_guard` field.
 
