@@ -245,7 +245,7 @@ export const APISchemas: {
       inputs: [
         {
           key: "about",
-          optional: false,
+          optional: true,
           initial_value: "Leaning Tower of Pisa",
         },
       ],

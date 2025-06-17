@@ -26,19 +26,9 @@ import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
-const response = await jigsaw.scrape({
+const response = await jigsaw.web.ai_scrape({
   url: "https://example.com",
-  element_prompts: [
-    {
-      name: "title",
-      selector: "h1"
-    },
-    {
-      name: "description",
-      selector: "meta[name='description']",
-      attribute: "content"
-    }
-  ]
+  selectors: ["h1", "meta[name='description']"],
 });
 
 console.log(response);

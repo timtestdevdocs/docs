@@ -151,11 +151,14 @@ const result = await jigsaw.prompt_engine.run_prompt_direct({
   inputs: [
     {
       key: "about",
-      optional: false,
+      optional: true,
       initial_value: "Leaning Tower of Pisa",
     },
   ],
   return_prompt: "Return the result in a markdown format",
+  input_values: {
+    about: "Santorini",
+  },
 });
 ```
 
@@ -194,12 +197,15 @@ const result = await jigsaw.prompt_engine.run_prompt_direct({
   inputs: [
     {
       key: "about",
-      optional: false,
+      optional: true,
       initial_value: "Leaning Tower of Pisa",
     },
   ],
   return_prompt: "Return the result in a markdown format",
   prompt_guard: ["sexual_content", "defamation"],
+  input_values: {
+    about: "Santorini",
+  },
 });
 ```
 
