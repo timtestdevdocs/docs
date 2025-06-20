@@ -5,7 +5,7 @@ import { JigsawStack } from "jigsawstack";
 
 const jigsaw = JigsawStack({ apiKey: "your-api-key" });
 
-const response = await jigsaw.translate({
+const response = await jigsaw.translate.text({
       "text": [
             "Hello",
             "How are you?",
@@ -19,7 +19,7 @@ from jigsawstack import JigsawStack
 
 jigsaw = JigsawStack(api_key="your-api-key")
 
-response = jigsaw.translate({
+response = jigsaw.translate.text({
       "text": [
             "Hello",
             "How are you?",
@@ -245,8 +245,8 @@ string responseBody = await response.Content.ReadAsStringAsync();
       "_usage": {
             "input_tokens": 18,
             "output_tokens": 18,
-            "inference_time_tokens": 115,
-            "total_tokens": 151
+            "inference_time_tokens": 867,
+            "total_tokens": 903
       }
 }
     ```

@@ -35,7 +35,7 @@ export const APISchemas: {
       text: ["Hello", "How are you?", "Thank you"],
       target_language: "zh",
     },
-    sdk_key_string: "translate",
+    sdk_key_string: "translate.text",
   },
   summary: {
     path: "/ai/summary",
