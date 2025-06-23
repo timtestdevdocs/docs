@@ -1,7 +1,7 @@
 ---
-title: "HTML To Any"
-api: "POST https://api.jigsawstack.com/v1/web/html_to_any"
-description: "Capture screenshots of a website, convert HTML to both image and PDF formats."
+title: HTML To Any
+api: 'POST https://api.jigsawstack.com/v1/web/html_to_any'
+description: 'Capture screenshots of a website, convert HTML to both image and PDF formats.'
 ---
 
 import HtmlToAnySnippet from "/snippets/code-req-examples/html-to-any.mdx";
@@ -112,11 +112,24 @@ import HtmlToAnySnippet from "/snippets/code-req-examples/html-to-any.mdx";
   Page ranges to print in PDF format (e.g., '1-5, 8, 11-13'). Only applies when `type` is set to `pdf`.
 </ParamField>
 
+<ParamField body="return_type" type="string" default="binary">
+  Specifies the format of the API response. Supported values:
+  <ul>
+    <li>`binary` - Returns the raw binary data of the generated image or PDF</li>
+    <li>`base64` - Returns the image or PDF data as a base64-encoded string</li>
+    <li>`url` - Returns a URL to download the generated image or PDF</li>
+  </ul>
+</ParamField>
+
 <Snippet file="header.mdx" />
 
 ## Response
 
-The API returns the generated file (image or PDF) directly in the response body as binary data.
+The API response format depends on the `return_type` parameter:
+
+- If `return_type` is "binary" (default), the API returns the generated file (image or PDF) directly in the response body as binary data.
+- If `return_type` is "base64", the API returns a JSON object with a `data` field containing the base64-encoded string of the generated file.
+- If `return_type` is "url", the API returns a JSON object with a `url` field containing a download link for the generated file.
 
 ## Common Use Cases
 
@@ -173,5 +186,10 @@ Test how websites appear on different screen sizes:
    - Enable `pdf_print_background` when capturing colorful websites as PDFs
    - Use `pdf_page_range` to capture only specific pages for large websites
    - Set appropriate page dimensions with `width` and `height` for better PDF layout
+
+4. **Return Type Selection**:
+   - Use `return_type: "binary"` for direct file downloads or when processing the file immediately
+   - Use `return_type: "base64"` when you need to embed the image data in JSON responses or for easy client-side handling
+   - Use `return_type: "url"` when you want to provide a download link to users or when you need to defer the file retrieval
 
 <HtmlToAnySnippet />
