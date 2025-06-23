@@ -1,0 +1,109 @@
+---
+title: "Vercel AI Toolkit Integration"
+description: "Integrate JigsawStack with Vercel AI Toolkit for enhanced AI capabilities"
+---
+
+# Vercel AI Toolkit Integration
+
+## Overview
+
+JigsawStack now offers seamless integration with the Vercel AI Toolkit, allowing you to leverage JigsawStack's powerful AI capabilities within your Vercel AI projects. This integration provides access to a wide range of AI tools and models through a consistent interface.
+
+## Getting Started
+
+To use JigsawStack with Vercel AI Toolkit, you'll need to initialize the `JigsawStackToolSet` class:
+
+```javascript
+import { JigsawStackToolSet } from 'jigsawstack';
+
+const jigsawTools = new JigsawStackToolSet({
+  apiKey: process.env.JIGSAWSTACK_API_KEY
+});
+```
+
+## Available Tools
+
+The JigsawStack integration provides access to the following AI tools:
+
+- Sentiment Analysis
+- Text Translation
+- Text and Document Summarization
+- Time Series Prediction
+- Text to SQL Conversion
+- Image Generation
+- Web Scraping
+- HTML to Various Formats Conversion
+- AI-powered Web Search
+- Vision OCR (Optical Character Recognition)
+- Object Detection
+- Speech-to-Text Conversion
+- Text-to-Speech Conversion
+- NSFW Content Detection
+- Profanity Checking
+- Spell Checking
+- Spam Detection
+
+## Using Tools
+
+You can access specific tools using the `getTools` method:
+
+```javascript
+const tools = await jigsawTools.getTools({
+  tools: ['sentiment', 'summary', 'translate_text']
+});
+```
+
+Each tool is structured to work seamlessly with Vercel AI Toolkit's function calling interface. Here's an example of how to use the sentiment analysis tool:
+
+```javascript
+const sentimentTool = tools.sentiment;
+
+const result = await sentimentTool.execute({ 
+  text: "I love using JigsawStack with Vercel AI!" 
+});
+
+console.log(result);
+```
+
+## Tool Descriptions
+
+Each tool comes with a description and defined parameters to help you integrate them effectively:
+
+```javascript
+console.log(tools.sentiment.description);
+// Output: "Analyze sentiment and emotion from text"
+
+console.log(tools.sentiment.parameters);
+// Output: Zod schema defining the expected parameters
+```
+
+## Advanced Usage
+
+For more complex scenarios, you can combine multiple tools or use them in sequence. For example, you could translate text, analyze its sentiment, and then generate an image based on the results:
+
+```javascript
+const { translate_text, sentiment, image_generation } = await jigsawTools.getTools({
+  tools: ['translate_text', 'sentiment', 'image_generation']
+});
+
+const translatedText = await translate_text.execute({
+  text: "J'adore utiliser JigsawStack!",
+  target_language: "en"
+});
+
+const sentimentResult = await sentiment.execute({
+  text: translatedText
+});
+
+const imagePrompt = `A ${sentimentResult.sentiment} scene representing "${translatedText}"`;
+
+await image_generation.execute({
+  prompt: imagePrompt
+});
+```
+
+## Conclusion
+
+The integration of JigsawStack with Vercel AI Toolkit provides a powerful set of AI capabilities that can enhance your projects. By leveraging these tools, you can easily add advanced AI features to your applications without the need for complex setups or multiple API integrations.
+
+For more detailed information on each tool and its parameters, please refer to the individual API documentation pages.
