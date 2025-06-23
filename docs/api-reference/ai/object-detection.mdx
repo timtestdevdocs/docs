@@ -1,33 +1,128 @@
 ---
 title: "Object Detection"
 api: "POST https://api.jigsawstack.com/v1/ai/object_detection"
-description: "Recognise objects within an image with great accuracy."
+description: "Detect and locate objects within images with high accuracy."
 ---
 
 import ObjectDetectionSnippet from "/snippets/code-req-examples/object-detection.mdx";
 
+## Overview
+
+The Object Detection API allows you to identify and locate objects within images. It can detect various types of objects and optionally provide GUI elements for user interface components.
+
+## Request Parameters
+
 ### Body
 
 <ParamField body="url" type="string">
-  The image url. Not required if `file_store_key` is specified.
+  The URL of the image to analyze. Required if `file_store_key` is not provided.
 </ParamField>
 
 <ParamField body="file_store_key" type="string">
-  The key used to store the image on Jigsawstack file
-  [Storage](/docs/api-reference/store/file/add). Not required if `url` is
-  specified.
+  The key of a previously uploaded image in Jigsawstack file storage. Required if `url` is not provided.
 </ParamField>
 
-<Info>Either `file_store_key` or `url` can be provided not both.</Info>
+<ParamField body="prompts" type="string[]">
+  Optional array of specific prompts to guide the object detection process.
+</ParamField>
+
+<ParamField body="features" type="string[]">
+  Array specifying which features to include in the response. Possible values:
+  - `object_detection`: Detect general objects in the image
+  - `gui`: Detect GUI elements in the image
+</ParamField>
+
+<ParamField body="annotated_image" type="boolean">
+  If true, the API will return an annotated version of the image with detected objects outlined.
+</ParamField>
+
+<ParamField body="return_type" type="string">
+  Specifies the format for returned image data. Possible values:
+  - `url`: Return a URL to the annotated image
+  - `base64`: Return the annotated image as a base64-encoded string
+</ParamField>
+
+<Info>Either `url` or `file_store_key` must be provided, but not both.</Info>
 
 <Snippet file="header.mdx" />
 
-### Response
+## Response Structure
 
 <ResponseField name="success" type="boolean">
   Indicates whether the call was successful.
 </ResponseField>
 
+<ResponseField name="annotated_image" type="string">
+  URL or base64 string of the annotated image, if requested. Only included if `annotated_image` is true and objects or GUI elements are detected.
+</ResponseField>
 
+<ResponseField name="gui_elements" type="array">
+  Array of detected GUI elements, only included if `features` includes "gui".
+  <Expandable title="GUI Element Structure">
+    <ResponseField name="bounds" type="object">
+      Bounding box coordinates of the GUI element.
+    </ResponseField>
+    <ResponseField name="content" type="string">
+      Text content of the GUI element, if any.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="objects" type="array">
+  Array of detected objects, only included if `features` includes "object_detection".
+  <Expandable title="Detected Object Structure">
+    <ResponseField name="bounds" type="object">
+      Bounding box coordinates of the detected object.
+    </ResponseField>
+    <ResponseField name="mask" type="string">
+      URL or base64 string of the object's mask, if available.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="_usage" type="object">
+  Optional usage statistics for the API call.
+</ResponseField>
+
+## Usage Examples
+
+### Basic Object Detection
+
+```javascript
+const response = await jigsaw.vision.object_detection({
+  url: "https://example.com/image.jpg",
+  features: ["object_detection"]
+});
+```
+
+### GUI Element Detection with Annotated Image
+
+```javascript
+const response = await jigsaw.vision.object_detection({
+  file_store_key: "uploaded_screenshot.png",
+  features: ["gui"],
+  annotated_image: true,
+  return_type: "url"
+});
+```
+
+### Combined Object and GUI Detection
+
+```javascript
+const response = await jigsaw.vision.object_detection({
+  url: "https://example.com/ui_screenshot.png",
+  features: ["object_detection", "gui"],
+  prompts: ["Identify all clickable elements"],
+  annotated_image: true,
+  return_type: "base64"
+});
+```
+
+## Best Practices
+
+1. Use high-quality images for better detection accuracy.
+2. Specify `features` to focus on the types of elements you're interested in.
+3. Use `prompts` to guide the detection process for specific use cases.
+4. Consider using `annotated_image` for visual debugging or user interfaces.
 
 <ObjectDetectionSnippet />
