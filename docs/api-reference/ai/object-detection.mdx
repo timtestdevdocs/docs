@@ -1,15 +1,17 @@
 ---
-title: "Object Detection"
-api: "POST https://api.jigsawstack.com/v1/ai/object_detection"
-description: "Recognise objects within an image with great accuracy."
+title: Object Detection
+api: 'POST https://api.jigsawstack.com/v1/ai/object_detection'
+description: Recognise objects within an image with great accuracy.
 ---
 
 import ObjectDetectionSnippet from "/snippets/code-req-examples/object-detection.mdx";
 
+## Request Parameters
+
 ### Body
 
 <ParamField body="url" type="string">
-  The image url. Not required if `file_store_key` is specified.
+  The image URL. Not required if `file_store_key` is specified.
 </ParamField>
 
 <ParamField body="file_store_key" type="string">
@@ -18,16 +20,138 @@ import ObjectDetectionSnippet from "/snippets/code-req-examples/object-detection
   specified.
 </ParamField>
 
-<Info>Either `file_store_key` or `url` can be provided not both.</Info>
+<ParamField body="prompts" type="string[]">
+  Optional array of specific object labels to detect. If not provided, the API will detect all recognizable objects.
+</ParamField>
+
+<ParamField body="features" type="('object_detection' | 'gui')[]">
+  Optional array specifying which features to include in the response. Default is ['object_detection'].
+</ParamField>
+
+<ParamField body="annotated_image" type="boolean">
+  If set to true, the response will include an annotated image with bounding boxes. Default is false.
+</ParamField>
+
+<ParamField body="return_type" type="'url' | 'base64'">
+  Specifies the format for returning the annotated image and object masks. Default is 'url'.
+</ParamField>
+
+<Info>Either `file_store_key` or `url` must be provided, but not both.</Info>
 
 <Snippet file="header.mdx" />
 
-### Response
+## Response Structure
 
 <ResponseField name="success" type="boolean">
   Indicates whether the call was successful.
 </ResponseField>
 
+<ResponseField name="annotated_image" type="string">
+  Optional. URL or base64 string of the annotated image, if requested. Only included if `annotated_image=true` and objects or GUI elements are detected.
+</ResponseField>
 
+<ResponseField name="gui_elements" type="GuiElement[]">
+  Optional. Array of detected GUI elements. Only included if `features` includes "gui".
+  <Expandable title="GuiElement properties">
+    <ResponseField name="bounds" type="BoundingBox">
+      The bounding box of the GUI element.
+    </ResponseField>
+    <ResponseField name="content" type="string | null">
+      The content or label of the GUI element. Can be null if no content is detected.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="objects" type="DetectedObject[]">
+  Optional. Array of detected objects. Only included if `features` includes "object_detection".
+  <Expandable title="DetectedObject properties">
+    <ResponseField name="bounds" type="BoundingBox">
+      The bounding box of the detected object.
+    </ResponseField>
+    <ResponseField name="mask" type="string">
+      Optional. URL or base64 string of the object's mask, if available.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="_usage" type="UsageStats">
+  Optional. Usage statistics for the API call.
+</ResponseField>
+
+<ResponseField name="BoundingBox" type="object">
+  <Expandable title="BoundingBox properties">
+    <ResponseField name="top_left" type="Point">
+      The top-left corner coordinates of the bounding box.
+    </ResponseField>
+    <ResponseField name="top_right" type="Point">
+      The top-right corner coordinates of the bounding box.
+    </ResponseField>
+    <ResponseField name="bottom_left" type="Point">
+      The bottom-left corner coordinates of the bounding box.
+    </ResponseField>
+    <ResponseField name="bottom_right" type="Point">
+      The bottom-right corner coordinates of the bounding box.
+    </ResponseField>
+    <ResponseField name="width" type="number">
+      The width of the bounding box.
+    </ResponseField>
+    <ResponseField name="height" type="number">
+      The height of the bounding box.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="Point" type="object">
+  <Expandable title="Point properties">
+    <ResponseField name="x" type="number">
+      The x-coordinate of the point.
+    </ResponseField>
+    <ResponseField name="y" type="number">
+      The y-coordinate of the point.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Usage Examples
+
+### Basic Object Detection
+
+```javascript
+const response = await jigsaw.vision.object_detection({
+  url: "https://example.com/image.jpg",
+  features: ["object_detection"]
+});
+
+console.log(response.objects);
+```
+
+### GUI Element Detection with Annotated Image
+
+```javascript
+const response = await jigsaw.vision.object_detection({
+  file_store_key: "stored_image_key",
+  features: ["gui"],
+  annotated_image: true,
+  return_type: "base64"
+});
+
+console.log(response.gui_elements);
+console.log(response.annotated_image); // Base64 string of the annotated image
+```
+
+### Combined Object and GUI Detection
+
+```javascript
+const response = await jigsaw.vision.object_detection({
+  url: "https://example.com/screenshot.png",
+  features: ["object_detection", "gui"],
+  prompts: ["button", "input field"],
+  annotated_image: true
+});
+
+console.log(response.objects);
+console.log(response.gui_elements);
+console.log(response.annotated_image); // URL of the annotated image
+```
 
 <ObjectDetectionSnippet />
