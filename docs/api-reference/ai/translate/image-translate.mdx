@@ -1,10 +1,8 @@
 ---
-title: "Image Translate"
-api: "POST https://api.jigsawstack.com/v1/ai/translate/image"
-description: "Extract and translate text from images into multiple languages."
+title: Image Translate
+api: 'POST https://api.jigsawstack.com/v1/ai/translate/image'
+description: Extract and translate text from images into multiple languages.
 ---
-
-import ImageTranslateSnippet from "/snippets/code-req-examples/image-translate.mdx";
 
 ## Request Parameters
 
@@ -24,6 +22,15 @@ import ImageTranslateSnippet from "/snippets/code-req-examples/image-translate.m
   [here](https://jigsawstack.com/docs/additional-resources/languages).
 </ParamField>
 
+<ParamField body="return_type" type="string" default="url">
+  The format in which the translated image should be returned. Supported values:
+  - `url`: Returns a URL to the translated image (default)
+  - `binary`: Returns the translated image as binary data
+  - `base64`: Returns the translated image encoded in base64
+</ParamField>
+
+<Snippet file="header.mdx" />
+
 ## Response Structure
 
 <ResponseField name="success" type="boolean">
@@ -34,4 +41,51 @@ import ImageTranslateSnippet from "/snippets/code-req-examples/image-translate.m
   The translated text content extracted from the image.
 </ResponseField>
 
-<ImageTranslateSnippet />
+<ResponseField name="translated_image" type="string">
+  The translated image, returned in the format specified by `return_type`:
+  - If `return_type` is "url": A URL to the translated image
+  - If `return_type` is "binary": Binary data of the translated image
+  - If `return_type` is "base64": Base64 encoded string of the translated image
+</ResponseField>
+
+## Usage Examples
+
+```javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.translate.image({
+  url: "https://example.com/image-with-text.jpg",
+  target_language: "es",
+  return_type: "url"
+});
+
+console.log(response.translated_text);
+console.log(response.translated_image);
+```
+
+```python
+from jigsawstack import JigsawStack
+
+jigsaw = JigsawStack(api_key="your-api-key")
+
+response = jigsaw.translate.image(
+    url="https://example.com/image-with-text.jpg",
+    target_language="es",
+    return_type="url"
+)
+
+print(response['translated_text'])
+print(response['translated_image'])
+```
+
+## Best Practices
+
+1. Use high-quality images for better text extraction and translation accuracy.
+2. Specify the `target_language` using the appropriate language code for precise translations.
+3. Choose the appropriate `return_type` based on your application's needs:
+   - Use "url" for easy integration with web applications
+   - Use "binary" for direct image processing or storage
+   - Use "base64" for embedding in HTML or JSON responses
+4. Handle potential errors gracefully, especially for network-related issues when using image URLs.
