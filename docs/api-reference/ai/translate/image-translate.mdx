@@ -1,7 +1,7 @@
 ---
-title: "Image Translate"
-api: "POST https://api.jigsawstack.com/v1/ai/translate/image"
-description: "Extract and translate text from images into multiple languages."
+title: Image Translate
+api: 'POST https://api.jigsawstack.com/v1/ai/translate/image'
+description: Extract and translate text from images into multiple languages.
 ---
 
 import ImageTranslateSnippet from "/snippets/code-req-examples/image-translate.mdx";
@@ -24,6 +24,13 @@ import ImageTranslateSnippet from "/snippets/code-req-examples/image-translate.m
   [here](https://jigsawstack.com/docs/additional-resources/languages).
 </ParamField>
 
+<ParamField body="return_type" type="string" default="url">
+  Specifies the format of the returned translated image. Supported values:
+  - `url`: Returns a URL to the translated image (default)
+  - `binary`: Returns the translated image as binary data
+  - `base64`: Returns the translated image as a base64-encoded string
+</ParamField>
+
 ## Response Structure
 
 <ResponseField name="success" type="boolean">
@@ -32,6 +39,13 @@ import ImageTranslateSnippet from "/snippets/code-req-examples/image-translate.m
 
 <ResponseField name="translated_text" type="string">
   The translated text content extracted from the image.
+</ResponseField>
+
+<ResponseField name="translated_image" type="string | binary | base64">
+  The translated image in the format specified by the `return_type` parameter:
+  - If `return_type` is "url": A URL to the translated image
+  - If `return_type` is "binary": Binary data of the translated image
+  - If `return_type` is "base64": Base64-encoded string of the translated image
 </ResponseField>
 
 <ImageTranslateSnippet />
