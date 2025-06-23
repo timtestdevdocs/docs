@@ -1,10 +1,14 @@
 ---
-title: "AI Search"
-api: "POST https://api.jigsawstack.com/v1/web/search"
-description: "Effortlessly search the Web and get access to high-quality results powered with AI."
+title: AI Search
+api: 'POST https://api.jigsawstack.com/v1/web/search'
+description: >-
+  Effortlessly search the Web and get access to high-quality results powered
+  with AI.
 ---
 
 import SearchSnippet from "/snippets/code-req-examples/ai-search.mdx";
+
+## Request Parameters
 
 ### Body
 
@@ -12,8 +16,8 @@ import SearchSnippet from "/snippets/code-req-examples/ai-search.mdx";
   The search value. The maximum query character length is 400.
 </ParamField>
 
-<ParamField body="ai_overview" type="boolean" default="true">
-  Include AI powered overview in the search results
+<ParamField body="spell_check" type="boolean" default="true">
+  Spell check the search query.
 </ParamField>
 
 <ParamField body="safe_search" type="string" default="moderate">
@@ -25,12 +29,20 @@ import SearchSnippet from "/snippets/code-req-examples/ai-search.mdx";
   </ul>
 </ParamField>
 
-<ParamField body="spell_check" type="boolean" default="true">
-  Spell check the search query.
+<ParamField body="ai_overview" type="boolean" default="true">
+  Include AI powered overview in the search results
 </ParamField>
 
 <ParamField body="byo_urls" type="string[]">
   Return results from the specified URLs.
+</ParamField>
+
+<ParamField body="country_code" type="string">
+  Specify the country code for localized search results.
+</ParamField>
+
+<ParamField body="auto_scrape" type="boolean">
+  Automatically scrape search results for more detailed information.
 </ParamField>
 
 <ParamField body="deep_research" type="boolean">
@@ -61,10 +73,186 @@ import SearchSnippet from "/snippets/code-req-examples/ai-search.mdx";
 
 <Snippet file="header.mdx" />
 
-### Response
+## Response Structure
 
 <ResponseField name="success" type="boolean">
   Indicates whether the call was successful.
 </ResponseField>
 
+<ResponseField name="query" type="string">
+  The search query used.
+</ResponseField>
+
+<ResponseField name="ai_overview" type="string">
+  AI-generated overview of the search results (if enabled).
+</ResponseField>
+
+<ResponseField name="spell_fixed" type="boolean">
+  Indicates if the query was spell-checked and corrected.
+</ResponseField>
+
+<ResponseField name="is_safe" type="boolean">
+  Indicates if the search results are considered safe based on the safe_search setting.
+</ResponseField>
+
+<ResponseField name="results" type="array">
+  An array of search result objects.
+  <Expandable title="Result Object Structure" defaultOpen>
+    <ResponseField name="title" type="string">
+      The title of the search result.
+    </ResponseField>
+    <ResponseField name="url" type="string">
+      The URL of the search result.
+    </ResponseField>
+    <ResponseField name="description" type="string">
+      A brief description of the search result.
+    </ResponseField>
+    <ResponseField name="content" type="string">
+      The main content of the search result.
+    </ResponseField>
+    <ResponseField name="is_safe" type="boolean">
+      Indicates if this specific result is considered safe.
+    </ResponseField>
+    <ResponseField name="site_name" type="string">
+      The name of the website.
+    </ResponseField>
+    <ResponseField name="site_long_name" type="string">
+      The full name of the website.
+    </ResponseField>
+    <ResponseField name="age" type="string">
+      The age or publication date of the content.
+    </ResponseField>
+    <ResponseField name="language" type="string">
+      The language of the content.
+    </ResponseField>
+    <ResponseField name="favicon" type="string">
+      URL of the website's favicon.
+    </ResponseField>
+    <ResponseField name="snippets" type="array">
+      Relevant text snippets from the content.
+    </ResponseField>
+    <ResponseField name="related_index" type="array">
+      Related search results or topics.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="image_urls" type="array">
+  URLs of relevant images found during the search.
+</ResponseField>
+
+<ResponseField name="links" type="array">
+  Additional relevant links found during the search.
+</ResponseField>
+
+<ResponseField name="geo_results" type="array">
+  Geographical information related to the search query, if applicable.
+  <Expandable title="Geo Result Object Structure" defaultOpen>
+    <ResponseField name="type" type="string">
+      The type of geographical entity.
+    </ResponseField>
+    <ResponseField name="full_address" type="string">
+      The complete address of the location.
+    </ResponseField>
+    <ResponseField name="name" type="string">
+      The name of the location.
+    </ResponseField>
+    <ResponseField name="name_preferred" type="string">
+      The preferred name of the location.
+    </ResponseField>
+    <ResponseField name="place_formatted" type="string">
+      A formatted string of the place details.
+    </ResponseField>
+    <ResponseField name="postcode" type="string">
+      The postal code of the location.
+    </ResponseField>
+    <ResponseField name="district" type="string">
+      The district of the location.
+    </ResponseField>
+    <ResponseField name="place" type="string">
+      The place name.
+    </ResponseField>
+    <ResponseField name="region" type="object">
+      Information about the region.
+    </ResponseField>
+    <ResponseField name="country" type="object">
+      Information about the country.
+    </ResponseField>
+    <ResponseField name="language" type="string">
+      The language of the geographical information.
+    </ResponseField>
+    <ResponseField name="geoloc" type="object">
+      Geographical coordinates of the location.
+    </ResponseField>
+    <ResponseField name="poi_category" type="string">
+      The category of the point of interest, if applicable.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
 <SearchSnippet />
+
+## Usage Examples
+
+### Basic Search
+
+```javascript
+import { JigsawStack } from "jigsawstack";
+
+const jigsaw = JigsawStack({ apiKey: "your-api-key" });
+
+const response = await jigsaw.web.search({
+  query: "Artificial Intelligence applications",
+  ai_overview: true,
+  safe_search: "moderate"
+});
+
+console.log(response.ai_overview);
+console.log(response.results);
+```
+
+### Advanced Search with Deep Research
+
+```javascript
+const response = await jigsaw.web.search({
+  query: "Climate change impact on agriculture",
+  deep_research: true,
+  deep_research_config: {
+    max_depth: 4,
+    max_breadth: 5,
+    max_output_tokens: 50000
+  },
+  country_code: "US",
+  auto_scrape: true
+});
+
+console.log(response.ai_overview);
+console.log(response.results);
+```
+
+### Search with Custom URLs
+
+```javascript
+const response = await jigsaw.web.search({
+  query: "Latest advancements in renewable energy",
+  byo_urls: [
+    "https://www.energy.gov/eere/renewables",
+    "https://www.irena.org/",
+    "https://www.nrel.gov/"
+  ],
+  spell_check: true
+});
+
+console.log(response.results);
+```
+
+## Best Practices
+
+1. Use `spell_check: true` to automatically correct misspelled queries.
+2. Adjust `safe_search` based on your application's content requirements.
+3. Utilize `deep_research` for comprehensive results on complex topics.
+4. Use `byo_urls` to include specific trusted sources in your search results.
+5. Set appropriate `country_code` for location-specific searches.
+6. Enable `auto_scrape` for more detailed information from search results.
+
+By leveraging these parameters, you can customize the AI Search functionality to best suit your application's needs and provide users with relevant, comprehensive, and safe search results.
